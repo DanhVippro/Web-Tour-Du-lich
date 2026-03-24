@@ -1,0 +1,227 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 1512px;
+    margin: 0 auto;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.header1 {
+    height: 80px;
+    display: flex;
+}
+
+.logo-header1 a img {
+    height: 60px;
+    width: 160px;
+    padding: 5px 10px;
+}
+
+.Search-header1 .form-place {
+    margin: 15px 20px;
+    background-color: rgb(243, 248, 248);
+}
+
+.Search-header1 .form-place input {
+    width: 280px;
+    height: 45px;
+    border: none;
+    font-size: larger;
+    background-color: rgb(243, 248, 248);
+}
+
+.Search-header1 .form-place button {
+    color: gray;
+    height: 45px;
+    width: 50px;
+    border: none;
+    font-size: 30px;
+    background-color: rgb(243, 248, 248);
+}
+
+.menu-header1 ul {
+    margin-top: 30px;
+}
+
+.menu-header1 ul li {
+    display: inline-block;
+}
+
+.menu-header1 ul li a {
+    text-decoration: none;
+    font-size: 20px;
+    margin: 25px 15px;
+    text-transform: uppercase;
+    color: rgb(54, 101, 161);
+}
+
+.menu-header1 ul li a:hover {
+    color: rgb(253, 115, 115);
+
+}
+
+.header2 {
+    height: 600px;
+    background-image: url(../images/hoi-an.pg.webp);
+    background-position-x: center;
+    background-position-y: center;
+    background-size: 1520px;
+}
+
+.header2 .text-header2 {
+    color: rgb(255, 255, 255);
+    text-align: center;
+}
+
+.header2 .text-header2 h1 {
+    font-size: 45px;
+    padding-top: 50px;
+}
+
+.header2 .text-header2 h3 {
+    font-size: 30px;
+}
+
+section {
+    height: auto;
+}
+
+section .uy-tin {
+    height: 130px;
+
+    padding-left: 70px;
+}
+
+.uy-tin1 {
+    float: left;
+
+}
+
+.logo1-section {
+    float: left;
+    padding-top: 30px;
+    padding-right: 20px;
+}
+
+.text1-section {
+    float: left;
+}
+
+.uy-tin2 {
+    float: left;
+}
+
+.text1-section {
+    color: rgb(88, 90, 230);
+    padding-right: 30px;
+}
+
+.text1-section h4 {
+    margin-bottom: 1px;
+}
+
+.text1-section p {
+    margin-top: 5px;
+}
+
+footer {
+    height: 750px;
+    background-color: rgb(112, 148, 161);
+}
+
+.text-footer {
+    color: white;
+    text-align: center;
+    padding-top: 25px;
+}
+
+.email-footer .form-email {
+    text-align: center;
+    padding-bottom: 40px;
+    border-bottom-style: groove;
+    color: azure;
+}
+
+.email-footer .form-email input {
+    width: 390px;
+    height: 35px;
+    border-radius: 5px;
+    border: 0cap;
+
+}
+
+.email-footer .form-email button {
+    width: 130px;
+    height: 38px;
+    border-radius: 5px;
+    border: 0cap;
+    color: rgb(231, 227, 227);
+    background-color: rgb(30, 30, 180);
+}
+
+.center-footer .thongtinlienhe {
+    float: left;
+    width: 250px;
+    padding: 30px 60px;
+    font-size: larger;
+}
+
+.center-footer .chamsockhachhang {
+    float: left;
+    width: 290px;
+    padding: 30px 60px;
+    font-size: larger;
+}
+
+.center-footer .thongtin {
+    float: left;
+    width: 370px;
+    padding: 30px 60px;
+    font-size: larger;
+}
+
+.center-footer .thongtin ul li a {
+    text-decoration: none;
+
+    color: white;
+}
+
+.center-footer .thongtin ul li {
+    list-style: none;
+    padding-bottom: 10px;
+    display: inline-block;
+
+
+}
+
+.center-footer .thongtin h3 {
+    padding-left: 35px;
+
+}
+
+.center-footer h3 {
+    color: rgb(128, 8, 8);
+}
+
+.center-footer h5 {
+    color: rgb(92, 70, 70);
+    margin-bottom: 1px;
+}
+
+.center-footer p {
+    color: rgb(255, 255, 255);
+    margin-top: 5px;
+}
+.center-footer{
+    display: flex;
+ 
+}
+.bot-footer{
+    color: white;
+    font-size: larger;
+    text-align: center;
+     border-top-style: groove;
+    color: azure;
+   
+}
