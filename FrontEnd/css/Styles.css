@@ -47,7 +47,10 @@
 .menu-header1 ul li {
     display: inline-block;
 }
-
+.menu-header1 ul li:hover a {
+    background-color: rgb(51, 184, 184);
+   padding: 50px 10px;
+}
 .menu-header1 ul li a {
     text-decoration: none;
     font-size: 20px;
