@@ -102,7 +102,7 @@ body {
 .header2 {
     height: 600px;
     width: 100%;
-    background-image: url(../../data/img/hoi-an.pg.webp);
+    background-image: url(../../data/img/img-header2/hoi-an.pg.webp);
     background-position: center;
     background-size: cover;
 }
