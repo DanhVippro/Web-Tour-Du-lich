@@ -78,7 +78,7 @@ body {
     background: red;
     left: 0;
     bottom: 0;
-    transition: 0.3s;
+    transition: 0.2s;
 }
 
 .menu-header1 ul li a:hover::after {
