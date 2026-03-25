@@ -1,8 +1,14 @@
+body {
+    margin: 0;
+    padding: 0;
+    padding-top: 80px;
+}
+
 .container {
     display: flex;
     flex-direction: column;
     height: auto;
-    width: 1512px;
+    max-width: 1512px;
     margin: 0 auto;
     font-family: 'Times New Roman', Times, serif;
 }
@@ -10,10 +16,17 @@
 .header1 {
     height: 80px;
     display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(246, 246, 246);
 }
 
 .logo-header1 a img {
@@ -24,7 +37,7 @@
 
 .Search-header1 .form-place {
     margin: 15px 20px;
-    background-color: rgb(243, 248, 248);
+    background-color: rgb(231, 236, 236);
 }
 
 .Search-header1 .form-place input {
@@ -32,7 +45,7 @@
     height: 45px;
     border: none;
     font-size: larger;
-    background-color: rgb(243, 248, 248);
+    background-color: rgb(231, 236, 236);
 }
 
 .Search-header1 .form-place button {
@@ -41,24 +54,42 @@
     width: 50px;
     border: none;
     font-size: 30px;
-    background-color: rgb(243, 248, 248);
+    background-color: rgb(231, 236, 236);
 }
 
 .menu-header1 ul {
-    margin-top: 30px;
+    padding: 0;
+    margin: 0;
 }
 
 .menu-header1 ul li {
     display: inline-block;
 }
-.menu-header1 ul li:hover a {
-    background-color: rgb(51, 184, 184);
-   padding: 50px 10px;
-}
+
 .menu-header1 ul li a {
+    position: relative;
+}
+
+.menu-header1 ul li a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 3px;
+    background: red;
+    left: 0;
+    bottom: 0;
+    transition: 0.3s;
+}
+
+.menu-header1 ul li a:hover::after {
+    width: 100%;
+}
+
+.menu-header1 ul li a {
+    display: inline-block;
     text-decoration: none;
     font-size: 20px;
-    margin: 25px 15px;
+    padding: 28px 15px;
     text-transform: uppercase;
     color: rgb(54, 101, 161);
 }
@@ -70,66 +101,63 @@
 
 .header2 {
     height: 600px;
+    width: 100%;
     background-image: url(../../data/img/hoi-an.pg.webp);
-    background-position-x: center;
-    background-position-y: center;
-    background-size: 1520px;
+    background-position: center;
+    background-size: cover;
 }
 
 .header2 .text-header2 {
     color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
     text-align: center;
 }
 
 .header2 .text-header2 h1 {
     font-size: 45px;
     padding-top: 50px;
+    margin: 0;
 }
 
-.header2 .text-header2 h3 {
+.header2 .text-header2 h2 {
     font-size: 30px;
+
 }
 
 section {
     height: auto;
 }
 
-section .uy-tin {
-    height: 130px;
+.uy-tin {
+    padding: 30px 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 
-    padding-left: 70px;
 }
 
-.uy-tin1 {
-    float: left;
-
+.uy-tin1,
+.uy-tin2,
+.uy-tin3 {
+    display: flex;
+    align-items: center;
 }
 
 .logo1-section {
-    float: left;
-    padding-top: 30px;
-    padding-right: 20px;
+    margin-right: 15px;
 }
 
 .text1-section {
-    float: left;
-}
-
-.uy-tin2 {
-    float: left;
-}
-
-.text1-section {
-    color: rgb(88, 90, 230);
-    padding-right: 30px;
+    color: rgb(90, 90, 204);
 }
 
 .text1-section h4 {
-    margin-bottom: 1px;
+    margin: 0;
+    padding-bottom: 5px;
 }
 
 .text1-section p {
-    margin-top: 5px;
+    margin: 0;
 }
 
 footer {
@@ -220,15 +248,17 @@ footer {
     color: rgb(255, 255, 255);
     margin-top: 5px;
 }
-.center-footer{
+
+.center-footer {
     display: flex;
- 
+
 }
-.bot-footer{
+
+.bot-footer {
     color: white;
     font-size: larger;
     text-align: center;
-     border-top-style: groove;
+    border-top-style: groove;
     color: azure;
-   
+
 }
