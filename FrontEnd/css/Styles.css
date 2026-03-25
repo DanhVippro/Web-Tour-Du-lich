@@ -10,6 +10,10 @@
 .header1 {
     height: 80px;
     display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 
 .logo-header1 a img {
