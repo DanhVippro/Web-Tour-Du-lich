@@ -4,8 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
         "../../data/img/img-header2/Ha-Long.jpg",
         "../../data/img/img-header2/nghe-an.webp",
         "../../data/img/img-header2/thanh-pho-ho-chi-minh.jpg",
-        "../../data/img/img-header2/phu-Yen.webp"
-        
+        "../../data/img/img-header2/phu-Yen.webp",
+        "../../data/img/img-header2/sing-ga-po.jpg",
+         "../../data/img/img-header2/uc.jpg",
     ];
 
     let index = 0;
