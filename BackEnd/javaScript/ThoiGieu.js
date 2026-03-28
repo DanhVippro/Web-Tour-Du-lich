@@ -1,11 +1,8 @@
-const images = [
-  "../../data/img/img-header2/hoi-an.pg.webp",
-  "../../data/img/img-header2/Ha-Long.jpg",
-  "../../data/img/img-header2/nghe-an.webp",
-  "../../data/img/img-header2/thanh-pho-ho-chi-minh.jpg",
-  "../../data/img/img-header2/phu-Yen.webp",
-  "../../data/img/img-header2/sing-ga-po.jpg",
-  "../../data/img/img-header2/uc.jpg",
+const images = ["../../data/img/giới thiệu/pexels-dqnguyen15-19578157.jpg",
+  "../../data/img/giới thiệu/pexels-maxed-raw-527582413-27421515.jpg",
+  "../../data/img/giới thiệu/pexels-nhavan-35151125.jpg",
+  "../../data/img/giới thiệu/pexels-qui-nguyen-7862521-32303442.jpg",
+  "../../data/img/giới thiệu/pexels-zsuzsa-zsuzsa-127738300-31387030.jpg"
 ];
 
 let index = 0;
