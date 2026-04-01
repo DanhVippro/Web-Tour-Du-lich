@@ -88,7 +88,7 @@ body {
 .menu-header1 ul li a {
     display: inline-block;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 15px;
     padding: 28px 15px;
     text-transform: uppercase;
     color: rgb(54, 101, 161);
@@ -230,7 +230,9 @@ footer {
 
     color: white;
 }
-
+.center-footer .thongtin ul li a:hover {
+     color: rgb(25, 0, 255);
+}
 .center-footer .thongtin ul li {
     list-style: none;
     padding-bottom: 10px;
