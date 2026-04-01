@@ -221,6 +221,9 @@ footer {
 
     color: white;
 }
+.center-footer .thongtin ul li a:hover {
+    color: rgb(25, 0, 255);
+}
 
 .center-footer .thongtin ul li {
     list-style: none;
