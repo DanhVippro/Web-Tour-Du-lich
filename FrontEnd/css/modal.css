@@ -1,23 +1,82 @@
+.modal-dialog.modal-bg {
+    max-width: 1000px !important;
+    width: 600px;
+}
+
+.log-reg-btn {
+    font-size: 1.4rem;
+    color: red;
+    font-weight: 400;
+    cursor: pointer;
+    padding-right: 35px;
+
+}
+
+.log-reg {
+    display: flex;
+    align-items: center;
+}
+
+.form-control {
+    height: 40px;
+}
+
+/* modal-footer */
+.modal-footer {
+    justify-content: space-between !important;
+}
+
+.log {
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.btnlog {
+    display: flex;
+    align-items: center;
+}
+
 .btn {
     min-width: 142px;
     height: 36px;
     font-weight: 400;
-    border: none;
     border-radius: 2px;
-    cursor: pointer;
     color: rgb(110, 109, 109);
-    background-color: white;
 }
-.btn:hover{
-    background-color: rgba(44, 44, 44, 0.05);
-}
+
 .btn.btn-DANGKI {
     background-color: rgb(233, 36, 36);
     border: none;
-    color: white;
+    color: white !important;
     font-weight: 400;
-    border-radius: 2px;
 }
-.btn.btn-back{
+
+.btn.btn-DANGKI:hover {
+    background-color: rgb(197, 4, 4);
+
+}
+
+.btn.btn-back {
     margin-right: 10px;
+}
+
+.btn.btn-back:hover {
+    background-color: rgb(211, 211, 211);
+}
+
+.text-dn {
+    text-decoration: none;
+    color: red;
+}
+
+.text-dn:hover {
+    text-decoration: underline;
+    color: darkred;
+}
+
+/* logDN */
+.btnlogDN {
+    display: flex;
+    justify-content: end;
+    width: 100%;
 }

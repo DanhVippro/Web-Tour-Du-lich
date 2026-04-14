@@ -43,55 +43,109 @@
     <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
     <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
         aria-labelledby="modalTitleId" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-bg" role="document">
+        <div class="modal-dialog  modal-dialog-centered modal-bg" role="document">
             <div class="modal-content">
                 <div class="modal-header  ">
-                    <h5 class="text-center w-100">
-                        THÔNG TIN TOUR
+                    <h5 class="text-center  w-100">
+                        ĐĂNG KÍ TÀI KHOẢN
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-
-
-                    <input type="text" class="log-reg-input" placeholder="Họ tên">
-
-
-
-                    <input type="text" class="log-reg-input" placeholder="Số điện thoại">
-
-
-
-                    <input type="text" class="log-reg-input" placeholder="Email">
-
-
-
-                    <input type="text" class="log-reg-input" placeholder="CCCD">
-
-
-
-                    <input type="radio">Nam
-                    <input type="radio">Nữ
-
-
-
-                    <input type="date" class="inputTuoi" placeholder="Tuổi">
-
-
-
-                    <input type="password" class="log-reg-input" placeholder="Nhập mật khẩu">
-
-
-
-                    <input type="password" class="log-reg-input" placeholder="Nhập lại mật khẩu">
-
-
-
-
+                    <div class="mb-3">
+                        <label for="" class="form-label">Họ tên</label>
+                        <input type="text" class="form-control" name="HoTen" id="HoTen" aria-describedby="helpId"
+                            placeholder="" />
+                        <!-- <small id="helpId" class="form-text text-body-secondary">*</small> -->
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Số điện thoại / Email</label>
+                        <input type="text" class="form-control" name="dtEmail" id="dtEmail" aria-describedby="helpId"
+                            placeholder="" />
+                        <!-- <small id="helpId" class="form-text text-body-secondary">*</small> -->
+                    </div>
+                    <!-- <div class="mb-3">
+                        <label for="" class="form-label">Email</label>
+                        <input type="text" class="form-control" name="" id="" aria-describedby="helpId"
+                            placeholder="" />
+                        <small id="helpId" class="form-text text-body-secondary">*</small>
+                    </div> -->
+                    <!-- <div class="mb-3">
+                        <label for="" class="form-label">CCCD</label>
+                        <input type="text" class="form-control" name="" id="" aria-describedby="helpId"
+                            placeholder="" />
+                        <small id="helpId" class="form-text text-body-secondary">*</small>
+                    </div> -->
+                    <div class="mb-3">
+                        <div><label class="form-label">Giới tính</label></div>
+                        <input type="radio" class="form-check-input" name="gioitinh" id="nam" />
+                        <label for="nam">Nam</label>
+                        &nbsp;&nbsp;
+                        <input type="radio" class="form-check-input" name="gioitinh" id="nu" />
+                        <label for="nu">Nữ</label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Ngày sinh</label>
+                        <input type="date" class="form-control" name="Tuoi" id="Tuoi" aria-describedby="helpId"
+                            placeholder="" />
+                        <!-- <small id="helpId" class="form-text text-body-secondary">*</small> -->
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Nhập mật khẩu</label>
+                        <input type="password" class="form-control" name="mk" id="mk" aria-describedby="helpId"
+                            placeholder="" />
+                        <!-- <small id="helpId" class="form-text text-body-secondary">*</small> -->
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Nhập lại mật khẩu</label>
+                        <input type="password" class="form-control" name="NLmk" id="NLmk" aria-describedby="helpId"
+                            placeholder="" />
+                        <!-- <small id="helpId" class="form-text text-body-secondary">*</small> -->
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-back">TRỞ LẠI</button>
-                    <button class="btn btn-DANGKI">ĐĂNG KÍ</button>
+                    <div class="log">
+                        <span>Tôi đã có tài khoản <a href="#" class=" text-dn" data-bs-toggle="modal"
+                                data-bs-target="#modalLog">Đăng nhập</a></span>
+                    </div>
+                    <div class="btnlog">
+                        <button class="btn btn-back" data-bs-dismiss="modal">TRỞ LẠI</button>
+                        <button class="btn btn-DANGKI">ĐĂNG KÍ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalLog" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+        aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered modal-bg" role="document">
+            <div class="modal-content">
+                <div class="modal-header  ">
+                    <h5 class="text-center  w-100">
+                        ĐĂNG NHẬP
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="" class="form-label">Số điện thoại / Email</label>
+                        <input type="text" class="form-control" name="dtEmail" id="dtEmail" aria-describedby="helpId"
+                            placeholder="" />
+                        <!-- <small id="helpId" class="form-text text-body-secondary">*</small> -->
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Nhập lại mật khẩu</label>
+                        <input type="password" class="form-control" name="NLmk" id="NLmk" aria-describedby="helpId"
+                            placeholder="" />
+                        <!-- <small id="helpId" class="form-text text-body-secondary">*</small> -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="btnlogDN">
+                        <button class="btn btn-back" data-bs-toggle="modal" data-bs-target="#modalId"
+                            data-bs-dismiss="modal">TRỞ LẠI</button>
+                        <button class="btn btn-DANGKI">ĐĂNG NHẬP</button>
+                    </div>
                 </div>
             </div>
         </div>
