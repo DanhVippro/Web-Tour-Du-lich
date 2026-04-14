@@ -7,7 +7,7 @@
     <title>Trang chủ</title>
     <link rel="stylesheet" href="../css/Styles.css">
     <link rel="stylesheet" href="../css/modal.css">
-
+    <link rel="stylesheet" href="../css/bootstrap.css">
 </head>
 
 <body>
@@ -35,63 +35,76 @@
             </ul>
         </div>
         <div class="logo-login">
-            <a href="#"> <img src="../../data/img/logo-login.png" alt="login" height="50px"></a>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#modalId"> <img src="../../data/img/logo-login.png"
+                    alt="login" height="50px"></a>
         </div>
-        <!-- modalLogin -->
-        <div class="modal">
-            <div class="modal-overlay"></div>
-            <div class="modal-body">
-                <div class="login-register">
-                    <div class="log-reg-header">
-                        <h3 class="log-reg-heading">Đăng ký</h3>
-                        <span class="log-reg-btn">Đăng nhập</span>
-                        
-                    </div>
-                    <div class="log-reg-form">
-                        <div>
-                            <!-- <label for="">Full Name:</label> -->
-                            <input type="text" class="log-reg-input" placeholder="Họ tên">
-                        </div>
-                        <div>
-                            <!-- <label for="">Phone:</label> -->
-                            <input type="text" class="log-reg-input" placeholder="Số điện thoại">
-                        </div>
-                        <div>
-                            <!-- <label for="">Email:</label> -->
-                            <input type="text" class="log-reg-input" placeholder="Email">
-                        </div>
-                        <div>
-                            <!-- <label for="">CCCD:</label> -->
-                            <input type="text" class="log-reg-input" placeholder="CCCD">
-                        </div>
-                        <div>
-                            <!-- <label for="">Sex:</label> -->
-                            <input type="radio">Nam
-                            <input type="radio">Nữ
-                        </div>
-                        <div>
-                            <!-- <label for="">Date Of Birth:</label> -->
-                            <input type="date" class="inputTuoi" placeholder="Tuổi">
-                        </div>
-                        <div>
-                            <!-- <label for="">Password:</label> -->
-                            <input type="password" class="log-reg-input" placeholder="Nhập mật khẩu">
-                        </div>
-                        <div>
-                            <!-- <label for="">Again Password:</label> -->
-                            <input type="password" class="log-reg-input" placeholder="Nhập lại mật khẩu">
-                        </div>
-                    </div>
+    </header>
+    <!-- Modal Body -->
+    <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+    <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+        aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-bg" role="document">
+            <div class="modal-content">
+                <div class="modal-header  ">
+                    <h5 class="text-center w-100">
+                        THÔNG TIN TOUR
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+
+                    <input type="text" class="log-reg-input" placeholder="Họ tên">
+
+
+
+                    <input type="text" class="log-reg-input" placeholder="Số điện thoại">
+
+
+
+                    <input type="text" class="log-reg-input" placeholder="Email">
+
+
+
+                    <input type="text" class="log-reg-input" placeholder="CCCD">
+
+
+
+                    <input type="radio">Nam
+                    <input type="radio">Nữ
+
+
+
+                    <input type="date" class="inputTuoi" placeholder="Tuổi">
+
+
+
+                    <input type="password" class="log-reg-input" placeholder="Nhập mật khẩu">
+
+
+
+                    <input type="password" class="log-reg-input" placeholder="Nhập lại mật khẩu">
+
+
+
 
                 </div>
-                <div class="log-reg-foot">
+                <div class="modal-footer">
                     <button class="btn btn-back">TRỞ LẠI</button>
                     <button class="btn btn-DANGKI">ĐĂNG KÍ</button>
                 </div>
-
             </div>
         </div>
-    </header>
+    </div>
+
+
+    <!-- Optional: Place to the bottom of scripts -->
+    <script>
+        const myModal = new bootstrap.Modal(
+            document.getElementById("modalId"),
+            options,
+        );
+    </script>
     <!-- header2-->
     <header class="header2">
         <div class="text-header2">
@@ -197,8 +210,9 @@
 
         </div>
     </footer>
-    <script src="../../BackEnd/javaScript/main.js"></script>
     <script src="../../BackEnd/javaScript/bootstrap.bundle.min.js"></script>
+    <script src="../../BackEnd/javaScript/main.js"></script>
+
 </body>
 
 </html>
