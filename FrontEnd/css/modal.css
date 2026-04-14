@@ -2,7 +2,6 @@
     max-width: 1000px !important;
     width: 600px;
 }
-
 .log-reg-btn {
     font-size: 1.4rem;
     color: red;
@@ -23,7 +22,7 @@
 
 /* modal-footer */
 .modal-footer {
-    justify-content: space-between !important;
+    justify-content: space-between ;
 }
 
 .log {
@@ -36,7 +35,7 @@
     align-items: center;
 }
 
-.btn {
+.modal .btn {
     min-width: 142px;
     height: 36px;
     font-weight: 400;
@@ -73,10 +72,9 @@
     text-decoration: underline;
     color: darkred;
 }
-
 /* logDN */
-.btnlogDN {
-    display: flex;
+.btnlogDN{
+      display: flex;
     justify-content: end;
     width: 100%;
 }
