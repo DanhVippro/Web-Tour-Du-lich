@@ -1,184 +1,265 @@
 body {
-            background: #F8F9FA;
-        }
+    background: linear-gradient(270deg, #e0f7fa, #7dd3fa, #e1f5fe);
+    background-size: 600% 600%;
+    animation: gradientMove 12s ease infinite;
+}
 
-        /* Sidebar */
-        .sidebar {
-            height: 100vh;
-            background: #E6F4EA;
-            padding: 20px;
-            position: relative;
-        }
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
 
-        .sidebar .menu-item {
-            margin: 15px 0;
-            cursor: pointer;
-        }
+    50% {
+        background-position: 100% 50%;
+    }
 
-        .sidebar button {
-            background: #FFC107;
-            border-radius: 8px;
-            padding: 10px;
-            text-align: center;
-            margin-top: 20px;
-            position: absolute;
-            bottom: 90px;
-            left: 20px;
-            right: 20px;
-        }
+    100% {
+        background-position: 0% 50%;
+    }
+}
 
-        /* Header */
-        .dashboard-header {
-            background: #b784d7;
-            padding: 20px;
-            border-radius: 10px;
-        }
+/* Sidebar */
+.sidebar {
+    height: 100vh;
+    background-image: url(/data/img/tobias-rademacher-NuBvAE6VfSM-unsplash.jpg);
+    padding: 20px;
+    position: relative;
+}
 
-        .box {
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-        }
+.sidebar .menu-item {
+    margin: 15px 0;
+    cursor: pointer;
+}
 
-        .box-blue {
-            background: #9ed0d4;
-        }
+.sidebar button {
+    background: #FFC107;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    margin-top: 20px;
+    position: absolute;
+    bottom: 90px;
+    left: 20px;
+    right: 20px;
+}
 
-        .box-yellow {
-            background: #f4d35e;
-        }
+/* Header */
+.dashboard-header {
+    background-image: url(/data/img/img-header2/uc.jpg);
+    padding: 20px;
+    border-radius: 10px;
+    background-position: 20% 10%;
+    background-size: 1600px;
+}
 
-        .search-box {
-            border-radius: 20px;
-            padding: 10px;
-            border: none;
-            width: 100%;
-        }
+.box {
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+}
 
-        .list-item {
-            height: 40px;
-            background: #caa0dc;
-            border-radius: 8px;
-            margin-bottom: 10px;
-        }
+.box-blue {
+    background: #9ed0d4;
+}
 
-        .right-box {
-            background: #caa0dc;
-            border-radius: 15px;
-            height: 300px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.box-yellow {
+    background: #f4d35e;
+}
 
-        img {
-            width: 80%;
-            border-radius: 10px;
-        }
+.search-box {
+    border-radius: 20px;
+    padding: 10px;
+    border: none;
+    width: 100%;
+}
 
-        .sidebar li {
-            list-style: none;
-            margin: 20px 0;
-        }
+.list-item {
+    height: 40px;
+    background: #caa0dc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
 
-        .sidebar li a {
-            text-decoration: none;
-            color: #2C3E50;
-            font-weight: bold;
-            font-size: 1.4rem;
-        }
+.right-box {
+    background: #caa0dc;
+    border-radius: 15px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        .sidebar li a:hover {
-            color: #2980B9;
-            background-color: #2980B9;
-        }
+img {
+    width: 80%;
+    border-radius: 10px;
+}
 
-        .sidebar li a {
-            position: relative;
-            display: block;
-            padding: 10px 15px;
-            border-radius: 8px;
-            color: #2C3E50;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
+.sidebar li {
+    list-style: none;
+    margin: 20px 0;
+}
 
-        .sidebar li a::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 4px;
-            height: 100%;
-            background: #0D6EFD;
-            border-radius: 4px;
-            opacity: 0;
-            transition: 0.3s;
-        }
+.sidebar li a {
+    text-decoration: none;
+    color: #2C3E50;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
 
-        .sidebar li a:hover {
-            background: #E3F2FD;
-            color: #0D6EFD;
-            padding-left: 20px;
-        }
+.sidebar li a:hover {
+    color: #2980B9;
+    background-color: #2980B9;
+}
 
-        .account {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            display: flex;
-        }
+.sidebar li a {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: #2C3E50;
+    font-weight: 600;
+    transition: all 0.3s;
+}
 
-        .account img {
-            width: 50px;
-            border-radius: 60%;
-            margin-right: 10px;
-        }
+.sidebar li a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #0D6EFD;
+    border-radius: 4px;
+    opacity: 0;
+    transition: 0.3s;
+}
 
-        .nameAccount {
-            display: flex;
-            flex-direction: column;
-        }
+.sidebar li a:hover {
+    background: #E3F2FD;
+    color: #0D6EFD;
+    padding-left: 20px;
+}
 
-        .nameAccount .name {
-            font-weight: 600;
-            margin: 0;
-            line-height: 1.2;
-        }
+.account {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    display: flex;
+}
 
-        .nameAccount .role {
-            margin: 2px 0 0;
-            font-size: 0.9rem;
-            color: #6c757d;
-        }
+.account img {
+    width: 50px;
+    border-radius: 60%;
+    margin-right: 10px;
+}
 
-        .menu-link {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 15px;
-            border-radius: 10px;
-            text-decoration: none;
-            color: #2C3E50;
-            font-weight: 600;
-            transition: 0.3s;
-        }
+.nameAccount {
+    display: flex;
+    flex-direction: column;
+}
 
-        .menu-link i {
-            font-size: 1.2rem;
-            width: 20px;
-            text-align: center;
-        }
+.nameAccount .name {
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.2;
+}
 
-        .menu-link:hover {
-            background: #D0E8FF;
-            color: #0D6EFD;
-        }
+.nameAccount .role {
+    margin: 2px 0 0;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
 
-        .menu-link.active {
-            background: #D0E8FF;
-            color: #0D6EFD;
-        }
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #2C3E50;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.menu-link i {
+    font-size: 1.2rem;
+    width: 20px;
+    text-align: center;
+}
+
+.menu-link:hover {
+    background: #D0E8FF;
+    color: #0D6EFD;
+}
+
+.menu-link.active {
+    background: #D0E8FF;
+    color: #0D6EFD;
+}
+
+/* Calendar */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-direction: row
+}
+
+.calendar-header button {
+    flex-shrink: 0;
+}
+
+.calendar-header h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+.date-cell {
+    aspect-ratio: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.date-cell:hover {
+    background: #f0f0f0;
+}
+
+.date-cell.today {
+    background: #378ADD;
+    color: #fff;
+    font-weight: 500;
+}
+
+.day-label {
+    font-size: 16px;
+    font-weight: 700;
+    color: #06486f;
+    margin-left: 20px;
+}
+
+.calendar {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 15px;
+    color: #0b375b;
+}
+
+.search-wrapper {
+    display: flex;
+    justify-content: center;
+}

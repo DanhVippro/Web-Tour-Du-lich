@@ -19,7 +19,6 @@
             <!-- Sidebar -->
             <div class="col sidebar">
                 <div class="img-wraper"><img src="/data/img/Logo.png" alt=""></div>
-                <hr>
                 <ul>
                     <li>
                         <a href="" class="menu-link">
@@ -71,20 +70,54 @@
 
                 <!-- Header -->
                 <div class="dashboard-header mb-4">
-                    <h4>Welcome Manager</h4>
+                    <h1 style="color: #1a8fbf; font-family: serif;">
+                        Welcome Manager !</h1>
 
-                    <div class="row mt-3">
-                        <div class="col-md-3">
-                            <div class="box box-blue">Total booking</div>
+                    <div class="row">
+                        <!-- Col 8: boxes + search -->
+                        <div class="col-8">
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <div class="box box-blue">
+                                        <h3>Total booking: 1000</h3>
+                                        <p>View all ></p>
+                                        <p>aaaaaaaaa</p>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="box box-blue">
+                                        <h3>Upcoming Tours: 50</h3>
+                                        <p>View all ></p>
+                                        <p>aaaaaaa</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="search-wrapper">
+                                    <input class="search-box w-75" placeholder="Search tour">
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="box box-blue">Upcoming Tours</div>
-                        </div>
-                        <div class="col-md-4">
-                            <input class="search-box" placeholder="Search tour">
-                        </div>
-                        <div class="col-md-2">
-                            <div class="box box-yellow">Day on month</div>
+
+                        <!-- Col 4: calendar -->
+                        <div class="col-4">
+                            <div class="calendar">
+                                <div class="calendar-header">
+                                    <button onclick="prevMonth()">◀</button>
+                                    <h3 id="monthYear"></h3>
+                                    <button onclick="nextMonth()">▶</button>
+                                </div>
+                                <!-- Dùng 1 grid cho cả label + dates -->
+                                <div class="days-grid" id="calGrid">
+                                    <div class="day-label">CN</div>
+                                    <div class="day-label">T2</div>
+                                    <div class="day-label">T3</div>
+                                    <div class="day-label">T4</div>
+                                    <div class="day-label">T5</div>
+                                    <div class="day-label">T6</div>
+                                    <div class="day-label">T7</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -120,6 +153,7 @@
 
     <!-- Bootstrap JavaScript Bundle (includes Popper) -->
     <script src="/BackEnd/js/bootstrap.bundle.js"></script>
+    <script src="/BackEnd/js/dsManager.js"></script>
 </body>
 
 </html>
