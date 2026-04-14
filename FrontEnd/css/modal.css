@@ -10,7 +10,10 @@
     padding-right: 35px;
 
 }
-
+.modal-body {
+    max-height: 70vh;
+    overflow-y: auto;
+}
 .log-reg {
     display: flex;
     align-items: center;
