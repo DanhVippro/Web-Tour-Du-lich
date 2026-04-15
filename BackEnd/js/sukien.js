@@ -76,7 +76,6 @@ document.getElementById("formdk").addEventListener("submit", function (e) {
     }
 });
 
-// formdn
 document.getElementById("formdn").addEventListener("submit", function (e) {
     e.preventDefault();
 
