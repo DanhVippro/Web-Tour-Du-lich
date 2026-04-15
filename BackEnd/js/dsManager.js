@@ -1,4 +1,5 @@
-let cur = new Date();
+/*calendar */
+{let cur = new Date();
 
 function render() {
   const y = cur.getFullYear(), m = cur.getMonth();
@@ -25,3 +26,15 @@ function render() {
 function prevMonth() { cur.setMonth(cur.getMonth() - 1); render(); }
 function nextMonth() { cur.setMonth(cur.getMonth() + 1); render(); }
 render();
+}
+/*booking-card */
+{
+document.querySelectorAll(".booking-card").forEach(card => {
+    card.addEventListener("click", function () {
+        const id = this.getAttribute("data-id");
+
+        // chuyển trang
+        window.location.href = "bookingDetailManager.html?id=" + id;
+    });
+});
+}
