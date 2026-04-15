@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/Styles.css">
+<<<<<<< HEAD:FrontEnd/html/index.html
+    <link rel="stylesheet" href="../css/modal.css">
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:FrontEnd/html/trangChu.html
+
+</head>
+
+<body>
+    <!-- header1 -->
+    <header class="header1">
+        <div class="logo-header1">
+            <a href="index.html">
+                <img src="../../data/img/Logo.png" alt="Logo">
+            </a>
+        </div>
+        <div class="Search-header1">
+            <form action="" class="form-place">
+                <input type="text" placeholder=" Tìm kiếm điểm đến yêu thích">
+                <button type="submit">&#8981;</button>
+            </form>
+        </div>
+        <div class="menu-header1">
+            <ul>
+<<<<<<< HEAD:FrontEnd/html/index.html
+                <li><a href="../html/index.html">Trang chủ</a></li>
+                <li><a href="../html/GioiThieu.html">Giới Thiệu</a></li>
+                <li><a href="../html/TourDuLich.html">Tour du lịch</a></li>
+                <li><a href="../html/DichVu.html">Dịch vụ</a></li>
+                <li><a href="../html/CamHungDuLich.html">Cảm hứng du lịch</a></li>
+                <li><a href="../html/HoTro.html">Hỗ trợ</a></li>
+=======
+                <li><a href="trangChu.html">Trang chủ</a></li>
+                <li><a href="gioiThieu.html">Giới thiệu</a></li>
+                <li><a href="khamPha.html">Khám phá</a></li>
+                <li><a href="datTour.html">Đặt tour</a></li>
+                <li><a href="lichSu.html">Lịch sử du lịch</a></li>
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:FrontEnd/html/trangChu.html
+            </ul>
+        </div>
+        <!-- Login Logo -->
+        <div class="logo-login">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#modaldk"> <img src="../../data/img/logo-login.png"
+                    alt="login" height="50px"></a>
+        </div>
+    </header>
+    <!-- Modal Body -->
+    <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+    <div class="modal fade" id="modaldk" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+        aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-bg" role="document">
+            <div class="modal-content">
+                <div class="modal-header  ">
+                    <h5 class="text-center  w-100">
+                        ĐĂNG KÍ TÀI KHOẢN
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="" id="formdk">
+                    <div class="modal-body">
+
+                        <div class="mb-3">
+                            <label for="" class="form-label">Họ tên</label>
+                            <input type="text" class="form-control" name="HoTen" id="HoTen" aria-describedby="helpId"
+                                placeholder="" />
+                            <small id="LoiDoHoTen" class="text-danger"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Số điện thoại / Email</label>
+                            <input type="text" class="form-control" name="dtEmail" id="dtEmail"
+                                aria-describedby="helpId" placeholder="" />
+                            <small id="LoiDodtEmail" class="text-danger"></small>
+                        </div>
+                        <!-- <div class="mb-3">
+                        <label for="" class="form-label">Email</label>
+                        <input type="text" class="form-control" name="" id="" aria-describedby="helpId"
+                            placeholder="" />
+                        <small id="helpId" class="form-text text-body-secondary">*</small>
+                    </div> -->
+                        <!-- <div class="mb-3">
+                        <label for="" class="form-label">CCCD</label>
+                        <input type="text" class="form-control" name="" id="" aria-describedby="helpId"
+                            placeholder="" />
+                        <small id="helpId" class="form-text text-body-secondary">*</small>
+                    </div> -->
+                        <div class="mb-3">
+                            <div><label class="form-label">Giới tính</label></div>
+                            <input type="radio" class="form-check-input" name="gioitinh" id="nam" />
+                            <label for="nam">Nam</label>
+                            &nbsp;&nbsp;
+                            <input type="radio" class="form-check-input" name="gioitinh" id="nu" />
+                            <label for="nu">Nữ</label>
+                            <small id="LoiDogioitinh" class="text-danger"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Ngày sinh</label>
+                            <input type="date" class="form-control" name="Tuoi" id="Tuoi" aria-describedby="helpId"
+                                placeholder="" />
+                            <small id="LoiDoTuoi" class="text-danger"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Nhập mật khẩu</label>
+                            <input type="password" class="form-control" name="mk" id="mk" aria-describedby="helpId"
+                                placeholder="" />
+                            <small id="LoiDomk" class="text-danger"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Nhập lại mật khẩu</label>
+                            <input type="password" class="form-control" name="NLmk" id="NLmk" aria-describedby="helpId"
+                                placeholder="" />
+                            <small id="LoiDoNLmk" class="text-danger"></small>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <div class="log">
+                            <span>Tôi đã có tài khoản <a href="#" class=" text-dn" data-bs-toggle="modal"
+                                    data-bs-target="#modalLog">Đăng nhập</a></span>
+                        </div>
+                        <div class="btnlog">
+                            <button class="btn btn-back" data-bs-dismiss="modal">TRỞ LẠI</button>
+                            <button type="submit" class="btn btn-DANGKI">ĐĂNG KÍ</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalLog" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+        aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered modal-bg" role="document">
+            <div class="modal-content">
+                <div class="modal-header  ">
+                    <h5 class="text-center  w-100">
+                        ĐĂNG NHẬP
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="" id="formdn">
+                    <div class="modal-body">
+
+                        <div class="mb-3">
+                            <label for="" class="form-label">Số điện thoại / Email</label>
+                            <input type="text" class="form-control" name="dtEmaildn" id="dtEmaildn"
+                                aria-describedby="helpId" placeholder="" />
+                            <small id="LoiDotkDN" class="text-danger"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Nhập mật khẩu</label>
+                            <input type="password" class="form-control" name="mkdn" id="mkdn" aria-describedby="helpId"
+                                placeholder="" />
+                           <small id="LoiDomkDN" class="text-danger"></small>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btnlogDN">
+                            <button class="btn btn-back" data-bs-toggle="modal" data-bs-target="#modaldk"
+                                data-bs-dismiss="modal">TRỞ LẠI</button>
+                            <button class="btn btn-DANGKI">ĐĂNG NHẬP</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <!-- header2-->
+    <header class="header2">
+        <div class="text-header2">
+            <h1>BẠN ĐANG MUỐN ĐI ĐÂU?</h1>
+            <h2>Hãy để CheapTour tư vấn cho bạn chuyến đi tuyệt vời nhất! </h2>
+        </div>
+    </header>
+    <!-- container -->
+    <div class="container">
+        <section>
+            <div class="uy-tin">
+                <div class="uy-tin1">
+                    <div class="logo1-section">
+                        <img src="../../data/img/uy-tin/1.png" alt="">
+                    </div>
+                    <div class="text1-section">
+                        <h4>Đảm bảo giá tốt</h4>
+                        <p>Chúng tôi đảm bảo khách hàng sẽ đặt được dịch vụ <br>
+                            tốt nhất,những chương trình khuyễn mãi hấp <br>
+                            dẫn nhất
+                        </p>
+                    </div>
+                </div>
+                <div class="uy-tin2">
+                    <div class="logo1-section">
+                        <img src="../../data/img/uy-tin/2.png" alt="">
+                    </div>
+                    <div class="text1-section">
+                        <h4>Dịch vụ tin cậy - Giá trị đích thực</h4>
+                        <p>Đặt lợi ích khách hàng lên trên hết, chúng tôi hỗ trợ <br>
+                            khách hàng nhanh và chính xác nhất với dịch vụ tin cậy, <br>
+                            giá trị đích thực
+                        </p>
+                    </div>
+                </div>
+                <div class="uy-tin3">
+                    <div class="logo1-section">
+                        <img src="../../data/img/uy-tin/3.png" alt="">
+                    </div>
+                    <div class="text1-section">
+                        <h4>Đảm bảo chất lượng</h4>
+                        <p>Chúng tôi sẽ liên kế chặt chẽ với các đối tác, khảo sát <br>
+                            định kỳ để đảm bảo chất lượng tốt nhất dịch vụ
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- footer -->
+    <footer>
+        <div class="top-footer">
+            <div class="text-footer">
+                <h1>Tiết kiệm thời gian và tiền bạc!</h1>
+                <h2>Hãy đăng ký và chúng tôi sẽ gửi những ưu đãi tốt nhất cho bạn</h2>
+            </div>
+            <div class="email-footer">
+                <form action="" class="form-email">
+                    <input type="text" placeholder=" Nhập địa chỉ email">
+                    <button type="submit">Nhận ưu đãi</button>
+                </form>
+            </div>
+        </div>
+        <div class="center-footer">
+            <div class="thongtinlienhe">
+                <h3>THÔNG TIN LIÊN HỆ</h3>
+                <h5>Tên công ty</h5>
+                <p>Công Ty TNHH Dịch Vụ Du Lịch Và 5 anh trai Cê2</p>
+                <h5>Địa chỉ</h5>
+                <p>12 Nguyễn Văn Bảo, P.Hạnh Thông, Quận Gò Vấp, TP.HCM</p>
+                <h5>Email</h5>
+                <p>atraiC2@gmail.com</p>
+                <h5>MST</h5>
+                <p>0823789999</p>
+            </div>
+            <div class="chamsockhachhang">
+                <h3>CHĂM SÓC KHÁCH HÀNG</h3>
+                <h5>Thời gian hỗ trợ</h5>
+                <p>Mon- Sat: 08:00 AM - 17:00 PM</p>
+                <h5>Hotline</h5>
+                <p>Hỗ trợ: (090) 349-4878</p>
+
+            </div>
+            <div class="thongtin">
+                <h3>THÔNG TIN</h3>
+                <ul>
+                    <li> <a href="#">Tour Tây Nguyên 3 Ngày 3 Đêm</a></li>
+                    <li> <a href="#">Tour Phú Quý 3 Ngày 2 Đêm</a></li>
+                    <li><a href="#">Tour Phú Yên Quy Nhơn 3 Ngày 3 Đêm</a> </li>
+                    <li> <a href="#">Tour Đà Nẵng Huế Hội An 5 Ngày 4 Đêm</a></li>
+                    <li><a href="#">Tour Đà Lạt 4 Ngày 3 Đêm</a></li>
+                    <li><a href="#">Tour Đồng Tháp 2 Ngày 1 Đêm</a></li>
+                    <li><a href="#">Tour Nam Cát Tiên 2 Ngày 1 Đêm</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="bot-footer">
+            <p>&copy; Bản quyền thuộc về 5 anh trai C2</p>
+
+        </div>
+    </footer>
+    <script src="../../BackEnd/javaScript/bootstrap.bundle.min.js"></script>
+    <script src="../../BackEnd/javaScript/main.js"></script>
+    <script src="../../BackEnd/javaScript/sukien.js"></script>
+
+</body>
+
+</html>

@@ -1,6 +1,11 @@
 /*!
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
   * Bootstrap v5.3.8 (https://getbootstrap.com/)
   * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+=======
+  * Bootstrap v5.2.3 (https://getbootstrap.com/)
+  * Copyright 2011-2022 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
 (function (global, factory) {
@@ -11,6 +16,7 @@
 
   /**
    * --------------------------------------------------------------------------
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
    * Bootstrap dom/data.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
@@ -82,21 +88,42 @@
   };
 
   // Shout-out Angus Croll (https://goo.gl/pxwQGp)
+=======
+   * Bootstrap (v5.2.3): util/index.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+  const MAX_UID = 1000000;
+  const MILLISECONDS_MULTIPLIER = 1000;
+  const TRANSITION_END = 'transitionend'; // Shout-out Angus Croll (https://goo.gl/pxwQGp)
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   const toType = object => {
     if (object === null || object === undefined) {
       return `${object}`;
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     return Object.prototype.toString.call(object).match(/\s([a-z]+)/i)[1].toLowerCase();
   };
 
+=======
+
+    return Object.prototype.toString.call(object).match(/\s([a-z]+)/i)[1].toLowerCase();
+  };
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Public Util API
    */
 
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   const getUID = prefix => {
     do {
       prefix += Math.floor(Math.random() * MAX_UID);
     } while (document.getElementById(prefix));
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     return prefix;
   };
   const getTransitionDurationFromElement = element => {
@@ -105,11 +132,63 @@
     }
 
     // Get transition-duration of the element
+=======
+
+    return prefix;
+  };
+
+  const getSelector = element => {
+    let selector = element.getAttribute('data-bs-target');
+
+    if (!selector || selector === '#') {
+      let hrefAttribute = element.getAttribute('href'); // The only valid content that could double as a selector are IDs or classes,
+      // so everything starting with `#` or `.`. If a "real" URL is used as the selector,
+      // `document.querySelector` will rightfully complain it is invalid.
+      // See https://github.com/twbs/bootstrap/issues/32273
+
+      if (!hrefAttribute || !hrefAttribute.includes('#') && !hrefAttribute.startsWith('.')) {
+        return null;
+      } // Just in case some CMS puts out a full URL with the anchor appended
+
+
+      if (hrefAttribute.includes('#') && !hrefAttribute.startsWith('#')) {
+        hrefAttribute = `#${hrefAttribute.split('#')[1]}`;
+      }
+
+      selector = hrefAttribute && hrefAttribute !== '#' ? hrefAttribute.trim() : null;
+    }
+
+    return selector;
+  };
+
+  const getSelectorFromElement = element => {
+    const selector = getSelector(element);
+
+    if (selector) {
+      return document.querySelector(selector) ? selector : null;
+    }
+
+    return null;
+  };
+
+  const getElementFromSelector = element => {
+    const selector = getSelector(element);
+    return selector ? document.querySelector(selector) : null;
+  };
+
+  const getTransitionDurationFromElement = element => {
+    if (!element) {
+      return 0;
+    } // Get transition-duration of the element
+
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     let {
       transitionDuration,
       transitionDelay
     } = window.getComputedStyle(element);
     const floatTransitionDuration = Number.parseFloat(transitionDuration);
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     const floatTransitionDelay = Number.parseFloat(transitionDelay);
 
     // Return 0 if element or transition duration is not found
@@ -118,36 +197,76 @@
     }
 
     // If multiple durations are defined, take the first
+=======
+    const floatTransitionDelay = Number.parseFloat(transitionDelay); // Return 0 if element or transition duration is not found
+
+    if (!floatTransitionDuration && !floatTransitionDelay) {
+      return 0;
+    } // If multiple durations are defined, take the first
+
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     transitionDuration = transitionDuration.split(',')[0];
     transitionDelay = transitionDelay.split(',')[0];
     return (Number.parseFloat(transitionDuration) + Number.parseFloat(transitionDelay)) * MILLISECONDS_MULTIPLIER;
   };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
   const triggerTransitionEnd = element => {
     element.dispatchEvent(new Event(TRANSITION_END));
   };
+=======
+
+  const triggerTransitionEnd = element => {
+    element.dispatchEvent(new Event(TRANSITION_END));
+  };
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   const isElement$1 = object => {
     if (!object || typeof object !== 'object') {
       return false;
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     if (typeof object.jquery !== 'undefined') {
       object = object[0];
     }
     return typeof object.nodeType !== 'undefined';
   };
+=======
+
+    if (typeof object.jquery !== 'undefined') {
+      object = object[0];
+    }
+
+    return typeof object.nodeType !== 'undefined';
+  };
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   const getElement = object => {
     // it's a jQuery object or a node element
     if (isElement$1(object)) {
       return object.jquery ? object[0] : object;
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     if (typeof object === 'string' && object.length > 0) {
       return document.querySelector(parseSelector(object));
     }
     return null;
   };
+=======
+
+    if (typeof object === 'string' && object.length > 0) {
+      return document.querySelector(object);
+    }
+
+    return null;
+  };
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   const isVisible = element => {
     if (!isElement$1(element) || element.getClientRects().length === 0) {
       return false;
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     const elementIsVisible = getComputedStyle(element).getPropertyValue('visibility') === 'visible';
     // Handle `details` element as its content may falsie appear visible when it is closed
     const closedDetails = element.closest('details:not([open])');
@@ -159,16 +278,42 @@
       if (summary && summary.parentNode !== closedDetails) {
         return false;
       }
+=======
+
+    const elementIsVisible = getComputedStyle(element).getPropertyValue('visibility') === 'visible'; // Handle `details` element as its content may falsie appear visible when it is closed
+
+    const closedDetails = element.closest('details:not([open])');
+
+    if (!closedDetails) {
+      return elementIsVisible;
+    }
+
+    if (closedDetails !== element) {
+      const summary = element.closest('summary');
+
+      if (summary && summary.parentNode !== closedDetails) {
+        return false;
+      }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (summary === null) {
         return false;
       }
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     return elementIsVisible;
   };
+=======
+
+    return elementIsVisible;
+  };
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   const isDisabled = element => {
     if (!element || element.nodeType !== Node.ELEMENT_NODE) {
       return true;
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     if (element.classList.contains('disabled')) {
       return true;
     }
@@ -183,10 +328,31 @@
     }
 
     // Can find the shadow root otherwise it'll return the document
+=======
+
+    if (element.classList.contains('disabled')) {
+      return true;
+    }
+
+    if (typeof element.disabled !== 'undefined') {
+      return element.disabled;
+    }
+
+    return element.hasAttribute('disabled') && element.getAttribute('disabled') !== 'false';
+  };
+
+  const findShadowRoot = element => {
+    if (!document.documentElement.attachShadow) {
+      return null;
+    } // Can find the shadow root otherwise it'll return the document
+
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     if (typeof element.getRootNode === 'function') {
       const root = element.getRootNode();
       return root instanceof ShadowRoot ? root : null;
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     if (element instanceof ShadowRoot) {
       return element;
     }
@@ -199,24 +365,60 @@
   };
   const noop = () => {};
 
+=======
+
+    if (element instanceof ShadowRoot) {
+      return element;
+    } // when we don't find a shadow root
+
+
+    if (!element.parentNode) {
+      return null;
+    }
+
+    return findShadowRoot(element.parentNode);
+  };
+
+  const noop = () => {};
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Trick to restart an element's animation
    *
    * @param {HTMLElement} element
    * @return void
    *
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
    * @see https://www.harrytheo.com/blog/2021/02/restart-a-css-animation-with-javascript/#restarting-a-css-animation
    */
   const reflow = element => {
     element.offsetHeight; // eslint-disable-line no-unused-expressions
   };
+=======
+   * @see https://www.charistheo.io/blog/2021/02/restart-a-css-animation-with-javascript/#restarting-a-css-animation
+   */
+
+
+  const reflow = element => {
+    element.offsetHeight; // eslint-disable-line no-unused-expressions
+  };
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   const getjQuery = () => {
     if (window.jQuery && !document.body.hasAttribute('data-bs-no-jquery')) {
       return window.jQuery;
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     return null;
   };
   const DOMContentLoadedCallbacks = [];
+=======
+
+    return null;
+  };
+
+  const DOMContentLoadedCallbacks = [];
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   const onDOMContentLoaded = callback => {
     if (document.readyState === 'loading') {
       // add listener on the first call when the document is in loading state
@@ -227,21 +429,39 @@
           }
         });
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       DOMContentLoadedCallbacks.push(callback);
     } else {
       callback();
     }
   };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
   const isRTL = () => document.documentElement.dir === 'rtl';
+=======
+
+  const isRTL = () => document.documentElement.dir === 'rtl';
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   const defineJQueryPlugin = plugin => {
     onDOMContentLoaded(() => {
       const $ = getjQuery();
       /* istanbul ignore if */
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if ($) {
         const name = plugin.NAME;
         const JQUERY_NO_CONFLICT = $.fn[name];
         $.fn[name] = plugin.jQueryInterface;
         $.fn[name].Constructor = plugin;
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         $.fn[name].noConflict = () => {
           $.fn[name] = JQUERY_NO_CONFLICT;
           return plugin.jQueryInterface;
@@ -249,27 +469,53 @@
       }
     });
   };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
   const execute = (possibleCallback, args = [], defaultValue = possibleCallback) => {
     return typeof possibleCallback === 'function' ? possibleCallback.call(...args) : defaultValue;
   };
+=======
+
+  const execute = callback => {
+    if (typeof callback === 'function') {
+      callback();
+    }
+  };
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   const executeAfterTransition = (callback, transitionElement, waitForTransition = true) => {
     if (!waitForTransition) {
       execute(callback);
       return;
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     const durationPadding = 5;
     const emulatedDuration = getTransitionDurationFromElement(transitionElement) + durationPadding;
     let called = false;
+=======
+
+    const durationPadding = 5;
+    const emulatedDuration = getTransitionDurationFromElement(transitionElement) + durationPadding;
+    let called = false;
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     const handler = ({
       target
     }) => {
       if (target !== transitionElement) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       called = true;
       transitionElement.removeEventListener(TRANSITION_END, handler);
       execute(callback);
     };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     transitionElement.addEventListener(TRANSITION_END, handler);
     setTimeout(() => {
       if (!called) {
@@ -277,7 +523,10 @@
       }
     }, emulatedDuration);
   };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
 
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Return the previous/next element of a list.
    *
@@ -287,6 +536,7 @@
    * @param isCycleAllowed
    * @return {Element|elem} The proper element
    */
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
   const getNextActiveElement = (list, activeElement, shouldGetNext, isCycleAllowed) => {
     const listLength = list.length;
     let index = list.indexOf(activeElement);
@@ -300,17 +550,43 @@
     if (isCycleAllowed) {
       index = (index + listLength) % listLength;
     }
+=======
+
+
+  const getNextActiveElement = (list, activeElement, shouldGetNext, isCycleAllowed) => {
+    const listLength = list.length;
+    let index = list.indexOf(activeElement); // if the element does not exist in the list return an element
+    // depending on the direction and if cycle is allowed
+
+    if (index === -1) {
+      return !shouldGetNext && isCycleAllowed ? list[listLength - 1] : list[0];
+    }
+
+    index += shouldGetNext ? 1 : -1;
+
+    if (isCycleAllowed) {
+      index = (index + listLength) % listLength;
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     return list[Math.max(0, Math.min(index, listLength - 1))];
   };
 
   /**
    * --------------------------------------------------------------------------
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
    * Bootstrap dom/event-handler.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
 
 
+=======
+   * Bootstrap (v5.2.3): dom/event-handler.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Constants
    */
@@ -319,13 +595,20 @@
   const stripNameRegex = /\..*/;
   const stripUidRegex = /::\d+$/;
   const eventRegistry = {}; // Events storage
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   let uidEvent = 1;
   const customEvents = {
     mouseenter: 'mouseover',
     mouseleave: 'mouseout'
   };
   const nativeEvents = new Set(['click', 'dblclick', 'mouseup', 'mousedown', 'contextmenu', 'mousewheel', 'DOMMouseScroll', 'mouseover', 'mouseout', 'mousemove', 'selectstart', 'selectend', 'keydown', 'keypress', 'keyup', 'orientationchange', 'touchstart', 'touchmove', 'touchend', 'touchcancel', 'pointerdown', 'pointermove', 'pointerup', 'pointerleave', 'pointercancel', 'gesturestart', 'gesturechange', 'gestureend', 'focus', 'blur', 'change', 'reset', 'select', 'submit', 'focusin', 'focusout', 'load', 'unload', 'beforeunload', 'resize', 'move', 'DOMContentLoaded', 'readystatechange', 'error', 'abort', 'scroll']);
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
 
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Private methods
    */
@@ -333,17 +616,26 @@
   function makeEventUid(element, uid) {
     return uid && `${uid}::${uidEvent++}` || element.uidEvent || uidEvent++;
   }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   function getElementEvents(element) {
     const uid = makeEventUid(element);
     element.uidEvent = uid;
     eventRegistry[uid] = eventRegistry[uid] || {};
     return eventRegistry[uid];
   }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   function bootstrapHandler(element, fn) {
     return function handler(event) {
       hydrateObj(event, {
         delegateTarget: element
       });
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       if (handler.oneOff) {
         EventHandler.off(element, event.type, fn);
       }
@@ -353,6 +645,21 @@
   function bootstrapDelegationHandler(element, selector, fn) {
     return function handler(event) {
       const domElements = element.querySelectorAll(selector);
+=======
+
+      if (handler.oneOff) {
+        EventHandler.off(element, event.type, fn);
+      }
+
+      return fn.apply(element, [event]);
+    };
+  }
+
+  function bootstrapDelegationHandler(element, selector, fn) {
+    return function handler(event) {
+      const domElements = element.querySelectorAll(selector);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       for (let {
         target
       } = event; target && target !== this; target = target.parentNode) {
@@ -360,17 +667,30 @@
           if (domElement !== target) {
             continue;
           }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
           hydrateObj(event, {
             delegateTarget: target
           });
           if (handler.oneOff) {
             EventHandler.off(element, event.type, selector, fn);
           }
+=======
+
+          hydrateObj(event, {
+            delegateTarget: target
+          });
+
+          if (handler.oneOff) {
+            EventHandler.off(element, event.type, selector, fn);
+          }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
           return fn.apply(target, [event]);
         }
       }
     };
   }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
   function findHandler(events, callable, delegationSelector = null) {
     return Object.values(events).find(event => event.callable === callable && event.delegationSelector === delegationSelector);
   }
@@ -384,14 +704,41 @@
     }
     return [isDelegated, callable, typeEvent];
   }
+=======
+
+  function findHandler(events, callable, delegationSelector = null) {
+    return Object.values(events).find(event => event.callable === callable && event.delegationSelector === delegationSelector);
+  }
+
+  function normalizeParameters(originalTypeEvent, handler, delegationFunction) {
+    const isDelegated = typeof handler === 'string'; // todo: tooltip passes `false` instead of selector, so we need to check
+
+    const callable = isDelegated ? delegationFunction : handler || delegationFunction;
+    let typeEvent = getTypeEvent(originalTypeEvent);
+
+    if (!nativeEvents.has(typeEvent)) {
+      typeEvent = originalTypeEvent;
+    }
+
+    return [isDelegated, callable, typeEvent];
+  }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   function addHandler(element, originalTypeEvent, handler, delegationFunction, oneOff) {
     if (typeof originalTypeEvent !== 'string' || !element) {
       return;
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     let [isDelegated, callable, typeEvent] = normalizeParameters(originalTypeEvent, handler, delegationFunction);
 
     // in case of mouseenter or mouseleave wrap the handler within a function that checks for its DOM position
     // this prevents the handler from being dispatched the same way as mouseover or mouseout does
+=======
+
+    let [isDelegated, callable, typeEvent] = normalizeParameters(originalTypeEvent, handler, delegationFunction); // in case of mouseenter or mouseleave wrap the handler within a function that checks for its DOM position
+    // this prevents the handler from being dispatched the same way as mouseover or mouseout does
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     if (originalTypeEvent in customEvents) {
       const wrapFunction = fn => {
         return function (event) {
@@ -400,15 +747,30 @@
           }
         };
       };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       callable = wrapFunction(callable);
     }
     const events = getElementEvents(element);
     const handlers = events[typeEvent] || (events[typeEvent] = {});
     const previousFunction = findHandler(handlers, callable, isDelegated ? handler : null);
+=======
+
+      callable = wrapFunction(callable);
+    }
+
+    const events = getElementEvents(element);
+    const handlers = events[typeEvent] || (events[typeEvent] = {});
+    const previousFunction = findHandler(handlers, callable, isDelegated ? handler : null);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     if (previousFunction) {
       previousFunction.oneOff = previousFunction.oneOff && oneOff;
       return;
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     const uid = makeEventUid(callable, originalTypeEvent.replace(namespaceRegex, ''));
     const fn = isDelegated ? bootstrapDelegationHandler(element, handler, callable) : bootstrapHandler(element, callable);
     fn.delegationSelector = isDelegated ? handler : null;
@@ -418,6 +780,7 @@
     handlers[uid] = fn;
     element.addEventListener(typeEvent, fn, isDelegated);
   }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
   function removeHandler(element, events, typeEvent, handler, delegationSelector) {
     const fn = findHandler(events[typeEvent], handler, delegationSelector);
     if (!fn) {
@@ -430,55 +793,124 @@
     const storeElementEvent = events[typeEvent] || {};
     for (const [handlerKey, event] of Object.entries(storeElementEvent)) {
       if (handlerKey.includes(namespace)) {
+=======
+
+  function removeHandler(element, events, typeEvent, handler, delegationSelector) {
+    const fn = findHandler(events[typeEvent], handler, delegationSelector);
+
+    if (!fn) {
+      return;
+    }
+
+    element.removeEventListener(typeEvent, fn, Boolean(delegationSelector));
+    delete events[typeEvent][fn.uidEvent];
+  }
+
+  function removeNamespacedHandlers(element, events, typeEvent, namespace) {
+    const storeElementEvent = events[typeEvent] || {};
+
+    for (const handlerKey of Object.keys(storeElementEvent)) {
+      if (handlerKey.includes(namespace)) {
+        const event = storeElementEvent[handlerKey];
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         removeHandler(element, events, typeEvent, event.callable, event.delegationSelector);
       }
     }
   }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   function getTypeEvent(event) {
     // allow to get the native events from namespaced events ('click.bs.button' --> 'click')
     event = event.replace(stripNameRegex, '');
     return customEvents[event] || event;
   }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   const EventHandler = {
     on(element, event, handler, delegationFunction) {
       addHandler(element, event, handler, delegationFunction, false);
     },
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     one(element, event, handler, delegationFunction) {
       addHandler(element, event, handler, delegationFunction, true);
     },
+=======
+
+    one(element, event, handler, delegationFunction) {
+      addHandler(element, event, handler, delegationFunction, true);
+    },
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     off(element, originalTypeEvent, handler, delegationFunction) {
       if (typeof originalTypeEvent !== 'string' || !element) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       const [isDelegated, callable, typeEvent] = normalizeParameters(originalTypeEvent, handler, delegationFunction);
       const inNamespace = typeEvent !== originalTypeEvent;
       const events = getElementEvents(element);
       const storeElementEvent = events[typeEvent] || {};
       const isNamespace = originalTypeEvent.startsWith('.');
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (typeof callable !== 'undefined') {
         // Simplest case: handler is passed, remove that listener ONLY.
         if (!Object.keys(storeElementEvent).length) {
           return;
         }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
         removeHandler(element, events, typeEvent, callable, isDelegated ? handler : null);
         return;
       }
+=======
+
+        removeHandler(element, events, typeEvent, callable, isDelegated ? handler : null);
+        return;
+      }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (isNamespace) {
         for (const elementEvent of Object.keys(events)) {
           removeNamespacedHandlers(element, events, elementEvent, originalTypeEvent.slice(1));
         }
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       for (const [keyHandlers, event] of Object.entries(storeElementEvent)) {
         const handlerKey = keyHandlers.replace(stripUidRegex, '');
         if (!inNamespace || originalTypeEvent.includes(handlerKey)) {
+=======
+
+      for (const keyHandlers of Object.keys(storeElementEvent)) {
+        const handlerKey = keyHandlers.replace(stripUidRegex, '');
+
+        if (!inNamespace || originalTypeEvent.includes(handlerKey)) {
+          const event = storeElementEvent[keyHandlers];
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
           removeHandler(element, events, typeEvent, event.callable, event.delegationSelector);
         }
       }
     },
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     trigger(element, event, args) {
       if (typeof event !== 'string' || !element) {
         return null;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       const $ = getjQuery();
       const typeEvent = getTypeEvent(event);
       const inNamespace = event !== typeEvent;
@@ -486,6 +918,10 @@
       let bubbles = true;
       let nativeDispatch = true;
       let defaultPrevented = false;
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (inNamespace && $) {
         jQueryEvent = $.Event(event, args);
         $(element).trigger(jQueryEvent);
@@ -493,6 +929,7 @@
         nativeDispatch = !jQueryEvent.isImmediatePropagationStopped();
         defaultPrevented = jQueryEvent.isDefaultPrevented();
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       const evt = hydrateObj(new Event(event, {
         bubbles,
         cancelable: true
@@ -511,31 +948,130 @@
   };
   function hydrateObj(obj, meta = {}) {
     for (const [key, value] of Object.entries(meta)) {
+=======
+
+      let evt = new Event(event, {
+        bubbles,
+        cancelable: true
+      });
+      evt = hydrateObj(evt, args);
+
+      if (defaultPrevented) {
+        evt.preventDefault();
+      }
+
+      if (nativeDispatch) {
+        element.dispatchEvent(evt);
+      }
+
+      if (evt.defaultPrevented && jQueryEvent) {
+        jQueryEvent.preventDefault();
+      }
+
+      return evt;
+    }
+
+  };
+
+  function hydrateObj(obj, meta) {
+    for (const [key, value] of Object.entries(meta || {})) {
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       try {
         obj[key] = value;
       } catch (_unused) {
         Object.defineProperty(obj, key, {
           configurable: true,
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
           get() {
             return value;
           }
         });
       }
     }
+=======
+
+          get() {
+            return value;
+          }
+
+        });
+      }
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     return obj;
   }
 
   /**
    * --------------------------------------------------------------------------
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
    * Bootstrap dom/manipulator.js
+=======
+   * Bootstrap (v5.2.3): dom/data.js
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
 
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+  /**
+   * Constants
+   */
+  const elementMap = new Map();
+  const Data = {
+    set(element, key, instance) {
+      if (!elementMap.has(element)) {
+        elementMap.set(element, new Map());
+      }
+
+      const instanceMap = elementMap.get(element); // make it clear we only want one instance per element
+      // can be removed later when multiple key/instances are fine to be used
+
+      if (!instanceMap.has(key) && instanceMap.size !== 0) {
+        // eslint-disable-next-line no-console
+        console.error(`Bootstrap doesn't allow more than one instance per element. Bound instance: ${Array.from(instanceMap.keys())[0]}.`);
+        return;
+      }
+
+      instanceMap.set(key, instance);
+    },
+
+    get(element, key) {
+      if (elementMap.has(element)) {
+        return elementMap.get(element).get(key) || null;
+      }
+
+      return null;
+    },
+
+    remove(element, key) {
+      if (!elementMap.has(element)) {
+        return;
+      }
+
+      const instanceMap = elementMap.get(element);
+      instanceMap.delete(key); // free up element references if there are no instances left for an element
+
+      if (instanceMap.size === 0) {
+        elementMap.delete(element);
+      }
+    }
+
+  };
+
+  /**
+   * --------------------------------------------------------------------------
+   * Bootstrap (v5.2.3): dom/manipulator.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   function normalizeData(value) {
     if (value === 'true') {
       return true;
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     if (value === 'false') {
       return false;
     }
@@ -548,26 +1084,62 @@
     if (typeof value !== 'string') {
       return value;
     }
+=======
+
+    if (value === 'false') {
+      return false;
+    }
+
+    if (value === Number(value).toString()) {
+      return Number(value);
+    }
+
+    if (value === '' || value === 'null') {
+      return null;
+    }
+
+    if (typeof value !== 'string') {
+      return value;
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     try {
       return JSON.parse(decodeURIComponent(value));
     } catch (_unused) {
       return value;
     }
   }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
   function normalizeDataKey(key) {
     return key.replace(/[A-Z]/g, chr => `-${chr.toLowerCase()}`);
   }
+=======
+
+  function normalizeDataKey(key) {
+    return key.replace(/[A-Z]/g, chr => `-${chr.toLowerCase()}`);
+  }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   const Manipulator = {
     setDataAttribute(element, key, value) {
       element.setAttribute(`data-bs-${normalizeDataKey(key)}`, value);
     },
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     removeDataAttribute(element, key) {
       element.removeAttribute(`data-bs-${normalizeDataKey(key)}`);
     },
+=======
+
+    removeDataAttribute(element, key) {
+      element.removeAttribute(`data-bs-${normalizeDataKey(key)}`);
+    },
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     getDataAttributes(element) {
       if (!element) {
         return {};
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       const attributes = {};
       const bsKeys = Object.keys(element.dataset).filter(key => key.startsWith('bs') && !key.startsWith('bsConfig'));
       for (const key of bsKeys) {
@@ -580,16 +1152,42 @@
     getDataAttribute(element, key) {
       return normalizeData(element.getAttribute(`data-bs-${normalizeDataKey(key)}`));
     }
+=======
+
+      const attributes = {};
+      const bsKeys = Object.keys(element.dataset).filter(key => key.startsWith('bs') && !key.startsWith('bsConfig'));
+
+      for (const key of bsKeys) {
+        let pureKey = key.replace(/^bs/, '');
+        pureKey = pureKey.charAt(0).toLowerCase() + pureKey.slice(1, pureKey.length);
+        attributes[pureKey] = normalizeData(element.dataset[key]);
+      }
+
+      return attributes;
+    },
+
+    getDataAttribute(element, key) {
+      return normalizeData(element.getAttribute(`data-bs-${normalizeDataKey(key)}`));
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   };
 
   /**
    * --------------------------------------------------------------------------
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
    * Bootstrap util/config.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
 
 
+=======
+   * Bootstrap (v5.2.3): util/config.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Class definition
    */
@@ -599,6 +1197,7 @@
     static get Default() {
       return {};
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     static get DefaultType() {
       return {};
     }
@@ -619,36 +1218,89 @@
 
       return {
         ...this.constructor.Default,
+=======
+
+    static get DefaultType() {
+      return {};
+    }
+
+    static get NAME() {
+      throw new Error('You have to implement the static method "NAME", for each component!');
+    }
+
+    _getConfig(config) {
+      config = this._mergeConfigObj(config);
+      config = this._configAfterMerge(config);
+
+      this._typeCheckConfig(config);
+
+      return config;
+    }
+
+    _configAfterMerge(config) {
+      return config;
+    }
+
+    _mergeConfigObj(config, element) {
+      const jsonConfig = isElement$1(element) ? Manipulator.getDataAttribute(element, 'config') : {}; // try to parse
+
+      return { ...this.constructor.Default,
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         ...(typeof jsonConfig === 'object' ? jsonConfig : {}),
         ...(isElement$1(element) ? Manipulator.getDataAttributes(element) : {}),
         ...(typeof config === 'object' ? config : {})
       };
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     _typeCheckConfig(config, configTypes = this.constructor.DefaultType) {
       for (const [property, expectedTypes] of Object.entries(configTypes)) {
         const value = config[property];
         const valueType = isElement$1(value) ? 'element' : toType(value);
+=======
+
+    _typeCheckConfig(config, configTypes = this.constructor.DefaultType) {
+      for (const property of Object.keys(configTypes)) {
+        const expectedTypes = configTypes[property];
+        const value = config[property];
+        const valueType = isElement$1(value) ? 'element' : toType(value);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         if (!new RegExp(expectedTypes).test(valueType)) {
           throw new TypeError(`${this.constructor.NAME.toUpperCase()}: Option "${property}" provided type "${valueType}" but expected type "${expectedTypes}".`);
         }
       }
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   }
 
   /**
    * --------------------------------------------------------------------------
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
    * Bootstrap base-component.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
 
 
+=======
+   * Bootstrap (v5.2.3): base-component.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Constants
    */
 
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
   const VERSION = '5.3.8';
 
+=======
+  const VERSION = '5.2.3';
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Class definition
    */
@@ -657,6 +1309,7 @@
     constructor(element, config) {
       super();
       element = getElement(element);
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       if (!element) {
         return;
       }
@@ -669,11 +1322,29 @@
     dispose() {
       Data.remove(this._element, this.constructor.DATA_KEY);
       EventHandler.off(this._element, this.constructor.EVENT_KEY);
+=======
+
+      if (!element) {
+        return;
+      }
+
+      this._element = element;
+      this._config = this._getConfig(config);
+      Data.set(this._element, this.constructor.DATA_KEY, this);
+    } // Public
+
+
+    dispose() {
+      Data.remove(this._element, this.constructor.DATA_KEY);
+      EventHandler.off(this._element, this.constructor.EVENT_KEY);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       for (const propertyName of Object.getOwnPropertyNames(this)) {
         this[propertyName] = null;
       }
     }
 
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     // Private
     _queueCallback(callback, element, isAnimated = true) {
       executeAfterTransition(callback, element, isAnimated);
@@ -704,10 +1375,51 @@
     static eventName(name) {
       return `${name}${this.EVENT_KEY}`;
     }
+=======
+    _queueCallback(callback, element, isAnimated = true) {
+      executeAfterTransition(callback, element, isAnimated);
+    }
+
+    _getConfig(config) {
+      config = this._mergeConfigObj(config, this._element);
+      config = this._configAfterMerge(config);
+
+      this._typeCheckConfig(config);
+
+      return config;
+    } // Static
+
+
+    static getInstance(element) {
+      return Data.get(getElement(element), this.DATA_KEY);
+    }
+
+    static getOrCreateInstance(element, config = {}) {
+      return this.getInstance(element) || new this(element, typeof config === 'object' ? config : null);
+    }
+
+    static get VERSION() {
+      return VERSION;
+    }
+
+    static get DATA_KEY() {
+      return `bs.${this.NAME}`;
+    }
+
+    static get EVENT_KEY() {
+      return `.${this.DATA_KEY}`;
+    }
+
+    static eventName(name) {
+      return `${name}${this.EVENT_KEY}`;
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   }
 
   /**
    * --------------------------------------------------------------------------
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
    * Bootstrap dom/selector-engine.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
@@ -798,6 +1510,9 @@
   /**
    * --------------------------------------------------------------------------
    * Bootstrap util/component-functions.js
+=======
+   * Bootstrap (v5.2.3): util/component-functions.js
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -809,6 +1524,7 @@
       if (['A', 'AREA'].includes(this.tagName)) {
         event.preventDefault();
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       if (isDisabled(this)) {
         return;
       }
@@ -816,18 +1532,35 @@
       const instance = component.getOrCreateInstance(target);
 
       // Method argument is left, for Alert and only, as it doesn't implement the 'hide' method
+=======
+
+      if (isDisabled(this)) {
+        return;
+      }
+
+      const target = getElementFromSelector(this) || this.closest(`.${name}`);
+      const instance = component.getOrCreateInstance(target); // Method argument is left, for Alert and only, as it doesn't implement the 'hide' method
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       instance[method]();
     });
   };
 
   /**
    * --------------------------------------------------------------------------
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
    * Bootstrap alert.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
 
 
+=======
+   * Bootstrap (v5.2.3): alert.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Constants
    */
@@ -839,7 +1572,10 @@
   const EVENT_CLOSED = `closed${EVENT_KEY$b}`;
   const CLASS_NAME_FADE$5 = 'fade';
   const CLASS_NAME_SHOW$8 = 'show';
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
 
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Class definition
    */
@@ -848,6 +1584,7 @@
     // Getters
     static get NAME() {
       return NAME$f;
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     }
 
     // Public
@@ -883,12 +1620,62 @@
     }
   }
 
+=======
+    } // Public
+
+
+    close() {
+      const closeEvent = EventHandler.trigger(this._element, EVENT_CLOSE);
+
+      if (closeEvent.defaultPrevented) {
+        return;
+      }
+
+      this._element.classList.remove(CLASS_NAME_SHOW$8);
+
+      const isAnimated = this._element.classList.contains(CLASS_NAME_FADE$5);
+
+      this._queueCallback(() => this._destroyElement(), this._element, isAnimated);
+    } // Private
+
+
+    _destroyElement() {
+      this._element.remove();
+
+      EventHandler.trigger(this._element, EVENT_CLOSED);
+      this.dispose();
+    } // Static
+
+
+    static jQueryInterface(config) {
+      return this.each(function () {
+        const data = Alert.getOrCreateInstance(this);
+
+        if (typeof config !== 'string') {
+          return;
+        }
+
+        if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+          throw new TypeError(`No method named "${config}"`);
+        }
+
+        data[config](this);
+      });
+    }
+
+  }
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Data API implementation
    */
 
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
   enableDismissTrigger(Alert, 'close');
 
+=======
+
+  enableDismissTrigger(Alert, 'close');
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * jQuery
    */
@@ -897,12 +1684,19 @@
 
   /**
    * --------------------------------------------------------------------------
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
    * Bootstrap button.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
 
 
+=======
+   * Bootstrap (v5.2.3): button.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Constants
    */
@@ -914,7 +1708,10 @@
   const CLASS_NAME_ACTIVE$3 = 'active';
   const SELECTOR_DATA_TOGGLE$5 = '[data-bs-toggle="button"]';
   const EVENT_CLICK_DATA_API$6 = `click${EVENT_KEY$a}${DATA_API_KEY$6}`;
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
 
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Class definition
    */
@@ -923,6 +1720,7 @@
     // Getters
     static get NAME() {
       return NAME$e;
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     }
 
     // Public
@@ -935,24 +1733,51 @@
     static jQueryInterface(config) {
       return this.each(function () {
         const data = Button.getOrCreateInstance(this);
+=======
+    } // Public
+
+
+    toggle() {
+      // Toggle class and sync the `aria-pressed` attribute with the return value of the `.toggle()` method
+      this._element.setAttribute('aria-pressed', this._element.classList.toggle(CLASS_NAME_ACTIVE$3));
+    } // Static
+
+
+    static jQueryInterface(config) {
+      return this.each(function () {
+        const data = Button.getOrCreateInstance(this);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         if (config === 'toggle') {
           data[config]();
         }
       });
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
   }
 
+=======
+
+  }
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Data API implementation
    */
 
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   EventHandler.on(document, EVENT_CLICK_DATA_API$6, SELECTOR_DATA_TOGGLE$5, event => {
     event.preventDefault();
     const button = event.target.closest(SELECTOR_DATA_TOGGLE$5);
     const data = Button.getOrCreateInstance(button);
     data.toggle();
   });
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
 
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * jQuery
    */
@@ -961,12 +1786,90 @@
 
   /**
    * --------------------------------------------------------------------------
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
    * Bootstrap util/swipe.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
 
 
+=======
+   * Bootstrap (v5.2.3): dom/selector-engine.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+  /**
+   * Constants
+   */
+
+  const SelectorEngine = {
+    find(selector, element = document.documentElement) {
+      return [].concat(...Element.prototype.querySelectorAll.call(element, selector));
+    },
+
+    findOne(selector, element = document.documentElement) {
+      return Element.prototype.querySelector.call(element, selector);
+    },
+
+    children(element, selector) {
+      return [].concat(...element.children).filter(child => child.matches(selector));
+    },
+
+    parents(element, selector) {
+      const parents = [];
+      let ancestor = element.parentNode.closest(selector);
+
+      while (ancestor) {
+        parents.push(ancestor);
+        ancestor = ancestor.parentNode.closest(selector);
+      }
+
+      return parents;
+    },
+
+    prev(element, selector) {
+      let previous = element.previousElementSibling;
+
+      while (previous) {
+        if (previous.matches(selector)) {
+          return [previous];
+        }
+
+        previous = previous.previousElementSibling;
+      }
+
+      return [];
+    },
+
+    // TODO: this is now unused; remove later along with prev()
+    next(element, selector) {
+      let next = element.nextElementSibling;
+
+      while (next) {
+        if (next.matches(selector)) {
+          return [next];
+        }
+
+        next = next.nextElementSibling;
+      }
+
+      return [];
+    },
+
+    focusableChildren(element) {
+      const focusables = ['a', 'button', 'input', 'textarea', 'select', 'details', '[tabindex]', '[contenteditable="true"]'].map(selector => `${selector}:not([tabindex^="-"])`).join(',');
+      return this.find(focusables, element).filter(el => !isDisabled(el) && isVisible(el));
+    }
+
+  };
+
+  /**
+   * --------------------------------------------------------------------------
+   * Bootstrap (v5.2.3): util/swipe.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Constants
    */
@@ -992,7 +1895,10 @@
     leftCallback: '(function|null)',
     rightCallback: '(function|null)'
   };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
 
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Class definition
    */
@@ -1001,6 +1907,7 @@
     constructor(element, config) {
       super();
       this._element = element;
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       if (!element || !Swipe.isSupported()) {
         return;
       }
@@ -1027,19 +1934,61 @@
     }
 
     // Private
+=======
+
+      if (!element || !Swipe.isSupported()) {
+        return;
+      }
+
+      this._config = this._getConfig(config);
+      this._deltaX = 0;
+      this._supportPointerEvents = Boolean(window.PointerEvent);
+
+      this._initEvents();
+    } // Getters
+
+
+    static get Default() {
+      return Default$c;
+    }
+
+    static get DefaultType() {
+      return DefaultType$c;
+    }
+
+    static get NAME() {
+      return NAME$d;
+    } // Public
+
+
+    dispose() {
+      EventHandler.off(this._element, EVENT_KEY$9);
+    } // Private
+
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _start(event) {
       if (!this._supportPointerEvents) {
         this._deltaX = event.touches[0].clientX;
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (this._eventIsPointerPenTouch(event)) {
         this._deltaX = event.clientX;
       }
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _end(event) {
       if (this._eventIsPointerPenTouch(event)) {
         this._deltaX = event.clientX - this._deltaX;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._handleSwipe();
       execute(this._config.endCallback);
     }
@@ -1058,10 +2007,43 @@
       }
       execute(direction > 0 ? this._config.rightCallback : this._config.leftCallback);
     }
+=======
+
+      this._handleSwipe();
+
+      execute(this._config.endCallback);
+    }
+
+    _move(event) {
+      this._deltaX = event.touches && event.touches.length > 1 ? 0 : event.touches[0].clientX - this._deltaX;
+    }
+
+    _handleSwipe() {
+      const absDeltaX = Math.abs(this._deltaX);
+
+      if (absDeltaX <= SWIPE_THRESHOLD) {
+        return;
+      }
+
+      const direction = absDeltaX / this._deltaX;
+      this._deltaX = 0;
+
+      if (!direction) {
+        return;
+      }
+
+      execute(direction > 0 ? this._config.rightCallback : this._config.leftCallback);
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _initEvents() {
       if (this._supportPointerEvents) {
         EventHandler.on(this._element, EVENT_POINTERDOWN, event => this._start(event));
         EventHandler.on(this._element, EVENT_POINTERUP, event => this._end(event));
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         this._element.classList.add(CLASS_NAME_POINTER_EVENT);
       } else {
         EventHandler.on(this._element, EVENT_TOUCHSTART, event => this._start(event));
@@ -1069,6 +2051,7 @@
         EventHandler.on(this._element, EVENT_TOUCHEND, event => this._end(event));
       }
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     _eventIsPointerPenTouch(event) {
       return this._supportPointerEvents && (event.pointerType === POINTER_TYPE_PEN || event.pointerType === POINTER_TYPE_TOUCH);
     }
@@ -1077,16 +2060,35 @@
     static isSupported() {
       return 'ontouchstart' in document.documentElement || navigator.maxTouchPoints > 0;
     }
+=======
+
+    _eventIsPointerPenTouch(event) {
+      return this._supportPointerEvents && (event.pointerType === POINTER_TYPE_PEN || event.pointerType === POINTER_TYPE_TOUCH);
+    } // Static
+
+
+    static isSupported() {
+      return 'ontouchstart' in document.documentElement || navigator.maxTouchPoints > 0;
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   }
 
   /**
    * --------------------------------------------------------------------------
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
    * Bootstrap carousel.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
 
 
+=======
+   * Bootstrap (v5.2.3): carousel.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Constants
    */
@@ -1146,7 +2148,10 @@
     touch: 'boolean',
     wrap: 'boolean'
   };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
 
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Class definition
    */
@@ -1160,6 +2165,7 @@
       this.touchTimeout = null;
       this._swipeHelper = null;
       this._indicatorsElement = SelectorEngine.findOne(SELECTOR_INDICATORS, this._element);
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._addEventListeners();
       if (this._config.ride === CLASS_NAME_CAROUSEL) {
         this.cycle();
@@ -1181,6 +2187,34 @@
     next() {
       this._slide(ORDER_NEXT);
     }
+=======
+
+      this._addEventListeners();
+
+      if (this._config.ride === CLASS_NAME_CAROUSEL) {
+        this.cycle();
+      }
+    } // Getters
+
+
+    static get Default() {
+      return Default$b;
+    }
+
+    static get DefaultType() {
+      return DefaultType$b;
+    }
+
+    static get NAME() {
+      return NAME$c;
+    } // Public
+
+
+    next() {
+      this._slide(ORDER_NEXT);
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     nextWhenVisible() {
       // FIXME TODO use `document.visibilityState`
       // Don't call next when the page isn't visible
@@ -1189,13 +2223,22 @@
         this.next();
       }
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     prev() {
       this._slide(ORDER_PREV);
     }
+=======
+
+    prev() {
+      this._slide(ORDER_PREV);
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     pause() {
       if (this._isSliding) {
         triggerTransitionEnd(this._element);
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._clearInterval();
     }
     cycle() {
@@ -1203,14 +2246,33 @@
       this._updateInterval();
       this._interval = setInterval(() => this.nextWhenVisible(), this._config.interval);
     }
+=======
+
+      this._clearInterval();
+    }
+
+    cycle() {
+      this._clearInterval();
+
+      this._updateInterval();
+
+      this._interval = setInterval(() => this.nextWhenVisible(), this._config.interval);
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _maybeEnableCycle() {
       if (!this._config.ride) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (this._isSliding) {
         EventHandler.one(this._element, EVENT_SLID, () => this.cycle());
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this.cycle();
     }
     to(index) {
@@ -1218,10 +2280,24 @@
       if (index > items.length - 1 || index < 0) {
         return;
       }
+=======
+
+      this.cycle();
+    }
+
+    to(index) {
+      const items = this._getItems();
+
+      if (index > items.length - 1 || index < 0) {
+        return;
+      }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (this._isSliding) {
         EventHandler.one(this._element, EVENT_SLID, () => this.to(index));
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       const activeIndex = this._getItemIndex(this._getActive());
       if (activeIndex === index) {
         return;
@@ -1229,40 +2305,86 @@
       const order = index > activeIndex ? ORDER_NEXT : ORDER_PREV;
       this._slide(order, items[index]);
     }
+=======
+
+      const activeIndex = this._getItemIndex(this._getActive());
+
+      if (activeIndex === index) {
+        return;
+      }
+
+      const order = index > activeIndex ? ORDER_NEXT : ORDER_PREV;
+
+      this._slide(order, items[index]);
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     dispose() {
       if (this._swipeHelper) {
         this._swipeHelper.dispose();
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       super.dispose();
     }
 
     // Private
+=======
+
+      super.dispose();
+    } // Private
+
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _configAfterMerge(config) {
       config.defaultInterval = config.interval;
       return config;
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _addEventListeners() {
       if (this._config.keyboard) {
         EventHandler.on(this._element, EVENT_KEYDOWN$1, event => this._keydown(event));
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (this._config.pause === 'hover') {
         EventHandler.on(this._element, EVENT_MOUSEENTER$1, () => this.pause());
         EventHandler.on(this._element, EVENT_MOUSELEAVE$1, () => this._maybeEnableCycle());
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (this._config.touch && Swipe.isSupported()) {
         this._addTouchEventListeners();
       }
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _addTouchEventListeners() {
       for (const img of SelectorEngine.find(SELECTOR_ITEM_IMG, this._element)) {
         EventHandler.on(img, EVENT_DRAG_START, event => event.preventDefault());
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       const endCallBack = () => {
         if (this._config.pause !== 'hover') {
           return;
         }
 
         // If it's a touch-enabled device, mouseenter/leave are fired as
+=======
+
+      const endCallBack = () => {
+        if (this._config.pause !== 'hover') {
+          return;
+        } // If it's a touch-enabled device, mouseenter/leave are fired as
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         // part of the mouse compatibility events on first tap - the carousel
         // would stop cycling until user tapped out of it;
         // here, we listen for touchend, explicitly pause the carousel
@@ -1270,12 +2392,25 @@
         // is NOT fired) and after a timeout (to allow for mouse compatibility
         // events to fire) we explicitly restart cycling
 
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
         this.pause();
         if (this.touchTimeout) {
           clearTimeout(this.touchTimeout);
         }
         this.touchTimeout = setTimeout(() => this._maybeEnableCycle(), TOUCHEVENT_COMPAT_WAIT + this._config.interval);
       };
+=======
+
+        this.pause();
+
+        if (this.touchTimeout) {
+          clearTimeout(this.touchTimeout);
+        }
+
+        this.touchTimeout = setTimeout(() => this._maybeEnableCycle(), TOUCHEVENT_COMPAT_WAIT + this._config.interval);
+      };
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       const swipeConfig = {
         leftCallback: () => this._slide(this._directionToOrder(DIRECTION_LEFT)),
         rightCallback: () => this._slide(this._directionToOrder(DIRECTION_RIGHT)),
@@ -1283,10 +2418,15 @@
       };
       this._swipeHelper = new Swipe(this._element, swipeConfig);
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _keydown(event) {
       if (/input|textarea/i.test(event.target.tagName)) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       const direction = KEY_TO_DIRECTION[event.key];
       if (direction) {
         event.preventDefault();
@@ -1296,19 +2436,44 @@
     _getItemIndex(element) {
       return this._getItems().indexOf(element);
     }
+=======
+
+      const direction = KEY_TO_DIRECTION[event.key];
+
+      if (direction) {
+        event.preventDefault();
+
+        this._slide(this._directionToOrder(direction));
+      }
+    }
+
+    _getItemIndex(element) {
+      return this._getItems().indexOf(element);
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _setActiveIndicatorElement(index) {
       if (!this._indicatorsElement) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       const activeIndicator = SelectorEngine.findOne(SELECTOR_ACTIVE, this._indicatorsElement);
       activeIndicator.classList.remove(CLASS_NAME_ACTIVE$2);
       activeIndicator.removeAttribute('aria-current');
       const newActiveIndicator = SelectorEngine.findOne(`[data-bs-slide-to="${index}"]`, this._indicatorsElement);
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (newActiveIndicator) {
         newActiveIndicator.classList.add(CLASS_NAME_ACTIVE$2);
         newActiveIndicator.setAttribute('aria-current', 'true');
       }
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     _updateInterval() {
       const element = this._activeElement || this._getActive();
       if (!element) {
@@ -1317,10 +2482,25 @@
       const elementInterval = Number.parseInt(element.getAttribute('data-bs-interval'), 10);
       this._config.interval = elementInterval || this._config.defaultInterval;
     }
+=======
+
+    _updateInterval() {
+      const element = this._activeElement || this._getActive();
+
+      if (!element) {
+        return;
+      }
+
+      const elementInterval = Number.parseInt(element.getAttribute('data-bs-interval'), 10);
+      this._config.interval = elementInterval || this._config.defaultInterval;
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _slide(order, element = null) {
       if (this._isSliding) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       const activeElement = this._getActive();
       const isNext = order === ORDER_NEXT;
       const nextElement = element || getNextActiveElement(this._getItems(), activeElement, isNext, this._config.wrap);
@@ -1328,6 +2508,20 @@
         return;
       }
       const nextElementIndex = this._getItemIndex(nextElement);
+=======
+
+      const activeElement = this._getActive();
+
+      const isNext = order === ORDER_NEXT;
+      const nextElement = element || getNextActiveElement(this._getItems(), activeElement, isNext, this._config.wrap);
+
+      if (nextElement === activeElement) {
+        return;
+      }
+
+      const nextElementIndex = this._getItemIndex(nextElement);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       const triggerEvent = eventName => {
         return EventHandler.trigger(this._element, eventName, {
           relatedTarget: nextElement,
@@ -1336,6 +2530,7 @@
           to: nextElementIndex
         });
       };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       const slideEvent = triggerEvent(EVENT_SLIDE);
       if (slideEvent.defaultPrevented) {
         return;
@@ -1349,6 +2544,27 @@
       this.pause();
       this._isSliding = true;
       this._setActiveIndicatorElement(nextElementIndex);
+=======
+
+      const slideEvent = triggerEvent(EVENT_SLIDE);
+
+      if (slideEvent.defaultPrevented) {
+        return;
+      }
+
+      if (!activeElement || !nextElement) {
+        // Some weirdness is happening, so we bail
+        // todo: change tests that use empty divs to avoid this check
+        return;
+      }
+
+      const isCycling = Boolean(this._interval);
+      this.pause();
+      this._isSliding = true;
+
+      this._setActiveIndicatorElement(nextElementIndex);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       this._activeElement = nextElement;
       const directionalClassName = isNext ? CLASS_NAME_START : CLASS_NAME_END;
       const orderClassName = isNext ? CLASS_NAME_NEXT : CLASS_NAME_PREV;
@@ -1356,6 +2572,10 @@
       reflow(nextElement);
       activeElement.classList.add(directionalClassName);
       nextElement.classList.add(directionalClassName);
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       const completeCallBack = () => {
         nextElement.classList.remove(directionalClassName, orderClassName);
         nextElement.classList.add(CLASS_NAME_ACTIVE$2);
@@ -1363,11 +2583,18 @@
         this._isSliding = false;
         triggerEvent(EVENT_SLID);
       };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._queueCallback(completeCallBack, activeElement, this._isAnimated());
+=======
+
+      this._queueCallback(completeCallBack, activeElement, this._isAnimated());
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (isCycling) {
         this.cycle();
       }
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     _isAnimated() {
       return this._element.classList.contains(CLASS_NAME_SLIDE);
     }
@@ -1377,22 +2604,49 @@
     _getItems() {
       return SelectorEngine.find(SELECTOR_ITEM, this._element);
     }
+=======
+
+    _isAnimated() {
+      return this._element.classList.contains(CLASS_NAME_SLIDE);
+    }
+
+    _getActive() {
+      return SelectorEngine.findOne(SELECTOR_ACTIVE_ITEM, this._element);
+    }
+
+    _getItems() {
+      return SelectorEngine.find(SELECTOR_ITEM, this._element);
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _clearInterval() {
       if (this._interval) {
         clearInterval(this._interval);
         this._interval = null;
       }
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _directionToOrder(direction) {
       if (isRTL()) {
         return direction === DIRECTION_LEFT ? ORDER_PREV : ORDER_NEXT;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       return direction === DIRECTION_LEFT ? ORDER_NEXT : ORDER_PREV;
     }
+=======
+
+      return direction === DIRECTION_LEFT ? ORDER_NEXT : ORDER_PREV;
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _orderToDirection(order) {
       if (isRTL()) {
         return order === ORDER_PREV ? DIRECTION_LEFT : DIRECTION_RIGHT;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       return order === ORDER_PREV ? DIRECTION_RIGHT : DIRECTION_LEFT;
     }
 
@@ -1400,24 +2654,49 @@
     static jQueryInterface(config) {
       return this.each(function () {
         const data = Carousel.getOrCreateInstance(this, config);
+=======
+
+      return order === ORDER_PREV ? DIRECTION_RIGHT : DIRECTION_LEFT;
+    } // Static
+
+
+    static jQueryInterface(config) {
+      return this.each(function () {
+        const data = Carousel.getOrCreateInstance(this, config);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         if (typeof config === 'number') {
           data.to(config);
           return;
         }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         if (typeof config === 'string') {
           if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
             throw new TypeError(`No method named "${config}"`);
           }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
           data[config]();
         }
       });
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
   }
 
+=======
+
+  }
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Data API implementation
    */
 
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
   EventHandler.on(document, EVENT_CLICK_DATA_API$5, SELECTOR_DATA_SLIDE, function (event) {
     const target = SelectorEngine.getElementFromSelector(this);
     if (!target || !target.classList.contains(CLASS_NAME_CAROUSEL)) {
@@ -1437,15 +2716,54 @@
       return;
     }
     carousel.prev();
+=======
+
+  EventHandler.on(document, EVENT_CLICK_DATA_API$5, SELECTOR_DATA_SLIDE, function (event) {
+    const target = getElementFromSelector(this);
+
+    if (!target || !target.classList.contains(CLASS_NAME_CAROUSEL)) {
+      return;
+    }
+
+    event.preventDefault();
+    const carousel = Carousel.getOrCreateInstance(target);
+    const slideIndex = this.getAttribute('data-bs-slide-to');
+
+    if (slideIndex) {
+      carousel.to(slideIndex);
+
+      carousel._maybeEnableCycle();
+
+      return;
+    }
+
+    if (Manipulator.getDataAttribute(this, 'slide') === 'next') {
+      carousel.next();
+
+      carousel._maybeEnableCycle();
+
+      return;
+    }
+
+    carousel.prev();
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     carousel._maybeEnableCycle();
   });
   EventHandler.on(window, EVENT_LOAD_DATA_API$3, () => {
     const carousels = SelectorEngine.find(SELECTOR_DATA_RIDE);
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     for (const carousel of carousels) {
       Carousel.getOrCreateInstance(carousel);
     }
   });
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
 
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * jQuery
    */
@@ -1454,12 +2772,19 @@
 
   /**
    * --------------------------------------------------------------------------
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
    * Bootstrap collapse.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
 
 
+=======
+   * Bootstrap (v5.2.3): collapse.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Constants
    */
@@ -1491,7 +2816,10 @@
     parent: '(null|element)',
     toggle: 'boolean'
   };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
 
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Class definition
    */
@@ -1502,13 +2830,22 @@
       this._isTransitioning = false;
       this._triggerArray = [];
       const toggleList = SelectorEngine.find(SELECTOR_DATA_TOGGLE$4);
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       for (const elem of toggleList) {
         const selector = SelectorEngine.getSelectorFromElement(elem);
         const filterElement = SelectorEngine.find(selector).filter(foundElement => foundElement === this._element);
+=======
+
+      for (const elem of toggleList) {
+        const selector = getSelectorFromElement(elem);
+        const filterElement = SelectorEngine.find(selector).filter(foundElement => foundElement === this._element);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         if (selector !== null && filterElement.length) {
           this._triggerArray.push(elem);
         }
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._initializeChildren();
       if (!this._config.parent) {
         this._addAriaAndCollapsedClass(this._triggerArray, this._isShown());
@@ -1530,6 +2867,34 @@
     }
 
     // Public
+=======
+
+      this._initializeChildren();
+
+      if (!this._config.parent) {
+        this._addAriaAndCollapsedClass(this._triggerArray, this._isShown());
+      }
+
+      if (this._config.toggle) {
+        this.toggle();
+      }
+    } // Getters
+
+
+    static get Default() {
+      return Default$a;
+    }
+
+    static get DefaultType() {
+      return DefaultType$a;
+    }
+
+    static get NAME() {
+      return NAME$b;
+    } // Public
+
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     toggle() {
       if (this._isShown()) {
         this.hide();
@@ -1537,18 +2902,29 @@
         this.show();
       }
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     show() {
       if (this._isTransitioning || this._isShown()) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       let activeChildren = [];
 
       // find active children
+=======
+
+      let activeChildren = []; // find active children
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (this._config.parent) {
         activeChildren = this._getFirstLevelChildren(SELECTOR_ACTIVES).filter(element => element !== this._element).map(element => Collapse.getOrCreateInstance(element, {
           toggle: false
         }));
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       if (activeChildren.length && activeChildren[0]._isTransitioning) {
         return;
       }
@@ -1577,10 +2953,59 @@
       this._queueCallback(complete, this._element, true);
       this._element.style[dimension] = `${this._element[scrollSize]}px`;
     }
+=======
+
+      if (activeChildren.length && activeChildren[0]._isTransitioning) {
+        return;
+      }
+
+      const startEvent = EventHandler.trigger(this._element, EVENT_SHOW$6);
+
+      if (startEvent.defaultPrevented) {
+        return;
+      }
+
+      for (const activeInstance of activeChildren) {
+        activeInstance.hide();
+      }
+
+      const dimension = this._getDimension();
+
+      this._element.classList.remove(CLASS_NAME_COLLAPSE);
+
+      this._element.classList.add(CLASS_NAME_COLLAPSING);
+
+      this._element.style[dimension] = 0;
+
+      this._addAriaAndCollapsedClass(this._triggerArray, true);
+
+      this._isTransitioning = true;
+
+      const complete = () => {
+        this._isTransitioning = false;
+
+        this._element.classList.remove(CLASS_NAME_COLLAPSING);
+
+        this._element.classList.add(CLASS_NAME_COLLAPSE, CLASS_NAME_SHOW$7);
+
+        this._element.style[dimension] = '';
+        EventHandler.trigger(this._element, EVENT_SHOWN$6);
+      };
+
+      const capitalizedDimension = dimension[0].toUpperCase() + dimension.slice(1);
+      const scrollSize = `scroll${capitalizedDimension}`;
+
+      this._queueCallback(complete, this._element, true);
+
+      this._element.style[dimension] = `${this._element[scrollSize]}px`;
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     hide() {
       if (this._isTransitioning || !this._isShown()) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       const startEvent = EventHandler.trigger(this._element, EVENT_HIDE$6);
       if (startEvent.defaultPrevented) {
         return;
@@ -1592,10 +3017,32 @@
       this._element.classList.remove(CLASS_NAME_COLLAPSE, CLASS_NAME_SHOW$7);
       for (const trigger of this._triggerArray) {
         const element = SelectorEngine.getElementFromSelector(trigger);
+=======
+
+      const startEvent = EventHandler.trigger(this._element, EVENT_HIDE$6);
+
+      if (startEvent.defaultPrevented) {
+        return;
+      }
+
+      const dimension = this._getDimension();
+
+      this._element.style[dimension] = `${this._element.getBoundingClientRect()[dimension]}px`;
+      reflow(this._element);
+
+      this._element.classList.add(CLASS_NAME_COLLAPSING);
+
+      this._element.classList.remove(CLASS_NAME_COLLAPSE, CLASS_NAME_SHOW$7);
+
+      for (const trigger of this._triggerArray) {
+        const element = getElementFromSelector(trigger);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         if (element && !this._isShown(element)) {
           this._addAriaAndCollapsedClass([trigger], false);
         }
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._isTransitioning = true;
       const complete = () => {
         this._isTransitioning = false;
@@ -1619,31 +3066,91 @@
     _getDimension() {
       return this._element.classList.contains(CLASS_NAME_HORIZONTAL) ? WIDTH : HEIGHT;
     }
+=======
+
+      this._isTransitioning = true;
+
+      const complete = () => {
+        this._isTransitioning = false;
+
+        this._element.classList.remove(CLASS_NAME_COLLAPSING);
+
+        this._element.classList.add(CLASS_NAME_COLLAPSE);
+
+        EventHandler.trigger(this._element, EVENT_HIDDEN$6);
+      };
+
+      this._element.style[dimension] = '';
+
+      this._queueCallback(complete, this._element, true);
+    }
+
+    _isShown(element = this._element) {
+      return element.classList.contains(CLASS_NAME_SHOW$7);
+    } // Private
+
+
+    _configAfterMerge(config) {
+      config.toggle = Boolean(config.toggle); // Coerce string values
+
+      config.parent = getElement(config.parent);
+      return config;
+    }
+
+    _getDimension() {
+      return this._element.classList.contains(CLASS_NAME_HORIZONTAL) ? WIDTH : HEIGHT;
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _initializeChildren() {
       if (!this._config.parent) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       const children = this._getFirstLevelChildren(SELECTOR_DATA_TOGGLE$4);
       for (const element of children) {
         const selected = SelectorEngine.getElementFromSelector(element);
+=======
+
+      const children = this._getFirstLevelChildren(SELECTOR_DATA_TOGGLE$4);
+
+      for (const element of children) {
+        const selected = getElementFromSelector(element);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         if (selected) {
           this._addAriaAndCollapsedClass([element], this._isShown(selected));
         }
       }
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     _getFirstLevelChildren(selector) {
       const children = SelectorEngine.find(CLASS_NAME_DEEPER_CHILDREN, this._config.parent);
       // remove children if greater depth
       return SelectorEngine.find(selector, this._config.parent).filter(element => !children.includes(element));
     }
+=======
+
+    _getFirstLevelChildren(selector) {
+      const children = SelectorEngine.find(CLASS_NAME_DEEPER_CHILDREN, this._config.parent); // remove children if greater depth
+
+      return SelectorEngine.find(selector, this._config.parent).filter(element => !children.includes(element));
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _addAriaAndCollapsedClass(triggerArray, isOpen) {
       if (!triggerArray.length) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       for (const element of triggerArray) {
         element.classList.toggle(CLASS_NAME_COLLAPSED, !isOpen);
         element.setAttribute('aria-expanded', isOpen);
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     }
 
     // Static
@@ -1654,32 +3161,71 @@
       }
       return this.each(function () {
         const data = Collapse.getOrCreateInstance(this, _config);
+=======
+    } // Static
+
+
+    static jQueryInterface(config) {
+      const _config = {};
+
+      if (typeof config === 'string' && /show|hide/.test(config)) {
+        _config.toggle = false;
+      }
+
+      return this.each(function () {
+        const data = Collapse.getOrCreateInstance(this, _config);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         if (typeof config === 'string') {
           if (typeof data[config] === 'undefined') {
             throw new TypeError(`No method named "${config}"`);
           }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
           data[config]();
         }
       });
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
   }
 
+=======
+
+  }
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Data API implementation
    */
 
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   EventHandler.on(document, EVENT_CLICK_DATA_API$4, SELECTOR_DATA_TOGGLE$4, function (event) {
     // preventDefault only for <a> elements (which change the URL) not inside the collapsible element
     if (event.target.tagName === 'A' || event.delegateTarget && event.delegateTarget.tagName === 'A') {
       event.preventDefault();
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     for (const element of SelectorEngine.getMultipleElementsFromSelector(this)) {
+=======
+
+    const selector = getSelectorFromElement(this);
+    const selectorElements = SelectorEngine.find(selector);
+
+    for (const element of selectorElements) {
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       Collapse.getOrCreateInstance(element, {
         toggle: false
       }).toggle();
     }
   });
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
 
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * jQuery
    */
@@ -1849,7 +3395,11 @@
   function getUAString() {
     var uaData = navigator.userAgentData;
 
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     if (uaData != null && uaData.brands && Array.isArray(uaData.brands)) {
+=======
+    if (uaData != null && uaData.brands) {
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       return uaData.brands.map(function (item) {
         return item.brand + "/" + item.version;
       }).join(' ');
@@ -2137,6 +3687,10 @@
     }
 
     if (!contains(state.elements.popper, arrowElement)) {
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       return;
     }
 
@@ -2167,9 +3721,16 @@
   // Zooming can change the DPR, but it seems to report a value that will
   // cleanly divide the values into the appropriate subpixels.
 
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
   function roundOffsetsByDPR(_ref, win) {
     var x = _ref.x,
         y = _ref.y;
+=======
+  function roundOffsetsByDPR(_ref) {
+    var x = _ref.x,
+        y = _ref.y;
+    var win = window;
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     var dpr = win.devicePixelRatio || 1;
     return {
       x: round(x * dpr) / dpr || 0,
@@ -2252,7 +3813,11 @@
     var _ref4 = roundOffsets === true ? roundOffsetsByDPR({
       x: x,
       y: y
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     }, getWindow(popper)) : {
+=======
+    }) : {
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       x: x,
       y: y
     };
@@ -2278,6 +3843,10 @@
         adaptive = _options$adaptive === void 0 ? true : _options$adaptive,
         _options$roundOffsets = options.roundOffsets,
         roundOffsets = _options$roundOffsets === void 0 ? true : _options$roundOffsets;
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     var commonStyles = {
       placement: getBasePlacement(state.placement),
       variation: getVariation(state.placement),
@@ -2668,6 +4237,10 @@
     var popperOffsets = computeOffsets({
       reference: referenceClientRect,
       element: popperRect,
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+      strategy: 'absolute',
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       placement: placement
     });
     var popperClientRect = rectToClientRect(Object.assign({}, popperRect, popperOffsets));
@@ -2995,6 +4568,10 @@
     state.modifiersData[name] = computeOffsets({
       reference: state.rects.reference,
       element: state.rects.popper,
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+      strategy: 'absolute',
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       placement: state.placement
     });
   } // eslint-disable-next-line import/no-unused-modules
@@ -3343,7 +4920,12 @@
 
           state.orderedModifiers = orderedModifiers.filter(function (m) {
             return m.enabled;
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
           });
+=======
+          }); // Validate the provided modifiers so that the consumer will get warned
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
           runModifierEffects();
           return instance.update();
         },
@@ -3363,6 +4945,10 @@
           // anymore
 
           if (!areValidElements(reference, popper)) {
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
             return;
           } // Store the reference and popper rects to be read by modifiers
 
@@ -3387,6 +4973,10 @@
           });
 
           for (var index = 0; index < state.orderedModifiers.length; index++) {
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
             if (state.reset === true) {
               state.reset = false;
               index = -1;
@@ -3424,6 +5014,10 @@
       };
 
       if (!areValidElements(reference, popper)) {
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         return instance;
       }
 
@@ -3438,11 +5032,19 @@
       // one.
 
       function runModifierEffects() {
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
         state.orderedModifiers.forEach(function (_ref) {
           var name = _ref.name,
               _ref$options = _ref.options,
               options = _ref$options === void 0 ? {} : _ref$options,
               effect = _ref.effect;
+=======
+        state.orderedModifiers.forEach(function (_ref3) {
+          var name = _ref3.name,
+              _ref3$options = _ref3.options,
+              options = _ref3$options === void 0 ? {} : _ref3$options,
+              effect = _ref3.effect;
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
 
           if (typeof effect === 'function') {
             var cleanupFn = effect({
@@ -3483,6 +5085,7 @@
 
   const Popper = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
     __proto__: null,
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     afterMain,
     afterRead,
     afterWrite,
@@ -3521,16 +5124,63 @@
     variationPlacements,
     viewport,
     write
+=======
+    popperGenerator,
+    detectOverflow,
+    createPopperBase: createPopper$2,
+    createPopper,
+    createPopperLite: createPopper$1,
+    top,
+    bottom,
+    right,
+    left,
+    auto,
+    basePlacements,
+    start,
+    end,
+    clippingParents,
+    viewport,
+    popper,
+    reference,
+    variationPlacements,
+    placements,
+    beforeRead,
+    read,
+    afterRead,
+    beforeMain,
+    main,
+    afterMain,
+    beforeWrite,
+    write,
+    afterWrite,
+    modifierPhases,
+    applyStyles: applyStyles$1,
+    arrow: arrow$1,
+    computeStyles: computeStyles$1,
+    eventListeners,
+    flip: flip$1,
+    hide: hide$1,
+    offset: offset$1,
+    popperOffsets: popperOffsets$1,
+    preventOverflow: preventOverflow$1
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   }, Symbol.toStringTag, { value: 'Module' }));
 
   /**
    * --------------------------------------------------------------------------
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
    * Bootstrap dropdown.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
 
 
+=======
+   * Bootstrap (v5.2.3): dropdown.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Constants
    */
@@ -3588,7 +5238,10 @@
     popperConfig: '(null|object|function)',
     reference: '(string|element|object)'
   };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
 
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Class definition
    */
@@ -3598,6 +5251,7 @@
       super(element, config);
       this._popper = null;
       this._parent = this._element.parentNode; // dropdown wrapper
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       // TODO: v6 revert #37011 & change markup https://getbootstrap.com/docs/5.3/forms/input-group/
       this._menu = SelectorEngine.next(this._element, SELECTOR_MENU)[0] || SelectorEngine.prev(this._element, SELECTOR_MENU)[0] || SelectorEngine.findOne(SELECTOR_MENU, this._parent);
       this._inNavbar = this._detectNavbar();
@@ -3618,14 +5272,45 @@
     toggle() {
       return this._isShown() ? this.hide() : this.show();
     }
+=======
+      // todo: v6 revert #37011 & change markup https://getbootstrap.com/docs/5.2/forms/input-group/
+
+      this._menu = SelectorEngine.next(this._element, SELECTOR_MENU)[0] || SelectorEngine.prev(this._element, SELECTOR_MENU)[0] || SelectorEngine.findOne(SELECTOR_MENU, this._parent);
+      this._inNavbar = this._detectNavbar();
+    } // Getters
+
+
+    static get Default() {
+      return Default$9;
+    }
+
+    static get DefaultType() {
+      return DefaultType$9;
+    }
+
+    static get NAME() {
+      return NAME$a;
+    } // Public
+
+
+    toggle() {
+      return this._isShown() ? this.hide() : this.show();
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     show() {
       if (isDisabled(this._element) || this._isShown()) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       const relatedTarget = {
         relatedTarget: this._element
       };
       const showEvent = EventHandler.trigger(this._element, EVENT_SHOW$5, relatedTarget);
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       if (showEvent.defaultPrevented) {
         return;
       }
@@ -3635,30 +5320,70 @@
       // empty mouseover listeners to the body's immediate children;
       // only needed because of broken event delegation on iOS
       // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
+=======
+
+      if (showEvent.defaultPrevented) {
+        return;
+      }
+
+      this._createPopper(); // If this is a touch-enabled device we add extra
+      // empty mouseover listeners to the body's immediate children;
+      // only needed because of broken event delegation on iOS
+      // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
+
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if ('ontouchstart' in document.documentElement && !this._parent.closest(SELECTOR_NAVBAR_NAV)) {
         for (const element of [].concat(...document.body.children)) {
           EventHandler.on(element, 'mouseover', noop);
         }
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._element.focus();
       this._element.setAttribute('aria-expanded', true);
       this._menu.classList.add(CLASS_NAME_SHOW$6);
       this._element.classList.add(CLASS_NAME_SHOW$6);
       EventHandler.trigger(this._element, EVENT_SHOWN$5, relatedTarget);
     }
+=======
+
+      this._element.focus();
+
+      this._element.setAttribute('aria-expanded', true);
+
+      this._menu.classList.add(CLASS_NAME_SHOW$6);
+
+      this._element.classList.add(CLASS_NAME_SHOW$6);
+
+      EventHandler.trigger(this._element, EVENT_SHOWN$5, relatedTarget);
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     hide() {
       if (isDisabled(this._element) || !this._isShown()) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       const relatedTarget = {
         relatedTarget: this._element
       };
       this._completeHide(relatedTarget);
     }
+=======
+
+      const relatedTarget = {
+        relatedTarget: this._element
+      };
+
+      this._completeHide(relatedTarget);
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     dispose() {
       if (this._popper) {
         this._popper.destroy();
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       super.dispose();
     }
     update() {
@@ -3677,11 +5402,36 @@
 
       // If this is a touch-enabled device we remove the extra
       // empty mouseover listeners we added for iOS support
+=======
+
+      super.dispose();
+    }
+
+    update() {
+      this._inNavbar = this._detectNavbar();
+
+      if (this._popper) {
+        this._popper.update();
+      }
+    } // Private
+
+
+    _completeHide(relatedTarget) {
+      const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE$5, relatedTarget);
+
+      if (hideEvent.defaultPrevented) {
+        return;
+      } // If this is a touch-enabled device we remove the extra
+      // empty mouseover listeners we added for iOS support
+
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if ('ontouchstart' in document.documentElement) {
         for (const element of [].concat(...document.body.children)) {
           EventHandler.off(element, 'mouseover', noop);
         }
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       if (this._popper) {
         this._popper.destroy();
       }
@@ -3693,10 +5443,31 @@
     }
     _getConfig(config) {
       config = super._getConfig(config);
+=======
+
+      if (this._popper) {
+        this._popper.destroy();
+      }
+
+      this._menu.classList.remove(CLASS_NAME_SHOW$6);
+
+      this._element.classList.remove(CLASS_NAME_SHOW$6);
+
+      this._element.setAttribute('aria-expanded', 'false');
+
+      Manipulator.removeDataAttribute(this._menu, 'popper');
+      EventHandler.trigger(this._element, EVENT_HIDDEN$5, relatedTarget);
+    }
+
+    _getConfig(config) {
+      config = super._getConfig(config);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (typeof config.reference === 'object' && !isElement$1(config.reference) && typeof config.reference.getBoundingClientRect !== 'function') {
         // Popper virtual elements require a getBoundingClientRect method
         throw new TypeError(`${NAME$a.toUpperCase()}: Option "reference" provided type "object" without a required "getBoundingClientRect" method.`);
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       return config;
     }
     _createPopper() {
@@ -3704,6 +5475,19 @@
         throw new TypeError('Bootstrap\'s dropdowns require Popper (https://popper.js.org/docs/v2/)');
       }
       let referenceElement = this._element;
+=======
+
+      return config;
+    }
+
+    _createPopper() {
+      if (typeof Popper === 'undefined') {
+        throw new TypeError('Bootstrap\'s dropdowns require Popper (https://popper.js.org)');
+      }
+
+      let referenceElement = this._element;
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (this._config.reference === 'parent') {
         referenceElement = this._parent;
       } else if (isElement$1(this._config.reference)) {
@@ -3711,6 +5495,7 @@
       } else if (typeof this._config.reference === 'object') {
         referenceElement = this._config.reference;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       const popperConfig = this._getPopperConfig();
       this._popper = createPopper(referenceElement, this._menu, popperConfig);
     }
@@ -3742,10 +5527,56 @@
     _detectNavbar() {
       return this._element.closest(SELECTOR_NAVBAR) !== null;
     }
+=======
+
+      const popperConfig = this._getPopperConfig();
+
+      this._popper = createPopper(referenceElement, this._menu, popperConfig);
+    }
+
+    _isShown() {
+      return this._menu.classList.contains(CLASS_NAME_SHOW$6);
+    }
+
+    _getPlacement() {
+      const parentDropdown = this._parent;
+
+      if (parentDropdown.classList.contains(CLASS_NAME_DROPEND)) {
+        return PLACEMENT_RIGHT;
+      }
+
+      if (parentDropdown.classList.contains(CLASS_NAME_DROPSTART)) {
+        return PLACEMENT_LEFT;
+      }
+
+      if (parentDropdown.classList.contains(CLASS_NAME_DROPUP_CENTER)) {
+        return PLACEMENT_TOPCENTER;
+      }
+
+      if (parentDropdown.classList.contains(CLASS_NAME_DROPDOWN_CENTER)) {
+        return PLACEMENT_BOTTOMCENTER;
+      } // We need to trim the value because custom properties can also include spaces
+
+
+      const isEnd = getComputedStyle(this._menu).getPropertyValue('--bs-position').trim() === 'end';
+
+      if (parentDropdown.classList.contains(CLASS_NAME_DROPUP)) {
+        return isEnd ? PLACEMENT_TOPEND : PLACEMENT_TOP;
+      }
+
+      return isEnd ? PLACEMENT_BOTTOMEND : PLACEMENT_BOTTOM;
+    }
+
+    _detectNavbar() {
+      return this._element.closest(SELECTOR_NAVBAR) !== null;
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _getOffset() {
       const {
         offset
       } = this._config;
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       if (typeof offset === 'string') {
         return offset.split(',').map(value => Number.parseInt(value, 10));
       }
@@ -3754,6 +5585,20 @@
       }
       return offset;
     }
+=======
+
+      if (typeof offset === 'string') {
+        return offset.split(',').map(value => Number.parseInt(value, 10));
+      }
+
+      if (typeof offset === 'function') {
+        return popperData => offset(popperData, this._element);
+      }
+
+      return offset;
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _getPopperConfig() {
       const defaultBsPopperConfig = {
         placement: this._getPlacement(),
@@ -3768,26 +5613,44 @@
             offset: this._getOffset()
           }
         }]
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       };
 
       // Disable Popper if we have a static display or Dropdown is in Navbar
       if (this._inNavbar || this._config.display === 'static') {
         Manipulator.setDataAttribute(this._menu, 'popper', 'static'); // TODO: v6 remove
+=======
+      }; // Disable Popper if we have a static display or Dropdown is in Navbar
+
+      if (this._inNavbar || this._config.display === 'static') {
+        Manipulator.setDataAttribute(this._menu, 'popper', 'static'); // todo:v6 remove
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         defaultBsPopperConfig.modifiers = [{
           name: 'applyStyles',
           enabled: false
         }];
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       return {
         ...defaultBsPopperConfig,
         ...execute(this._config.popperConfig, [undefined, defaultBsPopperConfig])
       };
     }
+=======
+
+      return { ...defaultBsPopperConfig,
+        ...(typeof this._config.popperConfig === 'function' ? this._config.popperConfig(defaultBsPopperConfig) : this._config.popperConfig)
+      };
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _selectMenuItem({
       key,
       target
     }) {
       const items = SelectorEngine.find(SELECTOR_VISIBLE_ITEMS, this._menu).filter(element => isVisible(element));
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       if (!items.length) {
         return;
       }
@@ -3810,10 +5673,40 @@
         data[config]();
       });
     }
+=======
+
+      if (!items.length) {
+        return;
+      } // if target isn't included in items (e.g. when expanding the dropdown)
+      // allow cycling to get the last item in case key equals ARROW_UP_KEY
+
+
+      getNextActiveElement(items, target, key === ARROW_DOWN_KEY$1, !items.includes(target)).focus();
+    } // Static
+
+
+    static jQueryInterface(config) {
+      return this.each(function () {
+        const data = Dropdown.getOrCreateInstance(this, config);
+
+        if (typeof config !== 'string') {
+          return;
+        }
+
+        if (typeof data[config] === 'undefined') {
+          throw new TypeError(`No method named "${config}"`);
+        }
+
+        data[config]();
+      });
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     static clearMenus(event) {
       if (event.button === RIGHT_MOUSE_BUTTON || event.type === 'keyup' && event.key !== TAB_KEY$1) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       const openToggles = SelectorEngine.find(SELECTOR_DATA_TOGGLE_SHOWN);
       for (const toggle of openToggles) {
         const context = Dropdown.getInstance(toggle);
@@ -3863,6 +5756,71 @@
         instance._selectMenuItem(event);
         return;
       }
+=======
+
+      const openToggles = SelectorEngine.find(SELECTOR_DATA_TOGGLE_SHOWN);
+
+      for (const toggle of openToggles) {
+        const context = Dropdown.getInstance(toggle);
+
+        if (!context || context._config.autoClose === false) {
+          continue;
+        }
+
+        const composedPath = event.composedPath();
+        const isMenuTarget = composedPath.includes(context._menu);
+
+        if (composedPath.includes(context._element) || context._config.autoClose === 'inside' && !isMenuTarget || context._config.autoClose === 'outside' && isMenuTarget) {
+          continue;
+        } // Tab navigation through the dropdown menu or events from contained inputs shouldn't close the menu
+
+
+        if (context._menu.contains(event.target) && (event.type === 'keyup' && event.key === TAB_KEY$1 || /input|select|option|textarea|form/i.test(event.target.tagName))) {
+          continue;
+        }
+
+        const relatedTarget = {
+          relatedTarget: context._element
+        };
+
+        if (event.type === 'click') {
+          relatedTarget.clickEvent = event;
+        }
+
+        context._completeHide(relatedTarget);
+      }
+    }
+
+    static dataApiKeydownHandler(event) {
+      // If not an UP | DOWN | ESCAPE key => not a dropdown command
+      // If input/textarea && if key is other than ESCAPE => not a dropdown command
+      const isInput = /input|textarea/i.test(event.target.tagName);
+      const isEscapeEvent = event.key === ESCAPE_KEY$2;
+      const isUpOrDownEvent = [ARROW_UP_KEY$1, ARROW_DOWN_KEY$1].includes(event.key);
+
+      if (!isUpOrDownEvent && !isEscapeEvent) {
+        return;
+      }
+
+      if (isInput && !isEscapeEvent) {
+        return;
+      }
+
+      event.preventDefault(); // todo: v6 revert #37011 & change markup https://getbootstrap.com/docs/5.2/forms/input-group/
+
+      const getToggleButton = this.matches(SELECTOR_DATA_TOGGLE$3) ? this : SelectorEngine.prev(this, SELECTOR_DATA_TOGGLE$3)[0] || SelectorEngine.next(this, SELECTOR_DATA_TOGGLE$3)[0] || SelectorEngine.findOne(SELECTOR_DATA_TOGGLE$3, event.delegateTarget.parentNode);
+      const instance = Dropdown.getOrCreateInstance(getToggleButton);
+
+      if (isUpOrDownEvent) {
+        event.stopPropagation();
+        instance.show();
+
+        instance._selectMenuItem(event);
+
+        return;
+      }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (instance._isShown()) {
         // else is escape and we check if it is shown
         event.stopPropagation();
@@ -3870,12 +5828,21 @@
         getToggleButton.focus();
       }
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
   }
 
+=======
+
+  }
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Data API implementation
    */
 
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   EventHandler.on(document, EVENT_KEYDOWN_DATA_API, SELECTOR_DATA_TOGGLE$3, Dropdown.dataApiKeydownHandler);
   EventHandler.on(document, EVENT_KEYDOWN_DATA_API, SELECTOR_MENU, Dropdown.dataApiKeydownHandler);
   EventHandler.on(document, EVENT_CLICK_DATA_API$3, Dropdown.clearMenus);
@@ -3884,7 +5851,10 @@
     event.preventDefault();
     Dropdown.getOrCreateInstance(this).toggle();
   });
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
 
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * jQuery
    */
@@ -3893,12 +5863,138 @@
 
   /**
    * --------------------------------------------------------------------------
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
    * Bootstrap util/backdrop.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
 
 
+=======
+   * Bootstrap (v5.2.3): util/scrollBar.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+  /**
+   * Constants
+   */
+
+  const SELECTOR_FIXED_CONTENT = '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top';
+  const SELECTOR_STICKY_CONTENT = '.sticky-top';
+  const PROPERTY_PADDING = 'padding-right';
+  const PROPERTY_MARGIN = 'margin-right';
+  /**
+   * Class definition
+   */
+
+  class ScrollBarHelper {
+    constructor() {
+      this._element = document.body;
+    } // Public
+
+
+    getWidth() {
+      // https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth#usage_notes
+      const documentWidth = document.documentElement.clientWidth;
+      return Math.abs(window.innerWidth - documentWidth);
+    }
+
+    hide() {
+      const width = this.getWidth();
+
+      this._disableOverFlow(); // give padding to element to balance the hidden scrollbar width
+
+
+      this._setElementAttributes(this._element, PROPERTY_PADDING, calculatedValue => calculatedValue + width); // trick: We adjust positive paddingRight and negative marginRight to sticky-top elements to keep showing fullwidth
+
+
+      this._setElementAttributes(SELECTOR_FIXED_CONTENT, PROPERTY_PADDING, calculatedValue => calculatedValue + width);
+
+      this._setElementAttributes(SELECTOR_STICKY_CONTENT, PROPERTY_MARGIN, calculatedValue => calculatedValue - width);
+    }
+
+    reset() {
+      this._resetElementAttributes(this._element, 'overflow');
+
+      this._resetElementAttributes(this._element, PROPERTY_PADDING);
+
+      this._resetElementAttributes(SELECTOR_FIXED_CONTENT, PROPERTY_PADDING);
+
+      this._resetElementAttributes(SELECTOR_STICKY_CONTENT, PROPERTY_MARGIN);
+    }
+
+    isOverflowing() {
+      return this.getWidth() > 0;
+    } // Private
+
+
+    _disableOverFlow() {
+      this._saveInitialAttribute(this._element, 'overflow');
+
+      this._element.style.overflow = 'hidden';
+    }
+
+    _setElementAttributes(selector, styleProperty, callback) {
+      const scrollbarWidth = this.getWidth();
+
+      const manipulationCallBack = element => {
+        if (element !== this._element && window.innerWidth > element.clientWidth + scrollbarWidth) {
+          return;
+        }
+
+        this._saveInitialAttribute(element, styleProperty);
+
+        const calculatedValue = window.getComputedStyle(element).getPropertyValue(styleProperty);
+        element.style.setProperty(styleProperty, `${callback(Number.parseFloat(calculatedValue))}px`);
+      };
+
+      this._applyManipulationCallback(selector, manipulationCallBack);
+    }
+
+    _saveInitialAttribute(element, styleProperty) {
+      const actualValue = element.style.getPropertyValue(styleProperty);
+
+      if (actualValue) {
+        Manipulator.setDataAttribute(element, styleProperty, actualValue);
+      }
+    }
+
+    _resetElementAttributes(selector, styleProperty) {
+      const manipulationCallBack = element => {
+        const value = Manipulator.getDataAttribute(element, styleProperty); // We only want to remove the property if the value is `null`; the value can also be zero
+
+        if (value === null) {
+          element.style.removeProperty(styleProperty);
+          return;
+        }
+
+        Manipulator.removeDataAttribute(element, styleProperty);
+        element.style.setProperty(styleProperty, value);
+      };
+
+      this._applyManipulationCallback(selector, manipulationCallBack);
+    }
+
+    _applyManipulationCallback(selector, callBack) {
+      if (isElement$1(selector)) {
+        callBack(selector);
+        return;
+      }
+
+      for (const sel of SelectorEngine.find(selector, this._element)) {
+        callBack(sel);
+      }
+    }
+
+  }
+
+  /**
+   * --------------------------------------------------------------------------
+   * Bootstrap (v5.2.3): util/backdrop.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Constants
    */
@@ -3914,6 +6010,10 @@
     isVisible: true,
     // if false, we use the backdrop helper without adding any element to the dom
     rootElement: 'body' // give the choice to place backdrop under different elements
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   };
   const DefaultType$8 = {
     className: 'string',
@@ -3922,7 +6022,10 @@
     isVisible: 'boolean',
     rootElement: '(element|string)'
   };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
 
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Class definition
    */
@@ -3933,6 +6036,7 @@
       this._config = this._getConfig(config);
       this._isAppended = false;
       this._element = null;
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     }
 
     // Getters
@@ -3947,46 +6051,105 @@
     }
 
     // Public
+=======
+    } // Getters
+
+
+    static get Default() {
+      return Default$8;
+    }
+
+    static get DefaultType() {
+      return DefaultType$8;
+    }
+
+    static get NAME() {
+      return NAME$9;
+    } // Public
+
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     show(callback) {
       if (!this._config.isVisible) {
         execute(callback);
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._append();
       const element = this._getElement();
       if (this._config.isAnimated) {
         reflow(element);
       }
       element.classList.add(CLASS_NAME_SHOW$5);
+=======
+
+      this._append();
+
+      const element = this._getElement();
+
+      if (this._config.isAnimated) {
+        reflow(element);
+      }
+
+      element.classList.add(CLASS_NAME_SHOW$5);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       this._emulateAnimation(() => {
         execute(callback);
       });
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     hide(callback) {
       if (!this._config.isVisible) {
         execute(callback);
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._getElement().classList.remove(CLASS_NAME_SHOW$5);
+=======
+
+      this._getElement().classList.remove(CLASS_NAME_SHOW$5);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       this._emulateAnimation(() => {
         this.dispose();
         execute(callback);
       });
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     dispose() {
       if (!this._isAppended) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       EventHandler.off(this._element, EVENT_MOUSEDOWN);
       this._element.remove();
       this._isAppended = false;
     }
 
     // Private
+=======
+
+      EventHandler.off(this._element, EVENT_MOUSEDOWN);
+
+      this._element.remove();
+
+      this._isAppended = false;
+    } // Private
+
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _getElement() {
       if (!this._element) {
         const backdrop = document.createElement('div');
         backdrop.className = this._config.className;
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
         if (this._config.isAnimated) {
           backdrop.classList.add(CLASS_NAME_FADE$4);
         }
@@ -3994,35 +6157,75 @@
       }
       return this._element;
     }
+=======
+
+        if (this._config.isAnimated) {
+          backdrop.classList.add(CLASS_NAME_FADE$4);
+        }
+
+        this._element = backdrop;
+      }
+
+      return this._element;
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _configAfterMerge(config) {
       // use getElement() with the default "body" to get a fresh Element on each instantiation
       config.rootElement = getElement(config.rootElement);
       return config;
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _append() {
       if (this._isAppended) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       const element = this._getElement();
       this._config.rootElement.append(element);
+=======
+
+      const element = this._getElement();
+
+      this._config.rootElement.append(element);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       EventHandler.on(element, EVENT_MOUSEDOWN, () => {
         execute(this._config.clickCallback);
       });
       this._isAppended = true;
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     _emulateAnimation(callback) {
       executeAfterTransition(callback, this._getElement(), this._config.isAnimated);
     }
+=======
+
+    _emulateAnimation(callback) {
+      executeAfterTransition(callback, this._getElement(), this._config.isAnimated);
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   }
 
   /**
    * --------------------------------------------------------------------------
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
    * Bootstrap util/focustrap.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
 
 
+=======
+   * Bootstrap (v5.2.3): util/focustrap.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Constants
    */
@@ -4038,12 +6241,19 @@
   const Default$7 = {
     autofocus: true,
     trapElement: null // The element to trap focus inside of
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   };
   const DefaultType$7 = {
     autofocus: 'boolean',
     trapElement: 'element'
   };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
 
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Class definition
    */
@@ -4054,6 +6264,7 @@
       this._config = this._getConfig(config);
       this._isActive = false;
       this._lastTabNavDirection = null;
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     }
 
     // Getters
@@ -4068,35 +6279,86 @@
     }
 
     // Public
+=======
+    } // Getters
+
+
+    static get Default() {
+      return Default$7;
+    }
+
+    static get DefaultType() {
+      return DefaultType$7;
+    }
+
+    static get NAME() {
+      return NAME$8;
+    } // Public
+
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     activate() {
       if (this._isActive) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       if (this._config.autofocus) {
         this._config.trapElement.focus();
       }
       EventHandler.off(document, EVENT_KEY$5); // guard against infinite focus loop
+=======
+
+      if (this._config.autofocus) {
+        this._config.trapElement.focus();
+      }
+
+      EventHandler.off(document, EVENT_KEY$5); // guard against infinite focus loop
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       EventHandler.on(document, EVENT_FOCUSIN$2, event => this._handleFocusin(event));
       EventHandler.on(document, EVENT_KEYDOWN_TAB, event => this._handleKeydown(event));
       this._isActive = true;
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     deactivate() {
       if (!this._isActive) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._isActive = false;
       EventHandler.off(document, EVENT_KEY$5);
     }
 
     // Private
+=======
+
+      this._isActive = false;
+      EventHandler.off(document, EVENT_KEY$5);
+    } // Private
+
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _handleFocusin(event) {
       const {
         trapElement
       } = this._config;
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       if (event.target === document || event.target === trapElement || trapElement.contains(event.target)) {
         return;
       }
       const elements = SelectorEngine.focusableChildren(trapElement);
+=======
+
+      if (event.target === document || event.target === trapElement || trapElement.contains(event.target)) {
+        return;
+      }
+
+      const elements = SelectorEngine.focusableChildren(trapElement);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (elements.length === 0) {
         trapElement.focus();
       } else if (this._lastTabNavDirection === TAB_NAV_BACKWARD) {
@@ -4105,16 +6367,28 @@
         elements[0].focus();
       }
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _handleKeydown(event) {
       if (event.key !== TAB_KEY) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._lastTabNavDirection = event.shiftKey ? TAB_NAV_BACKWARD : TAB_NAV_FORWARD;
     }
+=======
+
+      this._lastTabNavDirection = event.shiftKey ? TAB_NAV_BACKWARD : TAB_NAV_FORWARD;
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   }
 
   /**
    * --------------------------------------------------------------------------
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
    * Bootstrap util/scrollBar.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
@@ -4219,6 +6493,12 @@
    */
 
 
+=======
+   * Bootstrap (v5.2.3): modal.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Constants
    */
@@ -4256,7 +6536,10 @@
     focus: 'boolean',
     keyboard: 'boolean'
   };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
 
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Class definition
    */
@@ -4270,6 +6553,7 @@
       this._isShown = false;
       this._isTransitioning = false;
       this._scrollBar = new ScrollBarHelper();
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._addEventListeners();
     }
 
@@ -4288,10 +6572,35 @@
     toggle(relatedTarget) {
       return this._isShown ? this.hide() : this.show(relatedTarget);
     }
+=======
+
+      this._addEventListeners();
+    } // Getters
+
+
+    static get Default() {
+      return Default$6;
+    }
+
+    static get DefaultType() {
+      return DefaultType$6;
+    }
+
+    static get NAME() {
+      return NAME$7;
+    } // Public
+
+
+    toggle(relatedTarget) {
+      return this._isShown ? this.hide() : this.show(relatedTarget);
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     show(relatedTarget) {
       if (this._isShown || this._isTransitioning) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       const showEvent = EventHandler.trigger(this._element, EVENT_SHOW$4, {
         relatedTarget
       });
@@ -4305,10 +6614,34 @@
       this._adjustDialog();
       this._backdrop.show(() => this._showElement(relatedTarget));
     }
+=======
+
+      const showEvent = EventHandler.trigger(this._element, EVENT_SHOW$4, {
+        relatedTarget
+      });
+
+      if (showEvent.defaultPrevented) {
+        return;
+      }
+
+      this._isShown = true;
+      this._isTransitioning = true;
+
+      this._scrollBar.hide();
+
+      document.body.classList.add(CLASS_NAME_OPEN);
+
+      this._adjustDialog();
+
+      this._backdrop.show(() => this._showElement(relatedTarget));
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     hide() {
       if (!this._isShown || this._isTransitioning) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE$4);
       if (hideEvent.defaultPrevented) {
         return;
@@ -4331,6 +6664,42 @@
     }
 
     // Private
+=======
+
+      const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE$4);
+
+      if (hideEvent.defaultPrevented) {
+        return;
+      }
+
+      this._isShown = false;
+      this._isTransitioning = true;
+
+      this._focustrap.deactivate();
+
+      this._element.classList.remove(CLASS_NAME_SHOW$4);
+
+      this._queueCallback(() => this._hideModal(), this._element, this._isAnimated());
+    }
+
+    dispose() {
+      for (const htmlElement of [window, this._dialog]) {
+        EventHandler.off(htmlElement, EVENT_KEY$4);
+      }
+
+      this._backdrop.dispose();
+
+      this._focustrap.deactivate();
+
+      super.dispose();
+    }
+
+    handleUpdate() {
+      this._adjustDialog();
+    } // Private
+
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _initializeBackDrop() {
       return new Backdrop({
         isVisible: Boolean(this._config.backdrop),
@@ -4338,16 +6707,25 @@
         isAnimated: this._isAnimated()
       });
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _initializeFocusTrap() {
       return new FocusTrap({
         trapElement: this._element
       });
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _showElement(relatedTarget) {
       // try to append dynamic modal
       if (!document.body.contains(this._element)) {
         document.body.append(this._element);
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._element.style.display = 'block';
       this._element.removeAttribute('aria-hidden');
       this._element.setAttribute('aria-modal', true);
@@ -4359,26 +6737,69 @@
       }
       reflow(this._element);
       this._element.classList.add(CLASS_NAME_SHOW$4);
+=======
+
+      this._element.style.display = 'block';
+
+      this._element.removeAttribute('aria-hidden');
+
+      this._element.setAttribute('aria-modal', true);
+
+      this._element.setAttribute('role', 'dialog');
+
+      this._element.scrollTop = 0;
+      const modalBody = SelectorEngine.findOne(SELECTOR_MODAL_BODY, this._dialog);
+
+      if (modalBody) {
+        modalBody.scrollTop = 0;
+      }
+
+      reflow(this._element);
+
+      this._element.classList.add(CLASS_NAME_SHOW$4);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       const transitionComplete = () => {
         if (this._config.focus) {
           this._focustrap.activate();
         }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         this._isTransitioning = false;
         EventHandler.trigger(this._element, EVENT_SHOWN$4, {
           relatedTarget
         });
       };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._queueCallback(transitionComplete, this._dialog, this._isAnimated());
     }
+=======
+
+      this._queueCallback(transitionComplete, this._dialog, this._isAnimated());
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _addEventListeners() {
       EventHandler.on(this._element, EVENT_KEYDOWN_DISMISS$1, event => {
         if (event.key !== ESCAPE_KEY$1) {
           return;
         }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
         if (this._config.keyboard) {
           this.hide();
           return;
         }
+=======
+
+        if (this._config.keyboard) {
+          event.preventDefault();
+          this.hide();
+          return;
+        }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         this._triggerBackdropTransition();
       });
       EventHandler.on(window, EVENT_RESIZE$1, () => {
@@ -4392,16 +6813,27 @@
           if (this._element !== event.target || this._element !== event2.target) {
             return;
           }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
           if (this._config.backdrop === 'static') {
             this._triggerBackdropTransition();
             return;
           }
+=======
+
+          if (this._config.backdrop === 'static') {
+            this._triggerBackdropTransition();
+
+            return;
+          }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
           if (this._config.backdrop) {
             this.hide();
           }
         });
       });
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     _hideModal() {
       this._element.style.display = 'none';
       this._element.setAttribute('aria-hidden', true);
@@ -4435,30 +6867,104 @@
       this._element.classList.add(CLASS_NAME_STATIC);
       this._queueCallback(() => {
         this._element.classList.remove(CLASS_NAME_STATIC);
+=======
+
+    _hideModal() {
+      this._element.style.display = 'none';
+
+      this._element.setAttribute('aria-hidden', true);
+
+      this._element.removeAttribute('aria-modal');
+
+      this._element.removeAttribute('role');
+
+      this._isTransitioning = false;
+
+      this._backdrop.hide(() => {
+        document.body.classList.remove(CLASS_NAME_OPEN);
+
+        this._resetAdjustments();
+
+        this._scrollBar.reset();
+
+        EventHandler.trigger(this._element, EVENT_HIDDEN$4);
+      });
+    }
+
+    _isAnimated() {
+      return this._element.classList.contains(CLASS_NAME_FADE$3);
+    }
+
+    _triggerBackdropTransition() {
+      const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE_PREVENTED$1);
+
+      if (hideEvent.defaultPrevented) {
+        return;
+      }
+
+      const isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
+      const initialOverflowY = this._element.style.overflowY; // return if the following background transition hasn't yet completed
+
+      if (initialOverflowY === 'hidden' || this._element.classList.contains(CLASS_NAME_STATIC)) {
+        return;
+      }
+
+      if (!isModalOverflowing) {
+        this._element.style.overflowY = 'hidden';
+      }
+
+      this._element.classList.add(CLASS_NAME_STATIC);
+
+      this._queueCallback(() => {
+        this._element.classList.remove(CLASS_NAME_STATIC);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         this._queueCallback(() => {
           this._element.style.overflowY = initialOverflowY;
         }, this._dialog);
       }, this._dialog);
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._element.focus();
     }
 
+=======
+
+      this._element.focus();
+    }
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     /**
      * The following methods are used to handle overflowing modals
      */
 
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     _adjustDialog() {
       const isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
       const scrollbarWidth = this._scrollBar.getWidth();
       const isBodyOverflowing = scrollbarWidth > 0;
+=======
+
+    _adjustDialog() {
+      const isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
+
+      const scrollbarWidth = this._scrollBar.getWidth();
+
+      const isBodyOverflowing = scrollbarWidth > 0;
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (isBodyOverflowing && !isModalOverflowing) {
         const property = isRTL() ? 'paddingLeft' : 'paddingRight';
         this._element.style[property] = `${scrollbarWidth}px`;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (!isBodyOverflowing && isModalOverflowing) {
         const property = isRTL() ? 'paddingRight' : 'paddingLeft';
         this._element.style[property] = `${scrollbarWidth}px`;
       }
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     _resetAdjustments() {
       this._element.style.paddingLeft = '';
       this._element.style.paddingRight = '';
@@ -4479,25 +6985,67 @@
     }
   }
 
+=======
+
+    _resetAdjustments() {
+      this._element.style.paddingLeft = '';
+      this._element.style.paddingRight = '';
+    } // Static
+
+
+    static jQueryInterface(config, relatedTarget) {
+      return this.each(function () {
+        const data = Modal.getOrCreateInstance(this, config);
+
+        if (typeof config !== 'string') {
+          return;
+        }
+
+        if (typeof data[config] === 'undefined') {
+          throw new TypeError(`No method named "${config}"`);
+        }
+
+        data[config](relatedTarget);
+      });
+    }
+
+  }
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Data API implementation
    */
 
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
   EventHandler.on(document, EVENT_CLICK_DATA_API$2, SELECTOR_DATA_TOGGLE$2, function (event) {
     const target = SelectorEngine.getElementFromSelector(this);
     if (['A', 'AREA'].includes(this.tagName)) {
       event.preventDefault();
     }
+=======
+
+  EventHandler.on(document, EVENT_CLICK_DATA_API$2, SELECTOR_DATA_TOGGLE$2, function (event) {
+    const target = getElementFromSelector(this);
+
+    if (['A', 'AREA'].includes(this.tagName)) {
+      event.preventDefault();
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     EventHandler.one(target, EVENT_SHOW$4, showEvent => {
       if (showEvent.defaultPrevented) {
         // only register focus restorer if modal will actually get shown
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       EventHandler.one(target, EVENT_HIDDEN$4, () => {
         if (isVisible(this)) {
           this.focus();
         }
       });
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     });
 
     // avoid conflict when clicking modal toggler while another one is open
@@ -4505,11 +7053,24 @@
     if (alreadyOpen) {
       Modal.getInstance(alreadyOpen).hide();
     }
+=======
+    }); // avoid conflict when clicking modal toggler while another one is open
+
+    const alreadyOpen = SelectorEngine.findOne(OPEN_SELECTOR$1);
+
+    if (alreadyOpen) {
+      Modal.getInstance(alreadyOpen).hide();
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     const data = Modal.getOrCreateInstance(target);
     data.toggle(this);
   });
   enableDismissTrigger(Modal);
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
 
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * jQuery
    */
@@ -4518,12 +7079,19 @@
 
   /**
    * --------------------------------------------------------------------------
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
    * Bootstrap offcanvas.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
 
 
+=======
+   * Bootstrap (v5.2.3): offcanvas.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Constants
    */
@@ -4558,7 +7126,10 @@
     keyboard: 'boolean',
     scroll: 'boolean'
   };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
 
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Class definition
    */
@@ -4569,6 +7140,7 @@
       this._isShown = false;
       this._backdrop = this._initializeBackDrop();
       this._focustrap = this._initializeFocusTrap();
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._addEventListeners();
     }
 
@@ -4587,10 +7159,35 @@
     toggle(relatedTarget) {
       return this._isShown ? this.hide() : this.show(relatedTarget);
     }
+=======
+
+      this._addEventListeners();
+    } // Getters
+
+
+    static get Default() {
+      return Default$5;
+    }
+
+    static get DefaultType() {
+      return DefaultType$5;
+    }
+
+    static get NAME() {
+      return NAME$6;
+    } // Public
+
+
+    toggle(relatedTarget) {
+      return this._isShown ? this.hide() : this.show(relatedTarget);
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     show(relatedTarget) {
       if (this._isShown) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       const showEvent = EventHandler.trigger(this._element, EVENT_SHOW$3, {
         relatedTarget
       });
@@ -4605,22 +7202,63 @@
       this._element.setAttribute('aria-modal', true);
       this._element.setAttribute('role', 'dialog');
       this._element.classList.add(CLASS_NAME_SHOWING$1);
+=======
+
+      const showEvent = EventHandler.trigger(this._element, EVENT_SHOW$3, {
+        relatedTarget
+      });
+
+      if (showEvent.defaultPrevented) {
+        return;
+      }
+
+      this._isShown = true;
+
+      this._backdrop.show();
+
+      if (!this._config.scroll) {
+        new ScrollBarHelper().hide();
+      }
+
+      this._element.setAttribute('aria-modal', true);
+
+      this._element.setAttribute('role', 'dialog');
+
+      this._element.classList.add(CLASS_NAME_SHOWING$1);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       const completeCallBack = () => {
         if (!this._config.scroll || this._config.backdrop) {
           this._focustrap.activate();
         }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
         this._element.classList.add(CLASS_NAME_SHOW$3);
         this._element.classList.remove(CLASS_NAME_SHOWING$1);
+=======
+
+        this._element.classList.add(CLASS_NAME_SHOW$3);
+
+        this._element.classList.remove(CLASS_NAME_SHOWING$1);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         EventHandler.trigger(this._element, EVENT_SHOWN$3, {
           relatedTarget
         });
       };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._queueCallback(completeCallBack, this._element, true);
     }
+=======
+
+      this._queueCallback(completeCallBack, this._element, true);
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     hide() {
       if (!this._isShown) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE$3);
       if (hideEvent.defaultPrevented) {
         return;
@@ -4648,16 +7286,69 @@
     }
 
     // Private
+=======
+
+      const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE$3);
+
+      if (hideEvent.defaultPrevented) {
+        return;
+      }
+
+      this._focustrap.deactivate();
+
+      this._element.blur();
+
+      this._isShown = false;
+
+      this._element.classList.add(CLASS_NAME_HIDING);
+
+      this._backdrop.hide();
+
+      const completeCallback = () => {
+        this._element.classList.remove(CLASS_NAME_SHOW$3, CLASS_NAME_HIDING);
+
+        this._element.removeAttribute('aria-modal');
+
+        this._element.removeAttribute('role');
+
+        if (!this._config.scroll) {
+          new ScrollBarHelper().reset();
+        }
+
+        EventHandler.trigger(this._element, EVENT_HIDDEN$3);
+      };
+
+      this._queueCallback(completeCallback, this._element, true);
+    }
+
+    dispose() {
+      this._backdrop.dispose();
+
+      this._focustrap.deactivate();
+
+      super.dispose();
+    } // Private
+
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _initializeBackDrop() {
       const clickCallback = () => {
         if (this._config.backdrop === 'static') {
           EventHandler.trigger(this._element, EVENT_HIDE_PREVENTED);
           return;
         }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
         this.hide();
       };
 
       // 'static' option will be translated to true, and booleans will keep their value
+=======
+
+        this.hide();
+      }; // 'static' option will be translated to true, and booleans will keep their value
+
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       const isVisible = Boolean(this._config.backdrop);
       return new Backdrop({
         className: CLASS_NAME_BACKDROP,
@@ -4667,16 +7358,25 @@
         clickCallback: isVisible ? clickCallback : null
       });
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _initializeFocusTrap() {
       return new FocusTrap({
         trapElement: this._element
       });
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _addEventListeners() {
       EventHandler.on(this._element, EVENT_KEYDOWN_DISMISS, event => {
         if (event.key !== ESCAPE_KEY) {
           return;
         }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
         if (this._config.keyboard) {
           this.hide();
           return;
@@ -4700,10 +7400,41 @@
     }
   }
 
+=======
+
+        if (!this._config.keyboard) {
+          EventHandler.trigger(this._element, EVENT_HIDE_PREVENTED);
+          return;
+        }
+
+        this.hide();
+      });
+    } // Static
+
+
+    static jQueryInterface(config) {
+      return this.each(function () {
+        const data = Offcanvas.getOrCreateInstance(this, config);
+
+        if (typeof config !== 'string') {
+          return;
+        }
+
+        if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+          throw new TypeError(`No method named "${config}"`);
+        }
+
+        data[config](this);
+      });
+    }
+
+  }
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Data API implementation
    */
 
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
   EventHandler.on(document, EVENT_CLICK_DATA_API$1, SELECTOR_DATA_TOGGLE$1, function (event) {
     const target = SelectorEngine.getElementFromSelector(this);
     if (['A', 'AREA'].includes(this.tagName)) {
@@ -4712,11 +7443,26 @@
     if (isDisabled(this)) {
       return;
     }
+=======
+
+  EventHandler.on(document, EVENT_CLICK_DATA_API$1, SELECTOR_DATA_TOGGLE$1, function (event) {
+    const target = getElementFromSelector(this);
+
+    if (['A', 'AREA'].includes(this.tagName)) {
+      event.preventDefault();
+    }
+
+    if (isDisabled(this)) {
+      return;
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     EventHandler.one(target, EVENT_HIDDEN$3, () => {
       // focus on trigger when it is closed
       if (isVisible(this)) {
         this.focus();
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     });
 
     // avoid conflict when clicking a toggler of an offcanvas, while another is open
@@ -4724,6 +7470,16 @@
     if (alreadyOpen && alreadyOpen !== target) {
       Offcanvas.getInstance(alreadyOpen).hide();
     }
+=======
+    }); // avoid conflict when clicking a toggler of an offcanvas, while another is open
+
+    const alreadyOpen = SelectorEngine.findOne(OPEN_SELECTOR);
+
+    if (alreadyOpen && alreadyOpen !== target) {
+      Offcanvas.getInstance(alreadyOpen).hide();
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     const data = Offcanvas.getOrCreateInstance(target);
     data.toggle(this);
   });
@@ -4740,7 +7496,10 @@
     }
   });
   enableDismissTrigger(Offcanvas);
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
 
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * jQuery
    */
@@ -4749,6 +7508,7 @@
 
   /**
    * --------------------------------------------------------------------------
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
    * Bootstrap util/sanitizer.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
@@ -4756,6 +7516,44 @@
 
   // js-docs-start allow-list
   const ARIA_ATTRIBUTE_PATTERN = /^aria-[\w-]*$/i;
+=======
+   * Bootstrap (v5.2.3): util/sanitizer.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+  const uriAttributes = new Set(['background', 'cite', 'href', 'itemtype', 'longdesc', 'poster', 'src', 'xlink:href']);
+  const ARIA_ATTRIBUTE_PATTERN = /^aria-[\w-]*$/i;
+  /**
+   * A pattern that recognizes a commonly useful subset of URLs that are safe.
+   *
+   * Shout-out to Angular https://github.com/angular/angular/blob/12.2.x/packages/core/src/sanitization/url_sanitizer.ts
+   */
+
+  const SAFE_URL_PATTERN = /^(?:(?:https?|mailto|ftp|tel|file|sms):|[^#&/:?]*(?:[#/?]|$))/i;
+  /**
+   * A pattern that matches safe data URLs. Only matches image, video and audio types.
+   *
+   * Shout-out to Angular https://github.com/angular/angular/blob/12.2.x/packages/core/src/sanitization/url_sanitizer.ts
+   */
+
+  const DATA_URL_PATTERN = /^data:(?:image\/(?:bmp|gif|jpeg|jpg|png|tiff|webp)|video\/(?:mpeg|mp4|ogg|webm)|audio\/(?:mp3|oga|ogg|opus));base64,[\d+/a-z]+=*$/i;
+
+  const allowedAttribute = (attribute, allowedAttributeList) => {
+    const attributeName = attribute.nodeName.toLowerCase();
+
+    if (allowedAttributeList.includes(attributeName)) {
+      if (uriAttributes.has(attributeName)) {
+        return Boolean(SAFE_URL_PATTERN.test(attribute.nodeValue) || DATA_URL_PATTERN.test(attribute.nodeValue));
+      }
+
+      return true;
+    } // Check if a regular expression validates the attribute.
+
+
+    return allowedAttributeList.filter(attributeRegex => attributeRegex instanceof RegExp).some(regex => regex.test(attributeName));
+  };
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   const DefaultAllowlist = {
     // Global attributes allowed on any supplied element below.
     '*': ['class', 'dir', 'id', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
@@ -4765,10 +7563,14 @@
     br: [],
     col: [],
     code: [],
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     dd: [],
     div: [],
     dl: [],
     dt: [],
+=======
+    div: [],
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     em: [],
     hr: [],
     h1: [],
@@ -4792,6 +7594,7 @@
     u: [],
     ul: []
   };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
   // js-docs-end allow-list
 
   const uriAttributes = new Set(['background', 'cite', 'href', 'itemtype', 'longdesc', 'poster', 'src', 'xlink:href']);
@@ -4815,10 +7618,13 @@
     // Check if a regular expression validates the attribute.
     return allowedAttributeList.filter(attributeRegex => attributeRegex instanceof RegExp).some(regex => regex.test(attributeName));
   };
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   function sanitizeHtml(unsafeHtml, allowList, sanitizeFunction) {
     if (!unsafeHtml.length) {
       return unsafeHtml;
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     if (sanitizeFunction && typeof sanitizeFunction === 'function') {
       return sanitizeFunction(unsafeHtml);
     }
@@ -4827,29 +7633,61 @@
     const elements = [].concat(...createdDocument.body.querySelectorAll('*'));
     for (const element of elements) {
       const elementName = element.nodeName.toLowerCase();
+=======
+
+    if (sanitizeFunction && typeof sanitizeFunction === 'function') {
+      return sanitizeFunction(unsafeHtml);
+    }
+
+    const domParser = new window.DOMParser();
+    const createdDocument = domParser.parseFromString(unsafeHtml, 'text/html');
+    const elements = [].concat(...createdDocument.body.querySelectorAll('*'));
+
+    for (const element of elements) {
+      const elementName = element.nodeName.toLowerCase();
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (!Object.keys(allowList).includes(elementName)) {
         element.remove();
         continue;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       const attributeList = [].concat(...element.attributes);
       const allowedAttributes = [].concat(allowList['*'] || [], allowList[elementName] || []);
+=======
+
+      const attributeList = [].concat(...element.attributes);
+      const allowedAttributes = [].concat(allowList['*'] || [], allowList[elementName] || []);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       for (const attribute of attributeList) {
         if (!allowedAttribute(attribute, allowedAttributes)) {
           element.removeAttribute(attribute.nodeName);
         }
       }
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     return createdDocument.body.innerHTML;
   }
 
   /**
    * --------------------------------------------------------------------------
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
    * Bootstrap util/template-factory.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
 
 
+=======
+   * Bootstrap (v5.2.3): util/template-factory.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Constants
    */
@@ -4878,7 +7716,10 @@
     entry: '(string|element|function|null)',
     selector: '(string|element)'
   };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
 
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Class definition
    */
@@ -4887,6 +7728,7 @@
     constructor(config) {
       super();
       this._config = this._getConfig(config);
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     }
 
     // Getters
@@ -4911,10 +7753,41 @@
       this._checkContent(content);
       this._config.content = {
         ...this._config.content,
+=======
+    } // Getters
+
+
+    static get Default() {
+      return Default$4;
+    }
+
+    static get DefaultType() {
+      return DefaultType$4;
+    }
+
+    static get NAME() {
+      return NAME$5;
+    } // Public
+
+
+    getContent() {
+      return Object.values(this._config.content).map(config => this._resolvePossibleFunction(config)).filter(Boolean);
+    }
+
+    hasContent() {
+      return this.getContent().length > 0;
+    }
+
+    changeContent(content) {
+      this._checkContent(content);
+
+      this._config.content = { ...this._config.content,
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         ...content
       };
       return this;
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     toHtml() {
       const templateWrapper = document.createElement('div');
       templateWrapper.innerHTML = this._maybeSanitize(this._config.template);
@@ -4934,6 +7807,35 @@
       super._typeCheckConfig(config);
       this._checkContent(config.content);
     }
+=======
+
+    toHtml() {
+      const templateWrapper = document.createElement('div');
+      templateWrapper.innerHTML = this._maybeSanitize(this._config.template);
+
+      for (const [selector, text] of Object.entries(this._config.content)) {
+        this._setContent(templateWrapper, text, selector);
+      }
+
+      const template = templateWrapper.children[0];
+
+      const extraClass = this._resolvePossibleFunction(this._config.extraClass);
+
+      if (extraClass) {
+        template.classList.add(...extraClass.split(' '));
+      }
+
+      return template;
+    } // Private
+
+
+    _typeCheckConfig(config) {
+      super._typeCheckConfig(config);
+
+      this._checkContent(config.content);
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _checkContent(arg) {
       for (const [selector, content] of Object.entries(arg)) {
         super._typeCheckConfig({
@@ -4942,24 +7844,48 @@
         }, DefaultContentType);
       }
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     _setContent(template, content, selector) {
       const templateElement = SelectorEngine.findOne(selector, template);
       if (!templateElement) {
         return;
       }
       content = this._resolvePossibleFunction(content);
+=======
+
+    _setContent(template, content, selector) {
+      const templateElement = SelectorEngine.findOne(selector, template);
+
+      if (!templateElement) {
+        return;
+      }
+
+      content = this._resolvePossibleFunction(content);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (!content) {
         templateElement.remove();
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       if (isElement$1(content)) {
         this._putElementInTemplate(getElement(content), templateElement);
         return;
       }
+=======
+
+      if (isElement$1(content)) {
+        this._putElementInTemplate(getElement(content), templateElement);
+
+        return;
+      }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (this._config.html) {
         templateElement.innerHTML = this._maybeSanitize(content);
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       templateElement.textContent = content;
     }
     _maybeSanitize(arg) {
@@ -4968,24 +7894,52 @@
     _resolvePossibleFunction(arg) {
       return execute(arg, [undefined, this]);
     }
+=======
+
+      templateElement.textContent = content;
+    }
+
+    _maybeSanitize(arg) {
+      return this._config.sanitize ? sanitizeHtml(arg, this._config.allowList, this._config.sanitizeFn) : arg;
+    }
+
+    _resolvePossibleFunction(arg) {
+      return typeof arg === 'function' ? arg(this) : arg;
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _putElementInTemplate(element, templateElement) {
       if (this._config.html) {
         templateElement.innerHTML = '';
         templateElement.append(element);
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       templateElement.textContent = element.textContent;
     }
+=======
+
+      templateElement.textContent = element.textContent;
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   }
 
   /**
    * --------------------------------------------------------------------------
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
    * Bootstrap tooltip.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
 
 
+=======
+   * Bootstrap (v5.2.3): tooltip.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Constants
    */
@@ -5028,7 +7982,11 @@
     delay: 0,
     fallbackPlacements: ['top', 'right', 'bottom', 'left'],
     html: false,
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     offset: [0, 6],
+=======
+    offset: [0, 0],
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     placement: 'top',
     popperConfig: null,
     sanitize: true,
@@ -5057,7 +8015,10 @@
     title: '(string|element|function)',
     trigger: 'string'
   };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
 
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Class definition
    */
@@ -5065,17 +8026,26 @@
   class Tooltip extends BaseComponent {
     constructor(element, config) {
       if (typeof Popper === 'undefined') {
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
         throw new TypeError('Bootstrap\'s tooltips require Popper (https://popper.js.org/docs/v2/)');
       }
       super(element, config);
 
       // Private
+=======
+        throw new TypeError('Bootstrap\'s tooltips require Popper (https://popper.js.org)');
+      }
+
+      super(element, config); // Private
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       this._isEnabled = true;
       this._timeout = 0;
       this._isHovered = null;
       this._activeTrigger = {};
       this._popper = null;
       this._templateFactory = null;
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._newContent = null;
 
       // Protected
@@ -5107,10 +8077,50 @@
     toggleEnabled() {
       this._isEnabled = !this._isEnabled;
     }
+=======
+      this._newContent = null; // Protected
+
+      this.tip = null;
+
+      this._setListeners();
+
+      if (!this._config.selector) {
+        this._fixTitle();
+      }
+    } // Getters
+
+
+    static get Default() {
+      return Default$3;
+    }
+
+    static get DefaultType() {
+      return DefaultType$3;
+    }
+
+    static get NAME() {
+      return NAME$4;
+    } // Public
+
+
+    enable() {
+      this._isEnabled = true;
+    }
+
+    disable() {
+      this._isEnabled = false;
+    }
+
+    toggleEnabled() {
+      this._isEnabled = !this._isEnabled;
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     toggle() {
       if (!this._isEnabled) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       if (this._isShown()) {
         this._leave();
         return;
@@ -5126,10 +8136,38 @@
       this._disposePopper();
       super.dispose();
     }
+=======
+
+      this._activeTrigger.click = !this._activeTrigger.click;
+
+      if (this._isShown()) {
+        this._leave();
+
+        return;
+      }
+
+      this._enter();
+    }
+
+    dispose() {
+      clearTimeout(this._timeout);
+      EventHandler.off(this._element.closest(SELECTOR_MODAL), EVENT_MODAL_HIDE, this._hideModalHandler);
+
+      if (this._element.getAttribute('data-bs-original-title')) {
+        this._element.setAttribute('title', this._element.getAttribute('data-bs-original-title'));
+      }
+
+      this._disposePopper();
+
+      super.dispose();
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     show() {
       if (this._element.style.display === 'none') {
         throw new Error('Please use show on visible elements');
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       if (!(this._isWithContent() && this._isEnabled)) {
         return;
       }
@@ -5147,10 +8185,38 @@
       const {
         container
       } = this._config;
+=======
+
+      if (!(this._isWithContent() && this._isEnabled)) {
+        return;
+      }
+
+      const showEvent = EventHandler.trigger(this._element, this.constructor.eventName(EVENT_SHOW$2));
+      const shadowRoot = findShadowRoot(this._element);
+
+      const isInTheDom = (shadowRoot || this._element.ownerDocument.documentElement).contains(this._element);
+
+      if (showEvent.defaultPrevented || !isInTheDom) {
+        return;
+      } // todo v6 remove this OR make it optional
+
+
+      this._disposePopper();
+
+      const tip = this._getTipElement();
+
+      this._element.setAttribute('aria-describedby', tip.getAttribute('id'));
+
+      const {
+        container
+      } = this._config;
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (!this._element.ownerDocument.documentElement.contains(this.tip)) {
         container.append(tip);
         EventHandler.trigger(this._element, this.constructor.eventName(EVENT_INSERTED));
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._popper = this._createPopper(tip);
       tip.classList.add(CLASS_NAME_SHOW$2);
 
@@ -5158,11 +8224,21 @@
       // empty mouseover listeners to the body's immediate children;
       // only needed because of broken event delegation on iOS
       // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
+=======
+
+      this._popper = this._createPopper(tip);
+      tip.classList.add(CLASS_NAME_SHOW$2); // If this is a touch-enabled device we add extra
+      // empty mouseover listeners to the body's immediate children;
+      // only needed because of broken event delegation on iOS
+      // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if ('ontouchstart' in document.documentElement) {
         for (const element of [].concat(...document.body.children)) {
           EventHandler.on(element, 'mouseover', noop);
         }
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       const complete = () => {
         EventHandler.trigger(this._element, this.constructor.eventName(EVENT_SHOWN$2));
         if (this._isHovered === false) {
@@ -5172,10 +8248,27 @@
       };
       this._queueCallback(complete, this.tip, this._isAnimated());
     }
+=======
+
+      const complete = () => {
+        EventHandler.trigger(this._element, this.constructor.eventName(EVENT_SHOWN$2));
+
+        if (this._isHovered === false) {
+          this._leave();
+        }
+
+        this._isHovered = false;
+      };
+
+      this._queueCallback(complete, this.tip, this._isAnimated());
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     hide() {
       if (!this._isShown()) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       const hideEvent = EventHandler.trigger(this._element, this.constructor.eventName(EVENT_HIDE$2));
       if (hideEvent.defaultPrevented) {
         return;
@@ -5185,11 +8278,29 @@
 
       // If this is a touch-enabled device we remove the extra
       // empty mouseover listeners we added for iOS support
+=======
+
+      const hideEvent = EventHandler.trigger(this._element, this.constructor.eventName(EVENT_HIDE$2));
+
+      if (hideEvent.defaultPrevented) {
+        return;
+      }
+
+      const tip = this._getTipElement();
+
+      tip.classList.remove(CLASS_NAME_SHOW$2); // If this is a touch-enabled device we remove the extra
+      // empty mouseover listeners we added for iOS support
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if ('ontouchstart' in document.documentElement) {
         for (const element of [].concat(...document.body.children)) {
           EventHandler.off(element, 'mouseover', noop);
         }
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       this._activeTrigger[TRIGGER_CLICK] = false;
       this._activeTrigger[TRIGGER_FOCUS] = false;
       this._activeTrigger[TRIGGER_HOVER] = false;
@@ -5199,6 +8310,7 @@
         if (this._isWithActiveTrigger()) {
           return;
         }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
         if (!this._isHovered) {
           this._disposePopper();
         }
@@ -5207,20 +8319,46 @@
       };
       this._queueCallback(complete, this.tip, this._isAnimated());
     }
+=======
+
+        if (!this._isHovered) {
+          this._disposePopper();
+        }
+
+        this._element.removeAttribute('aria-describedby');
+
+        EventHandler.trigger(this._element, this.constructor.eventName(EVENT_HIDDEN$2));
+      };
+
+      this._queueCallback(complete, this.tip, this._isAnimated());
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     update() {
       if (this._popper) {
         this._popper.update();
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     }
 
     // Protected
     _isWithContent() {
       return Boolean(this._getTitle());
     }
+=======
+    } // Protected
+
+
+    _isWithContent() {
+      return Boolean(this._getTitle());
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _getTipElement() {
       if (!this.tip) {
         this.tip = this._createTipElement(this._newContent || this._getContentForTemplate());
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       return this.tip;
     }
     _createTipElement(content) {
@@ -5247,25 +8385,74 @@
         this.show();
       }
     }
+=======
+
+      return this.tip;
+    }
+
+    _createTipElement(content) {
+      const tip = this._getTemplateFactory(content).toHtml(); // todo: remove this check on v6
+
+
+      if (!tip) {
+        return null;
+      }
+
+      tip.classList.remove(CLASS_NAME_FADE$2, CLASS_NAME_SHOW$2); // todo: on v6 the following can be achieved with CSS only
+
+      tip.classList.add(`bs-${this.constructor.NAME}-auto`);
+      const tipId = getUID(this.constructor.NAME).toString();
+      tip.setAttribute('id', tipId);
+
+      if (this._isAnimated()) {
+        tip.classList.add(CLASS_NAME_FADE$2);
+      }
+
+      return tip;
+    }
+
+    setContent(content) {
+      this._newContent = content;
+
+      if (this._isShown()) {
+        this._disposePopper();
+
+        this.show();
+      }
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _getTemplateFactory(content) {
       if (this._templateFactory) {
         this._templateFactory.changeContent(content);
       } else {
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
         this._templateFactory = new TemplateFactory({
           ...this._config,
+=======
+        this._templateFactory = new TemplateFactory({ ...this._config,
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
           // the `content` var has to be after `this._config`
           // to override config.content in case of popover
           content,
           extraClass: this._resolvePossibleFunction(this._config.customClass)
         });
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       return this._templateFactory;
     }
+=======
+
+      return this._templateFactory;
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _getContentForTemplate() {
       return {
         [SELECTOR_TOOLTIP_INNER]: this._getTitle()
       };
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     _getTitle() {
       return this._resolvePossibleFunction(this._config.title) || this._element.getAttribute('data-bs-original-title');
     }
@@ -5285,10 +8472,37 @@
       const attachment = AttachmentMap[placement.toUpperCase()];
       return createPopper(this._element, tip, this._getPopperConfig(attachment));
     }
+=======
+
+    _getTitle() {
+      return this._resolvePossibleFunction(this._config.title) || this._element.getAttribute('data-bs-original-title');
+    } // Private
+
+
+    _initializeOnDelegatedTarget(event) {
+      return this.constructor.getOrCreateInstance(event.delegateTarget, this._getDelegateConfig());
+    }
+
+    _isAnimated() {
+      return this._config.animation || this.tip && this.tip.classList.contains(CLASS_NAME_FADE$2);
+    }
+
+    _isShown() {
+      return this.tip && this.tip.classList.contains(CLASS_NAME_SHOW$2);
+    }
+
+    _createPopper(tip) {
+      const placement = typeof this._config.placement === 'function' ? this._config.placement.call(this, tip, this._element) : this._config.placement;
+      const attachment = AttachmentMap[placement.toUpperCase()];
+      return createPopper(this._element, tip, this._getPopperConfig(attachment));
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _getOffset() {
       const {
         offset
       } = this._config;
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       if (typeof offset === 'string') {
         return offset.split(',').map(value => Number.parseInt(value, 10));
       }
@@ -5300,6 +8514,24 @@
     _resolvePossibleFunction(arg) {
       return execute(arg, [this._element, this._element]);
     }
+=======
+
+      if (typeof offset === 'string') {
+        return offset.split(',').map(value => Number.parseInt(value, 10));
+      }
+
+      if (typeof offset === 'function') {
+        return popperData => offset(popperData, this._element);
+      }
+
+      return offset;
+    }
+
+    _resolvePossibleFunction(arg) {
+      return typeof arg === 'function' ? arg.call(this._element) : arg;
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _getPopperConfig(attachment) {
       const defaultBsPopperConfig = {
         placement: attachment,
@@ -5334,6 +8566,7 @@
           }
         }]
       };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       return {
         ...defaultBsPopperConfig,
         ...execute(this._config.popperConfig, [undefined, defaultBsPopperConfig])
@@ -5341,11 +8574,25 @@
     }
     _setListeners() {
       const triggers = this._config.trigger.split(' ');
+=======
+      return { ...defaultBsPopperConfig,
+        ...(typeof this._config.popperConfig === 'function' ? this._config.popperConfig(defaultBsPopperConfig) : this._config.popperConfig)
+      };
+    }
+
+    _setListeners() {
+      const triggers = this._config.trigger.split(' ');
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       for (const trigger of triggers) {
         if (trigger === 'click') {
           EventHandler.on(this._element, this.constructor.eventName(EVENT_CLICK$1), this._config.selector, event => {
             const context = this._initializeOnDelegatedTarget(event);
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
             context._activeTrigger[TRIGGER_CLICK] = !(context._isShown() && context._activeTrigger[TRIGGER_CLICK]);
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
             context.toggle();
           });
         } else if (trigger !== TRIGGER_MANUAL) {
@@ -5353,21 +8600,38 @@
           const eventOut = trigger === TRIGGER_HOVER ? this.constructor.eventName(EVENT_MOUSELEAVE) : this.constructor.eventName(EVENT_FOCUSOUT$1);
           EventHandler.on(this._element, eventIn, this._config.selector, event => {
             const context = this._initializeOnDelegatedTarget(event);
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
             context._activeTrigger[event.type === 'focusin' ? TRIGGER_FOCUS : TRIGGER_HOVER] = true;
+=======
+
+            context._activeTrigger[event.type === 'focusin' ? TRIGGER_FOCUS : TRIGGER_HOVER] = true;
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
             context._enter();
           });
           EventHandler.on(this._element, eventOut, this._config.selector, event => {
             const context = this._initializeOnDelegatedTarget(event);
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
             context._activeTrigger[event.type === 'focusout' ? TRIGGER_FOCUS : TRIGGER_HOVER] = context._element.contains(event.relatedTarget);
+=======
+
+            context._activeTrigger[event.type === 'focusout' ? TRIGGER_FOCUS : TRIGGER_HOVER] = context._element.contains(event.relatedTarget);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
             context._leave();
           });
         }
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       this._hideModalHandler = () => {
         if (this._element) {
           this.hide();
         }
       };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       EventHandler.on(this._element.closest(SELECTOR_MODAL), EVENT_MODAL_HIDE, this._hideModalHandler);
     }
     _fixTitle() {
@@ -5381,60 +8645,132 @@
       this._element.setAttribute('data-bs-original-title', title); // DO NOT USE IT. Is only for backwards compatibility
       this._element.removeAttribute('title');
     }
+=======
+
+      EventHandler.on(this._element.closest(SELECTOR_MODAL), EVENT_MODAL_HIDE, this._hideModalHandler);
+    }
+
+    _fixTitle() {
+      const title = this._element.getAttribute('title');
+
+      if (!title) {
+        return;
+      }
+
+      if (!this._element.getAttribute('aria-label') && !this._element.textContent.trim()) {
+        this._element.setAttribute('aria-label', title);
+      }
+
+      this._element.setAttribute('data-bs-original-title', title); // DO NOT USE IT. Is only for backwards compatibility
+
+
+      this._element.removeAttribute('title');
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _enter() {
       if (this._isShown() || this._isHovered) {
         this._isHovered = true;
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._isHovered = true;
+=======
+
+      this._isHovered = true;
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       this._setTimeout(() => {
         if (this._isHovered) {
           this.show();
         }
       }, this._config.delay.show);
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _leave() {
       if (this._isWithActiveTrigger()) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._isHovered = false;
+=======
+
+      this._isHovered = false;
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       this._setTimeout(() => {
         if (!this._isHovered) {
           this.hide();
         }
       }, this._config.delay.hide);
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _setTimeout(handler, timeout) {
       clearTimeout(this._timeout);
       this._timeout = setTimeout(handler, timeout);
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     _isWithActiveTrigger() {
       return Object.values(this._activeTrigger).includes(true);
     }
     _getConfig(config) {
       const dataAttributes = Manipulator.getDataAttributes(this._element);
+=======
+
+    _isWithActiveTrigger() {
+      return Object.values(this._activeTrigger).includes(true);
+    }
+
+    _getConfig(config) {
+      const dataAttributes = Manipulator.getDataAttributes(this._element);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       for (const dataAttribute of Object.keys(dataAttributes)) {
         if (DISALLOWED_ATTRIBUTES.has(dataAttribute)) {
           delete dataAttributes[dataAttribute];
         }
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       config = {
         ...dataAttributes,
+=======
+
+      config = { ...dataAttributes,
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         ...(typeof config === 'object' && config ? config : {})
       };
       config = this._mergeConfigObj(config);
       config = this._configAfterMerge(config);
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._typeCheckConfig(config);
       return config;
     }
     _configAfterMerge(config) {
       config.container = config.container === false ? document.body : getElement(config.container);
+=======
+
+      this._typeCheckConfig(config);
+
+      return config;
+    }
+
+    _configAfterMerge(config) {
+      config.container = config.container === false ? document.body : getElement(config.container);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (typeof config.delay === 'number') {
         config.delay = {
           show: config.delay,
           hide: config.delay
         };
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       if (typeof config.title === 'number') {
         config.title = config.title.toString();
       }
@@ -5463,10 +8799,49 @@
         this._popper.destroy();
         this._popper = null;
       }
+=======
+
+      if (typeof config.title === 'number') {
+        config.title = config.title.toString();
+      }
+
+      if (typeof config.content === 'number') {
+        config.content = config.content.toString();
+      }
+
+      return config;
+    }
+
+    _getDelegateConfig() {
+      const config = {};
+
+      for (const key in this._config) {
+        if (this.constructor.Default[key] !== this._config[key]) {
+          config[key] = this._config[key];
+        }
+      }
+
+      config.selector = false;
+      config.trigger = 'manual'; // In the future can be replaced with:
+      // const keysWithDifferentValues = Object.entries(this._config).filter(entry => this.constructor.Default[entry[0]] !== this._config[entry[0]])
+      // `Object.fromEntries(keysWithDifferentValues)`
+
+      return config;
+    }
+
+    _disposePopper() {
+      if (this._popper) {
+        this._popper.destroy();
+
+        this._popper = null;
+      }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (this.tip) {
         this.tip.remove();
         this.tip = null;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     }
 
     // Static
@@ -5484,20 +8859,53 @@
     }
   }
 
+=======
+    } // Static
+
+
+    static jQueryInterface(config) {
+      return this.each(function () {
+        const data = Tooltip.getOrCreateInstance(this, config);
+
+        if (typeof config !== 'string') {
+          return;
+        }
+
+        if (typeof data[config] === 'undefined') {
+          throw new TypeError(`No method named "${config}"`);
+        }
+
+        data[config]();
+      });
+    }
+
+  }
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * jQuery
    */
 
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   defineJQueryPlugin(Tooltip);
 
   /**
    * --------------------------------------------------------------------------
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
    * Bootstrap popover.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
 
 
+=======
+   * Bootstrap (v5.2.3): popover.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Constants
    */
@@ -5505,19 +8913,29 @@
   const NAME$3 = 'popover';
   const SELECTOR_TITLE = '.popover-header';
   const SELECTOR_CONTENT = '.popover-body';
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
   const Default$2 = {
     ...Tooltip.Default,
+=======
+  const Default$2 = { ...Tooltip.Default,
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     content: '',
     offset: [0, 8],
     placement: 'right',
     template: '<div class="popover" role="tooltip">' + '<div class="popover-arrow"></div>' + '<h3 class="popover-header"></h3>' + '<div class="popover-body"></div>' + '</div>',
     trigger: 'click'
   };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
   const DefaultType$2 = {
     ...Tooltip.DefaultType,
     content: '(null|string|element|function)'
   };
 
+=======
+  const DefaultType$2 = { ...Tooltip.DefaultType,
+    content: '(null|string|element|function)'
+  };
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Class definition
    */
@@ -5527,6 +8945,7 @@
     static get Default() {
       return Default$2;
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     static get DefaultType() {
       return DefaultType$2;
     }
@@ -5540,12 +8959,30 @@
     }
 
     // Private
+=======
+
+    static get DefaultType() {
+      return DefaultType$2;
+    }
+
+    static get NAME() {
+      return NAME$3;
+    } // Overrides
+
+
+    _isWithContent() {
+      return this._getTitle() || this._getContent();
+    } // Private
+
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _getContentForTemplate() {
       return {
         [SELECTOR_TITLE]: this._getTitle(),
         [SELECTOR_CONTENT]: this._getContent()
       };
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     _getContent() {
       return this._resolvePossibleFunction(this._config.content);
     }
@@ -5565,20 +9002,56 @@
     }
   }
 
+=======
+
+    _getContent() {
+      return this._resolvePossibleFunction(this._config.content);
+    } // Static
+
+
+    static jQueryInterface(config) {
+      return this.each(function () {
+        const data = Popover.getOrCreateInstance(this, config);
+
+        if (typeof config !== 'string') {
+          return;
+        }
+
+        if (typeof data[config] === 'undefined') {
+          throw new TypeError(`No method named "${config}"`);
+        }
+
+        data[config]();
+      });
+    }
+
+  }
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * jQuery
    */
 
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   defineJQueryPlugin(Popover);
 
   /**
    * --------------------------------------------------------------------------
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
    * Bootstrap scrollspy.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
 
 
+=======
+   * Bootstrap (v5.2.3): scrollspy.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Constants
    */
@@ -5617,16 +9090,24 @@
     target: 'element',
     threshold: 'array'
   };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
 
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Class definition
    */
 
   class ScrollSpy extends BaseComponent {
     constructor(element, config) {
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       super(element, config);
 
       // this._element is the observablesContainer and config.target the menu links wrapper
+=======
+      super(element, config); // this._element is the observablesContainer and config.target the menu links wrapper
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       this._targetLinks = new Map();
       this._observableSections = new Map();
       this._rootElement = getComputedStyle(this._element).overflowY === 'visible' ? null : this._element;
@@ -5637,6 +9118,7 @@
         parentScrollTop: 0
       };
       this.refresh(); // initialize
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     }
 
     // Getters
@@ -5654,15 +9136,43 @@
     refresh() {
       this._initializeTargetsAndObservables();
       this._maybeEnableSmoothScroll();
+=======
+    } // Getters
+
+
+    static get Default() {
+      return Default$1;
+    }
+
+    static get DefaultType() {
+      return DefaultType$1;
+    }
+
+    static get NAME() {
+      return NAME$2;
+    } // Public
+
+
+    refresh() {
+      this._initializeTargetsAndObservables();
+
+      this._maybeEnableSmoothScroll();
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (this._observer) {
         this._observer.disconnect();
       } else {
         this._observer = this._getNewObserver();
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       for (const section of this._observableSections.values()) {
         this._observer.observe(section);
       }
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     dispose() {
       this._observer.disconnect();
       super.dispose();
@@ -5689,23 +9199,70 @@
       EventHandler.off(this._config.target, EVENT_CLICK);
       EventHandler.on(this._config.target, EVENT_CLICK, SELECTOR_TARGET_LINKS, event => {
         const observableSection = this._observableSections.get(event.target.hash);
+=======
+
+    dispose() {
+      this._observer.disconnect();
+
+      super.dispose();
+    } // Private
+
+
+    _configAfterMerge(config) {
+      // TODO: on v6 target should be given explicitly & remove the {target: 'ss-target'} case
+      config.target = getElement(config.target) || document.body; // TODO: v6 Only for backwards compatibility reasons. Use rootMargin only
+
+      config.rootMargin = config.offset ? `${config.offset}px 0px -30%` : config.rootMargin;
+
+      if (typeof config.threshold === 'string') {
+        config.threshold = config.threshold.split(',').map(value => Number.parseFloat(value));
+      }
+
+      return config;
+    }
+
+    _maybeEnableSmoothScroll() {
+      if (!this._config.smoothScroll) {
+        return;
+      } // unregister any previous listeners
+
+
+      EventHandler.off(this._config.target, EVENT_CLICK);
+      EventHandler.on(this._config.target, EVENT_CLICK, SELECTOR_TARGET_LINKS, event => {
+        const observableSection = this._observableSections.get(event.target.hash);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         if (observableSection) {
           event.preventDefault();
           const root = this._rootElement || window;
           const height = observableSection.offsetTop - this._element.offsetTop;
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
           if (root.scrollTo) {
             root.scrollTo({
               top: height,
               behavior: 'smooth'
             });
             return;
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
           }
 
           // Chrome 60 doesn't support `scrollTo`
+=======
+          } // Chrome 60 doesn't support `scrollTo`
+
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
           root.scrollTop = height;
         }
       });
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _getNewObserver() {
       const options = {
         root: this._rootElement,
@@ -5713,6 +9270,7 @@
         rootMargin: this._config.rootMargin
       };
       return new IntersectionObserver(entries => this._observerCallback(entries), options);
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     }
 
     // The logic of selection
@@ -5743,47 +9301,127 @@
         }
 
         // if we are scrolling up, pick the smallest offsetTop
+=======
+    } // The logic of selection
+
+
+    _observerCallback(entries) {
+      const targetElement = entry => this._targetLinks.get(`#${entry.target.id}`);
+
+      const activate = entry => {
+        this._previousScrollData.visibleEntryTop = entry.target.offsetTop;
+
+        this._process(targetElement(entry));
+      };
+
+      const parentScrollTop = (this._rootElement || document.documentElement).scrollTop;
+      const userScrollsDown = parentScrollTop >= this._previousScrollData.parentScrollTop;
+      this._previousScrollData.parentScrollTop = parentScrollTop;
+
+      for (const entry of entries) {
+        if (!entry.isIntersecting) {
+          this._activeTarget = null;
+
+          this._clearActiveClass(targetElement(entry));
+
+          continue;
+        }
+
+        const entryIsLowerThanPrevious = entry.target.offsetTop >= this._previousScrollData.visibleEntryTop; // if we are scrolling down, pick the bigger offsetTop
+
+        if (userScrollsDown && entryIsLowerThanPrevious) {
+          activate(entry); // if parent isn't scrolled, let's keep the first visible item, breaking the iteration
+
+          if (!parentScrollTop) {
+            return;
+          }
+
+          continue;
+        } // if we are scrolling up, pick the smallest offsetTop
+
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         if (!userScrollsDown && !entryIsLowerThanPrevious) {
           activate(entry);
         }
       }
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _initializeTargetsAndObservables() {
       this._targetLinks = new Map();
       this._observableSections = new Map();
       const targetLinks = SelectorEngine.find(SELECTOR_TARGET_LINKS, this._config.target);
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       for (const anchor of targetLinks) {
         // ensure that the anchor has an id and is not disabled
         if (!anchor.hash || isDisabled(anchor)) {
           continue;
         }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
         const observableSection = SelectorEngine.findOne(decodeURI(anchor.hash), this._element);
 
         // ensure that the observableSection exists & is visible
         if (isVisible(observableSection)) {
           this._targetLinks.set(decodeURI(anchor.hash), anchor);
+=======
+
+        const observableSection = SelectorEngine.findOne(anchor.hash, this._element); // ensure that the observableSection exists & is visible
+
+        if (isVisible(observableSection)) {
+          this._targetLinks.set(anchor.hash, anchor);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
           this._observableSections.set(anchor.hash, observableSection);
         }
       }
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _process(target) {
       if (this._activeTarget === target) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._clearActiveClass(this._config.target);
       this._activeTarget = target;
       target.classList.add(CLASS_NAME_ACTIVE$1);
       this._activateParents(target);
+=======
+
+      this._clearActiveClass(this._config.target);
+
+      this._activeTarget = target;
+      target.classList.add(CLASS_NAME_ACTIVE$1);
+
+      this._activateParents(target);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       EventHandler.trigger(this._element, EVENT_ACTIVATE, {
         relatedTarget: target
       });
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _activateParents(target) {
       // Activate dropdown parents
       if (target.classList.contains(CLASS_NAME_DROPDOWN_ITEM)) {
         SelectorEngine.findOne(SELECTOR_DROPDOWN_TOGGLE$1, target.closest(SELECTOR_DROPDOWN)).classList.add(CLASS_NAME_ACTIVE$1);
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       for (const listGroup of SelectorEngine.parents(target, SELECTOR_NAV_LIST_GROUP)) {
         // Set triggered links parents as active
         // With both <ul> and <nav> markup a parent is the previous sibling of any nav ancestor
@@ -5792,6 +9430,7 @@
         }
       }
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     _clearActiveClass(parent) {
       parent.classList.remove(CLASS_NAME_ACTIVE$1);
       const activeNodes = SelectorEngine.find(`${SELECTOR_TARGET_LINKS}.${CLASS_NAME_ACTIVE$1}`, parent);
@@ -5815,16 +9454,53 @@
     }
   }
 
+=======
+
+    _clearActiveClass(parent) {
+      parent.classList.remove(CLASS_NAME_ACTIVE$1);
+      const activeNodes = SelectorEngine.find(`${SELECTOR_TARGET_LINKS}.${CLASS_NAME_ACTIVE$1}`, parent);
+
+      for (const node of activeNodes) {
+        node.classList.remove(CLASS_NAME_ACTIVE$1);
+      }
+    } // Static
+
+
+    static jQueryInterface(config) {
+      return this.each(function () {
+        const data = ScrollSpy.getOrCreateInstance(this, config);
+
+        if (typeof config !== 'string') {
+          return;
+        }
+
+        if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+          throw new TypeError(`No method named "${config}"`);
+        }
+
+        data[config]();
+      });
+    }
+
+  }
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Data API implementation
    */
 
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   EventHandler.on(window, EVENT_LOAD_DATA_API$1, () => {
     for (const spy of SelectorEngine.find(SELECTOR_DATA_SPY)) {
       ScrollSpy.getOrCreateInstance(spy);
     }
   });
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
 
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * jQuery
    */
@@ -5833,12 +9509,19 @@
 
   /**
    * --------------------------------------------------------------------------
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
    * Bootstrap tab.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
 
 
+=======
+   * Bootstrap (v5.2.3): tab.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Constants
    */
@@ -5857,14 +9540,18 @@
   const ARROW_RIGHT_KEY = 'ArrowRight';
   const ARROW_UP_KEY = 'ArrowUp';
   const ARROW_DOWN_KEY = 'ArrowDown';
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
   const HOME_KEY = 'Home';
   const END_KEY = 'End';
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   const CLASS_NAME_ACTIVE = 'active';
   const CLASS_NAME_FADE$1 = 'fade';
   const CLASS_NAME_SHOW$1 = 'show';
   const CLASS_DROPDOWN = 'dropdown';
   const SELECTOR_DROPDOWN_TOGGLE = '.dropdown-toggle';
   const SELECTOR_DROPDOWN_MENU = '.dropdown-menu';
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
   const NOT_SELECTOR_DROPDOWN_TOGGLE = `:not(${SELECTOR_DROPDOWN_TOGGLE})`;
   const SELECTOR_TAB_PANEL = '.list-group, .nav, [role="tablist"]';
   const SELECTOR_OUTER = '.nav-item, .list-group-item';
@@ -5873,6 +9560,16 @@
   const SELECTOR_INNER_ELEM = `${SELECTOR_INNER}, ${SELECTOR_DATA_TOGGLE}`;
   const SELECTOR_DATA_TOGGLE_ACTIVE = `.${CLASS_NAME_ACTIVE}[data-bs-toggle="tab"], .${CLASS_NAME_ACTIVE}[data-bs-toggle="pill"], .${CLASS_NAME_ACTIVE}[data-bs-toggle="list"]`;
 
+=======
+  const NOT_SELECTOR_DROPDOWN_TOGGLE = ':not(.dropdown-toggle)';
+  const SELECTOR_TAB_PANEL = '.list-group, .nav, [role="tablist"]';
+  const SELECTOR_OUTER = '.nav-item, .list-group-item';
+  const SELECTOR_INNER = `.nav-link${NOT_SELECTOR_DROPDOWN_TOGGLE}, .list-group-item${NOT_SELECTOR_DROPDOWN_TOGGLE}, [role="tab"]${NOT_SELECTOR_DROPDOWN_TOGGLE}`;
+  const SELECTOR_DATA_TOGGLE = '[data-bs-toggle="tab"], [data-bs-toggle="pill"], [data-bs-toggle="list"]'; // todo:v6: could be only `tab`
+
+  const SELECTOR_INNER_ELEM = `${SELECTOR_INNER}, ${SELECTOR_DATA_TOGGLE}`;
+  const SELECTOR_DATA_TOGGLE_ACTIVE = `.${CLASS_NAME_ACTIVE}[data-bs-toggle="tab"], .${CLASS_NAME_ACTIVE}[data-bs-toggle="pill"], .${CLASS_NAME_ACTIVE}[data-bs-toggle="list"]`;
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Class definition
    */
@@ -5881,6 +9578,7 @@
     constructor(element) {
       super(element);
       this._parent = this._element.closest(SELECTOR_TAB_PANEL);
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       if (!this._parent) {
         return;
         // TODO: should throw exception in v6
@@ -5907,12 +9605,44 @@
 
       // Search for active tab on same parent to deactivate it
       const active = this._getActiveElem();
+=======
+
+      if (!this._parent) {
+        return; // todo: should Throw exception on v6
+        // throw new TypeError(`${element.outerHTML} has not a valid parent ${SELECTOR_INNER_ELEM}`)
+      } // Set up initial aria attributes
+
+
+      this._setInitialAttributes(this._parent, this._getChildren());
+
+      EventHandler.on(this._element, EVENT_KEYDOWN, event => this._keydown(event));
+    } // Getters
+
+
+    static get NAME() {
+      return NAME$1;
+    } // Public
+
+
+    show() {
+      // Shows this elem and deactivate the active sibling if exists
+      const innerElem = this._element;
+
+      if (this._elemIsActive(innerElem)) {
+        return;
+      } // Search for active tab on same parent to deactivate it
+
+
+      const active = this._getActiveElem();
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       const hideEvent = active ? EventHandler.trigger(active, EVENT_HIDE$1, {
         relatedTarget: innerElem
       }) : null;
       const showEvent = EventHandler.trigger(innerElem, EVENT_SHOW$1, {
         relatedTarget: active
       });
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       if (showEvent.defaultPrevented || hideEvent && hideEvent.defaultPrevented) {
         return;
       }
@@ -5921,47 +9651,103 @@
     }
 
     // Private
+=======
+
+      if (showEvent.defaultPrevented || hideEvent && hideEvent.defaultPrevented) {
+        return;
+      }
+
+      this._deactivate(active, innerElem);
+
+      this._activate(innerElem, active);
+    } // Private
+
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _activate(element, relatedElem) {
       if (!element) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       element.classList.add(CLASS_NAME_ACTIVE);
       this._activate(SelectorEngine.getElementFromSelector(element)); // Search and activate/show the proper section
+=======
+
+      element.classList.add(CLASS_NAME_ACTIVE);
+
+      this._activate(getElementFromSelector(element)); // Search and activate/show the proper section
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
 
       const complete = () => {
         if (element.getAttribute('role') !== 'tab') {
           element.classList.add(CLASS_NAME_SHOW$1);
           return;
         }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
         element.removeAttribute('tabindex');
         element.setAttribute('aria-selected', true);
         this._toggleDropDown(element, true);
+=======
+
+        element.removeAttribute('tabindex');
+        element.setAttribute('aria-selected', true);
+
+        this._toggleDropDown(element, true);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         EventHandler.trigger(element, EVENT_SHOWN$1, {
           relatedTarget: relatedElem
         });
       };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._queueCallback(complete, element, element.classList.contains(CLASS_NAME_FADE$1));
     }
+=======
+
+      this._queueCallback(complete, element, element.classList.contains(CLASS_NAME_FADE$1));
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _deactivate(element, relatedElem) {
       if (!element) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       element.classList.remove(CLASS_NAME_ACTIVE);
       element.blur();
       this._deactivate(SelectorEngine.getElementFromSelector(element)); // Search and deactivate the shown section too
+=======
+
+      element.classList.remove(CLASS_NAME_ACTIVE);
+      element.blur();
+
+      this._deactivate(getElementFromSelector(element)); // Search and deactivate the shown section too
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
 
       const complete = () => {
         if (element.getAttribute('role') !== 'tab') {
           element.classList.remove(CLASS_NAME_SHOW$1);
           return;
         }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
         element.setAttribute('aria-selected', false);
         element.setAttribute('tabindex', '-1');
         this._toggleDropDown(element, false);
+=======
+
+        element.setAttribute('aria-selected', false);
+        element.setAttribute('tabindex', '-1');
+
+        this._toggleDropDown(element, false);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         EventHandler.trigger(element, EVENT_HIDDEN$1, {
           relatedTarget: relatedElem
         });
       };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._queueCallback(complete, element, element.classList.contains(CLASS_NAME_FADE$1));
     }
     _keydown(event) {
@@ -5978,6 +9764,23 @@
         const isNext = [ARROW_RIGHT_KEY, ARROW_DOWN_KEY].includes(event.key);
         nextActiveElement = getNextActiveElement(children, event.target, isNext, true);
       }
+=======
+
+      this._queueCallback(complete, element, element.classList.contains(CLASS_NAME_FADE$1));
+    }
+
+    _keydown(event) {
+      if (![ARROW_LEFT_KEY, ARROW_RIGHT_KEY, ARROW_UP_KEY, ARROW_DOWN_KEY].includes(event.key)) {
+        return;
+      }
+
+      event.stopPropagation(); // stopPropagation/preventDefault both added to support up/down keys without scrolling the page
+
+      event.preventDefault();
+      const isNext = [ARROW_RIGHT_KEY, ARROW_DOWN_KEY].includes(event.key);
+      const nextActiveElement = getNextActiveElement(this._getChildren().filter(element => !isDisabled(element)), event.target, isNext, true);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       if (nextActiveElement) {
         nextActiveElement.focus({
           preventScroll: true
@@ -5985,19 +9788,35 @@
         Tab.getOrCreateInstance(nextActiveElement).show();
       }
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _getChildren() {
       // collection of inner elements
       return SelectorEngine.find(SELECTOR_INNER_ELEM, this._parent);
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     _getActiveElem() {
       return this._getChildren().find(child => this._elemIsActive(child)) || null;
     }
     _setInitialAttributes(parent, children) {
       this._setAttributeIfNotExists(parent, 'role', 'tablist');
+=======
+
+    _getActiveElem() {
+      return this._getChildren().find(child => this._elemIsActive(child)) || null;
+    }
+
+    _setInitialAttributes(parent, children) {
+      this._setAttributeIfNotExists(parent, 'role', 'tablist');
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       for (const child of children) {
         this._setInitialAttributesOnChild(child);
       }
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     _setInitialAttributesOnChild(child) {
       child = this._getInnerElement(child);
       const isActive = this._elemIsActive(child);
@@ -6031,19 +9850,78 @@
       }
       const toggle = (selector, className) => {
         const element = SelectorEngine.findOne(selector, outerElem);
+=======
+
+    _setInitialAttributesOnChild(child) {
+      child = this._getInnerElement(child);
+
+      const isActive = this._elemIsActive(child);
+
+      const outerElem = this._getOuterElement(child);
+
+      child.setAttribute('aria-selected', isActive);
+
+      if (outerElem !== child) {
+        this._setAttributeIfNotExists(outerElem, 'role', 'presentation');
+      }
+
+      if (!isActive) {
+        child.setAttribute('tabindex', '-1');
+      }
+
+      this._setAttributeIfNotExists(child, 'role', 'tab'); // set attributes to the related panel too
+
+
+      this._setInitialAttributesOnTargetPanel(child);
+    }
+
+    _setInitialAttributesOnTargetPanel(child) {
+      const target = getElementFromSelector(child);
+
+      if (!target) {
+        return;
+      }
+
+      this._setAttributeIfNotExists(target, 'role', 'tabpanel');
+
+      if (child.id) {
+        this._setAttributeIfNotExists(target, 'aria-labelledby', `#${child.id}`);
+      }
+    }
+
+    _toggleDropDown(element, open) {
+      const outerElem = this._getOuterElement(element);
+
+      if (!outerElem.classList.contains(CLASS_DROPDOWN)) {
+        return;
+      }
+
+      const toggle = (selector, className) => {
+        const element = SelectorEngine.findOne(selector, outerElem);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         if (element) {
           element.classList.toggle(className, open);
         }
       };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       toggle(SELECTOR_DROPDOWN_TOGGLE, CLASS_NAME_ACTIVE);
       toggle(SELECTOR_DROPDOWN_MENU, CLASS_NAME_SHOW$1);
       outerElem.setAttribute('aria-expanded', open);
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _setAttributeIfNotExists(element, attribute, value) {
       if (!element.hasAttribute(attribute)) {
         element.setAttribute(attribute, value);
       }
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     _elemIsActive(elem) {
       return elem.classList.contains(CLASS_NAME_ACTIVE);
     }
@@ -6073,14 +9951,54 @@
     }
   }
 
+=======
+
+    _elemIsActive(elem) {
+      return elem.classList.contains(CLASS_NAME_ACTIVE);
+    } // Try to get the inner element (usually the .nav-link)
+
+
+    _getInnerElement(elem) {
+      return elem.matches(SELECTOR_INNER_ELEM) ? elem : SelectorEngine.findOne(SELECTOR_INNER_ELEM, elem);
+    } // Try to get the outer element (usually the .nav-item)
+
+
+    _getOuterElement(elem) {
+      return elem.closest(SELECTOR_OUTER) || elem;
+    } // Static
+
+
+    static jQueryInterface(config) {
+      return this.each(function () {
+        const data = Tab.getOrCreateInstance(this);
+
+        if (typeof config !== 'string') {
+          return;
+        }
+
+        if (data[config] === undefined || config.startsWith('_') || config === 'constructor') {
+          throw new TypeError(`No method named "${config}"`);
+        }
+
+        data[config]();
+      });
+    }
+
+  }
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Data API implementation
    */
 
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   EventHandler.on(document, EVENT_CLICK_DATA_API, SELECTOR_DATA_TOGGLE, function (event) {
     if (['A', 'AREA'].includes(this.tagName)) {
       event.preventDefault();
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     if (isDisabled(this)) {
       return;
     }
@@ -6090,6 +10008,19 @@
   /**
    * Initialize on focus
    */
+=======
+
+    if (isDisabled(this)) {
+      return;
+    }
+
+    Tab.getOrCreateInstance(this).show();
+  });
+  /**
+   * Initialize on focus
+   */
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   EventHandler.on(window, EVENT_LOAD_DATA_API, () => {
     for (const element of SelectorEngine.find(SELECTOR_DATA_TOGGLE_ACTIVE)) {
       Tab.getOrCreateInstance(element);
@@ -6103,12 +10034,19 @@
 
   /**
    * --------------------------------------------------------------------------
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
    * Bootstrap toast.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
 
 
+=======
+   * Bootstrap (v5.2.3): toast.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Constants
    */
@@ -6126,6 +10064,10 @@
   const EVENT_SHOWN = `shown${EVENT_KEY}`;
   const CLASS_NAME_FADE = 'fade';
   const CLASS_NAME_HIDE = 'hide'; // @deprecated - kept here only for backwards compatibility
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   const CLASS_NAME_SHOW = 'show';
   const CLASS_NAME_SHOWING = 'showing';
   const DefaultType = {
@@ -6138,7 +10080,10 @@
     autohide: true,
     delay: 5000
   };
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
 
+=======
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Class definition
    */
@@ -6149,6 +10094,7 @@
       this._timeout = null;
       this._hasMouseInteraction = false;
       this._hasKeyboardInteraction = false;
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       this._setListeners();
     }
 
@@ -6183,10 +10129,62 @@
       this._element.classList.add(CLASS_NAME_SHOW, CLASS_NAME_SHOWING);
       this._queueCallback(complete, this._element, this._config.animation);
     }
+=======
+
+      this._setListeners();
+    } // Getters
+
+
+    static get Default() {
+      return Default;
+    }
+
+    static get DefaultType() {
+      return DefaultType;
+    }
+
+    static get NAME() {
+      return NAME;
+    } // Public
+
+
+    show() {
+      const showEvent = EventHandler.trigger(this._element, EVENT_SHOW);
+
+      if (showEvent.defaultPrevented) {
+        return;
+      }
+
+      this._clearTimeout();
+
+      if (this._config.animation) {
+        this._element.classList.add(CLASS_NAME_FADE);
+      }
+
+      const complete = () => {
+        this._element.classList.remove(CLASS_NAME_SHOWING);
+
+        EventHandler.trigger(this._element, EVENT_SHOWN);
+
+        this._maybeScheduleHide();
+      };
+
+      this._element.classList.remove(CLASS_NAME_HIDE); // @deprecated
+
+
+      reflow(this._element);
+
+      this._element.classList.add(CLASS_NAME_SHOW, CLASS_NAME_SHOWING);
+
+      this._queueCallback(complete, this._element, this._config.animation);
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     hide() {
       if (!this.isShown()) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE);
       if (hideEvent.defaultPrevented) {
         return;
@@ -6211,17 +10209,67 @@
     }
 
     // Private
+=======
+
+      const hideEvent = EventHandler.trigger(this._element, EVENT_HIDE);
+
+      if (hideEvent.defaultPrevented) {
+        return;
+      }
+
+      const complete = () => {
+        this._element.classList.add(CLASS_NAME_HIDE); // @deprecated
+
+
+        this._element.classList.remove(CLASS_NAME_SHOWING, CLASS_NAME_SHOW);
+
+        EventHandler.trigger(this._element, EVENT_HIDDEN);
+      };
+
+      this._element.classList.add(CLASS_NAME_SHOWING);
+
+      this._queueCallback(complete, this._element, this._config.animation);
+    }
+
+    dispose() {
+      this._clearTimeout();
+
+      if (this.isShown()) {
+        this._element.classList.remove(CLASS_NAME_SHOW);
+      }
+
+      super.dispose();
+    }
+
+    isShown() {
+      return this._element.classList.contains(CLASS_NAME_SHOW);
+    } // Private
+
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _maybeScheduleHide() {
       if (!this._config.autohide) {
         return;
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       if (this._hasMouseInteraction || this._hasKeyboardInteraction) {
         return;
       }
+=======
+
+      if (this._hasMouseInteraction || this._hasKeyboardInteraction) {
+        return;
+      }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
       this._timeout = setTimeout(() => {
         this.hide();
       }, this._config.delay);
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _onInteraction(event, isInteracting) {
       switch (event.type) {
         case 'mouseover':
@@ -6230,6 +10278,10 @@
             this._hasMouseInteraction = isInteracting;
             break;
           }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         case 'focusin':
         case 'focusout':
           {
@@ -6237,6 +10289,7 @@
             break;
           }
       }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
       if (isInteracting) {
         this._clearTimeout();
         return;
@@ -6247,12 +10300,31 @@
       }
       this._maybeScheduleHide();
     }
+=======
+
+      if (isInteracting) {
+        this._clearTimeout();
+
+        return;
+      }
+
+      const nextElement = event.relatedTarget;
+
+      if (this._element === nextElement || this._element.contains(nextElement)) {
+        return;
+      }
+
+      this._maybeScheduleHide();
+    }
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
     _setListeners() {
       EventHandler.on(this._element, EVENT_MOUSEOVER, event => this._onInteraction(event, true));
       EventHandler.on(this._element, EVENT_MOUSEOUT, event => this._onInteraction(event, false));
       EventHandler.on(this._element, EVENT_FOCUSIN, event => this._onInteraction(event, true));
       EventHandler.on(this._element, EVENT_FOCUSOUT, event => this._onInteraction(event, false));
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
     _clearTimeout() {
       clearTimeout(this._timeout);
       this._timeout = null;
@@ -6262,22 +10334,49 @@
     static jQueryInterface(config) {
       return this.each(function () {
         const data = Toast.getOrCreateInstance(this, config);
+=======
+
+    _clearTimeout() {
+      clearTimeout(this._timeout);
+      this._timeout = null;
+    } // Static
+
+
+    static jQueryInterface(config) {
+      return this.each(function () {
+        const data = Toast.getOrCreateInstance(this, config);
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
         if (typeof config === 'string') {
           if (typeof data[config] === 'undefined') {
             throw new TypeError(`No method named "${config}"`);
           }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
+=======
+
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
           data[config](this);
         }
       });
     }
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
   }
 
+=======
+
+  }
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * Data API implementation
    */
 
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
   enableDismissTrigger(Toast);
 
+=======
+
+  enableDismissTrigger(Toast);
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   /**
    * jQuery
    */
@@ -6286,11 +10385,18 @@
 
   /**
    * --------------------------------------------------------------------------
+<<<<<<< HEAD:BackEnd/javaScript/bootstrap.bundle.js
    * Bootstrap index.umd.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
    * --------------------------------------------------------------------------
    */
 
+=======
+   * Bootstrap (v5.2.3): index.umd.js
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+   * --------------------------------------------------------------------------
+   */
+>>>>>>> 40f709f22693b68a35c880dcff03b9ed5ef3fb50:BackEnd/js/bootstrap.bundle.js
   const index_umd = {
     Alert,
     Button,
