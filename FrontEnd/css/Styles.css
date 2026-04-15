@@ -147,7 +147,9 @@ body {
     font-size: 30px;
 
 }
-
+.text-h1-header2{
+    padding-bottom: 10px;
+}
 section {
     height: auto;
 }
