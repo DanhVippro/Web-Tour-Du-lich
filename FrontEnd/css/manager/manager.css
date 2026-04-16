@@ -1,27 +1,13 @@
 body {
-    background: linear-gradient(270deg, #e0f7fa, #7dd3fa, #e1f5fe);
+    background-color: #E8E2DB;
     background-size: 600% 600%;
-    animation: gradientMove 12s ease infinite;
 }
 
-@keyframes gradientMove {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
 
 /* Sidebar */
 .sidebar {
     height: 100vh;
-    background-image: url(/data/img/tobias-rademacher-NuBvAE6VfSM-unsplash.jpg);
+    background-color: #547792;
     padding: 20px;
     position: relative;
 }
@@ -32,7 +18,7 @@ body {
 }
 
 .sidebar button {
-    background: #FFC107;
+    background: #FAB95B;
     border-radius: 8px;
     padding: 10px;
     text-align: center;
@@ -101,7 +87,7 @@ img {
 
 .sidebar li a {
     text-decoration: none;
-    color: #2C3E50;
+    color: #f0f3f6;
     font-weight: bold;
     font-size: 1.4rem;
 }
