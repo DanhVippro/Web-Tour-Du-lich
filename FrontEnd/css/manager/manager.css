@@ -31,21 +31,22 @@ body {
 
 /* Header */
 .dashboard-header {
-    background-image: url(/data/img/img-header2/uc.jpg);
+    background-image:
+        linear-gradient(to bottom, rgba(42, 41, 41, 0.3), rgba(26, 25, 25, 0.7)),
+        url(/data/img/img-header2/uc.jpg);
+
     padding: 20px;
     border-radius: 10px;
     background-position: 20% 10%;
     background-size: 1600px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
+
 
 .box {
     border-radius: 10px;
     padding: 15px;
     text-align: center;
-}
-
-.box-blue {
-    background: #9ed0d4;
 }
 
 .box-yellow {
@@ -156,7 +157,7 @@ img {
 .nameAccount .role {
     margin: 2px 0 0;
     font-size: 0.9rem;
-    color: #6c757d;
+    color: #e8992b;
 }
 
 .menu-link {
@@ -346,4 +347,28 @@ img {
     bottom: 3px;
     left: 50%;
     transform: translateX(-50%);
+}
+
+.icon-welcome1 {
+    height: 150px;
+    background-image: url('/data/img/danhManager/icon3-tour.png');
+    background-size: 150px;
+    background-position: left;
+}
+
+.icon-welcome2 {
+    height: 150px;
+    background-image: url('/data/img/danhManager/icon2-tour.png');
+    background-size: 150px;
+    background-position: left;
+}
+
+.content-welcome {
+    background-color: white;
+
+}
+
+.box-color {
+    background-color: white;
+    margin: 5px;
 }
