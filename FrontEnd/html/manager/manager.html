@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Bootstrap CSS v5.3.8 -->
-    <link href="/FrontEnd/css/bootstrap.css" rel="stylesheet" />
+    <link href="/FrontEnd/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="/FrontEnd/css/manager.css">
+    <link rel="stylesheet" href="/FrontEnd/css/manager/manager.css">
 </head>
 
 <body>
@@ -18,44 +18,42 @@
         <div class="row">
             <!-- Sidebar -->
             <div class="col sidebar">
-                <div class="img-wraper"><img src="/data/img/Logo.png" alt=""></div>
-                <ul>
-                    <li>
-                        <a href="" class="menu-link">
-                            <i class="bi bi-calendar"></i>
-                            <span>Booking</span>
-                        </a>
-                    </li>
+                <div class="img-wraper"><a href="/FrontEnd/html/manager/manager.html"><img src="/data/img/Logo.png"
+                            alt=""></a>
+                </div>
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="#" class="menu-link" data-bs-toggle="modal" data-bs-target="#khachHangModal">
+                                <i class="bi bi-calendar"></i>
+                                <span>Khách hàng</span>
+                            </a>
+                        </li>
 
-                    <li>
-                        <a href="" class="menu-link">
-                            <i class="bi bi-clock"></i>
-                            <span>Lịch trình</span>
-                        </a>
-                    </li>
+                        <li>
+                            <a href="#" class="menu-link" data-bs-toggle="modal" data-bs-target="#lichTrinhModal">
+                                <i class="bi bi-clock"></i>
+                                <span>Lịch trình</span>
+                            </a>
+                        </li>
 
-                    <li>
-                        <a href="" class="menu-link">
-                            <i class="bi bi-graph-up"></i>
-                            <span>Phân tích</span>
-                        </a>
-                    </li>
+                        <li>
+                            <a href="#" class="menu-link" data-bs-toggle="modal" data-bs-target="#phanTichModal">
+                                <i class="bi bi-graph-up"></i>
+                                <span>Phân tích</span>
+                            </a>
+                        </li>
 
-                    <li>
-                        <a href="" class="menu-link">
-                            <i class="bi bi-chat"></i>
-                            <span>Message</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="" class="menu-link">
-                            <i class="bi bi-globe"></i>
-                            <span>Tour</span>
-                        </a>
-                    </li>
-                </ul>
-                <button class="btn btn-warning">+ Add new Tour</button>
+                        <li>
+                            <a href="#" class="menu-link" data-bs-toggle="modal" data-bs-target="#messageModal">
+                                <i class="bi bi-chat"></i>
+                                <span>Tin nhắn</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#tourModal" onclick="openAdd()">+
+                    Add new Tour</button>
                 <div class="account">
                     <div><img src="/data/img/logo-login.png" alt=""></div>
                     <div class="nameAccount">
@@ -67,10 +65,9 @@
 
             <!-- Main Content -->
             <div class="col-md-10 p-4">
-
                 <!-- Header -->
                 <div class="dashboard-header mb-4">
-                    <h1 style="color: #1a8fbf; font-family: serif;">
+                    <h1 style="color: #1a8fbf; font-family: serif; font-size: 3.2rem;">
                         Welcome Manager !</h1>
 
                     <div class="row">
@@ -99,29 +96,15 @@
                             </div>
                         </div>
 
-                        <!-- Col 4: calendar -->
-                        <div class="col-4">
-                            <div class="calendar">
-                                <div class="calendar-header">
-                                    <button onclick="prevMonth()">◀</button>
-                                    <h3 id="monthYear"></h3>
-                                    <button onclick="nextMonth()">▶</button>
-                                </div>
-                                <!-- Dùng 1 grid cho cả label + dates -->
-                                <div class="days-grid" id="calGrid">
-                                    <div class="day-label">CN</div>
-                                    <div class="day-label">T2</div>
-                                    <div class="day-label">T3</div>
-                                    <div class="day-label">T4</div>
-                                    <div class="day-label">T5</div>
-                                    <div class="day-label">T6</div>
-                                    <div class="day-label">T7</div>
-                                </div>
+                        <!-- Col 4: ngay-->
+                        <div class="col-4 d-flex align-items-center justify-content-center">
+                            <div class="text-center">
+                                <div id="dayName" class="glass-text" style="font-size: 4rem; font-weight: 600;"></div>
+                                <div id="fullDate" class="glass-text" style="font-size: 2rem; font-weight: 700;"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <!-- Content -->
                 <div class="row">
                     <!-- Left -->
@@ -130,7 +113,8 @@
                             <h6 class="fw-bold mb-0" style="color:#4a1a7a">
                                 <i class="bi bi-list-ul me-1"></i>Danh sách Booking
                             </h6>
-                            <a href="" class="text-decoration-none fw-semibold small" style="color:#a855c8">View all
+                            <a href="/FrontEnd/html/manager/dsTour.html" class="text-decoration-none fw-semibold small"
+                                style="color:#a855c8">View all
                                 &rsaquo;</a>
                         </div>
 
@@ -242,8 +226,8 @@
                                                 <div style="font-size:11px;color:#9a5ab8">Mã: #BK-004</div>
                                             </div>
                                         </div>
-                                        <span class="badge rounded-pill bg-warning-subtle text-danger px-3 py-2">
-                                            <span class="badge rounded-pill bg-danger-subtle text-danger px-3 py-2">
+                                        <span class="badge rounded-pill bg-danger-subtle text-danger px-3 py-2">
+                                            <span class="badge rounded-pill text-danger px-3 py-2">
                                                 <i class="bi bi-x me-1"></i><b style="font-size: 0.8rem;">Hủy</b>
                                             </span>
                                             <div><i class="bi bi-people me-1"></i>3/14 </i></div>
@@ -330,22 +314,24 @@
                         <div class="d-flex flex-column gap-3">
 
                             <div class="card border-0 rounded-4 overflow-hidden shadow-sm">
-                                <div class="tour-thumb"
-                                    style="background:linear-gradient(135deg,#7ec8e3,#0084a1);color:#fff">🏖️</div>
+                                <div class="tour-thumb">
+                                    <img src="/data/img/danhManager/san-fransico.jpg" style="width: 500px;">
+                                </div>
                                 <div class="card-body py-2 px-3" style="background:#e8b4f8">
-                                    <div class="fw-bold small" style="color:#4a1a7a">Tour Phú Quốc Hè 2026</div>
+                                    <div class="fw-bold small" style="color:#4a1a7a">Tour San Francisco - America</div>
                                     <div class="d-flex justify-content-between" style="font-size:11px;color:#9a5ab8">
-                                        <span><i class="bi bi-calendar2-range me-1"></i>15/04 – 18/04</span>
+                                        <span><i class="bi bi-calendar2-range me-1"></i>15/04 - 18/04</span>
                                         <span><i class="bi bi-people me-1"></i>32 khách</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="card border-0 rounded-4 overflow-hidden shadow-sm">
-                                <div class="tour-thumb"
-                                    style="background:linear-gradient(135deg,#f9c784,#e07e00);color:#fff">🌄</div>
+                                <div class="tour-thumb">
+                                    <img src="/data/img/danhManager/phu-si-japan.jpg" style="width: 100%;">
+                                </div>
                                 <div class="card-body py-2 px-3" style="background:#e8b4f8">
-                                    <div class="fw-bold small" style="color:#4a1a7a">Tour Sapa Mây Mù</div>
+                                    <div class="fw-bold small" style="color:#4a1a7a">Tour Phú Sĩ - Japan</div>
                                     <div class="d-flex justify-content-between" style="font-size:11px;color:#9a5ab8">
                                         <span><i class="bi bi-calendar2-range me-1"></i>20/04 - 22/04</span>
                                         <span><i class="bi bi-people me-1"></i>18 khách</span>
@@ -354,10 +340,11 @@
                             </div>
 
                             <div class="card border-0 rounded-4 overflow-hidden shadow-sm">
-                                <div class="tour-thumb"
-                                    style="background:linear-gradient(135deg,#a8e6cf,#1a7a4a);color:#fff">🏯</div>
+                                <div class="tour-thumb">
+                                    <img src="/data/img/danhManager/thuong-hai.jpg" style="width: 500px;">
+                                </div>
                                 <div class="card-body py-2 px-3" style="background:#e8b4f8">
-                                    <div class="fw-bold small" style="color:#4a1a7a">Tour Vịnh Hạ Long 5N4Đ</div>
+                                    <div class="fw-bold small" style="color:#4a1a7a">Tour Thượng Hải - Trung Quốc</div>
                                     <div class="d-flex justify-content-between" style="font-size:11px;color:#9a5ab8">
                                         <span><i class="bi bi-calendar2-range me-1"></i>25/04 - 26/04</span>
                                         <span><i class="bi bi-people me-1"></i>24 khách</span>
@@ -369,11 +356,234 @@
                     </div>
                 </div>
             </div>
+        </div> <!--row container-->
+    </div> <!--container -->
+
+    <!--Modal-->
+    <!--nut them -->
+    <div class="modal fade" id="tourModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="background:#4a1a7a">
+                    <h5 class="modal-title text-white" id="tourModalTitle">Thêm Tour Mới</h5>
+                    <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="tourId">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Tên Tour <span class="text-danger">*</span></label>
+                            <input id="fTen" class="form-control" placeholder="VD: Tour Đà Lạt 3N2Đ">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Địa điểm <span class="text-danger">*</span></label>
+                            <input id="fDiaDiem" class="form-control" placeholder="VD: Đà Lạt">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Ngày khởi hành <span
+                                    class="text-danger">*</span></label>
+                            <input id="fNgay" class="form-control" type="date">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Số khách hiện tại</label>
+                            <input id="fSoKhach" class="form-control" type="number" min="0" placeholder="0">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Sức chứa tối đa <span
+                                    class="text-danger">*</span></label>
+                            <input id="fSoKhachMax" class="form-control" type="number" min="1" placeholder="20">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Giá/vé (đ) <span class="text-danger">*</span></label>
+                            <input id="fGia" class="form-control" type="number" min="0" placeholder="6800000">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Hướng dẫn viên</label>
+                            <input id="fHdv" class="form-control" placeholder="Họ và tên HDV">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Trạng thái</label>
+                            <select id="fTrangThai" class="form-select">
+                                <option value="open">Đang mở</option>
+                                <option value="full">Đã đầy</option>
+                                <option value="cancel">Đã hủy</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-semibold">Mô tả</label>
+                            <textarea id="fMoTa" class="form-control" rows="3"
+                                placeholder="Mô tả ngắn về tour..."></textarea>
+                        </div>
+                    </div>
+                    <div id="formError" class="alert alert-danger mt-3 d-none"></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button class="btn btn-primary" onclick="saveTour()">
+                        <i class="bi bi-floppy me-1"></i>Lưu Tour
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="khachHangModal">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Quản lý khách hàng</h5>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <!-- Search -->
+                    <input class="form-control mb-3" placeholder="Tìm khách hàng...">
+
+                    <!-- Table -->
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Tên</th>
+                                <th>Email</th>
+                                <th>SĐT</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Nguyễn Văn A</td>
+                                <td>a@gmail.com</td>
+                                <td>0123456789</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary">Sửa</button>
+                                    <button class="btn btn-sm btn-danger">Xoá</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <button class="btn btn-success">+ Thêm khách hàng</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="lichTrinhModal">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Lịch trình</h5>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="calendar">
+                        <div class="calendar-header">
+                            <button onclick="prevMonth()">◀</button>
+                            <h3 id="monthYear"></h3>
+                            <button onclick="nextMonth()">▶</button>
+                        </div>
+                        <!-- Dùng 1 grid cho cả label + dates -->
+                        <div class="days-grid" id="calGrid">
+                            <div class="day-label">CN</div>
+                            <div class="day-label">T2</div>
+                            <div class="day-label">T3</div>
+                            <div class="day-label">T4</div>
+                            <div class="day-label">T5</div>
+                            <div class="day-label">T6</div>
+                            <div class="day-label">T7</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="phanTichModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Phân tích dữ liệu</h5>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row text-center">
+
+                        <div class="col-md-4">
+                            <div class="card p-3 shadow-sm">
+                                <h6>Tổng doanh thu</h6>
+                                <h4 class="text-success">120,000,000đ</h4>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card p-3 shadow-sm">
+                                <h6>Tour bán chạy</h6>
+                                <h5>Đà Lạt</h5>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card p-3 shadow-sm">
+                                <h6>Khách hàng mới</h6>
+                                <h4>150</h4>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <!-- Fake chart -->
+                    <div class="text-center">
+                        <p>Biểu đồ doanh thu (demo)</p>
+                        <div style="height:200px;background:#e3f2fd;border-radius:10px"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="messageModal">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Tin nhắn</h5>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <!-- Chat list -->
+                    <div class="mb-3">
+                        <div class="p-2 border rounded mb-2">
+                            <b>Nguyễn Văn A</b>
+                            <p class="mb-0">Tour Đà Lạt còn chỗ không?</p>
+                        </div>
+
+                        <div class="p-2 border rounded mb-2 bg-light text-end">
+                            <p class="mb-0">Còn bạn nhé!</p>
+                        </div>
+                    </div>
+
+                    <!-- Input -->
+                    <div class="d-flex gap-2">
+                        <input class="form-control" placeholder="Nhập tin nhắn...">
+                        <button class="btn btn-primary">Gửi</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-            <!-- Bootstrap JavaScript Bundle (includes Popper) -->
-            <script src="/BackEnd/js/bootstrap.bundle.js"></script>
-            <script src="/BackEnd/js/dsManager.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/BackEnd/js/manager/dsManager.js"></script>
+
 </body>
 
 </html>

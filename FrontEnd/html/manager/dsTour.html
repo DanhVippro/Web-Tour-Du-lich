@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="vi" data-bs-theme="light">
+
+<head>
+    <title>Cheap Tour - Quản lý Tour</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="/FrontEnd/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/FrontEnd/css/manager/manager.css">
+    <style>
+        .tour-table th {
+            color: #4a1a7a;
+            font-weight: 700;
+        }
+
+        .tour-table td {
+            vertical-align: middle;
+        }
+
+        .badge-full {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .badge-open {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .badge-cancel {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .tbl-wrap {
+            background: #ffffffcc;
+            border-radius: 16px;
+            padding: 24px;
+            backdrop-filter: blur(6px);
+        }
+
+        .page-title {
+            font-family: serif;
+            font-size: 2.4rem;
+            background: linear-gradient(135deg, rgb(244, 243, 166), rgba(235, 232, 131, 0.9));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 10px rgba(100, 200, 255, 0.6));
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- ===== SIDEBAR ===== -->
+            <div class="col sidebar">
+                <div class="img-wraper"><a href="/FrontEnd/html/manager/manager.html"><img src="/data/img/Logo.png"
+                            alt=""></a>
+                </div>
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="#" class="menu-link" data-bs-toggle="modal" data-bs-target="#khachHangModal">
+                                <i class="bi bi-calendar"></i>
+                                <span>Khách hàng</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="menu-link" data-bs-toggle="modal" data-bs-target="#lichTrinhModal">
+                                <i class="bi bi-clock"></i>
+                                <span>Lịch trình</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="menu-link" data-bs-toggle="modal" data-bs-target="#phanTichModal">
+                                <i class="bi bi-graph-up"></i>
+                                <span>Phân tích</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="menu-link" data-bs-toggle="modal" data-bs-target="#messageModal">
+                                <i class="bi bi-chat"></i>
+                                <span>Tin nhắn</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#tourModal" onclick="openAdd()">+
+                    Add new Tour</button>
+                <div class="account">
+                    <div><img src="/data/img/logo-login.png" alt=""></div>
+                    <div class="nameAccount">
+                        <p class="name">John Doe</p>
+                        <p class="role">Manager</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- ===== MAIN CONTENT ===== -->
+            <div class="col-md-10 p-4">
+
+                <!-- Header -->
+                <div class="dsTour-dashboard-header mb-4">
+                    <h1 class="page-title text-center ">Quản lý Tour Du Lịch</h1>
+                    <div class="row mt-2">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="box box-blue text-center">
+                                    <h5 class="mb-0">Tổng tour</h5>
+                                    <h3 id="statTotal" class="mb-0 fw-bold">0</h3>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="box box-blue text-center">
+                                    <h5 class="mb-0">Đang mở</h5>
+                                    <h3 id="statOpen" class="mb-0 fw-bold text-primary">0</h3>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="box box-blue text-center">
+                                    <h5 class="mb-0">Đã đầy</h5>
+                                    <h3 id="statFull" class="mb-0 fw-bold text-success">0</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="search-wrapper">
+                                <input id="searchInput" class="search-box w-50" placeholder="Tìm kiếm tour...">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="tbl-wrap">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6 class="fw-bold mb-0" style="color:#4a1a7a">
+                            <i class="bi bi-map me-1"></i>Danh sách Tour
+                        </h6>
+                        <div class="d-flex gap-2">
+                            <select id="status" class="form-select form-select-sm" style="width:140px">
+                                <option value="">Tất cả</option>
+                                <option value="open">Đang mở</option>
+                                <option value="full">Đã đầy</option>
+                                <option value="cancel">Đã hủy</option>
+                            </select>
+                            <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#tourModal"
+                                onclick="openAdd()">
+                                <i class="bi bi-plus-lg me-1"></i>Thêm Tour
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-hover tour-table align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Mã</th>
+                                    <th>Tên Tour</th>
+                                    <th>Địa điểm</th>
+                                    <th>Khởi hành</th>
+                                    <th>Số khách</th>
+                                    <th>Giá/vé</th>
+                                    <th>HDV</th>
+                                    <th>Trạng thái</th>
+                                    <th class="text-center">Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tourTableBody">
+                                <!-- render bằng JS -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="emptyMsg" class="text-center py-5 text-muted d-none">
+                        <i class="bi bi-inbox fs-1"></i>
+                        <p class="mt-2">Chưa có tour nào. Nhấn <strong>+ Thêm Tour</strong> để bắt đầu.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================================
+     MODAL: XÁC NHẬN XÓA
+====================================================== -->
+    <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title"><i class="bi bi-exclamation-triangle me-2"></i>Xác nhận xóa</h5>
+                    <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    Bạn có chắc muốn xóa tour <strong id="deleteTourName"></strong>?<br>
+                    <span class="text-danger small">Hành động này không thể hoàn tác.</span>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button class="btn btn-danger" onclick="confirmDelete()">
+                        <i class="bi bi-trash me-1"></i>Xóa
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--modal chung-->
+    <!--nut them -->
+    <div class="modal fade" id="tourModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="background:#4a1a7a">
+                    <h5 class="modal-title text-white" id="tourModalTitle">Thêm Tour Mới</h5>
+                    <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="tourId">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Tên Tour <span class="text-danger">*</span></label>
+                            <input id="fTen" class="form-control" placeholder="VD: Tour Đà Lạt 3N2Đ">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Địa điểm <span class="text-danger">*</span></label>
+                            <input id="fDiaDiem" class="form-control" placeholder="VD: Đà Lạt">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Ngày khởi hành <span
+                                    class="text-danger">*</span></label>
+                            <input id="fNgay" class="form-control" type="date">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Số khách hiện tại</label>
+                            <input id="fSoKhach" class="form-control" type="number" min="0" placeholder="0">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Sức chứa tối đa <span
+                                    class="text-danger">*</span></label>
+                            <input id="fSoKhachMax" class="form-control" type="number" min="1" placeholder="20">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Giá/vé (đ) <span class="text-danger">*</span></label>
+                            <input id="fGia" class="form-control" type="number" min="0" placeholder="6800000">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Hướng dẫn viên</label>
+                            <input id="fHdv" class="form-control" placeholder="Họ và tên HDV">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Trạng thái</label>
+                            <select id="fTrangThai" class="form-select">
+                                <option value="open">Đang mở</option>
+                                <option value="full">Đã đầy</option>
+                                <option value="cancel">Đã hủy</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-semibold">Mô tả</label>
+                            <textarea id="fMoTa" class="form-control" rows="3"
+                                placeholder="Mô tả ngắn về tour..."></textarea>
+                        </div>
+                    </div>
+                    <div id="formError" class="alert alert-danger mt-3 d-none"></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button class="btn btn-primary" onclick="saveTour()">
+                        <i class="bi bi-floppy me-1"></i>Lưu Tour
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="khachHangModal">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Quản lý khách hàng</h5>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <!-- Search -->
+                    <input class="form-control mb-3" placeholder="Tìm khách hàng...">
+
+                    <!-- Table -->
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Tên</th>
+                                <th>Email</th>
+                                <th>SĐT</th>
+                                <th>Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Nguyễn Văn A</td>
+                                <td>a@gmail.com</td>
+                                <td>0123456789</td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary">Sửa</button>
+                                    <button class="btn btn-sm btn-danger">Xoá</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <button class="btn btn-success">+ Thêm khách hàng</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="lichTrinhModal">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Lịch trình</h5>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="calendar">
+                        <div class="calendar-header">
+                            <button onclick="prevMonth()">◀</button>
+                            <h3 id="monthYear"></h3>
+                            <button onclick="nextMonth()">▶</button>
+                        </div>
+                        <!-- Dùng 1 grid cho cả label + dates -->
+                        <div class="days-grid" id="calGrid">
+                            <div class="day-label">CN</div>
+                            <div class="day-label">T2</div>
+                            <div class="day-label">T3</div>
+                            <div class="day-label">T4</div>
+                            <div class="day-label">T5</div>
+                            <div class="day-label">T6</div>
+                            <div class="day-label">T7</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="phanTichModal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Phân tích dữ liệu</h5>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row text-center">
+
+                        <div class="col-md-4">
+                            <div class="card p-3 shadow-sm">
+                                <h6>Tổng doanh thu</h6>
+                                <h4 class="text-success">120,000,000đ</h4>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card p-3 shadow-sm">
+                                <h6>Tour bán chạy</h6>
+                                <h5>Đà Lạt</h5>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card p-3 shadow-sm">
+                                <h6>Khách hàng mới</h6>
+                                <h4>150</h4>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <!-- Fake chart -->
+                    <div class="text-center">
+                        <p>Biểu đồ doanh thu (demo)</p>
+                        <div style="height:200px;background:#e3f2fd;border-radius:10px"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="messageModal">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Tin nhắn</h5>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <!-- Chat list -->
+                    <div class="mb-3">
+                        <div class="p-2 border rounded mb-2">
+                            <b>Nguyễn Văn A</b>
+                            <p class="mb-0">Tour Đà Lạt còn chỗ không?</p>
+                        </div>
+
+                        <div class="p-2 border rounded mb-2 bg-light text-end">
+                            <p class="mb-0">Còn bạn nhé!</p>
+                        </div>
+                    </div>
+
+                    <!-- Input -->
+                    <div class="d-flex gap-2">
+                        <input class="form-control" placeholder="Nhập tin nhắn...">
+                        <button class="btn btn-primary">Gửi</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/BackEnd/js/bootstrap.bundle.min.js"></script>
+    <script src="/BackEnd/js/manager/dsManager.js"></script>
+</body>
+
+</html>

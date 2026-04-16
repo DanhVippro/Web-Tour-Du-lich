@@ -207,7 +207,7 @@ img {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
-    flex-direction: row
+    flex-direction: row;
 }
 
 .calendar-header button {
@@ -216,22 +216,22 @@ img {
 
 .calendar-header h3 {
     margin: 0;
-    font-size: 16px;
+    font-size: 25px;
 }
 
 .days-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 4px;
+    gap: 5px;
 }
 
 .date-cell {
-    aspect-ratio: 25px;
+    aspect-ratio: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
-    border-radius: 6px;
+    font-size: 25px;
+    border-radius: 10px;
     cursor: pointer;
 }
 
@@ -246,16 +246,16 @@ img {
 }
 
 .day-label {
-    font-size: 16px;
+    font-size: 25px;
     font-weight: 700;
     color: #06486f;
-    margin-left: 20px;
+    margin-left: 35px;
 }
 
 .calendar {
     background: #ffffff;
-    border-radius: 10px;
-    padding: 15px;
+    border-radius: 15px;
+    padding: 5px;
     color: #0b375b;
 }
 
@@ -312,4 +312,52 @@ img {
     align-items: center;
     justify-content: center;
     font-size: 2.4rem;
+}
+
+/* chỉnh màu cho dayName*/
+.glass-text {
+    background: linear-gradient(135deg,
+            rgba(255, 255, 255, 1),
+            rgba(220, 235, 255, 0.9));
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter:
+        drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 10px rgba(100, 200, 255, 0.6)) drop-shadow(0 0 20px rgba(150, 220, 255, 0.4));
+
+}
+
+.dashboard-header h1 {
+    background: linear-gradient(135deg,
+            rgb(244, 243, 166),
+            rgba(235, 232, 131, 0.9));
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter:
+        drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 10px rgba(100, 200, 255, 0.6)) drop-shadow(0 0 20px rgba(150, 220, 255, 0.4));
+
+}
+
+/* ── Tour dot trong calendar ── */
+.date-cell {
+    position: relative;
+}
+
+.date-cell.has-tour {
+    border: 2px solid #f97316;
+    font-weight: 700;
+    color: #c2410c;
+}
+
+.tour-dot {
+    display: block;
+    width: 5px;
+    height: 5px;
+    background: #f97316;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 3px;
+    left: 50%;
+    transform: translateX(-50%);
 }
