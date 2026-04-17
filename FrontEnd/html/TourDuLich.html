@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+
+<head>
+    <title>TourDuLich</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS v5.3.8 -->
+    <link href="../css/bootstrap.css"  rel="stylesheet"  />
+    <link rel="stylesheet" href="../css/TourDuLich.css">
+</head>
+
+<body>
+
+    
+         <header class="header1">
+        <div class="logo-header1">
+            <a href="../html/trangChu.html">
+                <img src="../../data/img/Logo.png" alt="Logo">
+            </a>
+        </div>
+        <div class="Search-header1">
+            <form action="" class="form-place">
+                <input type="text" placeholder=" Tìm kiếm điểm đến yêu thích">
+                <button type="submit">&#8981;</button>
+            </form>
+        </div>
+        <div class="menu-header1">
+
+            <ul>
+                <li><a href="../html/trangChu.html">Trang chủ</a></li>
+                <li><a href="../html/GioiThieu.html">Giới Thiệu</a></li>
+                <li><a href="../html/TourDuLich.html">Tour du lịch</a></li>
+                <li><a href="../html/DichVu.html">Dịch vụ</a></li>
+                <li><a href="../html/CamHungDuLich.html">Cảm hứng du lịch</a></li>
+                <li><a href="../html/HoTro.html">Hỗ trợ</a></li>
+            </ul>
+        </div>
+        <!-- Login Logo -->
+        <div class="logo-login">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#modaldk"> <img src="../../data/img/logo-login.png"
+                    alt="login" height="50px"></a>
+        </div>
+    </header>
+   <div class="container">
+    <section class="hd2 ">
+        <div class="mt-3 ">
+            <span class="tab active" onclick="showContent('trongnuoc', this)">
+                Du lịch trong nước
+            </span>
+            
+
+            <span class="tab" onclick="showContent('nuocngoai', this)">
+                Du lịch nước ngoài
+            </span>
+        </div>
+         <!-- NỘI DUNG -->
+        <div id="trongnuoc" class="content mt-4">
+            <h4>Tour trong nước</h4>
+           
+
+        </div>
+
+        <div id="nuocngoai" class="content mt-4" style="display:none;">
+            <h4>Tour nước ngoài</h4>
+            <p>Hàn Quốc, Nhật Bản, Thái Lan...</p>
+        </div>
+
+
+
+    </section>
+
+
+
+    </div>
+    
+   
+
+
+
+
+
+
+
+
+
+
+    <script src="../../BackEnd/js/bootstrap.js"></script>
+    <script src="../../BackEnd/js/TourDuLich.js"></script>
+</body>
+
+</html>
