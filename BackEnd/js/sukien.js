@@ -1,106 +1,157 @@
-document.getElementById("formdk").addEventListener("submit", function (e) {
-    e.preventDefault();
+$(document).ready(function () {
+    $("#HoTen").blur(function () {
+        let ten = $(this).val().trim();
 
-    let check = true;
+        if (ten == "") {
+            $("#LoiDoHoTen").text("Không được rỗng");
+        }
+        else if (!/^([A-ZÀ-Ỹ][a-zà-ỹ]+(\s[A-ZÀ-Ỹ][a-zà-ỹ]+)+)$/.test(ten)) {
+            $("#LoiDoHoTen").text("Viết hoa đầu mỗi từ, ít nhất 2 từ");
+        }
+        else {
+            $("#LoiDoHoTen").text("");
+        }
+    });
 
-    let HoTen = document.getElementById("HoTen").value.trim();
-    if (!/^([A-ZÀ-Ỹ][a-zà-ỹ]+(\s[A-ZÀ-Ỹ][a-zà-ỹ]+)*)$/.test(HoTen)) {
-        document.getElementById("LoiDoHoTen").innerText = "Viết hoa đầu mỗi từ";
-        check = false;
-    } else {
-        document.getElementById("LoiDoHoTen").innerText = "";
-    }
 
-    let dtEmail = document.getElementById("dtEmail").value.trim();
-    let sdt = /^0\d{9}$/;
-    let gmail = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+    $("#dtEmail").blur(function () {
+        let val = $(this).val().trim();
 
-    if (!(sdt.test(dtEmail) || gmail.test(dtEmail))) {
-        document.getElementById("LoiDodtEmail")
-            .innerText = "Nhập SĐT (10 số bắt đầu từ 0) hoặc (Gmail dạng abc@gmail.com)";
-        check = false;
-    } else {
-        document.getElementById("LoiDodtEmail").innerText = "";
-    }
+        let sdt = /^0\d{9}$/;
+        let gmail = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
 
-    let gioitinh = document.querySelector('input[name="gioitinh"]:checked');
-    if (!gioitinh) {
-        document.getElementById("LoiDogioitinh").innerText = "Phải chọn giới tính";
-        check = false;
-    } else {
-        document.getElementById("LoiDogioitinh").innerText = "";
-    }
+        if (val == "") {
+            $("#LoiDodtEmail").text("Không được rỗng");
+        }
+        else if (!(sdt.test(val) || gmail.test(val))) {
+            $("#LoiDodtEmail").text("Sai SĐT hoặc Gmail");
+        }
+        else {
+            $("#LoiDodtEmail").text("");
+        }
+    });
 
-    let ngaySinh = document.getElementById("Tuoi").value;
-    if (ngaySinh === "") {
-        document.getElementById("LoiDoTuoi").innerText = "Chọn ngày sinh";
-        check = false;
-    } else {
+
+    $("input[name='gioitinh']").change(function () {
+        $("#LoiDogioitinh").text("");
+    });
+
+
+    $("#Tuoi").blur(function () {
+        let ns = $(this).val();
+
+        if (ns == "") {
+            $("#LoiDoTuoi").text("Không được rỗng");
+            return;
+        }
+
         let today = new Date();
-        let birth = new Date(ngaySinh);
+        let birth = new Date(ns);
+
         let age = today.getFullYear() - birth.getFullYear();
+        let m = today.getMonth() - birth.getMonth();
+
+        if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) {
+            age--;
+        }
+
+        if (age < 16) {
+            $("#LoiDoTuoi").text("Phải trên 16 tuổi");
+        }
+        else {
+            $("#LoiDoTuoi").text("");
+        }
+    });
+
+
+    $("#mk").blur(function () {
+        let mk = $(this).val();
+
+        if (mk == "") {
+            $("#LoiDomk").text("Không được rỗng");
+        }
+        else if (!/[A-Z]/.test(mk)) {
+            $("#LoiDomk").text("Phải có ít nhất 1 chữ hoa");
+        }
+        else {
+            $("#LoiDomk").text("");
+        }
+    });
+
+
+    $("#NLmk").blur(function () {
+        let mk = $("#mk").val();
+        let nlmk = $(this).val();
+
+        if (nlmk == "") {
+            $("#LoiDoNLmk").text("Không được rỗng");
+        }
+        else if (mk !== nlmk) {
+            $("#LoiDoNLmk").text("Mật khẩu không khớp");
+        }
+        else {
+            $("#LoiDoNLmk").text("");
+        }
+    });
+
+
+    $("#formdk").submit(function (e) {
+        e.preventDefault();
+
+        $("#HoTen").blur();
+        $("#dtEmail").blur();
+        $("#Tuoi").blur();
+        $("#mk").blur();
+        $("#NLmk").blur();
 
         if (
-            age < 16 ||
-            (age === 16 &&
-                (today.getMonth() < birth.getMonth() ||
-                    (today.getMonth() === birth.getMonth() &&
-                        today.getDate() < birth.getDate())))
+            $("#LoiDoHoTen").text() ||
+            $("#LoiDodtEmail").text() ||
+            $("#LoiDoTuoi").text() ||
+            $("#LoiDomk").text() ||
+            $("#LoiDoNLmk").text()
         ) {
-            document.getElementById("LoiDoTuoi").innerText = "Phải trên 16 tuổi";
-            check = false;
-        } else {
-            document.getElementById("LoiDoTuoi").innerText = "";
+            alert("Còn lỗi!");
+            return;
         }
-    }
 
-    let mk = document.getElementById("mk").value;
-    if (!/[A-Z]/.test(mk)) {
-        document.getElementById("LoiDomk").innerText = "Phải có ít nhất 1 chữ hoa";
-        check = false;
-    } else {
-        document.getElementById("LoiDomk").innerText = "";
-    }
+        // check radio
+        if (!$("input[name='gioitinh']:checked").val()) {
+            $("#LoiDogioitinh").text("Chọn giới tính");
+            return;
+        }
 
-    let nlmk = document.getElementById("NLmk").value;
-    if (mk !== nlmk) {
-        document.getElementById("LoiDoNLmk").innerText = "Mật khẩu không khớp";
-        check = false;
-    } else {
-        document.getElementById("LoiDoNLmk").innerText = "";
-    }
-
-    if (check) {
-        alert("Đăng ký thành công ");
+        alert("Đăng ký thành công");
         this.submit();
-    }
+    });
 });
 
-document.getElementById("formdn").addEventListener("submit", function (e) {
+$("#formdn").submit(function (e) {
     e.preventDefault();
 
     let check = true;
 
-    let dtEmaildn = document.getElementById("dtEmaildn").value.trim();
+    let dtEmaildn = $("#dtEmaildn").val().trim();
     let sdt = /^0\d{9}$/;
     let gmail = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
 
     if (!(sdt.test(dtEmaildn) || gmail.test(dtEmaildn))) {
-        document.getElementById("LoiDotkDN")
-            .innerText = "Email hoặc số điện thoại không đúng";
+        $("#LoiDotkDN").text("Email hoặc SĐT không đúng");
         check = false;
     } else {
-        document.getElementById("LoiDotkDN").innerText = "";
+        $("#LoiDotkDN").text("");
     }
-    let mk = document.getElementById("mkdn").value;
+
+    let mk = $("#mkdn").val();
     if (!/[A-Z]/.test(mk)) {
-        document.getElementById("LoiDomkDN").innerText = "Mật khẩu không chính xác";
+        $("#LoiDomkDN").text("Mật khẩu không chính xác");
         check = false;
     } else {
-        document.getElementById("LoiDomkDN").innerText = "";
+        $("#LoiDomkDN").text("");
     }
+
     if (check) {
-        alert("Đăng nhập thành công ");
+        alert("Đăng nhập thành công");
         this.submit();
     }
 });
