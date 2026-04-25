@@ -87,7 +87,7 @@ const ketQua = tuKhoa
 const container = document.getElementById("ket-qua");
 
 if (ketQua.length === 0) {
-    container.innerHTML = `<p class="text-center text-muted mt-4">Không tìm thấy tour nào phù hợp 😢</p>`;
+    container.innerHTML = `<p class="text-center text-muted mt-4">Không tìm thấy tour nào phù hợp </p>`;
 } else {
     ketQua.forEach(tour => {
         container.innerHTML += `
