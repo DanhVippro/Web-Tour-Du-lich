@@ -1,5 +1,20 @@
 //-----------lay du lieu tu localstorage-
 let userLocal = JSON.parse(localStorage.getItem("users")) || [];
+//--tk admin--
+const adminExists = userLocal.some(u => u.userEmail === "admin@gmail.com");
+if (!adminExists) {
+    userLocal.push({
+        userId: 0,
+        userName: "Admin",
+        userSDT: "0900000000",
+        userEmail: "admin@gmail.com",
+        userGioiTinh: "Nam",
+        userNgaySinh: "2000-01-01",
+        userPwd: "Admin123",
+        isAdmin: true
+    });
+    localStorage.setItem("users", JSON.stringify(userLocal));
+}
 
 //-------------
 $(document).ready(function () {
@@ -144,15 +159,17 @@ $(document).ready(function () {
 
         if (findUser) {
             $("#alertLogin").hide();
-
-            // Đóng modal đăng nhập
             let modalLog = bootstrap.Modal.getInstance(document.getElementById('modalLog'));
             if (modalLog) modalLog.hide();
-
-            // Hiện success overlay, sau đó chuyển trang
-            showSuccess("Đăng nhập thành công!", "Chào mừng " + findUser.userName, 1800, function () {
-                window.location.href = "trangChu.html";
-            });
+            if (findUser.isAdmin) {
+                showSuccess("Đăng nhập Admin!", "Đang vào trang quản trị...", 1800, function () {
+                    window.location.href = "../html/manager/manager.html";
+                });
+            } else {
+                showSuccess("Đăng nhập thành công!", "Chào mừng " + findUser.userName, 1800, function () {
+                    window.location.href = "trangChu.html";
+                });
+            }
         } else {
             $("#alertLogin").css("display", "block");
         }
