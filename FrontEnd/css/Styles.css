@@ -8,6 +8,8 @@ body {
     margin: 0;
     padding: 0;
     padding-top: 80px;
+    overflow-x: hidden;
+
 }
 
 
@@ -126,7 +128,9 @@ body {
 .header2 {
     min-height: 600px;
     width: 100%;
-    background-image: url(../../data/img/img-header2/hoi-an.pg.webp);
+    position: relative;
+    overflow: hidden;
+    background-image: none;
     background-position: center;
     display: flex;
     flex-direction: column;
@@ -134,7 +138,27 @@ body {
     background-size: cover;
 }
 
+.bg-layer {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 1s ease-in-out;
+}
+
+.layer1 {
+    opacity: 1;
+    z-index: 0;
+}
+
+.layer2 {
+    opacity: 0;
+    z-index: 1;
+}
+
 .header2 .text-header2 {
+    position: relative;
+    z-index: 2;
     color: rgb(255, 255, 255);
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
     text-align: center;
@@ -193,10 +217,88 @@ section {
     margin: 0;
 }
 
+.diem-den-pho-bien {
+    padding: 40px 0;
+    background: linear-gradient(135deg, #c2e9fb, #a1c4fd);
+}
+
+.diem-den-pho-bien h2 {
+    color: #3665a1;
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.diem-den-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    height: 200px;
+    cursor: pointer;
+}
+
+.diem-den-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.diem-den-item:hover img {
+    transform: scale(1.1);
+}
+
+.diem-den-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+}
+
+.diem-den-overlay h4 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.btn-kham-pha {
+    background-color: #e4723a;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.diem-den-item:hover .btn-kham-pha {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.btn-kham-pha:hover {
+    background-color: #c45f2e;
+}
+
 .list-tour-gr {
     height: auto;
     min-height: 800px;
-    background-color: rgb(156, 198, 231);
+    background: linear-gradient(135deg, #89f7fe, #66a6ff);
     margin: 0;
 }
 
