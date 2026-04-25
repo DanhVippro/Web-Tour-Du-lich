@@ -29,16 +29,16 @@
             <ul>
                 <li><a href="../html/trangChu.html">Trang chủ</a></li>
                 <li><a href="../html/GioiThieu.html">Giới Thiệu</a></li>
-                <li><a href="../html/TourDuLich.html">Tour du lịch</a></li>
-                <li><a href="../html/DichVu.html">Dịch vụ</a></li>
-                <li><a href="../html/CamHungDuLich.html">Cảm hứng du lịch</a></li>
-                <li><a href="../html/HoTro.html">Hỗ trợ</a></li>
+                <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">Tour du lịch</a></li>
+                <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">Dịch vụ</a></li>
+                <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">Cảm hứng du lịch</a></li>
+                <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">Hỗ trợ</a></li>
             </ul>
         </div>
         <!-- Login Logo -->
         <div class="logo-login">
-            <a href="#" data-bs-toggle="modal" data-bs-target="#modaldk"> <img src="../../data/img/logo-login.png"
-                    alt="login" height="50px"></a>
+
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalLog">Đăng nhập</button>
         </div>
     </header>
 
@@ -352,6 +352,48 @@
         </div>
     </footer>
     <!-- Modal Body -->
+    <!-- dangNhap -->
+    <div class="modal fade" id="modalLog" tabindex="-1" data-bs-keyboard="false" role="dialog"
+        aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered modal-bg" role="document">
+            <div class="modal-content">
+                <div class="modal-header  ">
+                    <h5 class="text-center  w-100">
+                        ĐĂNG NHẬP
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="" id="formdn">
+                    <div class="modal-body">
+
+                        <div class="mb-3">
+                            <label for="" class="form-label">Số điện thoại / Email</label>
+                            <input type="dtEmaildn" class="form-control" name="dtEmaildn" id="dtEmaildn"
+                                aria-describedby="helpId" placeholder="" />
+                            <small id="LoiDotkDN" class="text-danger"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Nhập mật khẩu</label>
+                            <input type="password" class="form-control" name="mkdn" id="mkdn" aria-describedby="helpId"
+                                placeholder="" />
+                            <small id="LoiDomkDN" class="text-danger"></small>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="log">
+                            <span>Tôi chưa có tài khoản <a href="#" class=" text-dn" data-bs-toggle="modal"
+                                    data-bs-target="#modaldk">Đăng kí</a></span>
+                        </div>
+                        <div class="btnlogDN">
+                            <button type="button" class="btn btn-back" data-bs-dismiss="modal">TRỞ LẠI</button>
+                            <button type="submit" class="btn btn-DANGKI">ĐĂNG NHẬP</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
     <!--dangki-->>
     <div class="modal fade" id="modaldk" tabindex="-1" data-bs-keyboard="false" role="dialog"
         aria-labelledby="modalTitleId" aria-hidden="true">
@@ -373,10 +415,16 @@
                             <small id="LoiDoHoTen" class="text-danger"></small>
                         </div>
                         <div class="mb-3">
-                            <label for="" class="form-label">Số điện thoại / Email</label>
+                            <label for="" class="form-label">Số điện thoại</label>
+                            <input type="dtSDT" class="form-control" name="dtSDT" id="dtSDT" aria-describedby="helpId"
+                                placeholder="" />
+                            <small id="LoiSDT" class="text-danger"></small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Email</label>
                             <input type="dtEmail" class="form-control" name="dtEmail" id="dtEmail"
                                 aria-describedby="helpId" placeholder="" />
-                            <small id="LoiDodtEmail" class="text-danger"></small>
+                            <small id="LoiEmail" class="text-danger"></small>
                         </div>
                         <div class="mb-3">
                             <div><label class="form-label">Giới tính</label></div>
@@ -413,7 +461,6 @@
                                     data-bs-target="#modalLog">Đăng nhập</a></span>
                         </div>
                         <div class="btnlog">
-                            <button type="button" class="btn btn-back" data-bs-dismiss="modal">TRỞ LẠI</button>
                             <button type="submit" class="btn btn-DANGKI">ĐĂNG KÍ</button>
                         </div>
                     </div>
@@ -421,44 +468,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="modalLog" tabindex="-1" data-bs-keyboard="false" role="dialog"
-        aria-labelledby="modalTitleId" aria-hidden="true">
-        <div class="modal-dialog  modal-dialog-centered modal-bg" role="document">
-            <div class="modal-content">
-                <div class="modal-header  ">
-                    <h5 class="text-center  w-100">
-                        ĐĂNG NHẬP
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="" id="formdn">
-                    <div class="modal-body">
 
-                        <div class="mb-3">
-                            <label for="" class="form-label">Số điện thoại / Email</label>
-                            <input type="dtEmaildn" class="form-control" name="dtEmaildn" id="dtEmaildn"
-                                aria-describedby="helpId" placeholder="" />
-                            <small id="LoiDotkDN" class="text-danger"></small>
-                        </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label">Nhập mật khẩu</label>
-                            <input type="password" class="form-control" name="mkdn" id="mkdn" aria-describedby="helpId"
-                                placeholder="" />
-                            <small id="LoiDomkDN" class="text-danger"></small>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="btnlogDN">
-                            <button class="btn btn-back" data-bs-toggle="modal" data-bs-target="#modaldk"
-                                data-bs-dismiss="modal">TRỞ LẠI</button>
-                            <button type="submit" class="btn btn-DANGKI">ĐĂNG NHẬP</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-        </div>
-    </div>
     <script src="../../BackEnd/js/jquery-4.0.0.min.js"></script>
     <script src="../../BackEnd/js/bootstrap.bundle.min.js"></script>
     <script src="../../BackEnd/js/main.js"></script>

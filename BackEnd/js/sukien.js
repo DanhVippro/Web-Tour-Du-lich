@@ -14,22 +14,37 @@ $(document).ready(function () {
     });
 
 
-    $("#dtEmail").blur(function () {
+    $("#dtSDT").blur(function () {
         let val = $(this).val().trim();
 
         let sdt = /^0\d{9}$/;
+
+        if (val == "") {
+            $("#LoiSDT").text("Không được rỗng");
+        }
+        else if (!(sdt.test(val))) {
+            $("#LoiSDT").text("SDT không đúng định dạng");
+        }
+        else {
+            $("#LoiSDT").text("");
+        }
+    });
+    $("#dtEmail").blur(function () {
+        let val = $(this).val().trim();
+
         let gmail = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
 
         if (val == "") {
-            $("#LoiDodtEmail").text("Không được rỗng");
+            $("#LoiEmail").text("Không được rỗng");
         }
-        else if (!(sdt.test(val) || gmail.test(val))) {
-            $("#LoiDodtEmail").text("Sai SĐT hoặc Gmail");
+        else if (!(gmail.test(val))) {
+            $("#LoiEmail").text("Gmail không đúng định dạng");
         }
         else {
-            $("#LoiDodtEmail").text("");
+            $("#LoiEmail").text("");
         }
     });
+
 
 
     $("input[name='gioitinh']").change(function () {
