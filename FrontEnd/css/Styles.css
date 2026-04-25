@@ -126,15 +126,28 @@ body {
 .header2 {
     min-height: 600px;
     width: 100%;
-    background-image: url(../../data/img/img-header2/hoi-an.pg.webp);
+    position: relative;    
+    overflow: hidden;        
+    background-image: none;    
     background-position: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     background-size: cover;
 }
+.bg-layer {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 1s ease-in-out;
+}
 
+.layer1 { opacity: 1; z-index: 0; }
+.layer2 { opacity: 0; z-index: 1; }
 .header2 .text-header2 {
+    position: relative;
+    z-index: 2;     
     color: rgb(255, 255, 255);
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
     text-align: center;
