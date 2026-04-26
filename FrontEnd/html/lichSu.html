@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ</title>
+    <link rel="stylesheet" href="../css/MinhStyle.css">
+    <link rel="stylesheet" href="../css/headerChung.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+
+</head>
+
+<body>
+    <div style="background-color: rgb(241, 241, 223);">
+
+
+        <header class="header1">
+            <div class="logo-header1">
+                <a href="../html/trangChu.html">
+                    <img src="../../data/img/Logo.png" alt="Logo">
+                </a>
+            </div>
+            <div class="Search-header1">
+                <form action="../html/TimKiem.html" method="GET" class="form-place">
+                    <input type="text" name="q" placeholder=" Tìm kiếm điểm đến yêu thích">
+                    <button type="submit">&#8981;</button>
+                </form>
+            </div>
+            <div class="menu-header1">
+
+                <ul>
+                    <li><a href="../html/trangChu.html">Trang chủ</a></li>
+                    <li><a href="../html/GioiThieu.html">Giới Thiệu</a></li>
+                    <li><a href="../html/TourDuLich.html">Tour du lịch</a></li>
+                    <li><a href="../html/DichVu.html">Dịch vụ</a></li>
+                    <li><a href="../html/CamHungDuLich.html">Cảm hứng du lịch</a></li>
+                    <li><a href="../html/HoTro.html">Hỗ trợ</a></li>
+                </ul>
+            </div>
+            <!-- Login Logo -->
+            <div class="logo-login">
+                <a href="#"> <img src="../../data/img/logo-login.png" alt="login" height="50px"></a>
+            </div>
+        </header>
+        <div class="container">
+            <h4 class="text-center title fw-bold"> Lịch sử các tour du lịch đã đặt</h4>
+            <div class="tour-card ">
+                <div class="d-flex align-items-center">
+                    <img src="../../data/img/dalat.jpg" class="tour-img me-3">
+                    <div>
+                        <h4 class="fw-bold tittle">Tour Đà Lạt 3 ngày 2 đêm</h4> <br>
+                        <p> Mã tour: #t01</p>
+                        <p class="mb-1 ">&#128197; 20/04/2026</p>
+                        <p class="mb-0  text-danger">&#128176; 2.500.000đ</p>
+                    </div>
+                </div>
+                <button type="button" class="status-btn "> Sắp khởi hành </button>
+            </div>
+
+            <div class="tour-card">
+                <div class="d-flex align-items-center">
+                    <img src="../../data/img/tourPQ.jpg" class="tour-img me-3">
+                    <div>
+                        <h4 class="fw-bold tittle">Tour Phú Quốc 1 ngày 2 đêm</h4> <br>
+                        <p> Mã tour: #t02</p>
+                        <p class="mb-1 ">&#128197; 20/04/2026</p>
+                        <p class="mb-0  text-danger">&#128176; 2.500.000đ</p>
+                    </div>
+                </div>
+                <button type="button" class="status-btn "> Sắp khởi hành </button>
+            </div>
+            <div class="tour-card">
+                <div class="d-flex align-items-center">
+                    <img src="../../data/img/tourDN.jpg" class="tour-img me-3">
+                    <div>
+                        <h4 class="fw-bold tittle">Tour Đà Nẵng 4 ngày 3 đêm</h4> <br>
+                        <p> Mã tour: #t03</p>
+                        <p class="mb-1 ">&#128197; 20/04/2026</p>
+                        <p class="mb-0  text-danger">&#128176; 2.500.000đ</p>
+                    </div>
+                </div>
+                <button type="button" class="status-btn "> Đã hoàn thành </button>
+            </div>
+            <div class="tour-card">
+                <div class="d-flex align-items-center">
+                    <img src="../../data/img/tourHL.jpg" class="tour-img me-3">
+                    <div>
+                        <h4 class="fw-bold tittle">Tour Hạ Long 5 ngày 4 đêm</h4> <br>
+                        <p> Ma tour: #t04</p>
+                        <p class="mb-1 ">&#128197; 20/04/2026</p>
+                        <p class="mb-0  text-danger">&#128176; 2.500.000đ</p>
+                    </div>
+                </div>
+                <button type="button" class="status-btn "> Sắp khởi hành </button>
+
+            </div>
+
+
+        </div>
+        <div class="back">
+
+            <button type="button" class="back-btn ">Quay lại</button>
+
+        </div>
+
+        <script src="../../BackEnd/javaScript/main.js"></script>
+        <script src="../BackEnd/js/tinhtrangtour.js"></script>
+    </div>
+</body>
+
+</html>
