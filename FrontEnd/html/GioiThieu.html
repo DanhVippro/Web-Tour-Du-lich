@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/GioiThieu.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/headerChung.css">
-    <link rel="stylesheet" href="../../FrontEnd/css/bootstrap.min.css">
     <title>Giơi Thiệu</title>
 </head>
 
 <body>
+    <!-- header1 -->
     <header class="header1">
         <div class="logo-header1">
             <a href="../html/trangChu.html">
@@ -34,10 +35,33 @@
             </ul>
         </div>
         <!-- Login Logo -->
-        <div class="logo-login">
-            <a href="#"> <img src="../../data/img/logo-login.png" alt="login" height="50px"></a>
+        <div class="logo-login" style="position: relative; display: inline-block;">
+            <a href="#" id="avatar-btn" onclick="toggleMenu(event)">
+                <img src="../../data/img/logo-login.png" alt="login" height="50px"
+                    style="border-radius: 50%; cursor: pointer;">
+            </a>
+
+            <div id="user-menu" class="user-menu">
+                <a href="#thong-tin" onclick="closeMenu()" data-bs-toggle="modal" data-bs-target="#modalUser"
+                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #333; text-decoration: none; font-size: 14px; transition: background 0.15s;">
+                    <span style="font-size: 16px;">👤</span> Thông
+                    tin
+                    cá nhân
+                </a>
+                <div style="height: 1px; background: #f0f0f0; margin: 0 12px;"></div>
+                <a href="../html/lichSu.html" onclick="closeMenu()"
+                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #333; text-decoration: none; font-size: 14px; transition: background 0.15s;">
+                    <span style="font-size: 16px;">🗓️</span> Lịch sử đặt tour
+                </a>
+                <div style="height: 1px; background: #f0f0f0; margin: 0 12px;"></div>
+                <a href="../html/Login.html" onclick="closeMenu()"
+                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #e53935; text-decoration: none; font-size: 14px; transition: background 0.15s;">
+                    <span style="font-size: 16px;">🚪</span> Đăng xuất
+                </a>
+            </div>
         </div>
     </header>
+
     <!--  -->
     <div class="container"></div>
     <div class="section1">
@@ -217,7 +241,85 @@
                     </div>
                 </footer>
             </div>
-            <script src="../../BackEnd/javaScript/ThoiGieu.js"></script>
+        </div>
+    </footer>
+    <!-- modal user -->
+    <div class="modal fade" id="modalUser" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+        role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleId">
+                        Thông tin khách hàng
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="profile-card">
+
+                        <!-- Avatar -->
+                        <div class="profile-avatar-col">
+                            <div class="avt-wrap">
+                                <img id="avt-img" src="../../data/img/logo-login.png" alt="avatar" class="avt-img">
+                                <div class="avt-edit-btn" onclick="document.getElementById('avt-input').click()"
+                                    title="Đổi ảnh">
+                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="#fff">
+                                        <path
+                                            d="M3 17.25V21h3.75l11.06-11.06-3.75-3.75L3 17.25zm17.71-10.21a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="file" id="avt-input" accept="image/*" style="display:none">
+                            <p class="avt-caption">Ảnh đại diện<br><small>Nhấn biểu tượng để đổi</small></p>
+                        </div>
+
+                        <!-- Info -->
+                        <div class="profile-info-col">
+                            <h5 class="profile-title">Thông tin cá nhân</h5>
+                            <div class="row">
+                                <div class="col-6 mb-3">
+                                    <label class="field-label">Họ và tên</label>
+                                    <div class="i4box">Nguyễn Duy Minh</div>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <label class="field-label">Email</label>
+                                    <div class="i4box">minh@gmail.com</div>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <label class="field-label">Số điện thoại</label>
+                                    <div class="i4box">0123456789</div>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <label class="field-label">Căn cước công dân</label>
+                                    <div class="i4box">064123456789</div>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <label class="field-label">Ngày sinh</label>
+                                    <div class="i4box">01/01/2001</div>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <label class="field-label">Giới tính</label>
+                                    <div class="i4box">Nam</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="color:#fff">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-success" style="color:#fff">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../BackEnd/js/jquery-4.0.0.min.js"></script>
+    <script src="../../BackEnd/js/bootstrap.bundle.min.js"></script>
+    <script src="../../BackEnd/js/chonUser.js"></script>
+
 </body>
 
 </html>

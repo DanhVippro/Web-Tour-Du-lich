@@ -5,9 +5,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang chủ</title>
-    <link rel="stylesheet" href="../../FrontEnd/css/bootstrap.css">
+    <link rel="stylesheet" href="../../FrontEnd/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../FrontEnd/css/Styles.css">
     <link rel="stylesheet" href="../../FrontEnd/css/modal.css">
+    <style>
+        html {
+            overflow-y: scroll;
+            /* scrollbar luôn hiện → Bootstrap đo được width = 0 */
+        }
+
+        body,
+        body.modal-open {
+            padding-right: 0 !important;
+            overflow-x: hidden !important;
+            margin-right: 0 !important;
+        }
+
+        .modal-open .modal {
+            padding-right: 0 !important;
+        }
+
+        #user-menu a:hover {
+            background: #f5f5f5;
+        }
+
+        .user-menu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.13);
+            min-width: 200px;
+            z-index: 999;
+            overflow: hidden;
+        }
+
+        .profile-card {
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+        }
+
+        .profile-avatar-col {
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .avt-wrap {
+            position: relative;
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 8px;
+        }
+
+        .avt-img {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ddd;
+            display: block;
+        }
+
+        .avt-edit-btn {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #378ADD;
+            border: 2px solid #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avt-caption {
+            font-size: 12px;
+            color: #888;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .avt-caption small {
+            font-size: 11px;
+            color: #aaa;
+        }
+
+        .profile-info-col {
+            flex: 1;
+        }
+
+        .profile-title {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .field-label {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .btn-save {
+            margin-top: 8px;
+            width: 100%;
+            padding: 10px;
+            background: #378ADD;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .btn-save:hover {
+            background: #185FA5;
+        }
+    </style>
 </head>
 
 <body>
@@ -35,8 +158,30 @@
             </ul>
         </div>
         <!-- Login Logo -->
-        <div class="logo-login">
-            <a href="#"> <img src="../../data/img/logo-login.png" alt="login" height="50px"></a>
+        <div class="logo-login" style="position: relative; display: inline-block;">
+            <a href="#" id="avatar-btn" onclick="toggleMenu(event)">
+                <img src="../../data/img/logo-login.png" alt="login" height="50px"
+                    style="border-radius: 50%; cursor: pointer;">
+            </a>
+
+            <div id="user-menu" class="user-menu">
+                <a href="#thong-tin" onclick="closeMenu()" data-bs-toggle="modal" data-bs-target="#modalUser"
+                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #333; text-decoration: none; font-size: 14px; transition: background 0.15s;">
+                    <span style="font-size: 16px;">👤</span> Thông
+                    tin
+                    cá nhân
+                </a>
+                <div style="height: 1px; background: #f0f0f0; margin: 0 12px;"></div>
+                <a href="../html/lichSu.html" onclick="closeMenu()"
+                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #333; text-decoration: none; font-size: 14px; transition: background 0.15s;">
+                    <span style="font-size: 16px;">🗓️</span> Lịch sử đặt tour
+                </a>
+                <div style="height: 1px; background: #f0f0f0; margin: 0 12px;"></div>
+                <a href="../html/Login.html" onclick="closeMenu()"
+                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #e53935; text-decoration: none; font-size: 14px; transition: background 0.15s;">
+                    <span style="font-size: 16px;">🚪</span> Đăng xuất
+                </a>
+            </div>
         </div>
     </header>
 
@@ -446,10 +591,83 @@
             <p>&copy; Bản quyền thuộc về 5 anh trai C2</p>
 
         </div>
-    </footer>
-    <script src="../../BackEnd/js/jquery-4.0.0.min.js"></script>
-    <script src="../../BackEnd/js/bootstrap.bundle.min.js"></script>
-    <script src="../../BackEnd/js/main.js"></script>
+        <!-- modal user -->
+        <div class="modal fade" id="modalUser" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+            role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+            <div class="modal-dialog  modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitleId">
+                            Thông tin khách hàng
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="profile-card">
+
+                            <!-- Avatar -->
+                            <div class="profile-avatar-col">
+                                <div class="avt-wrap">
+                                    <img id="avt-img" src="../../data/img/logo-login.png" alt="avatar" class="avt-img">
+                                    <div class="avt-edit-btn" onclick="document.getElementById('avt-input').click()"
+                                        title="Đổi ảnh">
+                                        <svg viewBox="0 0 24 24" width="13" height="13" fill="#fff">
+                                            <path
+                                                d="M3 17.25V21h3.75l11.06-11.06-3.75-3.75L3 17.25zm17.71-10.21a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <input type="file" id="avt-input" accept="image/*" style="display:none">
+                                <p class="avt-caption">Ảnh đại diện<br><small>Nhấn biểu tượng để đổi</small></p>
+                            </div>
+
+                            <!-- Info -->
+                            <div class="profile-info-col">
+                                <h5 class="profile-title">Thông tin cá nhân</h5>
+                                <div class="row">
+                                    <div class="col-6 mb-3">
+                                        <label class="field-label">Họ và tên</label>
+                                        <div class="i4box">Nguyễn Duy Minh</div>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label class="field-label">Email</label>
+                                        <div class="i4box">minh@gmail.com</div>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label class="field-label">Số điện thoại</label>
+                                        <div class="i4box">0123456789</div>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label class="field-label">Căn cước công dân</label>
+                                        <div class="i4box">064123456789</div>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label class="field-label">Ngày sinh</label>
+                                        <div class="i4box">01/01/2001</div>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label class="field-label">Giới tính</label>
+                                        <div class="i4box">Nam</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="color:#fff">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-success" style="color:#fff">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="../../BackEnd/js/jquery-4.0.0.min.js"></script>
+        <script src="../../BackEnd/js/bootstrap.bundle.min.js"></script>
+        <script src="../../BackEnd/js/main.js"></script>
+        <script src="../../BackEnd/js/chonUser.js"></script>
 
 </body>
 

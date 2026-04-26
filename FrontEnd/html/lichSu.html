@@ -12,100 +12,194 @@
 </head>
 
 <body>
-    <div style="background-color: rgb(241, 241, 223);">
+    <!-- header1 -->
+    <header class="header1">
+        <div class="logo-header1">
+            <a href="../html/trangChu.html">
+                <img src="../../data/img/Logo.png" alt="Logo">
+            </a>
+        </div>
+        <div class="Search-header1">
+            <form action="../html/TimKiem.html" method="GET" class="form-place">
+                <input type="text" name="q" placeholder=" Tìm kiếm điểm đến yêu thích">
+                <button type="submit">&#8981;</button>
+            </form>
+        </div>
+        <div class="menu-header1">
 
+            <ul>
+                <li><a href="../html/trangChu.html">Trang chủ</a></li>
+                <li><a href="../html/GioiThieu.html">Giới Thiệu</a></li>
+                <li><a href="../html/Khampha.html">Khám phá</a></li>
+                <li><a href="../html/Dattour.html">Đặt tour</a></li>
+                <li><a href="../html/HoTro.html">Hỗ trợ</a></li>
+            </ul>
+        </div>
+        <!-- Login Logo -->
+        <div class="logo-login" style="position: relative; display: inline-block;">
+            <a href="#" id="avatar-btn" onclick="toggleMenu(event)">
+                <img src="../../data/img/logo-login.png" alt="login" height="50px"
+                    style="border-radius: 50%; cursor: pointer;">
+            </a>
 
-        <header class="header1">
-            <div class="logo-header1">
-                <a href="../html/trangChu.html">
-                    <img src="../../data/img/Logo.png" alt="Logo">
+            <div id="user-menu" class="user-menu">
+                <a href="#thong-tin" onclick="closeMenu()" data-bs-toggle="modal" data-bs-target="#modalUser"
+                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #333; text-decoration: none; font-size: 14px; transition: background 0.15s;">
+                    <span style="font-size: 16px;">👤</span> Thông
+                    tin
+                    cá nhân
+                </a>
+                <div style="height: 1px; background: #f0f0f0; margin: 0 12px;"></div>
+                <a href="../html/lichSu.html" onclick="closeMenu()"
+                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #333; text-decoration: none; font-size: 14px; transition: background 0.15s;">
+                    <span style="font-size: 16px;">🗓️</span> Lịch sử đặt tour
+                </a>
+                <div style="height: 1px; background: #f0f0f0; margin: 0 12px;"></div>
+                <a href="../html/Login.html" onclick="closeMenu()"
+                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #e53935; text-decoration: none; font-size: 14px; transition: background 0.15s;">
+                    <span style="font-size: 16px;">🚪</span> Đăng xuất
                 </a>
             </div>
-            <div class="Search-header1">
-                <form action="../html/TimKiem.html" method="GET" class="form-place">
-                    <input type="text" name="q" placeholder=" Tìm kiếm điểm đến yêu thích">
-                    <button type="submit">&#8981;</button>
-                </form>
-            </div>
-            <div class="menu-header1">
+        </div>
+    </header>
 
-                <ul>
-                    <li><a href="../html/trangChu.html">Trang chủ</a></li>
-                    <li><a href="../html/GioiThieu.html">Giới Thiệu</a></li>
-                    <li><a href="../html/TourDuLich.html">Tour du lịch</a></li>
-                    <li><a href="../html/DichVu.html">Dịch vụ</a></li>
-                    <li><a href="../html/CamHungDuLich.html">Cảm hứng du lịch</a></li>
-                    <li><a href="../html/HoTro.html">Hỗ trợ</a></li>
-                </ul>
-            </div>
-            <!-- Login Logo -->
-            <div class="logo-login">
-                <a href="#"> <img src="../../data/img/logo-login.png" alt="login" height="50px"></a>
-            </div>
-        </header>
-        <div class="container">
-            <h4 class="text-center title fw-bold"> Lịch sử các tour du lịch đã đặt</h4>
-            <div class="tour-card ">
-                <div class="d-flex align-items-center">
-                    <img src="../../data/img/dalat.jpg" class="tour-img me-3">
-                    <div>
-                        <h4 class="fw-bold tittle">Tour Đà Lạt 3 ngày 2 đêm</h4> <br>
-                        <p> Mã tour: #t01</p>
-                        <p class="mb-1 ">&#128197; 20/04/2026</p>
-                        <p class="mb-0  text-danger">&#128176; 2.500.000đ</p>
-                    </div>
+    <!-- Main content -->
+    <div class="container">
+        <h4 class="text-center title fw-bold"> Lịch sử các tour du lịch đã đặt</h4>
+        <div class="tour-card ">
+            <div class="d-flex align-items-center">
+                <img src="../../data/img/dalat.jpg" class="tour-img me-3">
+                <div>
+                    <h4 class="fw-bold tittle">Tour Đà Lạt 3 ngày 2 đêm</h4> <br>
+                    <p> Mã tour: #t01</p>
+                    <p class="mb-1 ">&#128197; 20/04/2026</p>
+                    <p class="mb-0  text-danger">&#128176; 2.500.000đ</p>
                 </div>
-                <button type="button" class="status-btn "> Sắp khởi hành </button>
             </div>
+            <button type="button" class="status-btn "> Sắp khởi hành </button>
+        </div>
 
-            <div class="tour-card">
-                <div class="d-flex align-items-center">
-                    <img src="../../data/img/tourPQ.jpg" class="tour-img me-3">
-                    <div>
-                        <h4 class="fw-bold tittle">Tour Phú Quốc 1 ngày 2 đêm</h4> <br>
-                        <p> Mã tour: #t02</p>
-                        <p class="mb-1 ">&#128197; 20/04/2026</p>
-                        <p class="mb-0  text-danger">&#128176; 2.500.000đ</p>
-                    </div>
+        <div class="tour-card">
+            <div class="d-flex align-items-center">
+                <img src="../../data/img/tourPQ.jpg" class="tour-img me-3">
+                <div>
+                    <h4 class="fw-bold tittle">Tour Phú Quốc 1 ngày 2 đêm</h4> <br>
+                    <p> Mã tour: #t02</p>
+                    <p class="mb-1 ">&#128197; 20/04/2026</p>
+                    <p class="mb-0  text-danger">&#128176; 2.500.000đ</p>
                 </div>
-                <button type="button" class="status-btn "> Sắp khởi hành </button>
             </div>
-            <div class="tour-card">
-                <div class="d-flex align-items-center">
-                    <img src="../../data/img/tourDN.jpg" class="tour-img me-3">
-                    <div>
-                        <h4 class="fw-bold tittle">Tour Đà Nẵng 4 ngày 3 đêm</h4> <br>
-                        <p> Mã tour: #t03</p>
-                        <p class="mb-1 ">&#128197; 20/04/2026</p>
-                        <p class="mb-0  text-danger">&#128176; 2.500.000đ</p>
-                    </div>
+            <button type="button" class="status-btn "> Sắp khởi hành </button>
+        </div>
+        <div class="tour-card">
+            <div class="d-flex align-items-center">
+                <img src="../../data/img/tourDN.jpg" class="tour-img me-3">
+                <div>
+                    <h4 class="fw-bold tittle">Tour Đà Nẵng 4 ngày 3 đêm</h4> <br>
+                    <p> Mã tour: #t03</p>
+                    <p class="mb-1 ">&#128197; 20/04/2026</p>
+                    <p class="mb-0  text-danger">&#128176; 2.500.000đ</p>
                 </div>
-                <button type="button" class="status-btn "> Đã hoàn thành </button>
             </div>
-            <div class="tour-card">
-                <div class="d-flex align-items-center">
-                    <img src="../../data/img/tourHL.jpg" class="tour-img me-3">
-                    <div>
-                        <h4 class="fw-bold tittle">Tour Hạ Long 5 ngày 4 đêm</h4> <br>
-                        <p> Ma tour: #t04</p>
-                        <p class="mb-1 ">&#128197; 20/04/2026</p>
-                        <p class="mb-0  text-danger">&#128176; 2.500.000đ</p>
-                    </div>
+            <button type="button" class="status-btn "> Đã hoàn thành </button>
+        </div>
+        <div class="tour-card">
+            <div class="d-flex align-items-center">
+                <img src="../../data/img/tourHL.jpg" class="tour-img me-3">
+                <div>
+                    <h4 class="fw-bold tittle">Tour Hạ Long 5 ngày 4 đêm</h4> <br>
+                    <p> Ma tour: #t04</p>
+                    <p class="mb-1 ">&#128197; 20/04/2026</p>
+                    <p class="mb-0  text-danger">&#128176; 2.500.000đ</p>
                 </div>
-                <button type="button" class="status-btn "> Sắp khởi hành </button>
-
             </div>
-
+            <button type="button" class="status-btn "> Sắp khởi hành </button>
 
         </div>
+
+
         <div class="back">
 
             <button type="button" class="back-btn ">Quay lại</button>
 
         </div>
+        <!-- modal user -->
+        <div class="modal fade" id="modalUser" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+            role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+            <div class="modal-dialog  modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitleId">
+                            Thông tin khách hàng
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="profile-card">
+
+                            <!-- Avatar -->
+                            <div class="profile-avatar-col">
+                                <div class="avt-wrap">
+                                    <img id="avt-img" src="../../data/img/logo-login.png" alt="avatar" class="avt-img">
+                                    <div class="avt-edit-btn" onclick="document.getElementById('avt-input').click()"
+                                        title="Đổi ảnh">
+                                        <svg viewBox="0 0 24 24" width="13" height="13" fill="#fff">
+                                            <path
+                                                d="M3 17.25V21h3.75l11.06-11.06-3.75-3.75L3 17.25zm17.71-10.21a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <input type="file" id="avt-input" accept="image/*" style="display:none">
+                                <p class="avt-caption">Ảnh đại diện<br><small>Nhấn biểu tượng để đổi</small></p>
+                            </div>
+
+                            <!-- Info -->
+                            <div class="profile-info-col">
+                                <h5 class="profile-title">Thông tin cá nhân</h5>
+                                <div class="row">
+                                    <div class="col-6 mb-3">
+                                        <label class="field-label">Họ và tên</label>
+                                        <div class="i4box">Nguyễn Duy Minh</div>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label class="field-label">Email</label>
+                                        <div class="i4box">minh@gmail.com</div>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label class="field-label">Số điện thoại</label>
+                                        <div class="i4box">0123456789</div>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label class="field-label">Căn cước công dân</label>
+                                        <div class="i4box">064123456789</div>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label class="field-label">Ngày sinh</label>
+                                        <div class="i4box">01/01/2001</div>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label class="field-label">Giới tính</label>
+                                        <div class="i4box">Nam</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="color:#fff">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-success" style="color:#fff">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <script src="../../BackEnd/javaScript/main.js"></script>
         <script src="../BackEnd/js/tinhtrangtour.js"></script>
+        <script src="../../BackEnd/js/chonUser.js"></script>
     </div>
 </body>
 
