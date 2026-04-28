@@ -8,10 +8,166 @@
     <link rel="stylesheet" href="../../FrontEnd/css/bootstrap.css">
     <link rel="stylesheet" href="../../FrontEnd/css/Styles.css">
     <link rel="stylesheet" href="../../FrontEnd/css/modal.css">
+    <style>
+        /* Ẩn thanh scroll ngang */
+        html,
+        body {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+
+        /* Thanh scroll dọc nhỏ gọn */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(0, 0, 0, 0.45);
+        }
+
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(0, 0, 0, 0.25) transparent;
+        }
+
+        /* Chặn Bootstrap thêm padding-right vào body */
+        body,
+        body.modal-open {
+            overflow-x: hidden !important;
+            padding-right: 0 !important;
+        }
+
+        .modal,
+        .modal.fade,
+        .modal.show {
+            padding-right: 0 !important;
+            padding-left: 0 !important;
+        }
+
+        /* Scrollbar nhỏ gọn trong modal */
+        .modal-body {
+            overflow-x: hidden;
+        }
+
+        .modal-body::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .modal-body::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .modal-body::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+        }
+
+        /* ===== SUCCESS OVERLAY ===== */
+        #successOverlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.45);
+            justify-content: center;
+            align-items: center;
+        }
+
+        #successOverlay.active {
+            display: flex;
+        }
+
+        #successBox {
+            background: #fff;
+            border-radius: 16px;
+            padding: 40px 50px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+            animation: popIn 0.35s cubic-bezier(.34, 1.56, .64, 1) forwards;
+        }
+
+        /* Vòng tròn check */
+        .success-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #28a745;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            animation: scaleIn 0.4s 0.1s cubic-bezier(.34, 1.56, .64, 1) both;
+        }
+
+        .success-circle svg {
+            width: 40px;
+            height: 40px;
+            stroke: white;
+            fill: none;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .success-checkmark {
+            stroke-dasharray: 50;
+            stroke-dashoffset: 50;
+            animation: drawCheck 0.4s 0.4s ease forwards;
+        }
+
+        #successBox h5 {
+            color: #28a745;
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 4px;
+        }
+
+        #successBox p {
+            color: #666;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.7);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+            }
+
+            to {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes drawCheck {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <!-- header1 -->
     <header class="header1">
         <div class="logo-header1">
             <a href="../html/trangChu.html">
@@ -19,8 +175,8 @@
             </a>
         </div>
         <div class="Search-header1">
-            <form action="" class="form-place">
-                <input type="text" placeholder=" Tìm kiếm điểm đến yêu thích">
+            <form action="../html/TimKiem.html" method="GET" class="form-place">
+                <input type="text" name="q" placeholder=" Tìm kiếm điểm đến yêu thích">
                 <button type="submit">&#8981;</button>
             </form>
         </div>
@@ -29,9 +185,8 @@
             <ul>
                 <li><a href="../html/trangChu.html">Trang chủ</a></li>
                 <li><a href="../html/GioiThieu.html">Giới Thiệu</a></li>
-                <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">Tour du lịch</a></li>
-                <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">Dịch vụ</a></li>
-                <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">Cảm hứng du lịch</a></li>
+                <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">Khám phá</a></li>
+                <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">Đặt tour</a></li>
                 <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">Hỗ trợ</a></li>
             </ul>
         </div>
@@ -42,7 +197,10 @@
         </div>
     </header>
 
+
     <header class="header2">
+        <div class="bg-layer layer1"></div>
+        <div class="bg-layer layer2"></div>
         <div class="text-header2">
             <h1 class="text-h1-header2">BẠN ĐANG MUỐN ĐI ĐÂU?</h1>
             <h2>Hãy để CheapTour tư vấn cho bạn chuyến đi tuyệt vời nhất! </h2>
@@ -370,13 +528,14 @@
                             <label for="" class="form-label">Số điện thoại / Email</label>
                             <input type="dtEmaildn" class="form-control" name="dtEmaildn" id="dtEmaildn"
                                 aria-describedby="helpId" placeholder="" />
-                            <small id="LoiDotkDN" class="text-danger"></small>
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Nhập mật khẩu</label>
                             <input type="password" class="form-control" name="mkdn" id="mkdn" aria-describedby="helpId"
                                 placeholder="" />
-                            <small id="LoiDomkDN" class="text-danger"></small>
+                        </div>
+                        <div style="display: none;" id="alertLogin" class="alert alert-danger" role="alert">
+                            Email hoặc mật khẩu không chính xác
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -394,7 +553,7 @@
 
         </div>
     </div>
-    <!--dangki-->>
+    <!--dangki-->
     <div class="modal fade" id="modaldk" tabindex="-1" data-bs-keyboard="false" role="dialog"
         aria-labelledby="modalTitleId" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-bg" role="document">
@@ -472,8 +631,56 @@
     <script src="../../BackEnd/js/jquery-4.0.0.min.js"></script>
     <script src="../../BackEnd/js/bootstrap.bundle.min.js"></script>
     <script src="../../BackEnd/js/main.js"></script>
-    <script src="../../BackEnd/js/sukien.js"></script>
+    <script src="../../BackEnd/js/login.js"></script>
 
+    <!-- SUCCESS OVERLAY: nằm ngoài mọi modal, đè lên toàn màn hình -->
+    <div id="successOverlay">
+        <div id="successBox">
+            <div class="success-circle">
+                <svg viewBox="0 0 52 52">
+                    <polyline class="success-checkmark" points="14,27 22,36 38,18" />
+                </svg>
+            </div>
+            <h5 id="successTitle">Thành công!</h5>
+            <p id="successMsg">Đang chuyển hướng...</p>
+        </div>
+    </div>
+
+    <script>
+        // Hiện success overlay đè lên màn hình
+        function showSuccess(title, msg, duration, callback) {
+            $("#successTitle").text(title || "Thành công!");
+            $("#successMsg").text(msg || "");
+
+            // Reset animation bằng cách clone lại phần tử
+            var old = document.querySelector(".success-checkmark");
+            var clone = old.cloneNode(true);
+            old.parentNode.replaceChild(clone, old);
+
+            $("#successOverlay").addClass("active");
+
+            setTimeout(function () {
+                $("#successOverlay").removeClass("active");
+                if (callback) callback();
+            }, duration || 1800);
+        }
+
+        // Fix lệch màn hình Bootstrap modal
+        const observer = new MutationObserver(function () {
+            document.body.style.paddingRight = '0px';
+            document.body.style.overflowX = 'hidden';
+        });
+        observer.observe(document.body, { attributes: true, attributeFilter: ['style', 'class'] });
+
+        document.querySelectorAll('.modal').forEach(function (modal) {
+            ['show.bs.modal', 'shown.bs.modal', 'hide.bs.modal', 'hidden.bs.modal'].forEach(function (evt) {
+                modal.addEventListener(evt, function () {
+                    document.body.style.paddingRight = '0px';
+                    document.body.style.overflowX = 'hidden';
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

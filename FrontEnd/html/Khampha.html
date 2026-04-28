@@ -2,19 +2,20 @@
 <html lang="en" data-bs-theme="light">
 
 <head>
-    <title>Title</title>
+    <title>TourDuLich</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Bootstrap CSS v5.3.8 -->
+    <link rel="stylesheet" href="../css/TourDuLich.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/headerChung.css">
-
 </head>
 
 <body>
-    <!-- header1 ko đc xóa-->
+
+    <!-- header1 -->
     <header class="header1">
         <div class="logo-header1">
             <a href="../html/trangChu.html">
@@ -64,15 +65,40 @@
             </div>
         </div>
     </header>
+    <!-- Main content -->
+    <div class="container">
+        <section class="hd2 ">
+            <div class="mt-3 ">
+                <span class="tab active" onclick="showContent('trongnuoc', this)">
+                    Du lịch trong nước
+                </span>
 
-    <!-- main content -->
+
+                <span class="tab" onclick="showContent('nuocngoai', this)">
+                    Du lịch nước ngoài
+                </span>
+            </div>
+            <!-- NỘI DUNG -->
+            <div id="trongnuoc" class="content mt-4">
+                <h4>Tour trong nước</h4>
+
+
+            </div>
+
+            <div id="nuocngoai" class="content mt-4" style="display:none;">
+                <h4>Tour nước ngoài</h4>
+                <p>Hàn Quốc, Nhật Bản, Thái Lan...</p>
+            </div>
 
 
 
+        </section>
 
 
 
-    <!-- modal user ko đc xóa -->
+    </div>
+
+    <!-- modal user -->
     <div class="modal fade" id="modalUser" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
         role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
         <div class="modal-dialog  modal-dialog-centered modal-lg" role="document">
@@ -144,8 +170,9 @@
             </div>
         </div>
     </div>
-    <script src="../../BackEnd/js/jquery-4.0.0.min.js"></script>
-    <script src="../../BackEnd/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../../BackEnd/js/bootstrap.js"></script>
+    <script src="../../BackEnd/js/TourDuLich.js"></script>
     <script src="../../BackEnd/js/chonUser.js"></script>
 </body>
 
