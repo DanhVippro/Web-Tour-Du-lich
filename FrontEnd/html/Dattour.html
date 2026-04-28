@@ -2,7 +2,7 @@
 <html lang="en" data-bs-theme="light">
 
 <head>
-    <title>Title</title>
+    <title>Đặt Tour</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,6 +11,27 @@
 
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/headerChung.css">
+
+    
+<style>
+    .box-form{
+        background:#b9d9df;
+    }
+    .btn-book{
+        background:#f4d24d;
+        border:none;
+        border-radius:20px;
+        padding:10px 35px;
+    }
+    .btn-book:hover{
+        background:#e9c538;
+    }
+    .info-tour{
+        min-height:300px;
+        background:#f8f8f8;
+        border-radius:10px;
+    }
+</style>
 
 <body>
     <!-- header1 -->
@@ -66,6 +87,86 @@
 
 
     <!-- Main content -->
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="box-form p-4 rounded">
+                <div class="row g-4">
+                    <!-- Bên trái -->
+                    <div class="col-md-5">
+                        <div class="mb-3">
+                            <label class="form-label">Họ và tên</label>
+                            <input type="text" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Số điện thoại</label>
+                            <input type="text" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Ngày bắt đầu</label>
+                            <input type="date" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Loại Tour</label>
+                            <select class="form-select">
+                                <option>Chọn tour</option>
+                                <option>Tour Đà Lạt</option>
+                                <option>Tour Phú Quốc</option>
+                                <option>Tour Đà Nẵng</option>
+                            </select>
+                        </div>
+                        <!-- checkbox + số vé -->
+                        <div class="d-flex align-items-center gap-4 mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="treem">
+                                <label class="form-check-label" for="treem">
+                                    Có trẻ em
+                                </label>
+                            </div>
+
+                            <div class="d-flex align-items-center gap-2">
+                                <label>Số vé</label>
+                                <button class="btn btn-light border" onclick="giamVe()">-</button>
+                                <input type="text" value="1" id="soVe" class="form-control text-center" style="width:60px;">
+                                <button class="btn btn-light border" onclick="tangVe()">+</button>
+                            </div>
+
+                        </div>
+                        <p class="text-dark "
+                        style="font-style:italic; font-size: 17px;"
+                        >
+                            Lưu ý: Trẻ em trên 10 tuổi phải mua vé riêng
+                        </p>
+                    </div>
+                    <!-- Bên phải -->
+                    <div class="col-md-7 d-flex flex-column"
+                   
+                    >
+                        <div class="info-tour d-flex mb-4" 
+                        style="height: 400px; position: relative; top: 30px;">
+                            <span>Thông tin Loại Tour</span>
+                        </div>
+                        <div class="text-end mt-auto">
+                            <button class="btn btn-book">
+                                Đặt tour
+                            </button>
+                    </div>
+                 </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
     <!--  -->
 
     <!-- modal user -->
@@ -143,6 +244,22 @@
     <script src="../../BackEnd/js/jquery-4.0.0.min.js"></script>
     <script src="../../BackEnd/js/bootstrap.bundle.min.js"></script>
     <script src="../../BackEnd/js/chonUser.js"></script>
+    <script>
+function tangVe(){
+    let soVe = document.getElementById("soVe");
+    let value = parseInt(soVe.value);
+    soVe.value = value + 1;
+}
+
+function giamVe(){
+    let soVe = document.getElementById("soVe");
+    let value = parseInt(soVe.value);
+
+    if(value > 1){
+        soVe.value = value - 1;
+    }
+}
+</script>
 </body>
 
 </html>
