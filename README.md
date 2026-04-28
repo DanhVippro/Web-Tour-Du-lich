@@ -28,7 +28,7 @@ Website phù hợp cho các công ty du lịch muốn quảng bá dịch vụ v�
 ## 🛠️ Công nghệ sử dụng
 
 - HTML5
-- CSS3
+- CSS
 - Bootstrap 5
 - JavaScript
 - jQuery
