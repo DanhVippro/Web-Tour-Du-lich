@@ -217,6 +217,17 @@ section {
     margin: 0;
 }
 
+.baner {
+    background: linear-gradient(135deg, #eafeff, #e4e8ef);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    filter: invert(1);
+    /* đổi trắng → đen */
+}
+
+
 .diem-den-pho-bien {
     padding: 40px 0;
     background: linear-gradient(135deg, #c2e9fb, #a1c4fd);
@@ -298,7 +309,7 @@ section {
 .list-tour-gr {
     height: auto;
     min-height: 800px;
-    background: linear-gradient(135deg, #89f7fe, #66a6ff);
+    background: linear-gradient(135deg, #eafeff, #e4e8ef);
     margin: 0;
 }
 
@@ -417,7 +428,7 @@ section {
 footer {
     height: auto;
     min-height: 730px;
-    background-color: rgb(112, 148, 161);
+    background: linear-gradient(135deg, #92e1e5, #686b70);
 }
 
 .text-footer {
