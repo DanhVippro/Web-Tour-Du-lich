@@ -10,7 +10,14 @@
     <link rel="stylesheet" href="../css/bootstrap.css">
 
 </head>
-
+<style>
+.btn-sapdi  {
+    background: #f4d24d; 
+}
+.btn-xong   { 
+    background: #28a745; color: white; 
+    }
+</style>
 <body>
     <!-- header1 -->
     <header class="header1">
@@ -65,7 +72,7 @@
 
     <!-- Main content -->
     <div class="container">
-        <h4 class="text-center title fw-bold"> Lịch sử các tour du lịch đã đặt</h4>
+        <!-- <h4 class="text-center title fw-bold"> Lịch sử các tour du lịch đã đặt</h4>
         <div class="tour-card ">
             <div class="d-flex align-items-center">
                 <img src="../../data/img/dalat.jpg" class="tour-img me-3">
@@ -115,14 +122,21 @@
             </div>
             <button type="button" class="status-btn "> Sắp khởi hành </button>
 
-        </div>
+        </div> -->
+<!-- Test thử lưu lịch sử đặt tour  -->
+  <h4 class="text-center title fw-bold">Lịch sử các tour du lịch đã đặt</h4>
+    
+    <div id="booking-list"></div>
 
+    <div class="back">
+        <button type="button" class="back-btn" onclick="history.back()">Quay lại</button>
+    </div>
 
-        <div class="back">
+        <!-- <div class="back">
 
             <button type="button" class="back-btn ">Quay lại</button>
 
-        </div>
+        </div> hjsdchds -->
         <!-- modal user -->
         <div class="modal fade" id="modalUser" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
             role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
@@ -201,6 +215,57 @@
         <script src="../BackEnd/js/tinhtrangtour.js"></script>
         <script src="../../BackEnd/js/chonUser.js"></script>
     </div>
+    <script>
+    const bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
+    const list = document.getElementById("booking-list");
+
+    if (bookings.length === 0) {
+        list.innerHTML = `
+            <div class="text-center py-5 text-muted">
+                <p style="font-size:18px">😕 Bạn chưa đặt tour nào!</p>
+                <a href="../html/Dattour.html" class="btn btn-primary">Đặt tour ngay</a>
+            </div>`;
+    } else {
+        bookings.reverse().forEach(bk => {
+            // Xác định trạng thái
+            const today = new Date().toISOString().split("T")[0];
+            let trangThai = "";
+            let btnClass = "status-btn";
+
+            if (bk.departureDate > today) {
+                trangThai = "⏳ Sắp khởi hành";
+                btnClass += " btn-sapdi";
+            } else {
+                trangThai = "✅ Đã hoàn thành";
+                btnClass += " btn-xong";
+            }
+
+            list.innerHTML += `
+                <div class="tour-card">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <h4 class="fw-bold tittle">${bk.tourName}</h4><br>
+                            <p>Mã đặt: #${bk.id}</p>
+                            <p class="mb-1">📅 Khởi hành: ${formatDate(bk.departureDate)}</p>
+                            <p class="mb-1">🎟 Số vé: ${bk.adultTickets} người lớn${bk.childTickets ? " + " + bk.childTickets + " trẻ em" : ""}</p>
+                            <p class="mb-0 text-danger">💰 Tổng tiền: ${formatPrice(bk.totalPrice)}</p>
+                        </div>
+                    </div>
+                    <button type="button" class="${btnClass}">${trangThai}</button>
+                </div>`;
+        });
+    }
+
+    function formatDate(dateStr) {
+        const [y, m, d] = dateStr.split("-");
+        return `${d}/${m}/${y}`;
+    }
+
+    function formatPrice(price) {
+        return price.toLocaleString("vi-VN") + " đ";
+    }
+</script>
 </body>
+
 
 </html>
