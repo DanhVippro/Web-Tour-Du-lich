@@ -14,7 +14,10 @@
       "transport": "Ô tô + tàu",
       "description": "Khám phá đảo ngọc Phú Quốc với những bãi biển đẹp nhất, tham quan nhà tù Phú Quốc, vườn quốc gia, chợ đêm...",
       "guide": "Trần Thành Danh",
-      "images": ["phuquoc1.jpg", "phuquoc2.jpg"],
+      "images": [
+        "phuquoc1.jpg",
+        "phuquoc2.jpg"
+      ],
       "status": "open",
       "route": "Từ TP.HCM, 5 Tỉnh Miền Tây"
     },
@@ -32,7 +35,10 @@
       "transport": "Xe giường nằm",
       "description": "Thành phố ngàn hoa với những địa điểm nổi tiếng: Hồ Xuân Hương, Dinh Bảo Đại, Thung lũng Tình Yêu...",
       "guide": "Trần Quốc Tây",
-      "images": ["dalat1.jpg", "dalat2.jpg"],
+      "images": [
+        "dalat1.jpg",
+        "dalat2.jpg"
+      ],
       "status": "open",
       "route": "TP.HCM - Đà Lạt - TP.HCM"
     },
@@ -50,7 +56,9 @@
       "transport": "Máy bay + ô tô",
       "description": "Khám phá thị trấn sương mờ SaPa, leo núi Fansipan, thăm bản Cát Cát...",
       "guide": "Trương Chánh Tân",
-      "images": ["sapa1.jpg"],
+      "images": [
+        "sapa1.jpg"
+      ],
       "status": "full",
       "route": "Từ TP.HCM, 5 tỉnh Miền Bắc"
     },
@@ -68,7 +76,10 @@
       "transport": "Xe du lịch",
       "description": "Khám phá thành phố đáng sống nhất Việt Nam: Bà Nà Hills, phố cổ Hội An, kinh thành Huế...",
       "guide": "Nguyễn Duy Minh",
-      "images": ["danang1.jpg", "danang2.jpg"],
+      "images": [
+        "danang1.jpg",
+        "danang2.jpg"
+      ],
       "status": "open",
       "route": "Đà Nẵng - Huế - Hội An - Đà Nẵng"
     },
@@ -86,7 +97,9 @@
       "transport": "Ô tô + tàu",
       "description": "Tận hưởng kỳ nghỉ biển tại Nha Trang, tham quan Vinpearl Land, Tháp Bà Ponagar...",
       "guide": "Trần Thành Danh",
-      "images": ["nhatrang1.jpg"],
+      "images": [
+        "nhatrang1.jpg"
+      ],
       "status": "open",
       "route": "Từ Đà Nẵng, 3 Tỉnh Miền Trung"
     },
@@ -104,7 +117,9 @@
       "transport": "Máy Bay + Tàu",
       "description": "Khám phá đất nước tỷ dân với Vạn Lý Trường Thành, Tử Cấm Thành...",
       "guide": "Trần Quốc Tây",
-      "images": ["china1.jpg"],
+      "images": [
+        "china1.jpg"
+      ],
       "status": "open",
       "route": "Huế - Quảng Đông - Vân Nam - Tứ Xuyên"
     },
@@ -122,7 +137,10 @@
       "transport": "Tàu + Máy Bay",
       "description": "Khám phá Seoul, Busan, Incheon - thưởng thức ẩm thực Hàn Quốc, tham quan cung điện Gyeongbok...",
       "guide": "Trương Chánh Tân",
-      "images": ["korea1.jpg", "korea2.jpg"],
+      "images": [
+        "korea1.jpg",
+        "korea2.jpg"
+      ],
       "status": "open",
       "route": "TP.HCM - Seoul - Busan - Incheon"
     }
@@ -182,12 +200,47 @@
     }
   ],
   "destinations": [
-    { "id": "phuquoc", "name": "Phú Quốc", "country": "Việt Nam", "category": "trongnuoc" },
-    { "id": "dalat", "name": "Đà Lạt", "country": "Việt Nam", "category": "trongnuoc" },
-    { "id": "sapa", "name": "SaPa", "country": "Việt Nam", "category": "trongnuoc" },
-    { "id": "danang", "name": "Đà Nẵng", "country": "Việt Nam", "category": "trongnuoc" },
-    { "id": "nhatrang", "name": "Nha Trang", "country": "Việt Nam", "category": "trongnuoc" },
-    { "id": "hanquoc", "name": "Hàn Quốc", "country": "Hàn Quốc", "category": "nuocngoai" },
-    { "id": "trungquoc", "name": "Trung Quốc", "country": "Trung Quốc", "category": "nuocngoai" }
+    {
+      "id": "phuquoc",
+      "name": "Phú Quốc",
+      "country": "Việt Nam",
+      "category": "trongnuoc"
+    },
+    {
+      "id": "dalat",
+      "name": "Đà Lạt",
+      "country": "Việt Nam",
+      "category": "trongnuoc"
+    },
+    {
+      "id": "sapa",
+      "name": "SaPa",
+      "country": "Việt Nam",
+      "category": "trongnuoc"
+    },
+    {
+      "id": "danang",
+      "name": "Đà Nẵng",
+      "country": "Việt Nam",
+      "category": "trongnuoc"
+    },
+    {
+      "id": "nhatrang",
+      "name": "Nha Trang",
+      "country": "Việt Nam",
+      "category": "trongnuoc"
+    },
+    {
+      "id": "hanquoc",
+      "name": "Hàn Quốc",
+      "country": "Hàn Quốc",
+      "category": "nuocngoai"
+    },
+    {
+      "id": "trungquoc",
+      "name": "Trung Quốc",
+      "country": "Trung Quốc",
+      "category": "nuocngoai"
+    }
   ]
 }

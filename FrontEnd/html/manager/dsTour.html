@@ -8,6 +8,7 @@
     <link href="/FrontEnd/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/FrontEnd/css/manager/manager.css">
+    <link rel="stylesheet" href="/FrontEnd/css/manager/sidebar-account.css">
     <style>
         .tour-table th {
             color: #4a1a7a;
@@ -56,33 +57,32 @@
         <div class="row">
 
             <!-- ===== SIDEBAR ===== -->
-            <div class="col sidebar">
-                <div class="img-wraper"><a href="/FrontEnd/html/manager/manager.html"><img src="/data/img/Logo.png"
-                            alt=""></a>
+            <div class="col sidebar" style="position:relative">
+                <div class="img-wraper">
+                    <a href="/FrontEnd/html/manager/manager.html">
+                        <img src="/data/img/Logo.png" alt="Logo">
+                    </a>
                 </div>
                 <nav>
                     <ul>
                         <li>
                             <a href="#" class="menu-link" data-bs-toggle="modal" data-bs-target="#khachHangModal">
-                                <i class="bi bi-calendar"></i>
+                                <i class="bi bi-people"></i>
                                 <span>Khách hàng</span>
                             </a>
                         </li>
-
                         <li>
                             <a href="#" class="menu-link" data-bs-toggle="modal" data-bs-target="#lichTrinhModal">
                                 <i class="bi bi-clock"></i>
                                 <span>Lịch trình</span>
                             </a>
                         </li>
-
                         <li>
                             <a href="#" class="menu-link" data-bs-toggle="modal" data-bs-target="#phanTichModal">
                                 <i class="bi bi-graph-up"></i>
                                 <span>Phân tích</span>
                             </a>
                         </li>
-
                         <li>
                             <a href="#" class="menu-link" data-bs-toggle="modal" data-bs-target="#messageModal">
                                 <i class="bi bi-chat"></i>
@@ -91,13 +91,33 @@
                         </li>
                     </ul>
                 </nav>
-                <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#tourModal" onclick="openAdd()">+
-                    Add new Tour</button>
-                <div class="account">
-                    <div><img src="/data/img/logo-login.png" alt=""></div>
-                    <div class="nameAccount">
-                        <p class="name">John Doe</p>
-                        <p class="role">Manager</p>
+
+                <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#tourModal" onclick="openAdd()">
+                    <i class="bi bi-plus-lg me-1"></i>Add new Tour
+                </button>
+
+                <!-- Account + Popup — ngay dưới nút Add Tour -->
+                <div style="position:relative; padding: 10px 8px 0;">
+                    <!-- Popup bật lên phía trên -->
+                    <div id="accountPopup">
+                        <img id="popupAvatar" src="/data/img/logo-login.png" alt="avatar" class="popup-avatar">
+                        <div class="popup-name" id="popupName">Admin</div>
+                        <span class="popup-role-badge" id="popupRole">Quản trị viên</span>
+                        <div class="popup-info">
+                            <span><i class="bi bi-envelope"></i><span id="popupEmail">—</span></span>
+                            <span><i class="bi bi-telephone"></i><span id="popupPhone">—</span></span>
+                        </div>
+                        <button class="btn-logout" onclick="logout()">
+                            <i class="bi bi-box-arrow-right"></i> Đăng xuất
+                        </button>
+                    </div>
+                    <!-- Trigger -->
+                    <div id="accountTrigger" class="account">
+                        <img id="sidebarAvatar" src="/data/img/logo-login.png" alt="avatar">
+                        <div class="nameAccount">
+                            <p class="name" id="sidebarName">Admin</p>
+                            <p class="role" id="sidebarRole">Manager</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -434,7 +454,8 @@
     </div>
 
     <script src="/BackEnd/js/bootstrap.bundle.min.js"></script>
-    <script src="/BackEnd/js/manager/dsManager.js"></script>
+    <script src="/BackEnd/js/manager/dsTour.js"></script>
+    <script src="/BackEnd/js/manager/sidebar.js"></script>
 </body>
 
 </html>

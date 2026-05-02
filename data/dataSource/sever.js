@@ -12,11 +12,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Đọc database
-let db = JSON.parse(fs.readFileSync('./BackEnd/db.json', 'utf8'));
+let db = JSON.parse(fs.readFileSync('./db.json', 'utf8'));
 
 // Hàm lưu database
 function saveDB() {
-    fs.writeFileSync('./BackEnd/db.json', JSON.stringify(db, null, 2));
+    fs.writeFileSync('./db.json', JSON.stringify(db, null, 2));
 }
 
 // ==================== TOUR APIs ====================
@@ -37,7 +37,7 @@ app.get('/api/tours/:id', (req, res) => {
 
 // Lấy tour theo địa điểm
 app.get('/api/tours/destination/:name', (req, res) => {
-    const tours = db.tours.filter(t => 
+    const tours = db.tours.filter(t =>
         t.destination.toLowerCase().includes(req.params.name.toLowerCase())
     );
     res.json(tours);
@@ -54,12 +54,44 @@ app.get('/api/tours/category/:category', (req, res) => {
 // Tìm kiếm tour
 app.get('/api/tours/search/:keyword', (req, res) => {
     const keyword = req.params.keyword.toLowerCase();
-    const tours = db.tours.filter(t => 
-        t.name.toLowerCase().includes(keyword) || 
+    const tours = db.tours.filter(t =>
+        t.name.toLowerCase().includes(keyword) ||
         t.destination.toLowerCase().includes(keyword) ||
         t.location.toLowerCase().includes(keyword)
     );
     res.json(tours);
+});
+// cac tinh năng của manager
+// Thêm tour mới
+app.post('/api/tours', (req, res) => {
+    const newTour = { ...req.body };
+    db.tours.push(newTour);
+    saveDB();
+    res.status(201).json(newTour);
+});
+
+// Cập nhật tour
+app.put('/api/tours/:id', (req, res) => {
+    const index = db.tours.findIndex(t => t.id === req.params.id);
+    if (index !== -1) {
+        db.tours[index] = { ...db.tours[index], ...req.body };
+        saveDB();
+        res.json(db.tours[index]);
+    } else {
+        res.status(404).json({ error: 'Tour not found' });
+    }
+});
+
+// Xóa tour
+app.delete('/api/tours/:id', (req, res) => {
+    const index = db.tours.findIndex(t => t.id === req.params.id);
+    if (index !== -1) {
+        db.tours.splice(index, 1);
+        saveDB();
+        res.status(204).send();
+    } else {
+        res.status(404).json({ error: 'Tour not found' });
+    }
 });
 
 // ==================== BOOKING APIs ====================
@@ -86,9 +118,9 @@ app.post('/api/bookings', (req, res) => {
         bookingDate: new Date().toISOString().split('T')[0],
         status: 'pending'
     };
-    
+
     db.bookings.push(newBooking);
-    
+
     // Cập nhật số lượng đặt chỗ của tour
     const tour = db.tours.find(t => t.id === newBooking.tourId);
     if (tour) {
@@ -97,7 +129,7 @@ app.post('/api/bookings', (req, res) => {
             tour.status = 'full';
         }
     }
-    
+
     saveDB();
     res.status(201).json(newBooking);
 });
@@ -139,12 +171,12 @@ app.get('/api/users', (req, res) => {
 // Đăng ký
 app.post('/api/register', (req, res) => {
     const { fullname, email, phone, password, gender, birthday } = req.body;
-    
+
     const existingUser = db.users.find(u => u.email === email || u.phone === phone);
     if (existingUser) {
         return res.status(400).json({ error: 'Email hoặc số điện thoại đã tồn tại' });
     }
-    
+
     const newUser = {
         id: db.users.length + 1,
         fullname,
@@ -155,10 +187,10 @@ app.post('/api/register', (req, res) => {
         birthday,
         role: 'user'
     };
-    
+
     db.users.push(newUser);
     saveDB();
-    
+
     const { password: _, ...userWithoutPass } = newUser;
     res.status(201).json(userWithoutPass);
 });
@@ -166,11 +198,11 @@ app.post('/api/register', (req, res) => {
 // Đăng nhập
 app.post('/api/login', (req, res) => {
     const { username, password } = req.body;
-    
-    const user = db.users.find(u => 
+
+    const user = db.users.find(u =>
         (u.email === username || u.phone === username) && u.password === password
     );
-    
+
     if (user) {
         const { password: _, ...userWithoutPass } = user;
         res.json({ success: true, user: userWithoutPass });
@@ -183,7 +215,7 @@ app.post('/api/login', (req, res) => {
 app.put('/api/users/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const index = db.users.findIndex(u => u.id === id);
-    
+
     if (index !== -1) {
         db.users[index] = { ...db.users[index], ...req.body };
         saveDB();
@@ -210,10 +242,10 @@ app.get('/api/statistics', (req, res) => {
     const openTours = db.tours.filter(t => t.status === 'open').length;
     const fullTours = db.tours.filter(t => t.status === 'full').length;
     const canceledTours = db.tours.filter(t => t.status === 'cancel').length;
-    
+
     const totalBookings = db.bookings.length;
     const totalRevenue = db.bookings.reduce((sum, b) => sum + b.totalPrice, 0);
-    
+
     res.json({
         totalTours,
         openTours,
@@ -235,3 +267,4 @@ app.listen(PORT, () => {
     console.log(`   - POST /api/login`);
     console.log(`   - POST /api/register`);
 });
+
