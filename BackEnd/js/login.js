@@ -158,6 +158,7 @@ $(document).ready(function () {
         );
 
         if (findUser) {
+            localStorage.setItem("currentUser", JSON.stringify(findUser));
             $("#alertLogin").hide();
             let modalLog = bootstrap.Modal.getInstance(document.getElementById('modalLog'));
             if (modalLog) modalLog.hide();
