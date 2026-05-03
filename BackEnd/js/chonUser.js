@@ -50,5 +50,26 @@ $(document).ready(function () {
             modal.addEventListener(evt, fixLayout);
         });
     });
+    function hienThiLenModal() {
+        const data = localStorage.getItem("currentUser");
+        if (data) {
+            const user = JSON.parse(data);
+            const boxes = $('#modalUser .i4box'); 
+            if (boxes.length >= 6) {
+                
+                $(boxes[0]).text(user.userName || "Chưa cập nhật");
+                $(boxes[1]).text(user.userEmail || "Chưa cập nhật");
+                $(boxes[2]).text(user.userSDT || "Chưa cập nhật");
+                $(boxes[3]).text("Chưa cập nhật"); 
+                $(boxes[4]).text(user.userNgaySinh || "Chưa cập nhật");
+                $(boxes[5]).text(user.userGioiTinh || "Chưa cập nhật");
+            }
+        }
+    }
+
+    
+    $(document).on('click', '[data-bs-target="#modalUser"]', function () {
+        hienThiLenModal();
+    });
 
 });
