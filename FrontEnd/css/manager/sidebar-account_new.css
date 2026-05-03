@@ -1,0 +1,155 @@
+/* sidebar-account.css — LIGHT SaaS version */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap');
+
+:root {
+    --sidebar-w: 240px;
+
+    --bg: #f6f8fc;
+    --bg2: #ffffff;
+
+    --surface: #ffffff;
+    --surface2: #eef2f7;
+
+    --border: #e5eaf2;
+
+    --text: #1f2937;
+    --text-muted: #6b7280;
+
+    --accent: #3b82f6;
+    /* blue */
+    --accent2: #06b6d4;
+    /* cyan */
+
+    --purple: #8b5cf6;
+    --rose: #f43f5e;
+
+    --radius: 14px;
+    --shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+.sidebar-bottom {
+    position: relative;
+}
+
+/* Popup */
+#accountPopup {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 0;
+    right: 0;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+
+    box-shadow: var(--shadow);
+
+    padding: 18px 16px 14px;
+    z-index: 99999;
+
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: opacity .22s, transform .22s;
+}
+
+#accountPopup.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Avatar */
+#accountPopup .popup-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+
+    border: 2px solid var(--accent);
+
+    display: block;
+    margin: 0 auto 10px;
+}
+
+/* Name */
+#accountPopup .popup-name {
+    text-align: center;
+    font-weight: 700;
+    font-size: 14px;
+
+    color: var(--text);
+
+    margin-bottom: 4px;
+}
+
+/* Role badge */
+#accountPopup .popup-role-badge {
+    display: block;
+    text-align: center;
+    font-size: 11px;
+
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--accent);
+
+    border-radius: 20px;
+    padding: 3px 12px;
+    margin: 0 auto 12px;
+    width: fit-content;
+
+    border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+/* Info */
+#accountPopup .popup-info {
+    font-size: 12px;
+    color: var(--text-muted);
+
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+#accountPopup .popup-info span {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+#accountPopup .popup-info i {
+    color: var(--accent);
+    width: 14px;
+    flex-shrink: 0;
+}
+
+/* Logout button */
+#accountPopup .btn-logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    width: 100%;
+    margin-top: 12px;
+    padding: 9px;
+
+    border-radius: 10px;
+    border: none;
+
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+
+    cursor: pointer;
+    transition: transform .15s, box-shadow .15s;
+}
+
+#accountPopup .btn-logout:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(220, 38, 38, 0.25);
+}
