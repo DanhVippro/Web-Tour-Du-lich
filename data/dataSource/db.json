@@ -15,8 +15,7 @@
       "description": "Khám phá đảo ngọc Phú Quốc với những bãi biển đẹp nhất, tham quan nhà tù Phú Quốc, vườn quốc gia, chợ đêm...",
       "guide": "Trần Thành Danh",
       "images": [
-        "phuquoc1.jpg",
-        "phuquoc2.jpg"
+        "phu-si-japan.jpg"
       ],
       "status": "open",
       "route": "Từ TP.HCM, 5 Tỉnh Miền Tây"
@@ -143,6 +142,38 @@
       ],
       "status": "open",
       "route": "TP.HCM - Seoul - Busan - Incheon"
+    },
+    {
+      "id": "aaaaaaaaa1777790085818",
+      "name": "Tour AAA 5N4Đ: Bằng Xe Giường Nằm",
+      "destination": "AAAAAAAAA",
+      "departureDate": "2026-05-24",
+      "currentBookings": 12,
+      "maxCapacity": 123,
+      "price": 1231441,
+      "guide": "Danh",
+      "status": "open",
+      "description": "aaa",
+      "location": "ádad",
+      "duration": "ádasd",
+      "hotel": "3 Sao",
+      "transport": "Đang cập nhật",
+      "images": [
+        "default.jpg"
+      ],
+      "route": "ádasda"
+    },
+    {
+      "id": "bbbba1777790539044",
+      "name": "BBBBBBBBB 5N4Đ: Bằng Xe Giường Nằm",
+      "destination": "BBBBA",
+      "departureDate": "2026-05-24",
+      "currentBookings": 10,
+      "maxCapacity": 12,
+      "price": 1231441,
+      "guide": "Danh",
+      "status": "open",
+      "description": "phú sĩ"
     }
   ],
   "bookings": [

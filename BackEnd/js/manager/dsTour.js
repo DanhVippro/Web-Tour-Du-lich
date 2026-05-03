@@ -7,7 +7,7 @@
 const API = 'http://localhost:3000/api';
 
 /* ─── State ─────────────────────────────────────────────── */
-let allTours   = [];   // toàn bộ tour từ server
+let allTours = [];   // toàn bộ tour từ server
 let tourToDelete = null; // lưu id khi xác nhận xóa
 
 /* ─── Khởi động ──────────────────────────────────────────── */
@@ -21,11 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
 /* ─── Load thống kê (header boxes) ──────────────────────── */
 async function loadStatistics() {
     try {
-        const res  = await fetch(`${API}/statistics`);
+        const res = await fetch(`${API}/statistics`);
         const stat = await res.json();
         setEl('statTotal', stat.totalTours);
-        setEl('statOpen',  stat.openTours);
-        setEl('statFull',  stat.fullTours);
+        setEl('statOpen', stat.openTours);
+        setEl('statFull', stat.fullTours);
     } catch (e) {
         console.error('Không lấy được thống kê:', e);
     }
@@ -35,7 +35,7 @@ async function loadStatistics() {
 async function loadTours() {
     try {
         const res = await fetch(`${API}/tours`);
-        allTours  = await res.json();
+        allTours = await res.json();
         renderTable(allTours);
     } catch (e) {
         showTableError('Không thể kết nối server. Hãy kiểm tra server.js đã chạy chưa.');
@@ -44,8 +44,8 @@ async function loadTours() {
 
 /* ─── Render bảng ────────────────────────────────────────── */
 function renderTable(tours) {
-    const tbody  = document.getElementById('tourTableBody');
-    const empty  = document.getElementById('emptyMsg');
+    const tbody = document.getElementById('tourTableBody');
+    const empty = document.getElementById('emptyMsg');
 
     tbody.innerHTML = '';
 
@@ -115,7 +115,7 @@ function bindStatusFilter() {
 
 function applyFilters() {
     const keyword = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
-    const status  = document.getElementById('status')?.value || '';
+    const status = document.getElementById('status')?.value || '';
 
     const filtered = allTours.filter(t => {
         const matchKw = !keyword ||
@@ -132,7 +132,7 @@ function applyFilters() {
 /* ─── Modal: MỞ THÊM MỚI ────────────────────────────────── */
 function openAdd() {
     document.getElementById('tourModalTitle').textContent = 'Thêm Tour Mới';
-    document.getElementById('tourId').value   = '';
+    document.getElementById('tourId').value = '';
     clearForm();
     hideFormError();
 }
@@ -143,35 +143,51 @@ async function openEdit(id) {
     hideFormError();
 
     try {
-        const res  = await fetch(`${API}/tours/${id}`);
+        const res = await fetch(`${API}/tours/${id}`, { cache: "no-store" });
         const tour = await res.json();
 
-        document.getElementById('tourId').value       = tour.id;
-        document.getElementById('fTen').value         = tour.name         || '';
-        document.getElementById('fDiaDiem').value     = tour.destination   || '';
-        document.getElementById('fNgay').value        = tour.departureDate || '';
-        document.getElementById('fSoKhach').value     = tour.currentBookings ?? 0;
-        document.getElementById('fSoKhachMax').value  = tour.maxCapacity   || '';
-        document.getElementById('fGia').value         = tour.price         || '';
-        document.getElementById('fHdv').value         = tour.guide         || '';
-        document.getElementById('fTrangThai').value   = tour.status        || 'open';
-        document.getElementById('fMoTa').value        = tour.description   || '';
+        // ===== FIELD CƠ BẢN =====
+        document.getElementById('tourId').value = tour.id;
+        document.getElementById('fTen').value = tour.name || '';
+        document.getElementById('fDiaDiem').value = tour.destination || '';
+        document.getElementById('fNgay').value = tour.departureDate || '';
 
-        // Mở modal
+        document.getElementById('fSoKhach').value = tour.currentBookings ?? 0;
+        document.getElementById('fSoKhachMax').value = tour.maxCapacity || '';
+        document.getElementById('fGia').value = tour.price || '';
+
+        document.getElementById('fHdv').value = tour.guide || '';
+        document.getElementById('fTrangThai').value = tour.status || 'open';
+        document.getElementById('fMoTa').value = tour.description || '';
+
+        // ===== FIELD BẠN THIẾU =====
+        document.getElementById('fLocation').value = tour.location || '';
+        document.getElementById('fDuration').value = tour.duration || '';
+        document.getElementById('fHotel').value = tour.hotel || '';
+        document.getElementById('fTransport').value = tour.transport || '';
+        document.getElementById('fRoute').value = tour.route || '';
+
+        // images: array → string
+        document.getElementById('fImages').value =
+            Array.isArray(tour.images) ? tour.images.join(',') : '';
+
+        // ===== MỞ MODAL =====
         new bootstrap.Modal(document.getElementById('tourModal')).show();
+
     } catch (e) {
+        console.error(e);
         alert('Không tải được thông tin tour!');
     }
 }
 
 /* ─── Lưu tour (thêm mới / cập nhật) ───────────────────── */
 async function saveTour() {
-    const id   = document.getElementById('tourId').value.trim();
+    const id = document.getElementById('tourId').value.trim();
     const name = document.getElementById('fTen').value.trim();
     const dest = document.getElementById('fDiaDiem').value.trim();
     const date = document.getElementById('fNgay').value;
-    const max  = parseInt(document.getElementById('fSoKhachMax').value) || 0;
-    const gia  = parseInt(document.getElementById('fGia').value) || 0;
+    const max = parseInt(document.getElementById('fSoKhachMax').value) || 0;
+    const gia = parseInt(document.getElementById('fGia').value) || 0;
 
     // Validate
     if (!name || !dest || !date || !max || !gia) {
@@ -180,15 +196,33 @@ async function saveTour() {
     }
 
     const payload = {
-        name:            name,
-        destination:     dest,
-        departureDate:   date,
-        currentBookings: parseInt(document.getElementById('fSoKhach').value)    || 0,
-        maxCapacity:     max,
-        price:           gia,
-        guide:           document.getElementById('fHdv').value.trim(),
-        status:          document.getElementById('fTrangThai').value,
-        description:     document.getElementById('fMoTa').value.trim(),
+        id: id || crypto.randomUUID(),
+
+        name,
+        destination: dest,
+        location: document.getElementById('fLocation').value.trim() || "Chưa cập nhật",
+
+        departureDate: date,
+        duration: document.getElementById('fDuration').value.trim() || "Chưa cập nhật",
+
+        price: gia,
+        maxCapacity: max,
+        currentBookings: parseInt(document.getElementById('fSoKhach').value) || 0,
+
+        hotel: document.getElementById('fHotel').value.trim() || "3 Sao",
+        transport: document.getElementById('fTransport').value.trim() || "Đang cập nhật",
+
+        description: document.getElementById('fMoTa').value.trim(),
+
+        guide: document.getElementById('fHdv').value.trim(),
+
+        images: document.getElementById('fImages').value
+            ? document.getElementById('fImages').value.split(',').map(i => i.trim())
+            : ["default.jpg"],
+
+        status: document.getElementById('fTrangThai').value,
+
+        route: document.getElementById('fRoute').value.trim() || "Đang cập nhật"
     };
 
     try {
@@ -196,17 +230,17 @@ async function saveTour() {
         if (id) {
             // PUT — cập nhật
             res = await fetch(`${API}/tours/${id}`, {
-                method:  'PUT',
+                method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body:    JSON.stringify(payload),
+                body: JSON.stringify(payload),
             });
         } else {
             // POST — thêm mới (tạo id từ tên)
             payload.id = dest.toLowerCase().replace(/\s+/g, '') + Date.now();
             res = await fetch(`${API}/tours`, {
-                method:  'POST',
+                method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body:    JSON.stringify(payload),
+                body: JSON.stringify(payload),
             });
         }
 
@@ -247,8 +281,8 @@ async function confirmDelete() {
 /* ─── Helpers ────────────────────────────────────────────── */
 function getStatusBadge(status) {
     const map = {
-        open:   '<span class="badge badge-open">Đang mở</span>',
-        full:   '<span class="badge badge-full">Đã đầy</span>',
+        open: '<span class="badge badge-open">Đang mở</span>',
+        full: '<span class="badge badge-full">Đã đầy</span>',
         cancel: '<span class="badge badge-cancel">Đã hủy</span>',
     };
     return map[status] || `<span class="badge bg-secondary">${status}</span>`;
@@ -280,7 +314,7 @@ function setEl(id, val) {
 }
 
 function clearForm() {
-    ['fTen','fDiaDiem','fNgay','fSoKhach','fSoKhachMax','fGia','fHdv','fMoTa'].forEach(id => {
+    ['fTen', 'fDiaDiem', 'fNgay', 'fSoKhach', 'fSoKhachMax', 'fGia', 'fHdv', 'fMoTa'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.value = '';
     });
@@ -317,34 +351,34 @@ function showToast(msg, color = 'success') {
 
 /* ─── Calendar & Date (từ dsManager.js gốc) ─────────────── */
 document.addEventListener('DOMContentLoaded', function () {
-    const days = ['Chủ Nhật','Thứ Hai','Thứ Ba','Thứ Tư','Thứ Năm','Thứ Sáu','Thứ Bảy'];
-    const now  = new Date();
-    const dayEl  = document.getElementById('dayName');
+    const days = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];
+    const now = new Date();
+    const dayEl = document.getElementById('dayName');
     const dateEl = document.getElementById('fullDate');
-    if (dayEl)  dayEl.textContent  = days[now.getDay()];
+    if (dayEl) dayEl.textContent = days[now.getDay()];
     if (dateEl) dateEl.textContent =
-        `${String(now.getDate()).padStart(2,'0')} / ${String(now.getMonth()+1).padStart(2,'0')} / ${now.getFullYear()}`;
+        `${String(now.getDate()).padStart(2, '0')} / ${String(now.getMonth() + 1).padStart(2, '0')} / ${now.getFullYear()}`;
 });
 
 let cur = new Date();
 function render() {
     const y = cur.getFullYear(), m = cur.getMonth();
     const monthYear = document.getElementById('monthYear');
-    const grid      = document.getElementById('calGrid');
+    const grid = document.getElementById('calGrid');
     if (!monthYear || !grid) return;
-    monthYear.textContent = `Tháng ${m+1} ${y}`;
+    monthYear.textContent = `Tháng ${m + 1} ${y}`;
     grid.querySelectorAll('.date-cell').forEach(e => e.remove());
-    const firstDay  = new Date(y, m, 1).getDay();
-    const totalDays = new Date(y, m+1, 0).getDate();
-    const today     = new Date();
-    for (let i = 0; i < firstDay; i++) grid.insertAdjacentHTML('beforeend','<div class="date-cell empty"></div>');
+    const firstDay = new Date(y, m, 1).getDay();
+    const totalDays = new Date(y, m + 1, 0).getDate();
+    const today = new Date();
+    for (let i = 0; i < firstDay; i++) grid.insertAdjacentHTML('beforeend', '<div class="date-cell empty"></div>');
     for (let d = 1; d <= totalDays; d++) {
         const isToday = d === today.getDate() && m === today.getMonth() && y === today.getFullYear();
         grid.insertAdjacentHTML('beforeend', `<div class="date-cell ${isToday ? 'today' : ''}">${d}</div>`);
     }
 }
-function prevMonth() { cur.setMonth(cur.getMonth()-1); render(); }
-function nextMonth() { cur.setMonth(cur.getMonth()+1); render(); }
+function prevMonth() { cur.setMonth(cur.getMonth() - 1); render(); }
+function nextMonth() { cur.setMonth(cur.getMonth() + 1); render(); }
 
 document.addEventListener('DOMContentLoaded', function () {
     const modal = document.getElementById('lichTrinhModal');
@@ -353,13 +387,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /* Chat */
 function sendMessage() {
-    const input    = document.getElementById('chatInput');
+    const input = document.getElementById('chatInput');
     const chatList = document.getElementById('chatList');
-    const text     = input?.value.trim();
+    const text = input?.value.trim();
     if (!text || !chatList) return;
     const div = document.createElement('div');
     div.className = 'p-2 border rounded mb-2 bg-primary-subtle text-end';
-    div.innerHTML = `<p class="mb-0">${text}</p><small class="text-muted">${new Date().toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'})}</small>`;
+    div.innerHTML = `<p class="mb-0">${text}</p><small class="text-muted">${new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}</small>`;
     chatList.appendChild(div);
     chatList.scrollTop = chatList.scrollHeight;
     input.value = '';

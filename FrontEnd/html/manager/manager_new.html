@@ -207,45 +207,80 @@
 
     <!-- Tour Modal -->
     <div class="modal fade" id="tourModal" tabindex="-1">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content modal-glass">
+
                 <div class="modal-header border-0">
                     <h5 class="modal-title fw-bold" id="tourModalTitle">Thêm Tour Mới</h5>
                     <button class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
+
                 <div class="modal-body">
                     <input type="hidden" id="tourId">
+
                     <div class="row g-3">
+
+                        <!-- Tên -->
                         <div class="col-12">
-                            <label class="form-label fw-semibold">Tên Tour <span class="text-danger">*</span></label>
+                            <label class="form-label fw-semibold">Tên Tour *</label>
                             <input id="fTen" class="form-control" placeholder="VD: Tour Đà Lạt 3N2Đ">
                         </div>
+
+                        <!-- Điểm đến + location -->
                         <div class="col-md-6">
-                            <label class="form-label fw-semibold">Điểm đến <span class="text-danger">*</span></label>
+                            <label class="form-label fw-semibold">Điểm đến *</label>
                             <input id="fDiaDiem" class="form-control" placeholder="VD: Đà Lạt">
                         </div>
+
                         <div class="col-md-6">
-                            <label class="form-label fw-semibold">Ngày khởi hành <span
-                                    class="text-danger">*</span></label>
-                            <input id="fNgay" class="form-control" type="date">
+                            <label class="form-label fw-semibold">Khu vực (location)</label>
+                            <input id="fLocation" class="form-control" placeholder="VD: Lâm Đồng">
                         </div>
+
+                        <!-- Ngày + duration -->
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Ngày khởi hành *</label>
+                            <input id="fNgay" type="date" class="form-control">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Thời lượng</label>
+                            <input id="fDuration" class="form-control" placeholder="VD: 3 ngày 2 đêm">
+                        </div>
+
+                        <!-- Sức chứa -->
                         <div class="col-md-4">
                             <label class="form-label fw-semibold">Khách hiện tại</label>
-                            <input id="fSoKhach" class="form-control" type="number" min="0" value="0">
+                            <input id="fSoKhach" type="number" class="form-control" min="0" value="0">
                         </div>
+
                         <div class="col-md-4">
-                            <label class="form-label fw-semibold">Sức chứa tối đa <span
-                                    class="text-danger">*</span></label>
-                            <input id="fSoKhachMax" class="form-control" type="number" min="1">
+                            <label class="form-label fw-semibold">Sức chứa tối đa *</label>
+                            <input id="fSoKhachMax" type="number" class="form-control" min="1">
                         </div>
+
                         <div class="col-md-4">
-                            <label class="form-label fw-semibold">Giá/vé (đ) <span class="text-danger">*</span></label>
-                            <input id="fGia" class="form-control" type="number" min="0">
+                            <label class="form-label fw-semibold">Giá (VNĐ) *</label>
+                            <input id="fGia" type="number" class="form-control" min="0">
                         </div>
+
+                        <!-- Hotel + transport -->
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Khách sạn</label>
+                            <input id="fHotel" class="form-control" placeholder="VD: 3 Sao">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Phương tiện</label>
+                            <input id="fTransport" class="form-control" placeholder="VD: Xe + Máy bay">
+                        </div>
+
+                        <!-- HDV + trạng thái -->
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">Hướng dẫn viên</label>
-                            <input id="fHdv" class="form-control" placeholder="Tên HDV">
+                            <input id="fHdv" class="form-control">
                         </div>
+
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">Trạng thái</label>
                             <select id="fTrangThai" class="form-select">
@@ -254,20 +289,38 @@
                                 <option value="cancel">Đã hủy</option>
                             </select>
                         </div>
+
+                        <!-- Route -->
+                        <div class="col-12">
+                            <label class="form-label fw-semibold">Lộ trình</label>
+                            <input id="fRoute" class="form-control" placeholder="VD: TP.HCM - Đà Lạt - TP.HCM">
+                        </div>
+
+                        <!-- Images -->
+                        <div class="col-12">
+                            <label class="form-label fw-semibold">Hình ảnh</label>
+                            <input id="fImages" class="form-control" placeholder="VD: a.jpg,b.jpg">
+                            <small class="text-muted">Nhập nhiều ảnh, cách nhau bằng dấu phẩy</small>
+                        </div>
+
+                        <!-- Mô tả -->
                         <div class="col-12">
                             <label class="form-label fw-semibold">Mô tả</label>
-                            <textarea id="fMoTa" class="form-control" rows="3"
-                                placeholder="Mô tả ngắn về tour..."></textarea>
+                            <textarea id="fMoTa" class="form-control" rows="3"></textarea>
                         </div>
+
                     </div>
+
                     <div id="formError" class="alert alert-danger mt-3 d-none"></div>
                 </div>
+
                 <div class="modal-footer border-0">
                     <button class="btn btn-light" data-bs-dismiss="modal">Hủy</button>
                     <button class="btn btn-primary px-4" onclick="saveTour()">
                         <i class="bi bi-floppy me-1"></i>Lưu Tour
                     </button>
                 </div>
+
             </div>
         </div>
     </div>
@@ -400,6 +453,7 @@
     <script src="/BackEnd/js/bootstrap.bundle.min.js"></script>
     <script src="/BackEnd/js/manager/manager_new.js"></script>
     <script src="/BackEnd/js/manager/sidebar.js"></script>
+
 </body>
 
 </html>
