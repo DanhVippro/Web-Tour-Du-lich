@@ -50,6 +50,8 @@ $(document).ready(function () {
             modal.addEventListener(evt, fixLayout);
         });
     });
+
+    
     function hienThiLenModal() {
         const data = localStorage.getItem("currentUser");
         if (data) {
