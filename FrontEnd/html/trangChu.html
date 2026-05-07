@@ -130,7 +130,8 @@
                     </div>
                     <div class="text1-section">
                         <h4>Đảm bảo giá tốt</h4>
-                        <p>Chúng tôi đảm bảo khách hàng sẽ đặt được dịch vụ tốt nhất, những chương trình khuyến mãi hấp dẫn nhất</p>
+                        <p>Chúng tôi đảm bảo khách hàng sẽ đặt được dịch vụ tốt nhất, những chương trình khuyến mãi hấp
+                            dẫn nhất</p>
                     </div>
                 </div>
                 <div class="uy-tin2">
@@ -148,7 +149,8 @@
                     </div>
                     <div class="text1-section">
                         <h4>Đảm bảo chất lượng</h4>
-                        <p>Chúng tôi sẽ liên kết chặt chẽ với các đối tác, khảo sát định kỳ để đảm bảo chất lượng dịch vụ tốt nhất</p>
+                        <p>Chúng tôi sẽ liên kết chặt chẽ với các đối tác, khảo sát định kỳ để đảm bảo chất lượng dịch
+                            vụ tốt nhất</p>
                     </div>
                 </div>
             </div>
@@ -200,19 +202,118 @@
         <section class="diem-den-pho-bien">
             <div class="container-fluid px-3 px-md-4">
                 <h2 class="text-center mb-4">Điểm Đến Phổ Biến</h2>
-                <div class="row g-3">
-                    <div class="col-6 col-md-3">
+
+                <!-- TAB LỌC VÙNG -->
+                <div class="diem-den-tabs">
+                    <button class="dd-tab active" onclick="locVung(this,'mien-bac')"> Miền Bắc</button>
+                    <button class="dd-tab" onclick="locVung(this,'mien-trung')">Miền Trung</button>
+                    <button class="dd-tab" onclick="locVung(this,'mien-nam')"> Miền Nam</button>
+                    <button class="dd-tab" onclick="locVung(this,'chau-a')"> Châu Á</button>
+                    <button class="dd-tab" onclick="locVung(this,'chau-au')"> Châu Âu</button>
+                </div>
+
+                <div class="row g-3" id="diemDenGrid">
+                    <!-- MIỀN BẮC -->
+                    <div class="col-6 col-md-3 dd-item" data-region="mien-bac">
                         <a href="../html/Khampha.html" class="text-decoration-none">
                             <div class="diem-den-item">
-                                <img src="../../data/img/DiemDenPhoBien/thailan.png" alt="Thái Lan">
+                                <img src="../../data/img/DiemDenPhoBien/hagiang.png" alt="Hà Giang"
+                                    onerror="this.src='../../data/img/list-tour-gr/sapa.jpg'">
                                 <div class="diem-den-overlay">
-                                    <h4>Thái Lan</h4>
+                                    <h4>Hà Giang</h4>
                                     <button class="btn-kham-pha">Khám phá</button>
                                 </div>
                             </div>
                         </a>
                     </div>
-                    <div class="col-6 col-md-3">
+                    <div class="col-6 col-md-3 dd-item" data-region="mien-bac">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/laocai.png" alt="Lào Cai"
+                                    onerror="this.src='../../data/img/list-tour-gr/sapa.jpg'">
+                                <div class="diem-den-overlay">
+                                    <h4>Lào Cai</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="mien-bac">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/sonla.png" alt="Sơn La"
+                                    onerror="this.src='../../data/img/list-tour-gr/sapa.jpg'">
+                                <div class="diem-den-overlay">
+                                    <h4>Sơn La</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="mien-bac">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/hanoi.png" alt="Hà Nội"
+                                    onerror="this.src='../../data/img/list-tour-gr/sapa.jpg'">
+                                <div class="diem-den-overlay">
+                                    <h4>Hà Nội</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="mien-bac">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/yenbai.png" alt="Yên Bái"
+                                    onerror="this.src='../../data/img/list-tour-gr/sapa.jpg'">
+                                <div class="diem-den-overlay">
+                                    <h4>Yên Bái</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="mien-bac">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/caobang.png" alt="Cao Bằng"
+                                    onerror="this.src='../../data/img/list-tour-gr/sapa.jpg'">
+                                <div class="diem-den-overlay">
+                                    <h4>Cao Bằng</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="mien-bac">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/quangninh.png" alt="Quảng Ninh"
+                                    onerror="this.src='../../data/img/list-tour-gr/sapa.jpg'">
+                                <div class="diem-den-overlay">
+                                    <h4>Quảng Ninh</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="mien-bac">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/ninhbinh.png" alt="Ninh Bình"
+                                    onerror="this.src='../../data/img/list-tour-gr/sapa.jpg'">
+                                <div class="diem-den-overlay">
+                                    <h4>Ninh Bình</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <!-- MIỀN TRUNG -->
+                    <div class="col-6 col-md-3 dd-item" data-region="mien-trung">
                         <a href="../html/Khampha.html" class="text-decoration-none">
                             <div class="diem-den-item">
                                 <img src="../../data/img/DiemDenPhoBien/danang.png" alt="Đà Nẵng">
@@ -223,40 +324,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-6 col-md-3">
-                        <a href="../html/Khampha.html" class="text-decoration-none">
-                            <div class="diem-den-item">
-                                <img src="../../data/img/DiemDenPhoBien/longan.png" alt="Long An">
-                                <div class="diem-den-overlay">
-                                    <h4>Long An</h4>
-                                    <button class="btn-kham-pha">Khám phá</button>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <a href="../html/Khampha.html" class="text-decoration-none">
-                            <div class="diem-den-item">
-                                <img src="../../data/img/DiemDenPhoBien/phap.png" alt="Pháp">
-                                <div class="diem-den-overlay">
-                                    <h4>Pháp</h4>
-                                    <button class="btn-kham-pha">Khám phá</button>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <a href="../html/Khampha.html" class="text-decoration-none">
-                            <div class="diem-den-item">
-                                <img src="../../data/img/DiemDenPhoBien/uc.png" alt="Úc">
-                                <div class="diem-den-overlay">
-                                    <h4>Úc</h4>
-                                    <button class="btn-kham-pha">Khám phá</button>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-3">
+                    <div class="col-6 col-md-3 dd-item" data-region="mien-trung">
                         <a href="../html/Khampha.html" class="text-decoration-none">
                             <div class="diem-den-item">
                                 <img src="../../data/img/DiemDenPhoBien/quangngai.png" alt="Quảng Ngãi">
@@ -267,7 +335,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-6 col-md-3">
+                    <div class="col-6 col-md-3 dd-item" data-region="mien-trung">
                         <a href="../html/Khampha.html" class="text-decoration-none">
                             <div class="diem-den-item">
                                 <img src="../../data/img/DiemDenPhoBien/gialai.png" alt="Gia Lai">
@@ -278,12 +346,324 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-6 col-md-3">
+                    <div class="col-6 col-md-3 dd-item" data-region="mien-trung">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/phuyen.png" alt="Phú Yên">
+                                <div class="diem-den-overlay">
+                                    <h4>Phú Yên</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="mien-trung">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/binhthuan.png" alt="Bình Thuận">
+                                <div class="diem-den-overlay">
+                                    <h4>Bình Thuận</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="mien-trung">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/nhatrang.png" alt="Nha Trang">
+                                <div class="diem-den-overlay">
+                                    <h4>Nha Trang</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="mien-trung">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/binhdinh.png" alt="Bình Định">
+                                <div class="diem-den-overlay">
+                                    <h4>Bình Định</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="mien-trung">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/hue.png" alt="Huế">
+                                <div class="diem-den-overlay">
+                                    <h4>Huế</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- MIỀN NAM -->
+                    <div class="col-6 col-md-3 dd-item" data-region="mien-nam">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/longan.png" alt="Long An">
+                                <div class="diem-den-overlay">
+                                    <h4>Long An</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="mien-nam">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/cantho.png" alt="Cần Thơ">
+                                <div class="diem-den-overlay">
+                                    <h4>Cần Thơ</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="mien-nam">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/kiengiang.png" alt="Kiên Giang">
+                                <div class="diem-den-overlay">
+                                    <h4>Kiên Giang</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="mien-nam">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/angiang.png" alt="An Giang">
+                                <div class="diem-den-overlay">
+                                    <h4>An Giang</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="mien-nam">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/tphcm.png" alt="TP. Hồ Chí Minh">
+                                <div class="diem-den-overlay">
+                                    <h4>TP. Hồ Chí Minh</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="mien-nam">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/tiengiang.png" alt="Tiền Giang">
+                                <div class="diem-den-overlay">
+                                    <h4>Tiền Giang</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="mien-nam">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/tayninh.png" alt="Tây Ninh">
+                                <div class="diem-den-overlay">
+                                    <h4>Tây Ninh</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="mien-nam">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/vungtau.png" alt="Vũng Tàu">
+                                <div class="diem-den-overlay">
+                                    <h4>Vũng Tàu</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- CHÂU Á -->
+                    <div class="col-6 col-md-3 dd-item" data-region="chau-a">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/thailan.png" alt="Thái Lan">
+                                <div class="diem-den-overlay">
+                                    <h4>Thái Lan</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="chau-a">
                         <a href="../html/Khampha.html" class="text-decoration-none">
                             <div class="diem-den-item">
                                 <img src="../../data/img/DiemDenPhoBien/ando.png" alt="Ấn Độ">
                                 <div class="diem-den-overlay">
                                     <h4>Ấn Độ</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="chau-a">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/lao.png" alt="Lào">
+                                <div class="diem-den-overlay">
+                                    <h4>Lào</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="chau-a">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/indo.png" alt="Indonesia">
+                                <div class="diem-den-overlay">
+                                    <h4>Indonesia</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="chau-a">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/malaysia.png" alt="Malaysia">
+                                <div class="diem-den-overlay">
+                                    <h4>Malaysia</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="chau-a">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/philippines.png" alt="Philippines">
+                                <div class="diem-den-overlay">
+                                    <h4>Philippines</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="chau-a">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/timor.png" alt="Timor Leste">
+                                <div class="diem-den-overlay">
+                                    <h4>Timor Leste</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="chau-a">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/brunei.png" alt="Brunei">
+                                <div class="diem-den-overlay">
+                                    <h4>Brunei</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- CHÂU ÂU -->
+                    <div class="col-6 col-md-3 dd-item" data-region="chau-au">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/phap.png" alt="Pháp">
+                                <div class="diem-den-overlay">
+                                    <h4>Pháp</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="chau-au">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/uc.png" alt="Úc">
+                                <div class="diem-den-overlay">
+                                    <h4>Úc</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="chau-au">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/thuysi.png" alt="Thụy Sĩ">
+                                <div class="diem-den-overlay">
+                                    <h4>Thụy Sĩ</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="chau-au">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/duc.png" alt="Đức">
+                                <div class="diem-den-overlay">
+                                    <h4>Đức</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="chau-au">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/y.png" alt="Italia">
+                                <div class="diem-den-overlay">
+                                    <h4>Italia</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="chau-au">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/taybannha.png" alt="Tây Ban Nha">
+                                <div class="diem-den-overlay">
+                                    <h4>Tây Ban Nha</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="chau-au">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/halan.png" alt="Hàn Lan">
+                                <div class="diem-den-overlay">
+                                    <h4>Hàn Lan</h4>
+                                    <button class="btn-kham-pha">Khám phá</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-md-3 dd-item" data-region="chau-au">
+                        <a href="../html/Khampha.html" class="text-decoration-none">
+                            <div class="diem-den-item">
+                                <img src="../../data/img/DiemDenPhoBien/ao.png" alt="Áo">
+                                <div class="diem-den-overlay">
+                                    <h4>Áo</h4>
                                     <button class="btn-kham-pha">Khám phá</button>
                                 </div>
                             </div>
@@ -306,12 +686,22 @@
                             <img class="card-img-top" src="../../data/img/list-tour-gr/phuquoc.jpg" alt="Phú Quốc" />
                             <div class="card-body">
                                 <div class="card-body1">
-                                    <h5 class="card-title">Tour Phú Quốc 5N4Đ: Bằng Xe Giường Nằm. Khuyến Mãi Duy Nhất Tuần Này</h5>
+                                    <h5 class="card-title">Tour Phú Quốc 5N4Đ: Bằng Xe Giường Nằm. Khuyến Mãi Duy Nhất
+                                        Tuần Này</h5>
                                 </div>
                                 <div class="card-body2">
-                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-vitri.png" alt=""><p>Lộ trình: <b>Từ TP.HCM, 5 Tỉnh Miền Tây</b></p></div>
-                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-hotel.png" alt=""><p>Khách sạn: <b>4 Sao</b></p></div>
-                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-ptien.png" alt=""><p>Phương tiện: <b>Ô tô + tàu</b></p></div>
+                                    <div class="card-body2-ct"><img class="img-ct"
+                                            src="../../data/img/list-tour-gr/logo-vitri.png" alt="">
+                                        <p>Lộ trình: <b>Từ TP.HCM, 5 Tỉnh Miền Tây</b></p>
+                                    </div>
+                                    <div class="card-body2-ct"><img class="img-ct"
+                                            src="../../data/img/list-tour-gr/logo-hotel.png" alt="">
+                                        <p>Khách sạn: <b>4 Sao</b></p>
+                                    </div>
+                                    <div class="card-body2-ct"><img class="img-ct"
+                                            src="../../data/img/list-tour-gr/logo-ptien.png" alt="">
+                                        <p>Phương tiện: <b>Ô tô + tàu</b></p>
+                                    </div>
                                 </div>
                                 <div class="card-bottom">
                                     <h3 class="text1-card-bottom">5.600.000 <small>đ</small></h3>
@@ -328,12 +718,22 @@
                             <img class="card-img-top" src="../../data/img/list-tour-gr/sapa.jpg" alt="SaPa" />
                             <div class="card-body">
                                 <div class="card-body1">
-                                    <h5 class="card-title">Tour SaPa 4N3Đ: Bằng Máy Bay. Khuyến Mãi Duy Nhất Tuần Này</h5>
+                                    <h5 class="card-title">Tour SaPa 4N3Đ: Bằng Máy Bay. Khuyến Mãi Duy Nhất Tuần Này
+                                    </h5>
                                 </div>
                                 <div class="card-body2">
-                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-vitri.png" alt=""><p>Lộ trình: <b>Từ TP.HCM, 5 tỉnh Miền Bắc</b></p></div>
-                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-hotel.png" alt=""><p>Khách sạn: <b>5 Sao</b></p></div>
-                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-ptien.png" alt=""><p>Phương tiện: <b>Ô tô</b></p></div>
+                                    <div class="card-body2-ct"><img class="img-ct"
+                                            src="../../data/img/list-tour-gr/logo-vitri.png" alt="">
+                                        <p>Lộ trình: <b>Từ TP.HCM, 5 tỉnh Miền Bắc</b></p>
+                                    </div>
+                                    <div class="card-body2-ct"><img class="img-ct"
+                                            src="../../data/img/list-tour-gr/logo-hotel.png" alt="">
+                                        <p>Khách sạn: <b>5 Sao</b></p>
+                                    </div>
+                                    <div class="card-body2-ct"><img class="img-ct"
+                                            src="../../data/img/list-tour-gr/logo-ptien.png" alt="">
+                                        <p>Phương tiện: <b>Ô tô</b></p>
+                                    </div>
                                 </div>
                                 <div class="card-bottom">
                                     <h3 class="text1-card-bottom">9.300.000 <small>đ</small></h3>
@@ -347,15 +747,26 @@
                 <div class="col-12 col-sm-6 col-md-4 mb-4">
                     <a class="text-decoration-none" href="../html/Dattour.html?tour=nhatrang">
                         <div class="card h-100">
-                            <img class="card-img-top" src="../../data/img/list-tour-gr/vinpearl-nt.webp" alt="Nha Trang" />
+                            <img class="card-img-top" src="../../data/img/list-tour-gr/vinpearl-nt.webp"
+                                alt="Nha Trang" />
                             <div class="card-body">
                                 <div class="card-body1">
-                                    <h5 class="card-title">Tour Nha Trang 2N3Đ: Bằng Xe Giường Nằm. Khuyến Mãi Duy Nhất Tuần Này</h5>
+                                    <h5 class="card-title">Tour Nha Trang 2N3Đ: Bằng Xe Giường Nằm. Khuyến Mãi Duy Nhất
+                                        Tuần Này</h5>
                                 </div>
                                 <div class="card-body2">
-                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-vitri.png" alt=""><p>Lộ trình: <b>Từ Đà Nẵng, 3 Tỉnh Miền Trung</b></p></div>
-                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-hotel.png" alt=""><p>Khách sạn: <b>3 Sao</b></p></div>
-                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-ptien.png" alt=""><p>Phương tiện: <b>Ô tô + tàu</b></p></div>
+                                    <div class="card-body2-ct"><img class="img-ct"
+                                            src="../../data/img/list-tour-gr/logo-vitri.png" alt="">
+                                        <p>Lộ trình: <b>Từ Đà Nẵng, 3 Tỉnh Miền Trung</b></p>
+                                    </div>
+                                    <div class="card-body2-ct"><img class="img-ct"
+                                            src="../../data/img/list-tour-gr/logo-hotel.png" alt="">
+                                        <p>Khách sạn: <b>3 Sao</b></p>
+                                    </div>
+                                    <div class="card-body2-ct"><img class="img-ct"
+                                            src="../../data/img/list-tour-gr/logo-ptien.png" alt="">
+                                        <p>Phương tiện: <b>Ô tô + tàu</b></p>
+                                    </div>
                                 </div>
                                 <div class="card-bottom">
                                     <h3 class="text1-card-bottom">4.650.000 <small>đ</small></h3>
@@ -372,12 +783,22 @@
                             <img class="card-img-top" src="../../data/img/list-tour-gr/china.jpg" alt="Trung Quốc" />
                             <div class="card-body">
                                 <div class="card-body1">
-                                    <h5 class="card-title">Tour Trung Quốc 4N4Đ: Bằng Máy Bay. Khuyến Mãi Duy Nhất Tuần Này</h5>
+                                    <h5 class="card-title">Tour Trung Quốc 4N4Đ: Bằng Máy Bay. Khuyến Mãi Duy Nhất Tuần
+                                        Này</h5>
                                 </div>
                                 <div class="card-body2">
-                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-vitri.png" alt=""><p>Lộ trình: <b>Từ Huế - Quảng Đông - Vân Nam - Tứ Xuyên</b></p></div>
-                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-hotel.png" alt=""><p>Khách sạn: <b>4 Sao</b></p></div>
-                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-ptien.png" alt=""><p>Phương tiện: <b>Máy Bay + Tàu</b></p></div>
+                                    <div class="card-body2-ct"><img class="img-ct"
+                                            src="../../data/img/list-tour-gr/logo-vitri.png" alt="">
+                                        <p>Lộ trình: <b>Từ Huế - Quảng Đông - Vân Nam - Tứ Xuyên</b></p>
+                                    </div>
+                                    <div class="card-body2-ct"><img class="img-ct"
+                                            src="../../data/img/list-tour-gr/logo-hotel.png" alt="">
+                                        <p>Khách sạn: <b>4 Sao</b></p>
+                                    </div>
+                                    <div class="card-body2-ct"><img class="img-ct"
+                                            src="../../data/img/list-tour-gr/logo-ptien.png" alt="">
+                                        <p>Phương tiện: <b>Máy Bay + Tàu</b></p>
+                                    </div>
                                 </div>
                                 <div class="card-bottom">
                                     <h3 class="text1-card-bottom">15.990.000 <small>đ</small></h3>
@@ -394,12 +815,22 @@
                             <img class="card-img-top" src="../../data/img/list-tour-gr/hanquoc.webp" alt="Hàn Quốc" />
                             <div class="card-body">
                                 <div class="card-body1">
-                                    <h5 class="card-title">Tour Hàn Quốc 6N5Đ: Bằng Máy Bay. Khuyến Mãi Duy Nhất Tuần Này</h5>
+                                    <h5 class="card-title">Tour Hàn Quốc 6N5Đ: Bằng Máy Bay. Khuyến Mãi Duy Nhất Tuần
+                                        Này</h5>
                                 </div>
                                 <div class="card-body2">
-                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-vitri.png" alt=""><p>Lộ trình: <b>Từ TP.HCM - Seoul - Busan - Incheon</b></p></div>
-                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-hotel.png" alt=""><p>Khách sạn: <b>5 Sao</b></p></div>
-                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-ptien.png" alt=""><p>Phương tiện: <b>Tàu + Máy Bay</b></p></div>
+                                    <div class="card-body2-ct"><img class="img-ct"
+                                            src="../../data/img/list-tour-gr/logo-vitri.png" alt="">
+                                        <p>Lộ trình: <b>Từ TP.HCM - Seoul - Busan - Incheon</b></p>
+                                    </div>
+                                    <div class="card-body2-ct"><img class="img-ct"
+                                            src="../../data/img/list-tour-gr/logo-hotel.png" alt="">
+                                        <p>Khách sạn: <b>5 Sao</b></p>
+                                    </div>
+                                    <div class="card-body2-ct"><img class="img-ct"
+                                            src="../../data/img/list-tour-gr/logo-ptien.png" alt="">
+                                        <p>Phương tiện: <b>Tàu + Máy Bay</b></p>
+                                    </div>
                                 </div>
                                 <div class="card-bottom">
                                     <h3 class="text1-card-bottom">20.600.000 <small>đ</small></h3>
@@ -416,12 +847,22 @@
                             <img class="card-img-top" src="../../data/img/list-tour-gr/japan.webp" alt="Nhật Bản" />
                             <div class="card-body">
                                 <div class="card-body1">
-                                    <h5 class="card-title">Tour Nhật Bản 7N6Đ: Bằng Máy Bay. Khuyến Mãi Duy Nhất Tuần Này</h5>
+                                    <h5 class="card-title">Tour Nhật Bản 7N6Đ: Bằng Máy Bay. Khuyến Mãi Duy Nhất Tuần
+                                        Này</h5>
                                 </div>
                                 <div class="card-body2">
-                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-vitri.png" alt=""><p>Lộ trình: <b>Từ Nghệ An - Tokyo - Osaka - Hokkaido</b></p></div>
-                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-hotel.png" alt=""><p>Khách sạn: <b>5 Sao</b></p></div>
-                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-ptien.png" alt=""><p>Phương tiện: <b>Máy Bay + Tàu</b></p></div>
+                                    <div class="card-body2-ct"><img class="img-ct"
+                                            src="../../data/img/list-tour-gr/logo-vitri.png" alt="">
+                                        <p>Lộ trình: <b>Từ Nghệ An - Tokyo - Osaka - Hokkaido</b></p>
+                                    </div>
+                                    <div class="card-body2-ct"><img class="img-ct"
+                                            src="../../data/img/list-tour-gr/logo-hotel.png" alt="">
+                                        <p>Khách sạn: <b>5 Sao</b></p>
+                                    </div>
+                                    <div class="card-body2-ct"><img class="img-ct"
+                                            src="../../data/img/list-tour-gr/logo-ptien.png" alt="">
+                                        <p>Phương tiện: <b>Máy Bay + Tàu</b></p>
+                                    </div>
                                 </div>
                                 <div class="card-bottom">
                                     <h3 class="text1-card-bottom">25.680.000 <small>đ</small></h3>
@@ -509,9 +950,11 @@
                             <div class="profile-avatar-col">
                                 <div class="avt-wrap">
                                     <img id="avt-img" src="../../data/img/logo-login.png" alt="avatar" class="avt-img">
-                                    <div class="avt-edit-btn" onclick="document.getElementById('avt-input').click()" title="Đổi ảnh">
+                                    <div class="avt-edit-btn" onclick="document.getElementById('avt-input').click()"
+                                        title="Đổi ảnh">
                                         <svg viewBox="0 0 24 24" width="13" height="13" fill="#fff">
-                                            <path d="M3 17.25V21h3.75l11.06-11.06-3.75-3.75L3 17.25zm17.71-10.21a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+                                            <path
+                                                d="M3 17.25V21h3.75l11.06-11.06-3.75-3.75L3 17.25zm17.71-10.21a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
                                         </svg>
                                     </div>
                                 </div>
@@ -562,7 +1005,25 @@
     <script src="../../BackEnd/js/bootstrap.bundle.min.js"></script>
     <script src="../../BackEnd/js/main.js"></script>
     <script src="../../BackEnd/js/chonUser.js"></script>
-
+    <script>
+        function locVung(btn, vung) {
+            document.querySelectorAll('.dd-tab').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.dd-item').forEach(function (item) {
+                if (item.dataset.region === vung) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+        // Mặc định hiện Miền Bắc khi load trang
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.dd-item').forEach(function (item) {
+                if (item.dataset.region !== 'mien-bac') item.classList.add('hidden');
+            });
+        });
+    </script>
     <!-- Responsive: Mobile Navigation -->
     <script>
         function toggleMobileNav() {
@@ -581,4 +1042,5 @@
         });
     </script>
 </body>
+
 </html>

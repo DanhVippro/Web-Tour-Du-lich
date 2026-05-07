@@ -343,7 +343,32 @@ section {
 @media (hover: none) {
     .btn-kham-pha { opacity: 1; transform: translateY(0); }
 }
-
+ .diem-den-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+        .dd-tab {
+            background: rgba(255,255,255,0.6);
+            border: 2px solid rgba(54,101,161,0.3);
+            color: #3665a1;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 8px 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .dd-tab:hover { background: rgba(54,101,161,0.12); }
+        .dd-tab.active { background: #85a8ee; color: #fff; box-shadow: 0 4px 12px rgba(54,101,161,0.3); }
+        .dd-item.hidden { display: none; }
+        @media (max-width: 575px) {
+            .diem-den-tabs { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; scrollbar-width: none; }
+            .diem-den-tabs::-webkit-scrollbar { display: none; }
+            .dd-tab { flex-shrink: 0; }
+        }
 .list-tour-gr {
     height: auto;
     min-height: auto;
