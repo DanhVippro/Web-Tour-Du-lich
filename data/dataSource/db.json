@@ -180,6 +180,131 @@
       "guide": "Danh",
       "status": "open",
       "description": "phú sĩ"
+    },
+    {
+      "id": "phúquốc1778158847929",
+      "name": "Tour Phú Quốc 5N4Đ: Bằng Xe Giường Nằm",
+      "destination": "Phú Quốc",
+      "location": "Kiên Giang",
+      "departureDate": "2026-05-13",
+      "duration": "5 ngày 4 đêm",
+      "price": 5600000,
+      "maxCapacity": 20,
+      "currentBookings": 10,
+      "hotel": "4 Sao",
+      "transport": "Ô tô + tàu",
+      "description": "Danh test tính năng",
+      "guide": "Trần Thành Danh",
+      "images": [
+        "phu-si"
+      ],
+      "status": "cancel",
+      "route": "Từ TP.HCM, 5 Tỉnh Miền Tây"
+    },
+    {
+      "id": "condao",
+      "name": "Tour Côn Đảo 3N2Đ",
+      "destination": "Côn Đảo",
+      "location": "Bà Rịa - Vũng Tàu",
+      "departureDate": "2026-06-18",
+      "duration": "3 ngày 2 đêm",
+      "price": 7200000,
+      "maxCapacity": 18,
+      "currentBookings": 6,
+      "hotel": "4 Sao",
+      "transport": "Máy bay",
+      "description": "Khám phá Côn Đảo, nghĩa trang Hàng Dương, biển Đầm Trầu...",
+      "guide": "Nguyễn Duy Minh",
+      "images": [
+        "condao1.jpg"
+      ],
+      "img": "../../data/img/list-tour-gr/condao.jpg",
+      "status": "open",
+      "route": "TP.HCM - Côn Đảo"
+    },
+    {
+      "id": "singapore",
+      "name": "Tour Singapore 4N3Đ",
+      "destination": "Singapore",
+      "location": "Quốc tế",
+      "departureDate": "2026-07-15",
+      "duration": "4 ngày 3 đêm",
+      "price": 18900000,
+      "maxCapacity": 25,
+      "currentBookings": 11,
+      "hotel": "5 Sao",
+      "transport": "Máy bay",
+      "description": "Marina Bay Sands, Sentosa, Universal Studios...",
+      "guide": "Trần Quốc Tây",
+      "images": [
+        "singapore1.jpg"
+      ],
+      "img": "../../data/img/list-tour-gr/singapore.jpg",
+      "status": "open",
+      "route": "TP.HCM - Singapore"
+    },
+    {
+      "id": "thailand",
+      "name": "Tour Thái Lan 5N4Đ",
+      "destination": "Thái Lan",
+      "location": "Quốc tế",
+      "departureDate": "2026-07-20",
+      "duration": "5 ngày 4 đêm",
+      "price": 14500000,
+      "maxCapacity": 30,
+      "currentBookings": 14,
+      "hotel": "4 Sao",
+      "transport": "Máy bay",
+      "description": "Bangkok, Pattaya, chùa Phật Vàng...",
+      "guide": "Trần Thành Danh",
+      "images": [
+        "thai1.jpg"
+      ],
+      "img": "../../data/img/list-tour-gr/thailand.jpg",
+      "status": "open",
+      "route": "TP.HCM - Bangkok - Pattaya"
+    },
+    {
+      "id": "camau",
+      "name": "Tour Cà Mau 3N2Đ",
+      "destination": "Cà Mau",
+      "location": "Cà Mau",
+      "departureDate": "2026-06-30",
+      "duration": "3 ngày 2 đêm",
+      "price": 3200000,
+      "maxCapacity": 20,
+      "currentBookings": 5,
+      "hotel": "3 Sao",
+      "transport": "Xe du lịch",
+      "description": "Đất Mũi Cà Mau, rừng U Minh Hạ...",
+      "guide": "Trương Chánh Tân",
+      "images": [
+        "camau1.jpg"
+      ],
+      "img": "../../data/img/list-tour-gr/camau.jpg",
+      "status": "open",
+      "route": "TP.HCM - Cà Mau"
+    },
+    {
+      "id": "mocchau",
+      "name": "Tour Mộc Châu 4N3Đ",
+      "destination": "Mộc Châu",
+      "location": "Sơn La",
+      "departureDate": "2026-08-01",
+      "duration": "4 ngày 3 đêm",
+      "price": 6800000,
+      "maxCapacity": 22,
+      "currentBookings": 9,
+      "hotel": "4 Sao",
+      "transport": "Máy bay + xe",
+      "description": "Đồi chè Mộc Châu, thác Dải Yếm...",
+      "guide": "Nguyễn Duy Minh",
+      "images": [
+        "mocchau1.jpg"
+      ],
+      "img": "../../data/img/list-tour-gr/mocchau.jpg",
+      "status": "open",
+      "route": "Hà Nội - Mộc Châu"
     }
   ],
   "bookings": [
@@ -210,6 +335,48 @@
       "departureDate": "2026-05-20",
       "status": "pending",
       "note": ""
+    },
+    {
+      "id": "BK003",
+      "tourId": "danang",
+      "customerName": "Lê Hoàng Nam",
+      "email": "nam@gmail.com",
+      "phone": "0911111111",
+      "adultTickets": 2,
+      "childTickets": 0,
+      "totalPrice": 13000000,
+      "bookingDate": "2026-05-01",
+      "departureDate": "2026-06-05",
+      "status": "confirmed",
+      "note": ""
+    },
+    {
+      "id": "BK004",
+      "tourId": "hanquoc",
+      "customerName": "Phạm Minh Tuấn",
+      "email": "tuan@gmail.com",
+      "phone": "0922222222",
+      "adultTickets": 4,
+      "childTickets": 1,
+      "totalPrice": 103000000,
+      "bookingDate": "2026-05-03",
+      "departureDate": "2026-07-01",
+      "status": "pending",
+      "note": "Ăn chay"
+    },
+    {
+      "id": "BK005",
+      "tourId": "thailand",
+      "customerName": "Nguyễn Khánh Vy",
+      "email": "vy@gmail.com",
+      "phone": "0933333333",
+      "adultTickets": 1,
+      "childTickets": 0,
+      "totalPrice": 14500000,
+      "bookingDate": "2026-05-05",
+      "departureDate": "2026-07-20",
+      "status": "confirmed",
+      "note": ""
     }
   ],
   "users": [
@@ -218,7 +385,7 @@
       "fullname": "Nguyễn Duy Minh",
       "email": "minh@gmail.com",
       "phone": "0123456789",
-      "password": "123456",
+      "password": "Minh1",
       "gender": "Nam",
       "birthday": "2001-01-01",
       "cccd": "064123456789",
@@ -233,6 +400,54 @@
       "password": "admin123",
       "gender": "Nam",
       "birthday": "1990-01-01",
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "fullname": "Trần Thành Danh",
+      "email": "danh@gmail.com",
+      "phone": "0999999999",
+      "password": "Danh1",
+      "gender": "Nam",
+      "birthday": "2004-10-10",
+      "cccd": "079204001234",
+      "avatar": "../../data/img/avatar/danh.png",
+      "role": "manager"
+    },
+    {
+      "id": 4,
+      "fullname": "Lê Minh Khôi",
+      "email": "khoi@gmail.com",
+      "phone": "0977777777",
+      "password": "Khoi1",
+      "gender": "Nam",
+      "birthday": "2002-02-02",
+      "cccd": "079204005678",
+      "avatar": "../../data/img/avatar/khoi.png",
+      "role": "user"
+    },
+    {
+      "id": 5,
+      "fullname": "Nguyễn Khánh Vy",
+      "email": "vy@gmail.com",
+      "phone": "0966666666",
+      "password": "Vy1",
+      "gender": "Nữ",
+      "birthday": "2003-08-15",
+      "cccd": "079204009999",
+      "avatar": "../../data/img/avatar/vy.png",
+      "role": "user"
+    },
+    {
+      "id": 6,
+      "fullname": "Phạm Minh Tuấn",
+      "email": "tuan@gmail.com",
+      "phone": "0955555555",
+      "password": "Tuan1",
+      "gender": "Nam",
+      "birthday": "1999-12-20",
+      "cccd": "079204007777",
+      "avatar": "../../data/img/avatar/tuan.png",
       "role": "admin"
     }
   ],
@@ -278,10 +493,7 @@
       "name": "Trung Quốc",
       "country": "Trung Quốc",
       "category": "nuocngoai"
-    }
-,  
-
-
+    },
     {
       "id": "taynguyen",
       "name": "Tour Tây Nguyên 3 Ngày 3 Đêm",

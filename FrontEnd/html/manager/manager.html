@@ -23,7 +23,7 @@
 
             <!-- Logo -->
             <div class="sidebar-logo">
-                <a href="/FrontEnd/html/manager/manager_new.html">
+                <a href="/FrontEnd/html/manager/manager.html">
                     <img src="/data/img/Logo.png" alt="CheapTour">
                 </a>
             </div>
@@ -60,6 +60,13 @@
                         <a href="/FrontEnd/html/manager/dsTour.html" class="nav-link-item">
                             <span class="nav-icon"><i class="bi bi-map-fill"></i></span>
                             <span>Quản lý Tour</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link-item" data-bs-toggle="modal" data-bs-target="#donDatModal"
+                            onclick="loadBookingManager()">
+                            <span class="nav-icon"><i class="bi bi-journal-bookmark-fill"></i></span>
+                            <span>Quản lý Đơn đặt</span>
                         </a>
                     </li>
                 </ul>
@@ -450,9 +457,190 @@
         </div>
     </div>
 
+    <!-- ════ MODAL: Quản lý Đơn đặt Tour ════ -->
+    <div class="modal fade" id="donDatModal" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered">
+            <div class="modal-content modal-glass">
+
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold">
+                        <i class="bi bi-journal-bookmark-fill me-2 text-primary"></i>Quản lý Đơn đặt Tour
+                    </h5>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+
+                    <!-- ── Filter bar ── -->
+                    <div class="row g-2 mb-3 align-items-end" id="bookingFilterBar">
+
+                        <!-- Quick filter buttons -->
+                        <div class="col-12 d-flex gap-2 flex-wrap mb-1">
+                            <button class="btn btn-sm btn-outline-primary bm-quick active" data-filter="all">Tất
+                                cả</button>
+                            <button class="btn btn-sm btn-outline-secondary bm-quick" data-filter="week">Tuần
+                                này</button>
+                            <button class="btn btn-sm btn-outline-secondary bm-quick" data-filter="month">Tháng
+                                này</button>
+                            <button class="btn btn-sm btn-outline-secondary bm-quick" data-filter="year">Năm
+                                này</button>
+                        </div>
+
+                        <!-- Date range -->
+                        <div class="col-md-3">
+                            <label class="form-label mb-1 small fw-semibold">Từ ngày</label>
+                            <input type="date" id="bmFrom" class="form-control form-control-sm">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label mb-1 small fw-semibold">Đến ngày</label>
+                            <input type="date" id="bmTo" class="form-control form-control-sm">
+                        </div>
+
+                        <!-- Status filter -->
+                        <div class="col-md-2">
+                            <label class="form-label mb-1 small fw-semibold">Trạng thái</label>
+                            <select id="bmStatus" class="form-select form-select-sm">
+                                <option value="">Tất cả</option>
+                                <option value="confirmed">Xác nhận</option>
+                                <option value="pending">Chờ duyệt</option>
+                                <option value="cancelled">Đã hủy</option>
+                            </select>
+                        </div>
+
+                        <!-- Search -->
+                        <div class="col-md-3">
+                            <label class="form-label mb-1 small fw-semibold">Tìm kiếm</label>
+                            <div class="input-group input-group-sm">
+                                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                <input type="text" id="bmSearch" class="form-control" placeholder="Tên, mã booking...">
+                            </div>
+                        </div>
+
+                        <!-- Apply button -->
+                        <div class="col-md-1 d-flex align-items-end">
+                            <button class="btn btn-primary btn-sm w-100" onclick="applyBookingFilter()">
+                                <i class="bi bi-funnel-fill"></i>
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <!-- ── Summary chips ── -->
+                    <div class="d-flex gap-3 mb-3 flex-wrap" id="bmSummary">
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2">
+                            Tổng: <strong id="bmTotalCount">—</strong> đơn
+                        </span>
+                        <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2">
+                            Doanh thu: <strong id="bmTotalRevenue">—</strong>
+                        </span>
+                        <span class="badge bg-warning-subtle text-warning border border-warning-subtle px-3 py-2">
+                            Chờ duyệt: <strong id="bmPendingCount">—</strong>
+                        </span>
+                    </div>
+
+                    <!-- ── Table ── -->
+                    <div class="table-responsive" style="max-height: 420px; overflow-y:auto;">
+                        <table class="table table-hover align-middle" id="bmTable">
+                            <thead class="table-light sticky-top">
+                                <tr>
+                                    <th style="min-width:80px">Mã đơn</th>
+                                    <th style="min-width:140px">Khách hàng</th>
+                                    <th style="min-width:160px">Tour</th>
+                                    <th style="min-width:110px">Ngày đặt</th>
+                                    <th style="min-width:110px">Ngày đi</th>
+                                    <th style="min-width:80px">Số vé</th>
+                                    <th style="min-width:120px">Tổng tiền</th>
+                                    <th style="min-width:110px">Trạng thái</th>
+                                    <th style="min-width:100px">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bmBody">
+                                <tr>
+                                    <td colspan="9" class="text-center text-muted py-4">
+                                        <div class="spinner-border spinner-border-sm text-primary me-2"></div>Đang
+                                        tải...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="bmEmpty" class="text-center text-muted py-4 d-none">
+                        <i class="bi bi-inbox fs-1 d-block mb-2 opacity-50"></i>Không có đơn đặt nào phù hợp.
+                    </div>
+
+                </div><!-- /modal-body -->
+
+                <div class="modal-footer border-0 justify-content-between">
+                    <small class="text-muted" id="bmLastUpdate"></small>
+                    <button class="btn btn-sm btn-outline-secondary" onclick="loadBookingManager()">
+                        <i class="bi bi-arrow-clockwise me-1"></i>Làm mới
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ════ MODAL: Chi tiết / Cập nhật trạng thái đơn ════ -->
+    <div class="modal fade" id="bmDetailModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-glass">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-info-circle me-2"></i>Chi tiết đơn đặt</h5>
+                    <button class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="bmDetailBody">
+                    <!-- Filled by JS -->
+                </div>
+                <div class="modal-footer border-0">
+                    <button class="btn btn-light" data-bs-dismiss="modal">Đóng</button>
+                    <button class="btn btn-success" onclick="updateBookingStatus('confirmed')">
+                        <i class="bi bi-check2-circle me-1"></i>Xác nhận
+                    </button>
+                    <button class="btn btn-danger" onclick="updateBookingStatus('cancelled')">
+                        <i class="bi bi-x-circle me-1"></i>Hủy đơn
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="/BackEnd/js/bootstrap.bundle.min.js"></script>
     <script src="/BackEnd/js/manager/manager_new.js"></script>
     <script src="/BackEnd/js/manager/sidebar.js"></script>
+    <script src="/BackEnd/js/manager/booking_manager.js"></script>
+    <script>
+        async function loadBookingManager() {
+
+            const res = await fetch("http://localhost:3000/api/bookings");
+            const bookings = await res.json();
+
+            const list = document.getElementById("bookingList");
+
+            if (!bookings.length) {
+                list.innerHTML = `<p>Chưa có booking</p>`;
+                return;
+            }
+
+            list.innerHTML = "";
+
+            bookings.reverse().forEach(bk => {
+
+                list.innerHTML += `
+            <div class="booking-card">
+                <h5>${bk.tourName}</h5>
+                <p>👤 ${bk.customerName}</p>
+                <p>📞 ${bk.phone}</p>
+                <p>🎟 ${bk.adultTickets}</p>
+                <p>💰 ${bk.totalPrice.toLocaleString("vi-VN")} đ</p>
+            </div>
+        `;
+            });
+        }
+
+        loadBookingManager();
+    </script>
 
 </body>
 
