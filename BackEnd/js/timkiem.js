@@ -92,7 +92,7 @@ if (ketQua.length === 0) {
     ketQua.forEach(tour => {
         container.innerHTML += `
                 <div class="col-md-4 mb-4">
-                    <a class="text-decoration-none" href="../html/ChiTietTour.html?id=${tour.id}">
+                    <a class="text-decoration-none" href="../html/ChiTietTour.html?tour=${tour.id}">
                         <div class="card h-100">
                             <img class="card-img-top" src="${tour.img}" alt="${tour.ten}">
                             <div class="card-body">

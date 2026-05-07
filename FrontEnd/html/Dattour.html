@@ -12,26 +12,29 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/headerChung.css">
 
-    
-<style>
-    .box-form{
-        background:#b9d9df;
-    }
-    .btn-book{
-        background:#f4d24d;
-        border:none;
-        border-radius:20px;
-        padding:10px 35px;
-    }
-    .btn-book:hover{
-        background:#e9c538;
-    }
-    .info-tour{
-        min-height:300px;
-        background:#f8f8f8;
-        border-radius:10px;
-    }
-</style>
+
+    <style>
+        .box-form {
+            background: #b9d9df;
+        }
+
+        .btn-book {
+            background: #f4d24d;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 35px;
+        }
+
+        .btn-book:hover {
+            background: #e9c538;
+        }
+
+        .info-tour {
+            min-height: 300px;
+            background: #f8f8f8;
+            border-radius: 10px;
+        }
+    </style>
 
 <body>
     <!-- header1 -->
@@ -87,84 +90,81 @@
 
 
     <!-- Main content -->
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-10">
-            <div class="box-form p-4 rounded">
-                <div class="row g-4">
-                    <!-- Bên trái -->
-                    <div class="col-md-5">
-                        <div class="mb-3">
-                            <label class="form-label">Họ và tên</label>
-                            <input type="text" class="form-control">
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-control">
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Số điện thoại</label>
-                            <input type="text" class="form-control">
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Ngày bắt đầu</label>
-                            <input type="date" class="form-control">
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Loại Tour</label>
-                            <select class="form-select">
-                                <option>Chọn tour</option>
-                                <option>Tour Đà Lạt</option>
-                                <option>Tour Phú Quốc</option>
-                                <option>Tour Đà Nẵng</option>
-                            </select>
-                        </div>
-                        <!-- checkbox + số vé -->
-                        <div class="d-flex align-items-center gap-4 mb-4">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="treem">
-                                <label class="form-check-label" for="treem">
-                                    Có trẻ em
-                                </label>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="box-form p-4 rounded">
+                    <div class="row g-4">
+                        <!-- Bên trái -->
+                        <div class="col-md-5">
+                            <div class="mb-3">
+                                <label class="form-label">Họ và tên</label>
+                                <input type="text" class="form-control">
                             </div>
 
-                            <div class="d-flex align-items-center gap-2">
-                                <label>Số vé</label>
-                                <button class="btn btn-light border" onclick="giamVe()">-</button>
-                                <input type="text" value="1" id="soVe" class="form-control text-center" style="width:60px;">
-                                <button class="btn btn-light border" onclick="tangVe()">+</button>
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control">
                             </div>
 
+                            <div class="mb-3">
+                                <label class="form-label">Số điện thoại</label>
+                                <input type="text" class="form-control">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Ngày bắt đầu</label>
+                                <input type="date" class="form-control">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Loại Tour</label>
+                                <select class="form-select">
+                                    <option>Chọn tour</option>
+                                    <option>Tour Đà Lạt</option>
+                                    <option>Tour Phú Quốc</option>
+                                    <option>Tour Đà Nẵng</option>
+                                </select>
+                            </div>
+                            <!-- checkbox + số vé -->
+                            <div class="d-flex align-items-center gap-4 mb-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="treem">
+                                    <label class="form-check-label" for="treem">
+                                        Có trẻ em
+                                    </label>
+                                </div>
+
+                                <div class="d-flex align-items-center gap-2">
+                                    <label>Số vé</label>
+                                    <button class="btn btn-light border" onclick="giamVe()">-</button>
+                                    <input type="text" value="1" id="soVe" class="form-control text-center"
+                                        style="width:60px;">
+                                    <button class="btn btn-light border" onclick="tangVe()">+</button>
+                                </div>
+
+                            </div>
+                            <p class="text-dark " style="font-style:italic; font-size: 17px;">
+                                Lưu ý: Trẻ em trên 10 tuổi phải mua vé riêng
+                            </p>
                         </div>
-                        <p class="text-dark "
-                        style="font-style:italic; font-size: 17px;"
-                        >
-                            Lưu ý: Trẻ em trên 10 tuổi phải mua vé riêng
-                        </p>
-                    </div>
-                    <!-- Bên phải -->
-                    <div class="col-md-7 d-flex flex-column"
-                   
-                    >
-                        <div class="info-tour d-flex justify-content-center align-items-center mb-4" 
-                           style="height: 400px; position: relative; top: 30px;">
-                            <span>Thông tin Loại Tour</span>
+                        <!-- Bên phải -->
+                        <div class="col-md-7 d-flex flex-column">
+                            <div class="info-tour d-flex justify-content-center align-items-center mb-4"
+                                style=" position: relative; top: 30px;">
+                                <span>Thông tin Loại Tour</span>
+                            </div>
+                            <div class="text-end mt-auto">
+                                <button class="btn btn-book">
+                                    Đặt tour
+                                </button>
+                            </div>
                         </div>
-                        <div class="text-end mt-auto">
-                            <button class="btn btn-book">
-                                Đặt tour
-                            </button>
                     </div>
-                 </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
     <!--  -->
@@ -245,175 +245,196 @@
     <script src="../../BackEnd/js/bootstrap.bundle.min.js"></script>
     <script src="../../BackEnd/js/chonUser.js"></script>
     <script>
-function tangVe(){
-    let soVe = document.getElementById("soVe");
-    let value = parseInt(soVe.value);
-    soVe.value = value + 1;
-}
+        function tangVe() {
+            let soVe = document.getElementById("soVe");
+            let value = parseInt(soVe.value);
+            soVe.value = value + 1;
+        }
 
-function giamVe(){
-    let soVe = document.getElementById("soVe");
-    let value = parseInt(soVe.value);
+        function giamVe() {
+            let soVe = document.getElementById("soVe");
+            let value = parseInt(soVe.value);
 
-    if(value > 1){
-        soVe.value = value - 1;
-    }
-}
-//sự kiện tour
-let toursData = [];
+            if (value > 1) {
+                soVe.value = value - 1;
+            }
+        }
+        //sự kiện tour
+        let toursData = [];
 
-// Load JSON khi trang mở
-fetch("../../data/dataSource/db.json")
-  .then(res => res.json())
-  .then(data => {
-    toursData = data.tours;
-    renderTourOptions(); // Điền option vào select
-  });
+        // Load JSON khi trang mở
+        fetch("../../data/dataSource/db.json")
+            .then(res => res.json())
+            .then(data => {
+                toursData = data.tours;
+                renderTourOptions(); // Điền option vào select
+            });
 
-// Điền danh sách tour vào <select>
-function renderTourOptions() {
-  const select = document.querySelector("select.form-select");
-  select.innerHTML = `<option value="">Chọn tour</option>`;
-  toursData.forEach(tour => {
-    const opt = document.createElement("option");
-    opt.value = tour.id;
-    opt.textContent = tour.name;
-    if (tour.status === "full") {
-      opt.disabled = true;
-      opt.textContent += " (Hết chỗ)";
-    }
-    select.appendChild(opt);
-  });
+        // Điền danh sách tour vào <select>
+        function renderTourOptions() {
+            const select = document.querySelector("select.form-select");
+            select.innerHTML = `<option value="">Chọn tour</option>`;
+            toursData.forEach(tour => {
+                const opt = document.createElement("option");
+                opt.value = tour.id;
+                opt.textContent = tour.name;
+                if (tour.status === "full") {
+                    opt.disabled = true;
+                    opt.textContent += " (Hết chỗ)";
+                }
+                select.appendChild(opt);
+            });
 
-  //  khi chọn tour
-  select.addEventListener("change", function () {
-    const tour = toursData.find(t => t.id === this.value);
-    if (tour) showTourInfo(tour);
-    else clearTourInfo();
-  });
-}
+            //  khi chọn tour
+            select.addEventListener("change", function () {
+                const tour = toursData.find(t => t.id === this.value);
+                if (tour) showTourInfo(tour);
+                else clearTourInfo();
+            });
 
-// Hiển thị thông tin tour bên phải
-function showTourInfo(tour) {
+            //Tay
+            // Nếu URL có ?tour=xxx thì tự động chọn tour đó
+            const params = new URLSearchParams(window.location.search);
+            const tourParam = params.get("tour");
+            if (tourParam) {
+                select.value = tourParam;
+                const tour = toursData.find(t => t.id === tourParam);
+                if (tour) showTourInfo(tour);
+            }
+        }
+
+        // Hiển thị thông tin tour bên phải
+       function showTourInfo(tour) {
   const slotsLeft = tour.maxCapacity - tour.currentBookings;
   const statusBadge = tour.status === "full"
     ? `<span class="badge bg-danger">Hết chỗ</span>`
     : `<span class="badge bg-success">Còn ${slotsLeft} chỗ</span>`;
 
+  // ảnh mặc định nếu tour chưa có img
+  const imgSrc = tour.img || "../../data/img/Logo.png";
+
   document.querySelector(".info-tour").innerHTML = `
-    <div class="p-3 w-100">
-      <h5 class="fw-bold text-primary mb-3">${tour.name}</h5>
-      <table class="table table-sm table-borderless mb-2">
-        <tr><td><b>📍 Điểm đến</b></td><td>${tour.destination} - ${tour.location}</td></tr>
-        <tr><td><b>📅 Ngày khởi hành</b></td><td>${formatDate(tour.departureDate)}</td></tr>
-        <tr><td><b>⏱ Thời gian</b></td><td>${tour.duration}</td></tr>
-        <tr><td><b>🚌 Phương tiện</b></td><td>${tour.transport}</td></tr>
-        <tr><td><b>🏨 Khách sạn</b></td><td>${tour.hotel}</td></tr>
-        <tr><td><b>🗺 Lộ trình</b></td><td>${tour.route}</td></tr>
-        <tr><td><b>👤 Hướng dẫn viên</b></td><td>${tour.guide}</td></tr>
-        <tr><td><b>💰 Giá vé</b></td><td class="text-danger fw-bold">${formatPrice(tour.price)}/người</td></tr>
-        <tr><td><b>🎟 Tình trạng</b></td><td>${statusBadge}</td></tr>
-      </table>
-      <p class="text-muted fst-italic" style="font-size:14px">${tour.description}</p>
+    <div class="w-100">
+      <img src="${imgSrc}" alt="${tour.name}" 
+           style="width:100%; height:200px; object-fit:cover; border-radius:8px 8px 0 0;">
+      <div class="p-3">
+        <h5 class="fw-bold text-primary mb-3">${tour.name}</h5>
+        <table class="table table-sm table-borderless mb-2">
+          <tr><td><b>📍 Điểm đến</b></td><td>${tour.destination} - ${tour.location}</td></tr>
+          <tr><td><b>📅 Ngày khởi hành</b></td><td>${formatDate(tour.departureDate)}</td></tr>
+          <tr><td><b>⏱ Thời gian</b></td><td>${tour.duration}</td></tr>
+          <tr><td><b>🚌 Phương tiện</b></td><td>${tour.transport}</td></tr>
+          <tr><td><b>🏨 Khách sạn</b></td><td>${tour.hotel}</td></tr>
+          <tr><td><b>🗺 Lộ trình</b></td><td>${tour.route}</td></tr>
+          <tr><td><b>👤 Hướng dẫn viên</b></td><td>${tour.guide}</td></tr>
+          <tr><td><b>💰 Giá vé</b></td><td class="text-danger fw-bold">${formatPrice(tour.price)}/người</td></tr>
+          <tr><td><b>🎟 Tình trạng</b></td><td>${statusBadge}</td></tr>
+        </table>
+        <p class="text-muted fst-italic" style="font-size:14px">${tour.description}</p>
+      </div>
     </div>
   `;
 }
+        function clearTourInfo() {
+            document.querySelector(".info-tour").innerHTML = `<span>Thông tin Loại Tour</span>`;
+        }
 
-function clearTourInfo() {
-  document.querySelector(".info-tour").innerHTML = `<span>Thông tin Loại Tour</span>`;
-}
+        function formatDate(dateStr) {
+            const [y, m, d] = dateStr.split("-");
+            return `${d}/${m}/${y}`;
+        }
 
-function formatDate(dateStr) {
-  const [y, m, d] = dateStr.split("-");
-  return `${d}/${m}/${y}`;
-}
+        function formatPrice(price) {
+            return price.toLocaleString("vi-VN") + " đ";
+        }
+        //sự kiện đặt tour
+        document.querySelector(".btn-book").addEventListener("click", function () {
+            // Lấy dữ liệu form
+            const hoTen = document.querySelectorAll("input.form-control")[0].value.trim();
+            const email = document.querySelectorAll("input.form-control")[1].value.trim();
+            const sdt = document.querySelectorAll("input.form-control")[2].value.trim();
+            const ngay = document.querySelectorAll("input.form-control")[3].value;
+            const tourId = document.querySelector("select.form-select").value;
+            const soVe = parseInt(document.getElementById("soVe").value);
+            const coTreEm = document.getElementById("treem").checked;
 
-function formatPrice(price) {
-  return price.toLocaleString("vi-VN") + " đ";
-}
-//sự kiện đặt tour
-document.querySelector(".btn-book").addEventListener("click", function () {
-    // Lấy dữ liệu form
-    const hoTen = document.querySelectorAll("input.form-control")[0].value.trim();
-    const email = document.querySelectorAll("input.form-control")[1].value.trim();
-    const sdt   = document.querySelectorAll("input.form-control")[2].value.trim();
-    const ngay  = document.querySelectorAll("input.form-control")[3].value;
-    const tourId = document.querySelector("select.form-select").value;
-    const soVe  = parseInt(document.getElementById("soVe").value);
-    const coTreEm = document.getElementById("treem").checked;
+            if (!hoTen || !email || !sdt || !ngay || !tourId) {
+                alert("⚠️ Vui lòng điền đầy đủ thông tin!");
+                return;
+            }
 
-    if (!hoTen || !email || !sdt || !ngay || !tourId) {
-        alert("⚠️ Vui lòng điền đầy đủ thông tin!");
-        return;
-    }
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert("⚠️ Email không hợp lệ!");
+                return;
+            }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        alert("⚠️ Email không hợp lệ!");
-        return;
-    }
+            const sdtRegex = /^0\d{9}$/;
+            if (!sdtRegex.test(sdt)) {
+                alert("⚠️ Số điện thoại không hợp lệ! (10 số, bắt đầu bằng 0)");
+                return;
+            }
 
-    const sdtRegex = /^0\d{9}$/;
-    if (!sdtRegex.test(sdt)) {
-        alert("⚠️ Số điện thoại không hợp lệ! (10 số, bắt đầu bằng 0)");
-        return;
-    }
+            // Tìm tour đã chọn
+            const tour = toursData.find(t => t.id === tourId);
+            if (!tour) {
+                alert("⚠️ Vui lòng chọn tour!");
+                return;
+            }
 
-    // Tìm tour đã chọn
-    const tour = toursData.find(t => t.id === tourId);
-    if (!tour) {
-        alert("⚠️ Vui lòng chọn tour!");
-        return;
-    }
+            if (tour.status === "full") {
+                alert("❌ Tour này đã hết chỗ!");
+                return;
+            }
 
-    if (tour.status === "full") {
-        alert("❌ Tour này đã hết chỗ!");
-        return;
-    }
+            // Tính tổng tiền
+            const tongTien = tour.price * soVe;
 
-    // Tính tổng tiền
-    const tongTien = tour.price * soVe;
+            // Tạo booking mới
+            const booking = {
+                id: "BK" + Date.now(),
+                tourId: tour.id,
+                tourName: tour.name,
+                customerName: hoTen,
+                email: email,
+                phone: sdt,
+                adultTickets: soVe,
+                childTickets: coTreEm ? 1 : 0,
+                totalPrice: tongTien,
+                bookingDate: new Date().toISOString().split("T")[0],
+                departureDate: tour.departureDate,
+                status: "pending"
+            };
 
-    // Tạo booking mới
-    const booking = {
-        id: "BK" + Date.now(),
-        tourId: tour.id,
-        tourName: tour.name,
-        customerName: hoTen,
-        email: email,
-        phone: sdt,
-        adultTickets: soVe,
-        childTickets: coTreEm ? 1 : 0,
-        totalPrice: tongTien,
-        bookingDate: new Date().toISOString().split("T")[0],
-        departureDate: tour.departureDate,
-        status: "pending"
-    };
+            // Lưu vào localStorage nhấn f12 vào application -> localStorage sẽ thấy dữ liệu đạt nằm ở đó 
+            const existing = JSON.parse(localStorage.getItem("bookings") || "[]");
+            existing.push(booking);
+            localStorage.setItem("bookings", JSON.stringify(existing));
 
-    // Lưu vào localStorage nhấn f12 vào application -> localStorage sẽ thấy dữ liệu đạt nằm ở đó 
-    const existing = JSON.parse(localStorage.getItem("bookings") || "[]");
-    existing.push(booking);
-    localStorage.setItem("bookings", JSON.stringify(existing));
+            // Thông báo thành công
+            alert(
+                `✅ Đặt tour thành công!\n\n` +
+                `🧳 Tour: ${tour.name}\n` +
+                `👤 Khách hàng: ${hoTen}\n` +
+                `🎟 Số vé: ${soVe}\n` +
+                `💰 Tổng tiền: ${formatPrice(tongTien)}`
+            );
 
-    // Thông báo thành công
-    alert(
-        `✅ Đặt tour thành công!\n\n` +
-        `🧳 Tour: ${tour.name}\n` +
-        `👤 Khách hàng: ${hoTen}\n` +
-        `🎟 Số vé: ${soVe}\n` +
-        `💰 Tổng tiền: ${formatPrice(tongTien)}`
-    );
+            // Reset form
+            document.querySelectorAll("input.form-control").forEach(i => i.value = "");
+            document.getElementById("soVe").value = 1;
+            document.getElementById("treem").checked = false;
+            document.querySelector("select.form-select").value = "";
+            clearTourInfo();
+        });
 
-    // Reset form
-    document.querySelectorAll("input.form-control").forEach(i => i.value = "");
-    document.getElementById("soVe").value = 1;
-    document.getElementById("treem").checked = false;
-    document.querySelector("select.form-select").value = "";
-    clearTourInfo();
-});
 
-//khi bấm đặt tour nó sẽ hiện ở phần lịch sử tour ae test coi thử 
-</script>
+        //khi bấm đặt tour nó sẽ hiện ở phần lịch sử tour ae test coi thử 
+
+
+
+
+    </script>
 </body>
 
 </html>

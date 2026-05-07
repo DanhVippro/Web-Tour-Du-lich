@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang chủ</title>
+    <title>Trang chủ - CheapTour</title>
     <link rel="stylesheet" href="../../FrontEnd/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../FrontEnd/css/Styles.css">
     <link rel="stylesheet" href="../../FrontEnd/css/modal.css">
     <style>
         html {
             overflow-y: scroll;
-            /* scrollbar luôn hiện → Bootstrap đo được width = 0 */
         }
 
         body,
@@ -28,127 +27,50 @@
         #user-menu a:hover {
             background: #f5f5f5;
         }
-
-        .user-menu {
-            display: none;
-            position: absolute;
-            top: calc(100% + 8px);
-            right: 0;
-            background: #fff;
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.13);
-            min-width: 200px;
-            z-index: 999;
-            overflow: hidden;
-        }
-
-        .profile-card {
-            display: flex;
-            gap: 24px;
-            align-items: flex-start;
-        }
-
-        .profile-avatar-col {
-            text-align: center;
-            flex-shrink: 0;
-        }
-
-        .avt-wrap {
-            position: relative;
-            width: 96px;
-            height: 96px;
-            margin: 0 auto 8px;
-        }
-
-        .avt-img {
-            width: 96px;
-            height: 96px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #ddd;
-            display: block;
-        }
-
-        .avt-edit-btn {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: #378ADD;
-            border: 2px solid #fff;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .avt-caption {
-            font-size: 12px;
-            color: #888;
-            margin: 0;
-            line-height: 1.5;
-        }
-
-        .avt-caption small {
-            font-size: 11px;
-            color: #aaa;
-        }
-
-        .profile-info-col {
-            flex: 1;
-        }
-
-        .profile-title {
-            font-size: 16px;
-            font-weight: 500;
-            margin-bottom: 16px;
-        }
-
-        .field-label {
-            font-size: 12px;
-            color: #888;
-            margin-bottom: 4px;
-            display: block;
-        }
-
-        .btn-save {
-            margin-top: 8px;
-            width: 100%;
-            padding: 10px;
-            background: #378ADD;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-        }
-
-        .btn-save:hover {
-            background: #185FA5;
-        }
     </style>
 </head>
 
 <body>
-    <!-- header1 -->
+
+    <!-- ===== MOBILE NAV PANEL ===== -->
+    <div class="mobile-nav-overlay" id="mobileOverlay" onclick="closeMobileNav()"></div>
+    <div class="mobile-nav-panel" id="mobileNavPanel">
+        <ul>
+            <li><a href="../html/trangChu.html">🏠 Trang chủ</a></li>
+            <li><a href="../html/GioiThieu.html">📖 Giới Thiệu</a></li>
+            <li><a href="../html/Khampha.html">🗺️ Khám phá</a></li>
+            <li><a href="../html/Dattour.html">🎫 Đặt tour</a></li>
+            <li><a href="../html/HoTro.html">💬 Hỗ trợ</a></li>
+        </ul>
+        <!-- Mobile search -->
+        <form action="../html/TimKiem.html" method="GET" style="margin-top:20px;">
+            <div style="display:flex;background:#f0f0f0;border-radius:6px;overflow:hidden;">
+                <input type="text" name="q" placeholder="Tìm điểm đến..."
+                    style="flex:1;border:none;background:#f0f0f0;padding:10px;font-size:14px;outline:none;">
+                <button type="submit"
+                    style="background:#3665a1;color:#fff;border:none;padding:0 14px;font-size:18px;cursor:pointer;">⌕</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- ===== HEADER 1 ===== -->
     <header class="header1">
         <div class="logo-header1">
             <a href="../html/trangChu.html">
-                <img src="../../data/img/Logo.png" alt="Logo">
+                <img src="../../data/img/Logo.png" alt="CheapTour Logo">
             </a>
         </div>
+
+        <!-- Desktop search -->
         <div class="Search-header1">
             <form action="../html/TimKiem.html" method="GET" class="form-place">
-                <input type="text" name="q" placeholder=" Tìm kiếm điểm đến yêu thích">
-                <button type="submit">&#8981;</button>
+                <input type="text" name="q" placeholder="Tìm kiếm điểm đến yêu thích">
+                <button type="submit">⌕</button>
             </form>
         </div>
-        <div class="menu-header1">
 
+        <!-- Desktop nav -->
+        <div class="menu-header1">
             <ul>
                 <li><a href="../html/trangChu.html">Trang chủ</a></li>
                 <li><a href="../html/GioiThieu.html">Giới Thiệu</a></li>
@@ -157,29 +79,33 @@
                 <li><a href="../html/HoTro.html">Hỗ trợ</a></li>
             </ul>
         </div>
-        <!-- Login Logo -->
-        <div class="logo-login" style="position: relative; display: inline-block;">
+
+        <!-- Hamburger (mobile only) -->
+        <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileNav()" aria-label="Mở menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="logo-login" style="position: relative; display: inline-block; margin-left: 8px;">
             <a href="#" id="avatar-btn" onclick="toggleMenu(event)">
-                <img src="../../data/img/logo-login.png" alt="login" height="50px"
+                <img src="../../data/img/logo-login.png" alt="login" height="44px"
                     style="border-radius: 50%; cursor: pointer;">
             </a>
-
             <div id="user-menu" class="user-menu">
                 <a href="#thong-tin" onclick="closeMenu()" data-bs-toggle="modal" data-bs-target="#modalUser"
-                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #333; text-decoration: none; font-size: 14px; transition: background 0.15s;">
-                    <span style="font-size: 16px;">👤</span> Thông
-                    tin
-                    cá nhân
+                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #333; text-decoration: none; font-size: 14px;">
+                    <span>👤</span> Thông tin cá nhân
                 </a>
                 <div style="height: 1px; background: #f0f0f0; margin: 0 12px;"></div>
                 <a href="../html/lichSu.html" onclick="closeMenu()"
-                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #333; text-decoration: none; font-size: 14px; transition: background 0.15s;">
-                    <span style="font-size: 16px;">🗓️</span> Lịch sử đặt tour
+                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #333; text-decoration: none; font-size: 14px;">
+                    <span>🗓️</span> Lịch sử đặt tour
                 </a>
                 <div style="height: 1px; background: #f0f0f0; margin: 0 12px;"></div>
                 <a href="../html/Login.html" onclick="closeMenu()"
-                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #e53935; text-decoration: none; font-size: 14px; transition: background 0.15s;">
-                    <span style="font-size: 16px;">🚪</span> Đăng xuất
+                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #e53935; text-decoration: none; font-size: 14px;">
+                    <span>🚪</span> Đăng xuất
                 </a>
             </div>
         </div>
@@ -190,91 +116,92 @@
         <div class="bg-layer layer2"></div>
         <div class="text-header2">
             <h1 class="text-h1-header2">BẠN ĐANG MUỐN ĐI ĐÂU?</h1>
-            <h2>Hãy để CheapTour tư vấn cho bạn chuyến đi tuyệt vời nhất! </h2>
+            <h2>Hãy để CheapTour tư vấn cho bạn chuyến đi tuyệt vời nhất!</h2>
         </div>
     </header>
+
     <div class="main-container">
+
         <section>
             <div class="uy-tin">
                 <div class="uy-tin1">
                     <div class="logo1-section">
-                        <img src="../../data/img/uy-tin/1.png" alt="">
+                        <img src="../../data/img/uy-tin/1.png" alt="" style="width:60px;">
                     </div>
                     <div class="text1-section">
                         <h4>Đảm bảo giá tốt</h4>
-                        <p>Chúng tôi đảm bảo khách hàng sẽ đặt được dịch vụ <br>
-                            tốt nhất,những chương trình khuyễn mãi hấp <br>
-                            dẫn nhất
-                        </p>
+                        <p>Chúng tôi đảm bảo khách hàng sẽ đặt được dịch vụ tốt nhất, những chương trình khuyến mãi hấp dẫn nhất</p>
                     </div>
                 </div>
                 <div class="uy-tin2">
                     <div class="logo1-section">
-                        <img src="../../data/img/uy-tin/2.png" alt="">
+                        <img src="../../data/img/uy-tin/2.png" alt="" style="width:60px;">
                     </div>
                     <div class="text1-section">
                         <h4>Dịch vụ tin cậy - Giá trị đích thực</h4>
-                        <p>Đặt lợi ích khách hàng lên trên hết, chúng tôi hỗ trợ <br>
-                            khách hàng nhanh và chính xác nhất với dịch vụ tin cậy, <br>
-                            giá trị đích thực
-                        </p>
+                        <p>Đặt lợi ích khách hàng lên trên hết, chúng tôi hỗ trợ khách hàng nhanh và chính xác nhất</p>
                     </div>
                 </div>
                 <div class="uy-tin3">
                     <div class="logo1-section">
-                        <img src="../../data/img/uy-tin/3.png" alt="">
+                        <img src="../../data/img/uy-tin/3.png" alt="" style="width:60px;">
                     </div>
                     <div class="text1-section">
                         <h4>Đảm bảo chất lượng</h4>
-                        <p>Chúng tôi sẽ liên kế chặt chẽ với các đối tác, khảo sát <br>
-                            định kỳ để đảm bảo chất lượng tốt nhất dịch vụ
-                        </p>
+                        <p>Chúng tôi sẽ liên kết chặt chẽ với các đối tác, khảo sát định kỳ để đảm bảo chất lượng dịch vụ tốt nhất</p>
                     </div>
                 </div>
             </div>
         </section>
+
         <section class="baner bg-dark">
-            <div id="carouselId" class="carousel slide mt-5 mb-5 " data-bs-ride="carousel">
+            <div id="carouselId" class="carousel slide mt-4 mb-4" data-bs-ride="carousel">
                 <ol class="carousel-indicators">
-                    <li data-bs-target="#carouselId" data-bs-slide-to="0" class="active" aria-current="true"
-                        aria-label="First slide"></li>
-                    <li data-bs-target="#carouselId" data-bs-slide-to="1" aria-label="Second slide"></li>
-                    <li data-bs-target="#carouselId" data-bs-slide-to="2" aria-label="Third slide"></li>
-                    <li data-bs-target="#carouselId" data-bs-slide-to="3" aria-label="Fourth slide"></li>
+                    <li data-bs-target="#carouselId" data-bs-slide-to="0" class="active" aria-current="true"></li>
+                    <li data-bs-target="#carouselId" data-bs-slide-to="1"></li>
+                    <li data-bs-target="#carouselId" data-bs-slide-to="2"></li>
+                    <li data-bs-target="#carouselId" data-bs-slide-to="3"></li>
                 </ol>
                 <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active">
-                        <img src="../../data/img/baner/chauAu.png" class="d-block mx-auto w-75" alt="First slide" />
+                        <a href="../html/ChiTietTour.html?id=trungquoc">
+                            <img src="../../data/img/baner/chauAu.png" class="d-block mx-auto w-75" alt="Châu Âu"
+                                style="cursor:pointer;" />
+                        </a>
                     </div>
                     <div class="carousel-item">
-                        <img src="../../data/img/baner/han.png" class="d-block mx-auto w-75" alt="Second slide" />
+                        <a href="../html/ChiTietTour.html?id=hanquoc">
+                            <img src="../../data/img/baner/han.png" class="d-block mx-auto w-75" alt="Hàn Quốc"
+                                style="cursor:pointer;" />
+                        </a>
                     </div>
                     <div class="carousel-item">
-                        <img src="../../data/img/baner/nhat.png" class="d-block mx-auto w-75" alt="Third slide" />
+                        <a href="../html/ChiTietTour.html?id=nhatban">
+                            <img src="../../data/img/baner/nhat.png" class="d-block mx-auto w-75" alt="Nhật Bản"
+                                style="cursor:pointer;" />
+                        </a>
                     </div>
                     <div class="carousel-item">
-                        <img src="../../data/img/baner/thai.png" class="d-block mx-auto w-75" alt="Fourth slide" />
+                        <a href="../html/ChiTietTour.html?id=thailan">
+                            <img src="../../data/img/baner/thai.png" class="d-block mx-auto w-75" alt="Thái Lan"
+                                style="cursor:pointer;" />
+                        </a>
                     </div>
                 </div>
-                <button class="carousel-control-prev " type="button" data-bs-target="#carouselId" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon " aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
+                <a class="carousel-control-prev" href="#carouselId" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </a>
+                <a class="carousel-control-next" href="#carouselId" role="button" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+                </a>
             </div>
-
         </section>
-        <section class="diem-den-pho-bien">
-            <div class="container">
-                <h2 class="text-center mb-4">Điểm Đến Phổ Biến</h2>
-                <div class="row">
 
-                </div>
-                <div class="row">
-                    <div class="col-md-3 col-6 mb-4">
+        <section class="diem-den-pho-bien">
+            <div class="container-fluid px-3 px-md-4">
+                <h2 class="text-center mb-4">Điểm Đến Phổ Biến</h2>
+                <div class="row g-3">
+                    <div class="col-6 col-md-3">
                         <a href="../html/Khampha.html" class="text-decoration-none">
                             <div class="diem-den-item">
                                 <img src="../../data/img/DiemDenPhoBien/thailan.png" alt="Thái Lan">
@@ -285,7 +212,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-md-3 col-6 mb-4">
+                    <div class="col-6 col-md-3">
                         <a href="../html/Khampha.html" class="text-decoration-none">
                             <div class="diem-den-item">
                                 <img src="../../data/img/DiemDenPhoBien/danang.png" alt="Đà Nẵng">
@@ -296,7 +223,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-md-3 col-6 mb-4">
+                    <div class="col-6 col-md-3">
                         <a href="../html/Khampha.html" class="text-decoration-none">
                             <div class="diem-den-item">
                                 <img src="../../data/img/DiemDenPhoBien/longan.png" alt="Long An">
@@ -307,7 +234,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-md-3 col-6 mb-4">
+                    <div class="col-6 col-md-3">
                         <a href="../html/Khampha.html" class="text-decoration-none">
                             <div class="diem-den-item">
                                 <img src="../../data/img/DiemDenPhoBien/phap.png" alt="Pháp">
@@ -318,9 +245,7 @@
                             </div>
                         </a>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3 col-6 mb-4">
+                    <div class="col-6 col-md-3">
                         <a href="../html/Khampha.html" class="text-decoration-none">
                             <div class="diem-den-item">
                                 <img src="../../data/img/DiemDenPhoBien/uc.png" alt="Úc">
@@ -331,7 +256,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-md-3 col-6 mb-4">
+                    <div class="col-6 col-md-3">
                         <a href="../html/Khampha.html" class="text-decoration-none">
                             <div class="diem-den-item">
                                 <img src="../../data/img/DiemDenPhoBien/quangngai.png" alt="Quảng Ngãi">
@@ -342,7 +267,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-md-3 col-6 mb-4">
+                    <div class="col-6 col-md-3">
                         <a href="../html/Khampha.html" class="text-decoration-none">
                             <div class="diem-den-item">
                                 <img src="../../data/img/DiemDenPhoBien/gialai.png" alt="Gia Lai">
@@ -353,7 +278,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="col-md-3 col-6 mb-4">
+                    <div class="col-6 col-md-3">
                         <a href="../html/Khampha.html" class="text-decoration-none">
                             <div class="diem-den-item">
                                 <img src="../../data/img/DiemDenPhoBien/ando.png" alt="Ấn Độ">
@@ -366,219 +291,161 @@
                     </div>
                 </div>
             </div>
-
         </section>
+
         <div class="list-tour-gr">
             <div class="row list-gr-1">
                 <h1 class="h1-list-gr text-center">Tour Ưu Đãi Tốt Nhất Hôm Nay</h1>
-                <h4 class="h4-list-gr text-center"> Nhanh Tay Đặt Ngay.Để Mai Sẽ Lỡ</h4>
+                <h4 class="h4-list-gr text-center">Nhanh Tay Đặt Ngay. Để Mai Sẽ Lỡ</h4>
             </div>
-            <div class="row list-gr-1">
-                <div class=" col-md-4 mb-4 ">
-                    <a class="text-decoration-none" href="../html/ChiTietTour.html?id=phuquoc">
+            <div class="row list-gr-1 g-3">
+                <!-- Phú Quốc -->
+                <div class="col-12 col-sm-6 col-md-4 mb-4">
+                    <a class="text-decoration-none" href="../html/Dattour.html?tour=phuquoc">
                         <div class="card h-100">
-                            <img class="card-img-top" src="../../data/img/list-tour-gr/phuquoc.jpg" alt="Title" />
+                            <img class="card-img-top" src="../../data/img/list-tour-gr/phuquoc.jpg" alt="Phú Quốc" />
                             <div class="card-body">
                                 <div class="card-body1">
-                                    <h5 class="card-title ">Tour Phú Quốc 5N4Đ: Bằng Xe Giường Nằm.
-                                        Khuyến Mãi Duy Nhất Tuần Này </h5>
+                                    <h5 class="card-title">Tour Phú Quốc 5N4Đ: Bằng Xe Giường Nằm. Khuyến Mãi Duy Nhất Tuần Này</h5>
                                 </div>
-                                <div class="card-body2 ">
-                                    <div class="card-body2-ct ">
-                                        <img class="img-ct " src="../../data/img/list-tour-gr/logo-vitri.png" alt="">
-                                        <p class="">Lộ trình: <b>Từ TP.HCM, 5 Tỉnh Miền Tây</b></p>
-                                    </div>
-                                    <div class="card-body2-ct ">
-                                        <img class="img-ct " src="../../data/img/list-tour-gr/logo-hotel.png" alt="">
-                                        <p class="">Khách sạn: <b>4 Sao</b></p>
-                                    </div>
-                                    <div class="card-body2-ct ">
-                                        <img class="img-ct " src="../../data/img/list-tour-gr/logo-ptien.png" alt="">
-                                        <p class="">Phương tiện: <b>Ô tô + tàu</b></p>
-                                    </div>
+                                <div class="card-body2">
+                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-vitri.png" alt=""><p>Lộ trình: <b>Từ TP.HCM, 5 Tỉnh Miền Tây</b></p></div>
+                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-hotel.png" alt=""><p>Khách sạn: <b>4 Sao</b></p></div>
+                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-ptien.png" alt=""><p>Phương tiện: <b>Ô tô + tàu</b></p></div>
                                 </div>
-                                <div class="card-bottom ">
+                                <div class="card-bottom">
                                     <h3 class="text1-card-bottom">5.600.000 <small>đ</small></h3>
                                     <small class="text2-card-bottom">Khởi hành ngày 13/05</small>
                                 </div>
                             </div>
                         </div>
                     </a>
-
                 </div>
-                <div class=" col-md-4 mb-4 ">
-                    <a class="text-decoration-none" href="../html/ChiTietTour.html?id=sapa">
+                <!-- SaPa -->
+                <div class="col-12 col-sm-6 col-md-4 mb-4">
+                    <a class="text-decoration-none" href="../html/Dattour.html?tour=sapa">
                         <div class="card h-100">
-                            <img class="card-img-top" src="../../data/img/list-tour-gr/sapa.jpg" />
+                            <img class="card-img-top" src="../../data/img/list-tour-gr/sapa.jpg" alt="SaPa" />
                             <div class="card-body">
                                 <div class="card-body1">
-                                    <h5 class="card-title ">Tour SaPa 4N3Đ: Bằng Máy Bay.
-                                        Khuyến Mãi Duy Nhất Tuần Này </h5>
+                                    <h5 class="card-title">Tour SaPa 4N3Đ: Bằng Máy Bay. Khuyến Mãi Duy Nhất Tuần Này</h5>
                                 </div>
-                                <div class="card-body2 ">
-                                    <div class="card-body2-ct ">
-                                        <img class="img-ct " src="../../data/img/list-tour-gr/logo-vitri.png" alt="">
-                                        <p class="">Lộ trình: <b>Từ TP.HCM, 5 tỉnh Miền Bắc</b></p>
-                                    </div>
-                                    <div class="card-body2-ct ">
-                                        <img class="img-ct " src="../../data/img/list-tour-gr/logo-hotel.png" alt="">
-                                        <p class="">Khách sạn: <b>5 Sao</b></p>
-                                    </div>
-                                    <div class="card-body2-ct ">
-                                        <img class="img-ct " src="../../data/img/list-tour-gr/logo-ptien.png" alt="">
-                                        <p class="">Phương tiện: <b>Ô tô </b></p>
-                                    </div>
+                                <div class="card-body2">
+                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-vitri.png" alt=""><p>Lộ trình: <b>Từ TP.HCM, 5 tỉnh Miền Bắc</b></p></div>
+                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-hotel.png" alt=""><p>Khách sạn: <b>5 Sao</b></p></div>
+                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-ptien.png" alt=""><p>Phương tiện: <b>Ô tô</b></p></div>
                                 </div>
-                                <div class="card-bottom ">
+                                <div class="card-bottom">
                                     <h3 class="text1-card-bottom">9.300.000 <small>đ</small></h3>
                                     <small class="text2-card-bottom">Khởi hành ngày 13/05</small>
                                 </div>
                             </div>
                         </div>
                     </a>
-
                 </div>
-                <div class=" col-md-4 mb-4 ">
-                    <a class="text-decoration-none" href="../html/ChiTietTour.html?id=nhatrang">
+                <!-- Nha Trang -->
+                <div class="col-12 col-sm-6 col-md-4 mb-4">
+                    <a class="text-decoration-none" href="../html/Dattour.html?tour=nhatrang">
                         <div class="card h-100">
-                            <img class="card-img-top" src="../../data/img/list-tour-gr/vinpearl-nt.webp" alt="Title" />
+                            <img class="card-img-top" src="../../data/img/list-tour-gr/vinpearl-nt.webp" alt="Nha Trang" />
                             <div class="card-body">
                                 <div class="card-body1">
-                                    <h5 class="card-title ">Tour Nha Trang 2N3Đ: Bằng Xe Giường Nằm.
-                                        Khuyến Mãi Duy Nhất Tuần Này </h5>
+                                    <h5 class="card-title">Tour Nha Trang 2N3Đ: Bằng Xe Giường Nằm. Khuyến Mãi Duy Nhất Tuần Này</h5>
                                 </div>
-                                <div class="card-body2 ">
-                                    <div class="card-body2-ct ">
-                                        <img class="img-ct " src="../../data/img/list-tour-gr/logo-vitri.png" alt="">
-                                        <p class="">Lộ trình: <b>Từ Đà Nẵng, 3 Tỉnh Miền Trung</b></p>
-                                    </div>
-                                    <div class="card-body2-ct ">
-                                        <img class="img-ct " src="../../data/img/list-tour-gr/logo-hotel.png" alt="">
-                                        <p class="">Khách sạn: <b>3 Sao</b></p>
-                                    </div>
-                                    <div class="card-body2-ct ">
-                                        <img class="img-ct " src="../../data/img/list-tour-gr/logo-ptien.png" alt="">
-                                        <p class="">Phương tiện: <b>Ô tô + tàu</b></p>
-                                    </div>
+                                <div class="card-body2">
+                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-vitri.png" alt=""><p>Lộ trình: <b>Từ Đà Nẵng, 3 Tỉnh Miền Trung</b></p></div>
+                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-hotel.png" alt=""><p>Khách sạn: <b>3 Sao</b></p></div>
+                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-ptien.png" alt=""><p>Phương tiện: <b>Ô tô + tàu</b></p></div>
                                 </div>
-                                <div class="card-bottom ">
+                                <div class="card-bottom">
                                     <h3 class="text1-card-bottom">4.650.000 <small>đ</small></h3>
                                     <small class="text2-card-bottom">Khởi hành ngày 10/05</small>
                                 </div>
                             </div>
                         </div>
                     </a>
-
                 </div>
-                <div class=" col-md-4 mb-4 ">
-                    <a class="text-decoration-none" href="../html/ChiTietTour.html?id=trungquoc">
+                <!-- Trung Quốc -->
+                <div class="col-12 col-sm-6 col-md-4 mb-4">
+                    <a class="text-decoration-none" href="../html/Dattour.html?tour=trungquoc">
                         <div class="card h-100">
-                            <img class="card-img-top" src="../../data/img/list-tour-gr/china.jpg" alt="Title" />
+                            <img class="card-img-top" src="../../data/img/list-tour-gr/china.jpg" alt="Trung Quốc" />
                             <div class="card-body">
                                 <div class="card-body1">
-                                    <h5 class="card-title ">Tour trung Quốc 4N4Đ: Bằng Xe Máy Bay.
-                                        Khuyến Mãi Duy Nhất Tuần Này </h5>
+                                    <h5 class="card-title">Tour Trung Quốc 4N4Đ: Bằng Máy Bay. Khuyến Mãi Duy Nhất Tuần Này</h5>
                                 </div>
-                                <div class="card-body2 ">
-                                    <div class="card-body2-ct ">
-                                        <img class="img-ct " src="../../data/img/list-tour-gr/logo-vitri.png" alt="">
-                                        <p class="">Lộ trình: <b>Từ Huế - Quảng Đông - Vân Nam - Tứ Xuyên </b></p>
-                                    </div>
-                                    <div class="card-body2-ct ">
-                                        <img class="img-ct " src="../../data/img/list-tour-gr/logo-hotel.png" alt="">
-                                        <p class="">Khách sạn: <b>4 Sao</b></p>
-                                    </div>
-                                    <div class="card-body2-ct ">
-                                        <img class="img-ct " src="../../data/img/list-tour-gr/logo-ptien.png" alt="">
-                                        <p class="">Phương tiện: <b>Máy Bay + Tàu</b></p>
-                                    </div>
+                                <div class="card-body2">
+                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-vitri.png" alt=""><p>Lộ trình: <b>Từ Huế - Quảng Đông - Vân Nam - Tứ Xuyên</b></p></div>
+                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-hotel.png" alt=""><p>Khách sạn: <b>4 Sao</b></p></div>
+                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-ptien.png" alt=""><p>Phương tiện: <b>Máy Bay + Tàu</b></p></div>
                                 </div>
-                                <div class="card-bottom ">
+                                <div class="card-bottom">
                                     <h3 class="text1-card-bottom">15.990.000 <small>đ</small></h3>
                                     <small class="text2-card-bottom">Khởi hành ngày 13/05</small>
                                 </div>
                             </div>
                         </div>
                     </a>
-
                 </div>
-                <div class=" col-md-4 mb-4 ">
-                    <a class="text-decoration-none" href="../html/ChiTietTour.html?id=hanquoc">
+                <!-- Hàn Quốc -->
+                <div class="col-12 col-sm-6 col-md-4 mb-4">
+                    <a class="text-decoration-none" href="../html/Dattour.html?tour=hanquoc">
                         <div class="card h-100">
-                            <img class="card-img-top" src="../../data/img/list-tour-gr/hanquoc.webp" alt="Title" />
+                            <img class="card-img-top" src="../../data/img/list-tour-gr/hanquoc.webp" alt="Hàn Quốc" />
                             <div class="card-body">
                                 <div class="card-body1">
-                                    <h5 class="card-title ">Tour Hàn Quốc 6N5Đ: Bằng Máy Bay.
-                                        Khuyến Mãi Duy Nhất Tuần Này </h5>
+                                    <h5 class="card-title">Tour Hàn Quốc 6N5Đ: Bằng Máy Bay. Khuyến Mãi Duy Nhất Tuần Này</h5>
                                 </div>
-                                <div class="card-body2 ">
-                                    <div class="card-body2-ct ">
-                                        <img class="img-ct " src="../../data/img/list-tour-gr/logo-vitri.png" alt="">
-                                        <p class="">Lộ trình: <b>Từ TP.HCM - Seoul - Busan - Incheon</b></p>
-                                    </div>
-                                    <div class="card-body2-ct ">
-                                        <img class="img-ct " src="../../data/img/list-tour-gr/logo-hotel.png" alt="">
-                                        <p class="">Khách sạn: <b>5 Sao</b></p>
-                                    </div>
-                                    <div class="card-body2-ct ">
-                                        <img class="img-ct " src="../../data/img/list-tour-gr/logo-ptien.png" alt="">
-                                        <p class="">Phương tiện: <b>Tàu + Máy Bay</b></p>
-                                    </div>
+                                <div class="card-body2">
+                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-vitri.png" alt=""><p>Lộ trình: <b>Từ TP.HCM - Seoul - Busan - Incheon</b></p></div>
+                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-hotel.png" alt=""><p>Khách sạn: <b>5 Sao</b></p></div>
+                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-ptien.png" alt=""><p>Phương tiện: <b>Tàu + Máy Bay</b></p></div>
                                 </div>
-                                <div class="card-bottom ">
+                                <div class="card-bottom">
                                     <h3 class="text1-card-bottom">20.600.000 <small>đ</small></h3>
                                     <small class="text2-card-bottom">Khởi hành ngày 18/05</small>
                                 </div>
                             </div>
                         </div>
                     </a>
-
                 </div>
-                <div class=" col-md-4 mb-4 ">
-                    <a class="text-decoration-none" href="../html/ChiTietTour.html?id=nhatban">
+                <!-- Nhật Bản -->
+                <div class="col-12 col-sm-6 col-md-4 mb-4">
+                    <a class="text-decoration-none" href="../html/Dattour.html?tour=nhatban">
                         <div class="card h-100">
-                            <img class="card-img-top" src="../../data/img/list-tour-gr/japan.webp" alt="Title" />
+                            <img class="card-img-top" src="../../data/img/list-tour-gr/japan.webp" alt="Nhật Bản" />
                             <div class="card-body">
                                 <div class="card-body1">
-                                    <h5 class="card-title ">Tour Nhật Bản 7N6Đ: Bằng Xe Giường Nằm.
-                                        Khuyến Mãi Duy Nhất Tuần Này </h5>
+                                    <h5 class="card-title">Tour Nhật Bản 7N6Đ: Bằng Máy Bay. Khuyến Mãi Duy Nhất Tuần Này</h5>
                                 </div>
-                                <div class="card-body2 ">
-                                    <div class="card-body2-ct ">
-                                        <img class="img-ct " src="../../data/img/list-tour-gr/logo-vitri.png" alt="">
-                                        <p class="">Lộ trình: <b>Từ Nghệ An - Tokyo - Osaka - Hokkaido </b></p>
-                                    </div>
-                                    <div class="card-body2-ct ">
-                                        <img class="img-ct " src="../../data/img/list-tour-gr/logo-hotel.png" alt="">
-                                        <p class="">Khách sạn: <b>5 Sao</b></p>
-                                    </div>
-                                    <div class="card-body2-ct ">
-                                        <img class="img-ct " src="../../data/img/list-tour-gr/logo-ptien.png" alt="">
-                                        <p class="">Phương tiện: <b>Máy Bay + Tàu</b></p>
-                                    </div>
+                                <div class="card-body2">
+                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-vitri.png" alt=""><p>Lộ trình: <b>Từ Nghệ An - Tokyo - Osaka - Hokkaido</b></p></div>
+                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-hotel.png" alt=""><p>Khách sạn: <b>5 Sao</b></p></div>
+                                    <div class="card-body2-ct"><img class="img-ct" src="../../data/img/list-tour-gr/logo-ptien.png" alt=""><p>Phương tiện: <b>Máy Bay + Tàu</b></p></div>
                                 </div>
-                                <div class="card-bottom ">
+                                <div class="card-bottom">
                                     <h3 class="text1-card-bottom">25.680.000 <small>đ</small></h3>
                                     <small class="text2-card-bottom">Khởi hành ngày 11/05</small>
                                 </div>
                             </div>
                         </div>
                     </a>
-
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12 text-center">
+                <div class="col-12 text-center">
                     <a href="../html/TourDuLich.html" class="btn btn-xemthem bg-success text-white mb-5">Xem thêm</a>
                 </div>
             </div>
         </div>
     </div>
-    <section class="video-gt ">
-        <video width="500" height="500"  controls>
+
+    <section class="video-gt">
+        <video width="500" height="500" controls>
             <source src="../../data/img/video/gioiThieuTour.mp4" type="video/mp4">
         </video>
     </section>
+
     <footer>
         <div class="top-footer">
             <div class="text-footer">
@@ -587,7 +454,7 @@
             </div>
             <div class="email-footer">
                 <form action="" class="form-email">
-                    <input type="text" placeholder=" Nhập địa chỉ email">
+                    <input type="email" placeholder="Nhập địa chỉ email">
                     <button type="submit">Nhận ưu đãi</button>
                 </form>
             </div>
@@ -607,106 +474,111 @@
             <div class="chamsockhachhang">
                 <h3>CHĂM SÓC KHÁCH HÀNG</h3>
                 <h5>Thời gian hỗ trợ</h5>
-                <p>Mon- Sat: 08:00 AM - 17:00 PM</p>
+                <p>Mon - Sat: 08:00 AM - 17:00 PM</p>
                 <h5>Hotline</h5>
                 <p>Hỗ trợ: (090) 349-4878</p>
-
             </div>
             <div class="thongtin">
                 <h3>THÔNG TIN</h3>
                 <ul>
-                    <li> <a href="#">Tour Tây Nguyên 3 Ngày 3 Đêm</a></li>
-                    <li> <a href="#">Tour Phú Quý 3 Ngày 2 Đêm</a></li>
-                    <li><a href="#">Tour Phú Yên Quy Nhơn 3 Ngày 3 Đêm</a> </li>
-                    <li> <a href="#">Tour Đà Nẵng Huế Hội An 5 Ngày 4 Đêm</a></li>
-                    <li><a href="#">Tour Đà Lạt 4 Ngày 3 Đêm</a></li>
-                    <li><a href="#">Tour Đồng Tháp 2 Ngày 1 Đêm</a></li>
-                    <li><a href="#">Tour Nam Cát Tiên 2 Ngày 1 Đêm</a></li>
+                    <li><a href="../html/ChiTietTour.html?id=taynguyen">Tour Tây Nguyên 3 Ngày 3 Đêm</a></li>
+                    <li><a href="../html/ChiTietTour.html?id=phuquy">Tour Phú Quý 3 Ngày 2 Đêm</a></li>
+                    <li><a href="../html/ChiTietTour.html?id=phuyen">Tour Phú Yên Quy Nhơn 3 Ngày 3 Đêm</a></li>
+                    <li><a href="../html/ChiTietTour.html?id=dananghoian">Tour Đà Nẵng Huế Hội An 5 Ngày 4 Đêm</a></li>
+                    <li><a href="../html/ChiTietTour.html?id=dalat">Tour Đà Lạt 4 Ngày 3 Đêm</a></li>
+                    <li><a href="../html/ChiTietTour.html?id=dongthap">Tour Đồng Tháp 2 Ngày 1 Đêm</a></li>
+                    <li><a href="../html/ChiTietTour.html?id=namcattien">Tour Nam Cát Tiên 2 Ngày 1 Đêm</a></li>
                 </ul>
             </div>
         </div>
         <div class="bot-footer">
             <p>&copy; Bản quyền thuộc về 5 anh trai C2</p>
-
         </div>
-        <!-- modal user -->
+
+        <!-- Modal Thông tin khách hàng -->
         <div class="modal fade" id="modalUser" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
             role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-            <div class="modal-dialog  modal-dialog-centered modal-lg" role="document">
+            <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalTitleId">
-                            Thông tin khách hàng
-                        </h5>
+                        <h5 class="modal-title" id="modalTitleId">Thông tin khách hàng</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="profile-card">
-
-                            <!-- Avatar -->
                             <div class="profile-avatar-col">
                                 <div class="avt-wrap">
                                     <img id="avt-img" src="../../data/img/logo-login.png" alt="avatar" class="avt-img">
-                                    <div class="avt-edit-btn" onclick="document.getElementById('avt-input').click()"
-                                        title="Đổi ảnh">
+                                    <div class="avt-edit-btn" onclick="document.getElementById('avt-input').click()" title="Đổi ảnh">
                                         <svg viewBox="0 0 24 24" width="13" height="13" fill="#fff">
-                                            <path
-                                                d="M3 17.25V21h3.75l11.06-11.06-3.75-3.75L3 17.25zm17.71-10.21a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+                                            <path d="M3 17.25V21h3.75l11.06-11.06-3.75-3.75L3 17.25zm17.71-10.21a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
                                         </svg>
                                     </div>
                                 </div>
                                 <input type="file" id="avt-input" accept="image/*" style="display:none">
                                 <p class="avt-caption">Ảnh đại diện<br><small>Nhấn biểu tượng để đổi</small></p>
                             </div>
-
-                            <!-- Info -->
                             <div class="profile-info-col">
                                 <h5 class="profile-title">Thông tin cá nhân</h5>
                                 <div class="row">
-                                    <div class="col-6 mb-3">
+                                    <div class="col-12 col-sm-6 mb-3">
                                         <label class="field-label">Họ và tên</label>
                                         <div class="i4box">Nguyễn Duy Minh</div>
                                     </div>
-                                    <div class="col-6 mb-3">
+                                    <div class="col-12 col-sm-6 mb-3">
                                         <label class="field-label">Email</label>
                                         <div class="i4box">minh@gmail.com</div>
                                     </div>
-                                    <div class="col-6 mb-3">
+                                    <div class="col-12 col-sm-6 mb-3">
                                         <label class="field-label">Số điện thoại</label>
                                         <div class="i4box">0123456789</div>
                                     </div>
-                                    <div class="col-6 mb-3">
+                                    <div class="col-12 col-sm-6 mb-3">
                                         <label class="field-label">Căn cước công dân</label>
                                         <div class="i4box">064123456789</div>
                                     </div>
-                                    <div class="col-6 mb-3">
+                                    <div class="col-12 col-sm-6 mb-3">
                                         <label class="field-label">Ngày sinh</label>
                                         <div class="i4box">01/01/2001</div>
                                     </div>
-                                    <div class="col-6 mb-3">
+                                    <div class="col-12 col-sm-6 mb-3">
                                         <label class="field-label">Giới tính</label>
                                         <div class="i4box">Nam</div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="color:#fff">
-                            Close
-                        </button>
-                        <button type="button" class="btn btn-success" style="color:#fff">Save</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-success">Lưu</button>
                     </div>
                 </div>
             </div>
         </div>
+    </footer>
 
-        <script src="../../BackEnd/js/jquery-4.0.0.min.js"></script>
-        <script src="../../BackEnd/js/bootstrap.bundle.min.js"></script>
-        <script src="../../BackEnd/js/main.js"></script>
-        <script src="../../BackEnd/js/chonUser.js"></script>
+    <script src="../../BackEnd/js/jquery-4.0.0.min.js"></script>
+    <script src="../../BackEnd/js/bootstrap.bundle.min.js"></script>
+    <script src="../../BackEnd/js/main.js"></script>
+    <script src="../../BackEnd/js/chonUser.js"></script>
 
+    <!-- Responsive: Mobile Navigation -->
+    <script>
+        function toggleMobileNav() {
+            document.getElementById('mobileNavPanel').classList.toggle('open');
+            document.getElementById('mobileOverlay').classList.toggle('open');
+        }
+
+        function closeMobileNav() {
+            document.getElementById('mobileNavPanel').classList.remove('open');
+            document.getElementById('mobileOverlay').classList.remove('open');
+        }
+
+        // Close mobile nav on resize to desktop
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 991) closeMobileNav();
+        });
+    </script>
 </body>
-
 </html>

@@ -17,6 +17,7 @@
       "images": [
         "phu-si-japan.jpg"
       ],
+      "img": "../../data/img/list-tour-gr/phuquoc.jpg",
       "status": "open",
       "route": "Từ TP.HCM, 5 Tỉnh Miền Tây"
     },
@@ -38,6 +39,7 @@
         "dalat1.jpg",
         "dalat2.jpg"
       ],
+      "img": "../../data/img/list-tour-gr/dalat.jpg",
       "status": "open",
       "route": "TP.HCM - Đà Lạt - TP.HCM"
     },
@@ -58,6 +60,7 @@
       "images": [
         "sapa1.jpg"
       ],
+      "img": "../../data/img/list-tour-gr/sapa.jpg",
       "status": "full",
       "route": "Từ TP.HCM, 5 tỉnh Miền Bắc"
     },
@@ -79,6 +82,7 @@
         "danang1.jpg",
         "danang2.jpg"
       ],
+      "img": "../../data/img/list-tour-gr/danang.jpg",
       "status": "open",
       "route": "Đà Nẵng - Huế - Hội An - Đà Nẵng"
     },
@@ -99,6 +103,7 @@
       "images": [
         "nhatrang1.jpg"
       ],
+      "img": "../../data/img/list-tour-gr/vinpearl-nt.webp",
       "status": "open",
       "route": "Từ Đà Nẵng, 3 Tỉnh Miền Trung"
     },
@@ -119,6 +124,7 @@
       "images": [
         "china1.jpg"
       ],
+      "img": "../../data/img/list-tour-gr/china.jpg",
       "status": "open",
       "route": "Huế - Quảng Đông - Vân Nam - Tứ Xuyên"
     },
@@ -137,9 +143,9 @@
       "description": "Khám phá Seoul, Busan, Incheon - thưởng thức ẩm thực Hàn Quốc, tham quan cung điện Gyeongbok...",
       "guide": "Trương Chánh Tân",
       "images": [
-        "korea1.jpg",
-        "korea2.jpg"
+        "korea1.jpg"
       ],
+      "img": "../../data/img/list-tour-gr/han",
       "status": "open",
       "route": "TP.HCM - Seoul - Busan - Incheon"
     },
@@ -272,6 +278,135 @@
       "name": "Trung Quốc",
       "country": "Trung Quốc",
       "category": "nuocngoai"
+    }
+,  
+
+
+    {
+      "id": "taynguyen",
+      "name": "Tour Tây Nguyên 3 Ngày 3 Đêm",
+      "destination": "Tây Nguyên",
+      "location": "Đắk Lắk",
+      "departureDate": "2026-06-10",
+      "duration": "3 ngày 3 đêm",
+      "price": 2800000,
+      "maxCapacity": 20,
+      "currentBookings": 5,
+      "hotel": "3 Sao",
+      "transport": "Xe du lịch",
+      "description": "Khám phá vùng đất đỏ Tây Nguyên với cồng chiêng, thác Đray Nur, hồ Lắk...",
+      "guide": "Nguyễn Duy Minh",
+      "img": "../../data/img/list-tour-gr/taynguyen.jpg",
+      "status": "open",
+      "route": "TP.HCM - Đắk Lắk - Gia Lai - TP.HCM"
+    },
+    {
+      "id": "phuquy",
+      "name": "Tour Phú Quý 3 Ngày 2 Đêm",
+      "destination": "Phú Quý",
+      "location": "Bình Thuận",
+      "departureDate": "2026-06-15",
+      "duration": "3 ngày 2 đêm",
+      "price": 3200000,
+      "maxCapacity": 20,
+      "currentBookings": 8,
+      "hotel": "3 Sao",
+      "transport": "Tàu cao tốc",
+      "description": "Khám phá đảo Phú Quý hoang sơ, biển xanh, san hô, hải sản tươi ngon...",
+      "guide": "Trần Thành Danh",
+      "img": "../../data/img/list-tour-gr/phuquy.jpg",
+      "status": "open",
+      "route": "Phan Thiết - Đảo Phú Quý"
+    },
+    {
+      "id": "phuyen",
+      "name": "Tour Phú Yên Quy Nhơn 3 Ngày 3 Đêm",
+      "destination": "Phú Yên",
+      "location": "Phú Yên - Bình Định",
+      "departureDate": "2026-06-20",
+      "duration": "3 ngày 3 đêm",
+      "price": 3500000,
+      "maxCapacity": 25,
+      "currentBookings": 10,
+      "hotel": "3 Sao",
+      "transport": "Xe du lịch",
+      "description": "Ghềnh Đá Đĩa, Gành Đỏ, Tháp Đôi, biển Quy Nhơn...",
+      "guide": "Trương Chánh Tân",
+      "img": "../../data/img/list-tour-gr/phuyen.jpg",
+      "status": "open",
+      "route": "TP.HCM - Phú Yên - Quy Nhơn - TP.HCM"
+    },
+    {
+      "id": "dananghoian",
+      "name": "Tour Đà Nẵng Huế Hội An 5 Ngày 4 Đêm",
+      "destination": "Đà Nẵng",
+      "location": "Đà Nẵng - Huế - Hội An",
+      "departureDate": "2026-06-05",
+      "duration": "5 ngày 4 đêm",
+      "price": 6500000,
+      "maxCapacity": 30,
+      "currentBookings": 5,
+      "hotel": "4 Sao",
+      "transport": "Máy bay + xe du lịch",
+      "description": "Bà Nà Hills, Cầu Vàng, phố cổ Hội An, kinh thành Huế...",
+      "guide": "Nguyễn Duy Minh",
+      "img": "../../data/img/list-tour-gr/danang.jpg",
+      "status": "open",
+      "route": "TP.HCM - Đà Nẵng - Huế - Hội An"
+    },
+    {
+      "id": "dalat",
+      "name": "Tour Đà Lạt 4 Ngày 3 Đêm",
+      "destination": "Đà Lạt",
+      "location": "Lâm Đồng",
+      "departureDate": "2026-05-20",
+      "duration": "4 ngày 3 đêm",
+      "price": 3500000,
+      "maxCapacity": 25,
+      "currentBookings": 10,
+      "hotel": "3 Sao",
+      "transport": "Xe giường nằm",
+      "description": "Thành phố ngàn hoa: Hồ Xuân Hương, Dinh Bảo Đại, Thung lũng Tình Yêu...",
+      "guide": "Trần Quốc Tây",
+      "img": "../../data/img/list-tour-gr/dalat.jpg",
+      "status": "open",
+      "route": "TP.HCM - Đà Lạt - TP.HCM"
+    },
+    {
+      "id": "dongthap",
+      "name": "Tour Đồng Tháp 2 Ngày 1 Đêm",
+      "destination": "Đồng Tháp",
+      "location": "Đồng Tháp",
+      "departureDate": "2026-06-01",
+      "duration": "2 ngày 1 đêm",
+      "price": 1500000,
+      "maxCapacity": 30,
+      "currentBookings": 6,
+      "hotel": "2 Sao",
+      "transport": "Xe du lịch",
+      "description": "Vườn quốc gia Tràm Chim, làng hoa Sa Đéc, làng nghề truyền thống...",
+      "guide": "Trần Thành Danh",
+      "img": "../../data/img/list-tour-gr/dongthap.jpg",
+      "status": "open",
+      "route": "TP.HCM - Đồng Tháp - TP.HCM"
+    },
+    {
+      "id": "namcattien",
+      "name": "Tour Nam Cát Tiên 2 Ngày 1 Đêm",
+      "destination": "Nam Cát Tiên",
+      "location": "Đồng Nai",
+      "departureDate": "2026-06-08",
+      "duration": "2 ngày 1 đêm",
+      "price": 1800000,
+      "maxCapacity": 20,
+      "currentBookings": 4,
+      "hotel": "Nhà nghỉ sinh thái",
+      "transport": "Xe du lịch",
+      "description": "Vườn quốc gia Nam Cát Tiên, ngắm thú hoang dã, chèo thuyền sông Đồng Nai...",
+      "guide": "Trương Chánh Tân",
+      "img": "../../data/img/list-tour-gr/namcattien.jpg",
+      "status": "open",
+      "route": "TP.HCM - Nam Cát Tiên - TP.HCM"
     }
   ]
 }
