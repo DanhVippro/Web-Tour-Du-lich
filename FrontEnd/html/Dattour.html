@@ -304,16 +304,16 @@
         }
 
         // Hiển thị thông tin tour bên phải
-       function showTourInfo(tour) {
-  const slotsLeft = tour.maxCapacity - tour.currentBookings;
-  const statusBadge = tour.status === "full"
-    ? `<span class="badge bg-danger">Hết chỗ</span>`
-    : `<span class="badge bg-success">Còn ${slotsLeft} chỗ</span>`;
+        function showTourInfo(tour) {
+            const slotsLeft = tour.maxCapacity - tour.currentBookings;
+            const statusBadge = tour.status === "full"
+                ? `<span class="badge bg-danger">Hết chỗ</span>`
+                : `<span class="badge bg-success">Còn ${slotsLeft} chỗ</span>`;
 
-  // ảnh mặc định nếu tour chưa có img
-  const imgSrc = tour.img || "../../data/img/Logo.png";
+            // ảnh mặc định nếu tour chưa có img
+            const imgSrc = tour.img || "../../data/img/Logo.png";
 
-  document.querySelector(".info-tour").innerHTML = `
+            document.querySelector(".info-tour").innerHTML = `
     <div class="w-100">
       <img src="${imgSrc}" alt="${tour.name}" 
            style="width:100%; height:200px; object-fit:cover; border-radius:8px 8px 0 0;">
@@ -334,7 +334,7 @@
       </div>
     </div>
   `;
-}
+        }
         function clearTourInfo() {
             document.querySelector(".info-tour").innerHTML = `<span>Thông tin Loại Tour</span>`;
         }
@@ -407,9 +407,39 @@
             };
 
             // Lưu vào localStorage nhấn f12 vào application -> localStorage sẽ thấy dữ liệu đạt nằm ở đó 
-            const existing = JSON.parse(localStorage.getItem("bookings") || "[]");
-            existing.push(booking);
-            localStorage.setItem("bookings", JSON.stringify(existing));
+            // Gửi booking lên server
+            fetch("http://localhost:3000/api/bookings", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(booking)
+            })
+                .then(res => res.json())
+                .then(data => {
+
+                    alert(
+                        `✅ Đặt tour thành công!\n\n` +
+                        `🧳 Tour: ${tour.name}\n` +
+                        `👤 Khách hàng: ${hoTen}\n` +
+                        `🎟 Số vé: ${soVe}\n` +
+                        `💰 Tổng tiền: ${formatPrice(tongTien)}`
+                    );
+
+                    // Reset form
+                    document.querySelectorAll("input.form-control")
+                        .forEach(i => i.value = "");
+
+                    document.getElementById("soVe").value = 1;
+                    document.getElementById("treem").checked = false;
+                    document.querySelector("select.form-select").value = "";
+
+                    clearTourInfo();
+                })
+                .catch(err => {
+                    console.error(err);
+                    alert("❌ Lỗi kết nối server!");
+                });
 
             // Thông báo thành công
             alert(
