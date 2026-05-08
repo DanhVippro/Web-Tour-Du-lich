@@ -12,6 +12,11 @@ let tourToDelete = null; // lưu id khi xác nhận xóa
 
 /* ─── Khởi động ──────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
+    // Gọi các hàm sidebar util (sidebar.js cung cấp nhưng không tự gọi)
+    if (typeof initDateTime === 'function') initDateTime();
+    if (typeof initCalendarModal === 'function') initCalendarModal();
+    if (typeof bindChat === 'function') bindChat();
+
     loadStatistics();
     loadTours();
     bindSearch();

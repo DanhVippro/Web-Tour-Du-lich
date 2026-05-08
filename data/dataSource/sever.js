@@ -159,13 +159,35 @@ app.delete('/api/bookings/:id', (req, res) => {
 });
 
 // ==================== USER APIs ====================
-// Lấy tất cả user
+// Lấy tất cả user (public - không có password)
 app.get('/api/users', (req, res) => {
     const users = db.users.map(u => {
         const { password, ...userWithoutPass } = u;
         return userWithoutPass;
     });
     res.json(users);
+});
+
+// Lấy tất cả user cho manager (có password - chỉ dùng nội bộ)
+app.get('/api/users/admin', (req, res) => {
+    res.json(db.users);
+});
+
+// Xóa user
+app.delete('/api/users/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const index = db.users.findIndex(u => u.id === id);
+    if (index !== -1) {
+        // Không cho xóa admin
+        if (db.users[index].role === 'admin') {
+            return res.status(403).json({ error: 'Không thể xóa tài khoản admin' });
+        }
+        db.users.splice(index, 1);
+        saveDB();
+        res.status(204).send();
+    } else {
+        res.status(404).json({ error: 'User not found' });
+    }
 });
 
 // Đăng ký
@@ -267,4 +289,3 @@ app.listen(PORT, () => {
     console.log(`   - POST /api/login`);
     console.log(`   - POST /api/register`);
 });
-

@@ -33,15 +33,15 @@
                 <p class="nav-section-label text-center">MENU</p>
                 <ul>
                     <li>
-                        <a href="#" class="nav-link-item" data-bs-toggle="modal" data-bs-target="#khachHangModal">
-                            <span class="nav-icon"><i class="bi bi-people-fill"></i></span>
-                            <span>Khách hàng</span>
+                        <a href="/FrontEnd/html/manager/manager.html" class="nav-link-item">
+                            <span class="nav-icon"><i class="bi bi-calendar3"></i></span>
+                            <span>Trang chủ</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link-item" data-bs-toggle="modal" data-bs-target="#lichTrinhModal">
-                            <span class="nav-icon"><i class="bi bi-calendar3"></i></span>
-                            <span>Lịch trình</span>
+                        <a href="#" class="nav-link-item" data-bs-toggle="modal" data-bs-target="#khachHangModal">
+                            <span class="nav-icon"><i class="bi bi-people-fill"></i></span>
+                            <span>Khách hàng</span>
                         </a>
                     </li>
                     <li>
@@ -334,58 +334,48 @@
 
     <!-- Khách hàng Modal -->
     <div class="modal fade" id="khachHangModal" tabindex="-1">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered">
             <div class="modal-content modal-glass">
                 <div class="modal-header border-0">
                     <h5 class="modal-title fw-bold"><i class="bi bi-people-fill me-2"></i>Quản lý Khách hàng</h5>
                     <button class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <input class="form-control mb-3" placeholder="Tìm khách hàng...">
-                    <table class="table table-hover align-middle">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Tên</th>
-                                <th>Email</th>
-                                <th>SĐT</th>
-                                <th>Vai trò</th>
-                            </tr>
-                        </thead>
-                        <tbody id="khachHangBody">
-                            <tr>
-                                <td colspan="4" class="text-center text-muted py-3">Đang tải...</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Lịch trình Modal -->
-    <div class="modal fade" id="lichTrinhModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content modal-glass">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title fw-bold"><i class="bi bi-calendar3 me-2"></i>Lịch trình</h5>
-                    <button class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="calendar">
-                        <div class="calendar-header">
-                            <button class="btn btn-sm btn-outline-secondary" onclick="prevMonth()">◀</button>
-                            <h3 id="monthYear"></h3>
-                            <button class="btn btn-sm btn-outline-secondary" onclick="nextMonth()">▶</button>
+                    <!-- Search + summary -->
+                    <div class="d-flex gap-2 mb-3 align-items-center flex-wrap">
+                        <div class="input-group" style="max-width:320px">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input id="khSearch" class="form-control" placeholder="Tìm tên, email, SĐT...">
                         </div>
-                        <div class="days-grid" id="calGrid">
-                            <div class="day-label">CN</div>
-                            <div class="day-label">T2</div>
-                            <div class="day-label">T3</div>
-                            <div class="day-label">T4</div>
-                            <div class="day-label">T5</div>
-                            <div class="day-label">T6</div>
-                            <div class="day-label">T7</div>
-                        </div>
+                        <span
+                            class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2 ms-auto">
+                            Tổng: <strong id="khTotalCount">—</strong> tài khoản
+                        </span>
+                    </div>
+                    <div class="table-responsive" style="max-height:460px;overflow-y:auto">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-light sticky-top">
+                                <tr>
+                                    <th style="min-width:140px">Họ tên</th>
+                                    <th style="min-width:180px">Email</th>
+                                    <th style="min-width:110px">SĐT</th>
+                                    <th style="min-width:110px">Mật khẩu</th>
+                                    <th style="min-width:90px">Vai trò</th>
+                                    <th style="min-width:80px" class="text-center">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="khachHangBody">
+                                <tr>
+                                    <td colspan="6" class="text-center text-muted py-3">
+                                        <div class="spinner-border spinner-border-sm text-primary me-2"></div>Đang
+                                        tải...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="khEmpty" class="text-center text-muted py-4 d-none">
+                        <i class="bi bi-person-x fs-1 d-block mb-2 opacity-50"></i>Không tìm thấy khách hàng nào.
                     </div>
                 </div>
             </div>
@@ -394,38 +384,91 @@
 
     <!-- Phân tích Modal -->
     <div class="modal fade" id="phanTichModal" tabindex="-1">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content modal-glass">
                 <div class="modal-header border-0">
                     <h5 class="modal-title fw-bold"><i class="bi bi-bar-chart-fill me-2"></i>Phân tích dữ liệu</h5>
                     <button class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
+                    <!-- KPI row -->
                     <div class="row text-center g-3 mb-4">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="stat-mini stat-purple">
                                 <p class="sm-label">Tổng doanh thu</p>
                                 <h4 class="sm-val text-success" id="ptRevenue">—</h4>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="stat-mini stat-teal">
-                                <p class="sm-label">Tour bán chạy</p>
+                                <p class="sm-label">Tour bán chạy nhất</p>
                                 <h5 class="sm-val" id="ptBestTour">—</h5>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="stat-mini stat-amber">
                                 <p class="sm-label">Tổng lượt khách</p>
                                 <h4 class="sm-val" id="ptPax">—</h4>
                             </div>
                         </div>
+                        <div class="col-md-3">
+                            <div class="stat-mini stat-purple">
+                                <p class="sm-label">Tỉ lệ lấp đầy TB</p>
+                                <h4 class="sm-val" id="ptFillRate">—</h4>
+                            </div>
+                        </div>
                     </div>
-                    <div class="text-center text-muted"
-                        style="height:180px;background:#f8f9fa;border-radius:12px;display:flex;align-items:center;justify-content:center">
-                        <span><i class="bi bi-graph-up-arrow fs-1 text-primary opacity-50 d-block mb-2"></i>Biểu đồ
-                            doanh thu (demo)</span>
+
+                    <!-- Charts row -->
+                    <div class="row g-3 mb-3">
+                        <!-- Doanh thu theo tour (bar) -->
+                        <div class="col-md-7">
+                            <div style="background:#f8f9fa;border-radius:12px;padding:16px">
+                                <p class="fw-semibold mb-2" style="font-size:13px">
+                                    <i class="bi bi-bar-chart-fill me-1 text-primary"></i>Doanh thu theo tour (đ)
+                                </p>
+                                <canvas id="ptChartRevenue" height="200"></canvas>
+                            </div>
+                        </div>
+                        <!-- Trạng thái booking (doughnut) -->
+                        <div class="col-md-5">
+                            <div style="background:#f8f9fa;border-radius:12px;padding:16px">
+                                <p class="fw-semibold mb-2" style="font-size:13px">
+                                    <i class="bi bi-pie-chart-fill me-1 text-warning"></i>Trạng thái đơn đặt
+                                </p>
+                                <canvas id="ptChartStatus" height="200"></canvas>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Top tours table -->
+                    <div style="background:#f8f9fa;border-radius:12px;padding:16px">
+                        <p class="fw-semibold mb-2" style="font-size:13px">
+                            <i class="bi bi-trophy-fill me-1 text-warning"></i>Xếp hạng tour theo lượng khách
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table table-sm align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Tên tour</th>
+                                        <th>Điểm đến</th>
+                                        <th>Đã đặt</th>
+                                        <th>Sức chứa</th>
+                                        <th>Lấp đầy</th>
+                                        <th>Giá/vé</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ptTourRankBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <small class="text-muted" id="ptLastUpdate"></small>
+                    <button class="btn btn-sm btn-outline-secondary" onclick="loadPhanTich()">
+                        <i class="bi bi-arrow-clockwise me-1"></i>Làm mới
+                    </button>
                 </div>
             </div>
         </div>
@@ -607,8 +650,9 @@
     </div>
 
     <script src="/BackEnd/js/bootstrap.bundle.min.js"></script>
-    <script src="/BackEnd/js/manager/manager_new.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script src="/BackEnd/js/manager/sidebar.js"></script>
+    <script src="/BackEnd/js/manager/manager_new.js"></script>
     <script src="/BackEnd/js/manager/booking_manager.js"></script>
     <script>
         async function loadBookingManager() {

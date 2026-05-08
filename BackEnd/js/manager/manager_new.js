@@ -10,12 +10,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     initCalendarModal();
     bindChat();
     bindSearch();
+    bindKhSearch();
+
+    // Khi mở modal Khách hàng → load data
+    document.getElementById('khachHangModal')
+        ?.addEventListener('show.bs.modal', loadUsersModal);
+
+    // Khi mở modal Phân tích → load data thật
+    document.getElementById('phanTichModal')
+        ?.addEventListener('show.bs.modal', loadPhanTich);
 
     await Promise.all([
         loadDashboardStats(),
         loadBookingCards(),
         loadUpcomingTours(),
-        loadUsersModal(),
     ]);
 });
 
@@ -155,24 +163,234 @@ async function loadUpcomingTours() {
 }
 
 /* ─── 4. Users Modal ─────────────────────────────────────── */
-async function loadUsersModal() {
-    try {
-        const res = await fetch(`${API}/users`);
-        const users = await res.json();
-        const tbody = document.getElementById('khachHangBody');
-        if (!tbody) return;
+let _allUsers = [];
 
+async function loadUsersModal() {
+    const tbody = document.getElementById('khachHangBody');
+    if (!tbody) return;
+    tbody.innerHTML = `<tr><td colspan="6" class="text-center text-muted py-3">
+        <div class="spinner-border spinner-border-sm text-primary me-2"></div>Đang tải...</td></tr>`;
+
+    try {
+        // Dùng endpoint admin để lấy đầy đủ kể cả password
+        const res = await fetch(`${API}/users/admin`);
+        _allUsers = await res.json();
+        renderUsersTable(_allUsers);
+        setEl('khTotalCount', _allUsers.length);
+    } catch (e) {
+        tbody.innerHTML = `<tr><td colspan="6" class="text-center text-danger py-3">
+            <i class="bi bi-wifi-off me-2"></i>Không thể kết nối server</td></tr>`;
+        console.error('Users error:', e);
+    }
+}
+
+function renderUsersTable(users) {
+    const tbody = document.getElementById('khachHangBody');
+    const empty = document.getElementById('khEmpty');
+    if (!tbody) return;
+
+    if (!users.length) {
         tbody.innerHTML = '';
-        users.forEach(u => {
-            tbody.insertAdjacentHTML('beforeend', `
-            <tr>
-                <td>${u.fullname}</td>
-                <td>${u.email}</td>
-                <td>${u.phone || '—'}</td>
-                <td><span class="badge ${u.role === 'admin' ? 'bg-danger' : 'bg-primary'}">${u.role}</span></td>
-            </tr>`);
+        empty?.classList.remove('d-none');
+        return;
+    }
+    empty?.classList.add('d-none');
+
+    tbody.innerHTML = users.map(u => {
+        const roleCls = u.role === 'admin' ? 'bg-danger' : 'bg-primary';
+        const roleLabel = u.role === 'admin' ? 'Admin' : 'Khách';
+        const canDelete = u.role !== 'admin';
+        return `<tr>
+            <td>
+                <div class="fw-semibold">${u.fullname || '—'}</div>
+                <small class="text-muted">#${u.id}</small>
+            </td>
+            <td>${u.email || '—'}</td>
+            <td>${u.phone || '—'}</td>
+            <td>
+                <span class="font-monospace" style="font-size:12px;background:#f1f3f5;padding:2px 8px;border-radius:4px;letter-spacing:.5px">
+                    ${u.password || '—'}
+                </span>
+            </td>
+            <td><span class="badge ${roleCls}">${roleLabel}</span></td>
+            <td class="text-center">
+                ${canDelete
+                ? `<button class="btn btn-sm btn-outline-danger" title="Xóa" onclick="deleteUser(${u.id},'${escHtml(u.fullname)}')">
+                        <i class="bi bi-trash"></i>
+                       </button>`
+                : `<span class="text-muted small">—</span>`
+            }
+            </td>
+        </tr>`;
+    }).join('');
+}
+
+function bindKhSearch() {
+    const input = document.getElementById('khSearch');
+    if (!input) return;
+    input.addEventListener('input', () => {
+        const kw = input.value.toLowerCase().trim();
+        const filtered = !kw ? _allUsers : _allUsers.filter(u =>
+            (u.fullname || '').toLowerCase().includes(kw) ||
+            (u.email || '').toLowerCase().includes(kw) ||
+            (u.phone || '').toLowerCase().includes(kw)
+        );
+        renderUsersTable(filtered);
+        setEl('khTotalCount', filtered.length);
+    });
+}
+
+async function deleteUser(id, name) {
+    if (!confirm(`Xóa tài khoản "${name}"? Hành động này không thể hoàn tác.`)) return;
+    try {
+        const res = await fetch(`${API}/users/${id}`, { method: 'DELETE' });
+        if (!res.ok) {
+            const err = await res.json();
+            return showToast(err.error || 'Xóa thất bại', 'danger');
+        }
+        showToast(`Đã xóa tài khoản "${name}"`, 'success');
+        await loadUsersModal();
+    } catch (e) {
+        showToast('Lỗi kết nối server', 'danger');
+        console.error(e);
+    }
+}
+
+function escHtml(str) {
+    return String(str || '').replace(/'/g, "\'").replace(/"/g, '&quot;');
+}
+
+/* ─── 5. Phân tích Modal ────────────────────────────────── */
+let _ptChartRevenue = null;
+let _ptChartStatus = null;
+
+async function loadPhanTich() {
+    try {
+        const [statRes, tourRes, bookRes] = await Promise.all([
+            fetch(`${API}/statistics`),
+            fetch(`${API}/tours`),
+            fetch(`${API}/bookings`),
+        ]);
+        const stat = await statRes.json();
+        const tours = await tourRes.json();
+        const bookings = await bookRes.json();
+
+        // ── KPI ──
+        const totalPax = tours.reduce((s, t) => s + (t.currentBookings || 0), 0);
+        const avgFill = tours.length
+            ? Math.round(tours.reduce((s, t) => s + (t.currentBookings / (t.maxCapacity || 1)), 0) / tours.length * 100)
+            : 0;
+        const best = [...tours].sort((a, b) => (b.currentBookings || 0) - (a.currentBookings || 0))[0] || {};
+
+        setEl('ptRevenue', stat.totalRevenue ? formatPrice(stat.totalRevenue) : '—');
+        setEl('ptBestTour', best.name || best.destination || '—');
+        setEl('ptPax', totalPax);
+        setEl('ptFillRate', avgFill + '%');
+
+        const now = new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        setEl('ptLastUpdate', `Cập nhật lúc ${now}`);
+
+        // ── Revenue by tour (bar chart) ──
+        const revenueMap = {};
+        bookings.forEach(b => {
+            if (b.status !== 'cancelled')
+                revenueMap[b.tourId] = (revenueMap[b.tourId] || 0) + (b.totalPrice || 0);
         });
-    } catch (e) { console.error('Users error:', e); }
+        const tourMap = Object.fromEntries(tours.map(t => [t.id, t]));
+        const revEntries = Object.entries(revenueMap)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 8);
+        const revLabels = revEntries.map(([id]) => tourMap[id]?.destination || id);
+        const revData = revEntries.map(([, v]) => v);
+
+        const ctxRev = document.getElementById('ptChartRevenue');
+        if (ctxRev) {
+            if (_ptChartRevenue) _ptChartRevenue.destroy();
+            _ptChartRevenue = new Chart(ctxRev, {
+                type: 'bar',
+                data: {
+                    labels: revLabels,
+                    datasets: [{
+                        label: 'Doanh thu (đ)',
+                        data: revData,
+                        backgroundColor: [
+                            '#7c3aed', '#2dd4bf', '#f59e0b', '#ef4444',
+                            '#3b82f6', '#10b981', '#f97316', '#8b5cf6'
+                        ],
+                        borderRadius: 6,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: {
+                            ticks: {
+                                callback: v => (v / 1000000).toFixed(0) + 'M'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // ── Booking status (doughnut) ──
+        const confirmed = bookings.filter(b => b.status === 'confirmed').length;
+        const pending = bookings.filter(b => b.status === 'pending').length;
+        const cancelled = bookings.filter(b => b.status === 'cancelled').length;
+
+        const ctxStatus = document.getElementById('ptChartStatus');
+        if (ctxStatus) {
+            if (_ptChartStatus) _ptChartStatus.destroy();
+            _ptChartStatus = new Chart(ctxStatus, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Xác nhận', 'Chờ duyệt', 'Đã hủy'],
+                    datasets: [{
+                        data: [confirmed, pending, cancelled],
+                        backgroundColor: ['#10b981', '#f59e0b', '#ef4444'],
+                        borderWidth: 0,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { padding: 16, font: { size: 12 } } }
+                    },
+                    cutout: '65%',
+                }
+            });
+        }
+
+        // ── Tour rank table ──
+        const ranked = [...tours].sort((a, b) => (b.currentBookings || 0) - (a.currentBookings || 0));
+        const tbody = document.getElementById('ptTourRankBody');
+        if (tbody) {
+            tbody.innerHTML = ranked.map((t, i) => {
+                const fill = t.maxCapacity ? Math.round(t.currentBookings / t.maxCapacity * 100) : 0;
+                const barColor = fill >= 90 ? '#ef4444' : fill >= 60 ? '#f59e0b' : '#10b981';
+                return `<tr>
+                    <td><span class="badge bg-secondary-subtle text-secondary">${i + 1}</span></td>
+                    <td class="fw-semibold" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${t.name}">${t.name}</td>
+                    <td>${t.destination}</td>
+                    <td>${t.currentBookings || 0}</td>
+                    <td>${t.maxCapacity || '—'}</td>
+                    <td>
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="progress flex-grow-1" style="height:6px;width:70px">
+                                <div class="progress-bar" style="width:${fill}%;background:${barColor}"></div>
+                            </div>
+                            <small>${fill}%</small>
+                        </div>
+                    </td>
+                    <td class="text-success fw-semibold">${formatPrice(t.price)}</td>
+                </tr>`;
+            }).join('');
+        }
+
+    } catch (e) {
+        console.error('PhanTich error:', e);
+    }
 }
 
 /* ─── Search filter ──────────────────────────────────────── */
