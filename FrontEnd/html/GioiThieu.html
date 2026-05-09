@@ -1,32 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/GioiThieu.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/headerChung.css">
-    <title>Giơi Thiệu</title>
+    <link rel="stylesheet" href="../css/GioiThieu.css">
+    <title>Giới Thiệu</title> 
+    <style>
+        html {
+            overflow-y: scroll;
+        }
+
+        body,
+        body.modal-open {
+            padding-right: 0 !important;
+            overflow-x: hidden !important;
+            margin-right: 0 !important;
+        }
+
+        .modal-open .modal {
+            padding-right: 0 !important;
+        }
+
+        #user-menu a:hover {
+            background: #f5f5f5;
+        }
+    </style>  
 </head>
-
-
 <body>
-    <!-- header1 -->
+
+<!-- HEADER -->
+ <!-- ===== MOBILE NAV PANEL ===== -->
+    <div class="mobile-nav-overlay" id="mobileOverlay" onclick="closeMobileNav()"></div>
+    <div class="mobile-nav-panel" id="mobileNavPanel">
+        <ul>
+            <li><a href="../html/trangChu.html">🏠 Trang chủ</a></li>
+            <li><a href="../html/GioiThieu.html">📖 Giới Thiệu</a></li>
+            <li><a href="../html/Khampha.html">🗺️ Khám phá</a></li>
+            <li><a href="../html/Dattour.html">🎫 Đặt tour</a></li>
+            <li><a href="../html/HoTro.html">💬 Hỗ trợ</a></li>
+        </ul>
+        <!-- Mobile search -->
+        <form action="../html/TimKiem.html" method="GET" style="margin-top:20px;">
+            <div style="display:flex;background:#f0f0f0;border-radius:6px;overflow:hidden;">
+                <input type="text" name="q" placeholder="Tìm điểm đến..."
+                    style="flex:1;border:none;background:#f0f0f0;padding:10px;font-size:14px;outline:none;">
+                <button type="submit"
+                    style="background:#3665a1;color:#fff;border:none;padding:0 14px;font-size:18px;cursor:pointer;">⌕</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- ===== HEADER 1 ===== -->
     <header class="header1">
         <div class="logo-header1">
             <a href="../html/trangChu.html">
-                <img src="../../data/img/Logo.png" alt="Logo">
+                <img src="../../data/img/Logo.png" alt="CheapTour Logo">
             </a>
         </div>
+
+        <!-- Desktop search -->
         <div class="Search-header1">
             <form action="../html/TimKiem.html" method="GET" class="form-place">
-                <input type="text" name="q" placeholder=" Tìm kiếm điểm đến yêu thích">
-                <button type="submit">&#8981;</button>
+                <input type="text" name="q" placeholder="Tìm kiếm điểm đến yêu thích">
+                <button type="submit">⌕</button>
             </form>
         </div>
-        <div class="menu-header1">
 
+        <!-- Desktop nav -->
+        <div class="menu-header1">
             <ul>
                 <li><a href="../html/trangChu.html">Trang chủ</a></li>
                 <li><a href="../html/GioiThieu.html">Giới Thiệu</a></li>
@@ -35,263 +77,246 @@
                 <li><a href="../html/HoTro.html">Hỗ trợ</a></li>
             </ul>
         </div>
-        <!-- Login Logo -->
-        <div class="logo-login" style="position: relative; display: inline-block;">
+
+        <!-- Hamburger (mobile only) -->
+        <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileNav()" aria-label="Mở menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="logo-login" style="position: relative; display: inline-block; margin-left: 8px;">
             <a href="#" id="avatar-btn" onclick="toggleMenu(event)">
-                <img src="../../data/img/logo-login.png" alt="login" height="50px"
+                <img src="../../data/img/logo-login.png" alt="login" height="44px"
                     style="border-radius: 50%; cursor: pointer;">
             </a>
-
             <div id="user-menu" class="user-menu">
                 <a href="#thong-tin" onclick="closeMenu()" data-bs-toggle="modal" data-bs-target="#modalUser"
-                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #333; text-decoration: none; font-size: 14px; transition: background 0.15s;">
-                    <span style="font-size: 16px;">👤</span> Thông
-                    tin
-                    cá nhân
+                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #333; text-decoration: none; font-size: 14px;">
+                    <span>👤</span> Thông tin cá nhân
                 </a>
                 <div style="height: 1px; background: #f0f0f0; margin: 0 12px;"></div>
                 <a href="../html/lichSu.html" onclick="closeMenu()"
-                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #333; text-decoration: none; font-size: 14px; transition: background 0.15s;">
-                    <span style="font-size: 16px;">🗓️</span> Lịch sử đặt tour
+                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #333; text-decoration: none; font-size: 14px;">
+                    <span>🗓️</span> Lịch sử đặt tour
                 </a>
                 <div style="height: 1px; background: #f0f0f0; margin: 0 12px;"></div>
                 <a href="../html/Login.html" onclick="closeMenu()"
-                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #e53935; text-decoration: none; font-size: 14px; transition: background 0.15s;">
-                    <span style="font-size: 16px;">🚪</span> Đăng xuất
+                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #e53935; text-decoration: none; font-size: 14px;">
+                    <span>🚪</span> Đăng xuất
                 </a>
             </div>
         </div>
     </header>
 
-    <!--  -->
-    <div class="container"></div>
-    <div class="section1">
+<!-- MAIN -->
+<div class="container">
+    <div class="section1" id="mainSection">
         <div class="bg bg1"></div>
         <div class="bg bg2"></div>
-        <div class="row">
-            <div class="card small"><img src="../../data/img/giới thiệu/Danh.jpg" alt="" style="height: 200px; width: 150px; position: relative; bottom: 7px;"></div>
-            <div class="card wide">
-                <div class="info-box">
-                    <h2>Trần Thành Danh</h2>
-                    <p><strong>MSSV:</strong> 24676291</p>
-                    <p><strong>Ngày sinh:</strong> 05-04-2006</p>
-                    <p><strong>Quê quán:</strong> Quảng Ngãi</p>
-                    <p><strong>Học vấn:</strong> Đại học Công Nghiệp TP.HCM (IUH)</p>
-                    <p><strong>Miêu tả:</strong> Đẹp trai nhất vũ trụ</p>
-                </div>
-            </div>
+  <h2 class="section-heading">Giới thiệu về Cheap Tour</h2>
+        <div class="vision-wrap" style="position: relative; bottom: 70px;">
+            <img src="../../data/img/Logo.png" alt="" style="height:130px; width: 300px;">
+            <p>Chào mừng đến với Cheap Tour – người bạn đồng hành đáng tin cậy trên mọi hành trình khám phá. Chúng tôi chuyên cung cấp các tour du lịch trong nước và quốc tế với mức chi phí hợp lý, phù hợp cho học sinh, sinh viên, gia đình và những người yêu thích du lịch trải nghiệm.
+Với phương châm “Du lịch chất lượng – Giá cả tiết kiệm”, Cheap Tour luôn mong muốn mang đến cho khách hàng những chuyến đi an toàn, thú vị và đáng nhớ. Chúng tôi không chỉ giúp bạn khám phá những địa điểm nổi tiếng mà còn mang đến cơ hội trải nghiệm văn hóa, ẩm thực và con người ở mỗi vùng đất.</p>
         </div>
 
 
-        <div class="row">
+        <h2 class="section-heading">Đội Ngũ Phát Triển</h2>
 
-            <div class="card wide">
-                <div class="info-box">
-                    <h2>Trần Quốc Tây</h2>
-                    <p><strong>MSSV:</strong> 24660371</p>
-                    <p><strong>Ngày sinh:</strong> 08-06-20056</p>
-                    <p><strong>Quê quán:</strong> Phú Yên</p>
-                    <p><strong>Học vấn:</strong> Đại học Công Nghiệp TP.HCM (IUH)</p>
-                    <p><strong>Miêu tả:</strong> Có hết tất cả những cái 4 bạn có</p>
-                </div>
+        <div class="wheel-layout">
+            <div class="wheel-side">
+                <svg id="wheelSvg" viewBox="0 0 320 580" xmlns="http://www.w3.org/2000/svg" overflow="visible"></svg>
             </div>
-            <div class="card small">
-                <img src="../../data/img/giới thiệu/qTay.png" alt="" style=" width: 150px;">
-            </div>
-        </div>
 
+        <div class="info-side" style="flex-direction: row; align-items: center; gap: 30px;">
 
-        <div class="row">
-            <div class="card small">
-                <img src="../../data/img/giới thiệu/Chánh Tân.jpeg" alt="" style="height: 200px; width: 150px;">
+    <!-- Ảnh lớn bên trái -->
+    <div id="memberImgWrap" style="flex-shrink:0; width:200px; display:none;">
+        <img id="memberImgBig" src="" alt=""
+             style="width:200px; height:auto; object-fit:contain; filter: drop-shadow(0 0 18px rgba(126,184,255,0.4));">
+    </div>
+
+    <!-- Thông tin bên phải -->
+    <div style="flex:1;">
+        <div class="info-placeholder" id="placeholder">
+            <img src="../../data/img/Logo.png" alt="" style="height:80px; width: 200px;">
+            <div style="font-size:15px; color:rgba(255,255,255,0.4); line-height:2;">
+                Nền tảng đặt tour trực tuyến hàng đầu<br>
+                kết nối bạn với hàng trăm hành trình<br>
+                khắp Việt Nam — Ngoài Nước giá tốt, dịch vụ tốt.
             </div>
-            <div class="card wide">
-                <div class="info-box">
-                    <h2>Trương Chánh Tân</h2>
-                    <p><strong>MSSV:</strong> 24685301</p>
-                    <p><strong>Ngày sinh:</strong> 07-10-2005</p>
-                    <p><strong>Quê quán:</strong> Đồng Tháp</p>
-                    <p><strong>Học vấn:</strong> Đại học Công Nghiệp TP.HCM (IUH)</p>
-                    <p><strong>Miêu tả:</strong> Tốt bụng, Hài hước, Yêu cái đẹp</p>
-                </div>
+            <div style="margin-top:18px; font-size:12px; letter-spacing:3px; color:rgba(255,255,255,0.2);">
+                LĂN CHUỘT & CHỌN ĐỂ CHỌN THÀNH VIÊN
             </div>
         </div>
-
-
-        <div class="row">
-            <div class="card wide">Giới thiệu bản thân</div>
-            <div class="card small"><img src="../../data/img/giới thiệu/Nhựt Tân.jpg" alt="" style="height: 200px; width: 150px; position: relative; bottom: 6px;"></div>
+        <div class="info-card" id="infoCard">
+            <div id="avatarEl"></div>
+            <div class="info-name" id="cName"></div>
+            <div class="info-role">Thành viên nhóm — IUH</div>
+            <div class="info-row"><span class="info-lbl">MSSV</span><span class="info-val" id="cMssv"></span></div>
+            <div class="info-row"><span class="info-lbl">Ngày sinh</span><span class="info-val" id="cDob"></span></div>
+            <div class="info-row"><span class="info-lbl">Quê quán</span><span class="info-val" id="cHome"></span></div>
+            <div class="info-row"><span class="info-lbl">Học vấn</span><span class="info-val" id="cEdu"></span></div>
+            <div class="info-desc" id="cDesc"></div>
         </div>
-
-
-        <div class="row">
-            <div class="card small"><img src="../../data/img/giới thiệu/minh.jpg" alt="" style="height: 200px; width: 150px; position: relative; bottom: 5px;"></div>
-            <div class="card wide">
-                 <div class="info-box">
-                    <h2>Nguyễn Duy Minh</h2>
-                    <p><strong>MSSV:</strong> 24685971</p>
-                    <p><strong>Ngày sinh:</strong> 15-09-2006</p>
-                    <p><strong>Quê quán:</strong>Gia Lai</p>
-                    <p><strong>Học vấn:</strong> Đại học Công Nghiệp TP.HCM (IUH)</p>
-                    <p><strong>Miêu tả:</strong> Đẹp trai, Tốt bụng</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-    <div class="card full">
-        <h2>Tầm nhìn và sứ mệnh</h2>
-        <p>
-            Trong bối cảnh nhu cầu du lịch ngày càng gia tăng, website đặt tour của chúng tôi được xây dựng với mục tiêu trở thành nền tảng kết nối hàng đầu giữa khách hàng và các dịch vụ du lịch chất lượng.
-        </p>
-        <p>
-            Tầm nhìn của chúng tôi là phát triển một hệ sinh thái du lịch trực tuyến hiện đại, nơi người dùng có thể dễ dàng tìm kiếm, so sánh và đặt tour phù hợp chỉ với vài thao tác đơn giản.
-        </p>
-        <p>
-            Sứ mệnh của website là mang đến cho khách hàng những hành trình đáng nhớ với chi phí hợp lý và dịch vụ đáng tin cậy.
-        </p>
-        <p>
-            Với phương châm đặt khách hàng làm trung tâm, chúng tôi mong muốn trở thành người bạn đồng hành đáng tin cậy trong mỗi chuyến đi.
-        </p>
     </div>
 </div>
-
-    </div>
-    <!-- NHẠC  -->
-    <audio autoplay loop>
-        <source src="../../data/img/giới thiệu/Nhạc Nền (2).mp3" type="audio/mpeg">
-    </audio>
-
-    <!--hjsbcbsnsd  -->
-    <footer>
-        <div class="top-footer">
-            <div class="text-footer">
-                <h1>Tiết kiệm thời gian và tiền bạc!</h1>
-                <h2>Hãy đăng ký và chúng tôi sẽ gửi những ưu đãi tốt nhất cho bạn</h2>
-            </div>
-            <div class="email-footer">
-                <form action="" class="form-email">
-                    <input type="text" placeholder=" Nhập địa chỉ email">
-                    <button type="submit">Nhận ưu đãi</button>
-                </form>
-            </div>
         </div>
-        <div class="center-footer">
-            <div class="thongtinlienhe">
-                <h3>THÔNG TIN LIÊN HỆ</h3>
-                <h5>Tên công ty</h5>
-                <p>Công Ty TNHH Dịch Vụ Du Lịch Và 5 anh trai Cê2</p>
-                <h5>Địa chỉ</h5>
-                <p>12 Nguyễn Văn Bảo, P.Hạnh Thông, Quận Gò Vấp, TP.HCM</p>
-                <h5>Email</h5>
-                <p>atraiC2@gmail.com</p>
-                <h5>MST</h5>
-                <p>0823789999</p>
-            </div>
-            <div class="chamsockhachhang">
-                <h3>CHĂM SÓC KHÁCH HÀNG</h3>
-                <h5>Thời gian hỗ trợ</h5>
-                <p>Mon- Sat: 08:00 AM - 17:00 PM</p>
-                <h5>Hotline</h5>
-                <p>Hỗ trợ: (090) 349-4878</p>
 
-            </div>
-            <div class="thongtin">
-                <h3>THÔNG TIN</h3>
-                <ul>
-                    <li> <a href="#">Tour Tây Nguyên 3 Ngày 3 Đêm</a></li>
-                    <li> <a href="#">Tour Phú Quý 3 Ngày 2 Đêm</a></li>
-                    <li><a href="#">Tour Phú Yên Quy Nhơn 3 Ngày 3 Đêm</a> </li>
-                    <li> <a href="#">Tour Đà Nẵng Huế Hội An 5 Ngày 4 Đêm</a></li>
-                    <li><a href="#">Tour Đà Lạt 4 Ngày 3 Đêm</a></li>
-                    <li><a href="#">Tour Đồng Tháp 2 Ngày 1 Đêm</a></li>
-                    <li><a href="#">Tour Nam Cát Tiên 2 Ngày 1 Đêm</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="bot-footer">
-            <p>&copy; Bản quyền thuộc về 5 anh trai C2</p>
-
-        </div>
-        <!-- modal user -->
-        <div class="modal fade" id="modalUser" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
-            role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-            <div class="modal-dialog  modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalTitleId">
-                            Thông tin khách hàng
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="profile-card">
-
-                            <!-- Avatar -->
-                            <div class="profile-avatar-col">
-                                <div class="avt-wrap">
-                                    <img id="avt-img" src="../../data/img/logo-login.png" alt="avatar" class="avt-img">
-                                    <div class="avt-edit-btn" onclick="document.getElementById('avt-input').click()"
-                                        title="Đổi ảnh">
-                                        <svg viewBox="0 0 24 24" width="13" height="13" fill="#fff">
-                                            <path
-                                                d="M3 17.25V21h3.75l11.06-11.06-3.75-3.75L3 17.25zm17.71-10.21a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
-                                        </svg>
-                                    </div>
-                                </div>
-                                <input type="file" id="avt-input" accept="image/*" style="display:none">
-                                <p class="avt-caption">Ảnh đại diện<br><small>Nhấn biểu tượng để đổi</small></p>
-                            </div>
-
-                            <!-- Info -->
-                            <div class="profile-info-col">
-                                <h5 class="profile-title">Thông tin cá nhân</h5>
-                                <div class="row">
-                                    <div class="col-6 mb-3">
-                                        <label class="field-label">Họ và tên</label>
-                                        <div class="i4box">Nguyễn Duy Minh</div>
-                                    </div>
-                                    <div class="col-6 mb-3">
-                                        <label class="field-label">Email</label>
-                                        <div class="i4box">minh@gmail.com</div>
-                                    </div>
-                                    <div class="col-6 mb-3">
-                                        <label class="field-label">Số điện thoại</label>
-                                        <div class="i4box">0123456789</div>
-                                    </div>
-                                    <div class="col-6 mb-3">
-                                        <label class="field-label">Căn cước công dân</label>
-                                        <div class="i4box">064123456789</div>
-                                    </div>
-                                    <div class="col-6 mb-3">
-                                        <label class="field-label">Ngày sinh</label>
-                                        <div class="i4box">01/01/2001</div>
-                                    </div>
-                                    <div class="col-6 mb-3">
-                                        <label class="field-label">Giới tính</label>
-                                        <div class="i4box">Nam</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="color:#fff">
-                            Close
-                        </button>
-                        <button type="button" class="btn btn-success" style="color:#fff">Save</button>
-                    </div>
+        <!-- TẦM NHÌN & SỨ MỆNH -->
+         <h2 class="section-heading" style="position: relative; top: 80px;">Tiếng Nói Chung</h2>
+        <div class="vision-wrap">
+            <h2>Tầm nhìn và sứ mệnh</h2>
+            <p style="font-size:16px;color:rgba(255,255,255,0.7);line-height:1.9;">
+                Website đặt tour của chúng tôi được xây dựng với mục tiêu trở thành nền tảng kết nối hàng đầu giữa khách hàng và các dịch vụ du lịch chất lượng tại Việt Nam.
+            </p>
+            <div class="vision-grid">
+                <div class="vision-card">
+                    <div class="vision-card-icon">🔭</div>
+                    <div class="vision-card-title">Tầm nhìn</div>
+                    <div class="vision-card-text">Phát triển hệ sinh thái du lịch trực tuyến hiện đại — nơi người dùng tìm kiếm, so sánh và đặt tour chỉ vài thao tác đơn giản.</div>
+                </div>
+                <div class="vision-card">
+                    <div class="vision-card-icon">🎯</div>
+                    <div class="vision-card-title">Sứ mệnh</div>
+                    <div class="vision-card-text">Mang đến hành trình đáng nhớ với chi phí hợp lý, dịch vụ đáng tin cậy, đặt khách hàng làm trung tâm trong từng quyết định.</div>
+                </div>
+                <div class="vision-card">
+                    <div class="vision-card-icon">🤝</div>
+                    <div class="vision-card-title">Giá trị cốt lõi</div>
+                    <div class="vision-card-text">Minh bạch, chuyên nghiệp, thân thiện — xây dựng niềm tin từng bước qua chất lượng dịch vụ thực tế.</div>
+                </div>
+                <div class="vision-card">
+                    <div class="vision-card-icon">🗺️</div>
+                    <div class="vision-card-title">Đồng hành</div>
+                    <div class="vision-card-text">Trở thành người bạn tin cậy trong mỗi chuyến đi — từ lúc lên kế hoạch đến khi trở về an toàn.</div>
                 </div>
             </div>
         </div>
-        <!-- dfjfd -->
+<!-- // -->
+  <h2 class="section-heading" style="position: relative; top: 80px;">Trãi Nghiệm Khách Hàng</h2>
+ <div class="Trainghiem"> 
+<p>“Chuyến đi đến Bà Nà Hills thật sự là một trải nghiệm tuyệt vời và đáng nhớ đối với tôi cùng gia đình. Khung cảnh nơi đây rất đẹp, không khí mát mẻ và đặc biệt là cây cầu Vàng nổi tiếng khiến tôi vô cùng ấn tượng khi được tận mắt chiêm ngưỡng. Dịch vụ của Cheap Tour rất chuyên nghiệp, hướng dẫn viên nhiệt tình và luôn hỗ trợ mọi người trong suốt chuyến đi. Lịch trình được sắp xếp hợp lý nên chúng tôi vừa có thời gian tham quan, chụp ảnh vừa được nghỉ ngơi thoải mái. Ngoài ra, tôi còn được thưởng thức nhiều món ăn đặc sản địa phương rất ngon và hấp dẫn. Đây chắc chắn sẽ là một trong những chuyến đi đáng nhớ nhất của tôi.”
+<br>— Minh Anh, Thành phố Hồ Chí Minh</p>
+<br>
+<p>“Tôi đã có cơ hội khám phá Phố cổ Hội An cùng bạn bè và thật sự cảm thấy rất thích thú. Những con đường nhỏ với ánh đèn lồng rực rỡ vào buổi tối tạo nên một khung cảnh vừa cổ kính vừa lãng mạn. Cheap Tour chuẩn bị mọi thứ rất chu đáo từ khách sạn, phương tiện di chuyển cho đến các địa điểm tham quan nổi bật. Điều tôi hài lòng nhất là giá tour rất hợp lý nhưng chất lượng dịch vụ lại vượt ngoài mong đợi. Hướng dẫn viên thân thiện và chia sẻ rất nhiều câu chuyện thú vị về văn hóa và lịch sử Hội An. Chuyến đi đã mang đến cho tôi rất nhiều kỷ niệm đẹp và những bức ảnh tuyệt vời.”
+<br>— Quốc Bảo, Đồng Nai</p>
+<br>
+<p>“Chuyến du lịch đến Đảo Phú Quốc cùng gia đình đã giúp tôi có những ngày nghỉ thật sự thư giãn và ý nghĩa. Biển xanh trong, cát trắng đẹp cùng những hoạt động vui chơi hấp dẫn khiến tôi cảm thấy vô cùng hào hứng. Tôi đặc biệt ấn tượng với sự tận tâm của đội ngũ Cheap Tour khi luôn hỗ trợ khách hàng rất nhiệt tình từ lúc đặt tour cho đến khi kết thúc hành trình. Khách sạn sạch sẽ, lịch trình rõ ràng và các bữa ăn đều được chuẩn bị rất tốt. Đây là chuyến đi giúp tôi có thêm nhiều kỷ niệm đẹp bên gia đình và người thân. Tôi chắc chắn sẽ tiếp tục lựa chọn Cheap Tour cho những chuyến đi tiếp theo.”
+<br>— Thanh Hương, Hà Nội</p>
+ </div>
+ </div>
+</div>
 
+<!-- NHẠC NỀN -->
+<audio id="bgMusic" loop>
+    <source src="../../data/img/giới thiệu/Nhạc Nền (2).mp3" type="audio/mpeg">
+</audio>
 
-        <script src="../../BackEnd/js/jquery-4.0.0.min.js"></script>
-        <script src="../../BackEnd/js/bootstrap.bundle.min.js"></script>
-        <script src="../../BackEnd/js/chonUser.js"></script>
-        <script src="../../BackEnd/js/ThoiGieu.js"></script>
+<!-- FOOTER -->
+<footer>
+    <div class="top-footer">
+        <div class="text-footer">
+            <h1>Tiết kiệm thời gian và tiền bạc!</h1>
+            <h2>Hãy đăng ký và chúng tôi sẽ gửi những ưu đãi tốt nhất cho bạn</h2>
+        </div>
+        <div class="email-footer">
+            <form action="" class="form-email">
+                <input type="text" placeholder=" Nhập địa chỉ email">
+                <button type="submit">Nhận ưu đãi</button>
+            </form>
+        </div>
+    </div>
+    <div class="center-footer">
+        <div class="thongtinlienhe">
+            <h3>THÔNG TIN LIÊN HỆ</h3>
+            <h5>Tên công ty</h5><p>Công Ty TNHH Dịch Vụ Du Lịch Và 5 anh trai Cê2</p>
+            <h5>Địa chỉ</h5><p>12 Nguyễn Văn Bảo, P.Hạnh Thông, Quận Gò Vấp, TP.HCM</p>
+            <h5>Email</h5><p>atraiC2@gmail.com</p>
+            <h5>MST</h5><p>0823789999</p>
+        </div>
+        <div class="chamsockhachhang">
+            <h3>CHĂM SÓC KHÁCH HÀNG</h3>
+            <h5>Thời gian hỗ trợ</h5><p>Mon–Sat: 08:00 AM – 17:00 PM</p>
+            <h5>Hotline</h5><p>Hỗ trợ: (090) 349-4878</p>
+        </div>
+        <div class="thongtin">
+            <h3>THÔNG TIN</h3>
+            <ul>
+                <li><a href="#">Tour Tây Nguyên 3 Ngày 3 Đêm</a></li>
+                <li><a href="#">Tour Phú Quý 3 Ngày 2 Đêm</a></li>
+                <li><a href="#">Tour Phú Yên Quy Nhơn 3 Ngày 3 Đêm</a></li>
+                <li><a href="#">Tour Đà Nẵng Huế Hội An 5 Ngày 4 Đêm</a></li>
+                <li><a href="#">Tour Đà Lạt 4 Ngày 3 Đêm</a></li>
+                <li><a href="#">Tour Đồng Tháp 2 Ngày 1 Đêm</a></li>
+                <li><a href="#">Tour Nam Cát Tiên 2 Ngày 1 Đêm</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="bot-footer"><p>&copy; Bản quyền thuộc về 5 anh trai C2</p></div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalUser" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thông tin khách hàng</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="profile-card">
+                        <div class="profile-avatar-col">
+                            <div class="avt-wrap">
+                                <img id="avt-img" src="../../data/img/logo-login.png" alt="avatar" class="avt-img">
+                                <div class="avt-edit-btn" onclick="document.getElementById('avt-input').click()" title="Đổi ảnh">
+                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="#fff"><path d="M3 17.25V21h3.75l11.06-11.06-3.75-3.75L3 17.25zm17.71-10.21a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                                </div>
+                            </div>
+                            <input type="file" id="avt-input" accept="image/*" style="display:none">
+                            <p class="avt-caption">Ảnh đại diện<br><small>Nhấn biểu tượng để đổi</small></p>
+                        </div>
+                        <div class="profile-info-col">
+                            <h5 class="profile-title">Thông tin cá nhân</h5>
+                            <div class="row">
+                                <div class="col-6 mb-3"><label class="field-label">Họ và tên</label><div class="i4box">Nguyễn Duy Minh</div></div>
+                                <div class="col-6 mb-3"><label class="field-label">Email</label><div class="i4box">minh@gmail.com</div></div>
+                                <div class="col-6 mb-3"><label class="field-label">Số điện thoại</label><div class="i4box">0123456789</div></div>
+                                <div class="col-6 mb-3"><label class="field-label">Căn cước công dân</label><div class="i4box">064123456789</div></div>
+                                <div class="col-6 mb-3"><label class="field-label">Ngày sinh</label><div class="i4box">01/01/2001</div></div>
+                                <div class="col-6 mb-3"><label class="field-label">Giới tính</label><div class="i4box">Nam</div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="color:#fff">Close</button>
+                    <button type="button" class="btn btn-success" style="color:#fff">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="../../BackEnd/js/jquery-4.0.0.min.js"></script>
+<script src="../../BackEnd/js/bootstrap.bundle.min.js"></script>
+<script src="../../BackEnd/js/chonUser.js"></script>
+<script src="../../BackEnd/js/ThoiGieu.js"></script>
+<script src="../../BackEnd/js/main.js"></script>
+<script>
+function toggleMobileNav() {
+    document.getElementById('mobileNavPanel').classList.toggle('open');
+    document.getElementById('mobileOverlay').classList.toggle('open');
+}
+
+function closeMobileNav() {
+    document.getElementById('mobileNavPanel').classList.remove('open');
+    document.getElementById('mobileOverlay').classList.remove('open');
+}
+
+window.addEventListener('resize', function () {
+    if (window.innerWidth > 991) closeMobileNav();
+});
+</script>
 </body>
-
 </html>
