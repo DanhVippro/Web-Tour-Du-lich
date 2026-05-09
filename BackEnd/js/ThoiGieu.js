@@ -1,10 +1,10 @@
 
 const bgImages = [
-    "../../data/img/giới thiệu/1.jpg","../../data/img/giới thiệu/2.jpg",
-    "../../data/img/giới thiệu/3.jpg","../../data/img/giới thiệu/4.jpg",
-    "../../data/img/giới thiệu/5.jpg","../../data/img/giới thiệu/6.jpg",
-    "../../data/img/giới thiệu/7.jpg","../../data/img/giới thiệu/8.jpg",
-    "../../data/img/giới thiệu/9.jpg","../../data/img/giới thiệu/10.jpg",
+    "../../data/img/giới thiệu/1.jpg", "../../data/img/giới thiệu/2.jpg",
+    "../../data/img/giới thiệu/3.jpg", "../../data/img/giới thiệu/4.jpg",
+    "../../data/img/giới thiệu/5.jpg", "../../data/img/giới thiệu/6.jpg",
+    "../../data/img/giới thiệu/7.jpg", "../../data/img/giới thiệu/8.jpg",
+    "../../data/img/giới thiệu/9.jpg", "../../data/img/giới thiệu/10.jpg",
 ];
 bgImages.forEach(src => { const i = new Image(); i.src = src; });
 let bgIdx = 0, bgCur = 0;
@@ -25,53 +25,63 @@ function changeBackground() {
 setInterval(changeBackground, 5000);
 //////////
 const members = [
-    { name:"Trần Thành Danh",  initials:"TD", color:"#4a90d9",
-      img:"../../data/img/giới thiệu/Danh.jpg",
-      imgBig:"../../data/img/giới thiệu/Danh.jpg",
-      imgStyle:"width:200px; margin-top:0px; position: relative; top:10px;  ",
-      mssv:"24676291", dob:"05-04-2006", home:"Quảng Ngãi",
-      edu:"Đại học Công Nghiệp TP.HCM (IUH)", desc:'"Đẹp trai nhất vũ trụ"' },
+    {
+        name: "Trần Thành Danh", initials: "TD", color: "#4a90d9",
+        img: "../../data/img/giới thiệu/Danh.jpg",
+        imgBig: "../../data/img/giới thiệu/Danh.jpg",
+        imgStyle: "width:200px; margin-top:0px; position: relative; top:10px;  ",
+        mssv: "24676291", dob: "05-04-2006", home: "Quảng Ngãi",
+        edu: "Đại học Công Nghiệp TP.HCM (IUH)", desc: '"Đẹp trai nhất vũ trụ"'
+    },
 
-    { name:"Trần Quốc Tây",    initials:"QT", color:"#e87040",
-      img:"../../data/img/giới thiệu/qTay.png",
-      imgBig:"../../data/img/giới thiệu/qTay.png",
-      imgStyle:"width:220px; margin-top:0px;",
-      mssv:"24660371", dob:"08-06-2005", home:"Phú Yên",
-      edu:"Đại học Công Nghiệp TP.HCM (IUH)", desc:'"Có hết tất cả những gì các bạn có"' },
+    {
+        name: "Trần Quốc Tây", initials: "QT", color: "#e87040",
+        img: "../../data/img/giới thiệu/qTay.png",
+        imgBig: "../../data/img/giới thiệu/qTay.png",
+        imgStyle: "width:220px; margin-top:0px;",
+        mssv: "24660371", dob: "08-06-2005", home: "Phú Yên",
+        edu: "Đại học Công Nghiệp TP.HCM (IUH)", desc: '"Có hết tất cả những gì các bạn có"'
+    },
 
-    { name:"Trương Chánh Tân", initials:"CT", color:"#5cb85c",
-      img:"../../data/img/giới thiệu/Chánh Tân.jpeg",
-      imgBig:"../../data/img/giới thiệu/Chánh Tân.jpeg",
-      imgStyle:"width:200px; margin-top:0px;",
-      mssv:"24685301", dob:"07-10-2005", home:"Đồng Tháp",
-      edu:"Đại học Công Nghiệp TP.HCM (IUH)", desc:'"Tốt bụng, hài hước, yêu cái đẹp"' },
+    {
+        name: "Trương Chánh Tân", initials: "CT", color: "#5cb85c",
+        img: "../../data/img/giới thiệu/Chánh Tân.jpeg",
+        imgBig: "../../data/img/giới thiệu/Chánh Tân.jpeg",
+        imgStyle: "width:200px; margin-top:0px;",
+        mssv: "24685301", dob: "07-10-2005", home: "Đồng Tháp",
+        edu: "Đại học Công Nghiệp TP.HCM (IUH)", desc: '"Tốt bụng, hài hước, yêu cái đẹp"'
+    },
 
-    { name:"Phan Nhựt Tân", initials:"NT", color:"#9b59b6",
-      img:"../../data/img/giới thiệu/Nhựt Tân.jpg",
-      imgBig:"../../data/img/giới thiệu/Nhựt Tân.jpg",
-      imgStyle:"width:200px; margin-top:0px;",
-      mssv:"24661761", dob:"13-10-2006", home:"Long An",
-      edu:"Đại học Công Nghiệp TP.HCM (IUH)", desc:'"Thành viên bí ẩn của nhóm"' },
+    {
+        name: "Phan Nhựt Tân", initials: "NT", color: "#9b59b6",
+        img: "../../data/img/giới thiệu/Nhựt Tân.jpg",
+        imgBig: "../../data/img/giới thiệu/Nhựt Tân.jpg",
+        imgStyle: "width:200px; margin-top:0px;",
+        mssv: "24661761", dob: "13-10-2006", home: "Long An",
+        edu: "Đại học Công Nghiệp TP.HCM (IUH)", desc: '"Thành viên bí ẩn của nhóm"'
+    },
 
-    { name:"Nguyễn Duy Minh",  initials:"DM", color:"#e74c8b",
-      img:"../../data/img/giới thiệu/minh.jpg",
-      imgBig:"../../data/img/giới thiệu/minh.jpg",
-      imgStyle:"width:200px; margin-top:0px;",
-      mssv:"24685971", dob:"15-09-2006", home:"Gia Lai",
-      edu:"Đại học Công Nghiệp TP.HCM (IUH)", desc:'"Đẹp trai, tốt bụng"' },
+    {
+        name: "Nguyễn Duy Minh", initials: "DM", color: "#e74c8b",
+        img: "../../data/img/giới thiệu/minh.jpg",
+        imgBig: "../../data/img/giới thiệu/minh.jpg",
+        imgStyle: "width:200px; margin-top:0px;",
+        mssv: "24685971", dob: "15-09-2006", home: "Gia Lai",
+        edu: "Đại học Công Nghiệp TP.HCM (IUH)", desc: '"Đẹp trai, tốt bụng"'
+    },
 ];
 
 
-const NS  = 'http://www.w3.org/2000/svg';
+const NS = 'http://www.w3.org/2000/svg';
 const svg = document.getElementById('wheelSvg');
-const N   = members.length;
+const N = members.length;
 
-const CX = 20;  
-const CY = 290;   
-const R = 220;   
-const ACTIVE_DEG = 0;    
-const SPREAD  = 150;  
-const STEP  = SPREAD /(N - 1);
+const CX = 20;
+const CY = 290;
+const R = 220;
+const ACTIVE_DEG = 0;
+const SPREAD = 150;
+const STEP = SPREAD / (N - 1);
 
 // ── Giới hạn cuộn ──
 const ROT_MIN = -(SPREAD / 2);
@@ -124,7 +134,7 @@ function buildStatic() {
 
     // Mũi tên tam giác chỉ sang PHẢI
     const tri = document.createElementNS(NS, 'polygon');
-    tri.setAttribute('points', `${CX+52},${CY-11} ${CX+86},${CY} ${CX+52},${CY+11}`);
+    tri.setAttribute('points', `${CX + 52},${CY - 11} ${CX + 86},${CY} ${CX + 52},${CY + 11}`);
     tri.setAttribute('fill', '#7eb8ff');
     tri.setAttribute('opacity', '0.85');
     svg.appendChild(tri);
@@ -233,16 +243,16 @@ function showInfo(idx) {
     card.style.display = 'none';
 
     // Ẩn ảnh lớn trước khi chuyển thành viên
-    const wrap   = document.getElementById('memberImgWrap');
+    const wrap = document.getElementById('memberImgWrap');
     const bigImg = document.getElementById('memberImgBig');
     wrap.style.display = 'none';
 
     setTimeout(() => {
         document.getElementById('cName').textContent = m.name;
         document.getElementById('cMssv').textContent = m.mssv;
-        document.getElementById('cDob').textContent  = m.dob;
+        document.getElementById('cDob').textContent = m.dob;
         document.getElementById('cHome').textContent = m.home;
-        document.getElementById('cEdu').textContent  = m.edu;
+        document.getElementById('cEdu').textContent = m.edu;
         document.getElementById('cDesc').textContent = m.desc;
 
         const avatarEl = document.getElementById('avatarEl');
@@ -336,16 +346,16 @@ let musicStarted = false;
 
 function startMusic() {
     if (musicStarted) return;
-    bgMusic.volume = 0.6; 
+    bgMusic.volume = 0.6;
     bgMusic.play().then(() => {
         musicStarted = true;
-    }).catch(() => {});
+    }).catch(() => { });
 }
 
 // Bắt nhiều loại tương tác để chắc chắn phát được
-document.addEventListener('click',startMusic, { once: true });
-document.addEventListener('scroll',startMusic, { once: true });
-document.addEventListener('wheel',startMusic, { once: true });
-document.addEventListener('keydown',startMusic, { once: true });
-document.addEventListener('touchstart',startMusic, { once: true });
+document.addEventListener('click', startMusic, { once: true });
+document.addEventListener('scroll', startMusic, { once: true });
+document.addEventListener('wheel', startMusic, { once: true });
+document.addEventListener('keydown', startMusic, { once: true });
+document.addEventListener('touchstart', startMusic, { once: true });
 
