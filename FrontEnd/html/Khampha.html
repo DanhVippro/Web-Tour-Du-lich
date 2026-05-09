@@ -10,7 +10,7 @@
     <!-- Bootstrap CSS v5.3.8 -->
     <link rel="stylesheet" href="../css/TourDuLich.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../css/headerChung.css">
+
 </head>
 
 <body>
@@ -19,17 +19,20 @@
     <header class="header1">
         <div class="logo-header1">
             <a href="../html/trangChu.html">
-                <img src="../../data/img/Logo.png" alt="Logo">
+                <img src="../../data/img/Logo.png" alt="CheapTour Logo">
             </a>
         </div>
+
+        <!-- Desktop search -->
         <div class="Search-header1">
             <form action="../html/TimKiem.html" method="GET" class="form-place">
-                <input type="text" name="q" placeholder=" Tìm kiếm điểm đến yêu thích">
-                <button type="submit">&#8981;</button>
+                <input type="text" name="q" placeholder="Tìm kiếm điểm đến yêu thích">
+                <button type="submit">⌕</button>
             </form>
         </div>
-        <div class="menu-header1">
 
+        <!-- Desktop nav -->
+        <div class="menu-header1">
             <ul>
                 <li><a href="../html/trangChu.html">Trang chủ</a></li>
                 <li><a href="../html/GioiThieu.html">Giới Thiệu</a></li>
@@ -38,35 +41,40 @@
                 <li><a href="../html/HoTro.html">Hỗ trợ</a></li>
             </ul>
         </div>
-        <!-- Login Logo -->
-        <div class="logo-login" style="position: relative; display: inline-block;">
+
+        <!-- Hamburger (mobile only) -->
+        <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileNav()" aria-label="Mở menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="logo-login" style="position: relative; display: inline-block; margin-left: 8px;">
             <a href="#" id="avatar-btn" onclick="toggleMenu(event)">
-                <img src="../../data/img/logo-login.png" alt="login" height="50px"
+                <img src="../../data/img/logo-login.png" alt="login" height="44px"
                     style="border-radius: 50%; cursor: pointer;">
             </a>
-
             <div id="user-menu" class="user-menu">
                 <a href="#thong-tin" onclick="closeMenu()" data-bs-toggle="modal" data-bs-target="#modalUser"
-                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #333; text-decoration: none; font-size: 14px; transition: background 0.15s;">
-                    <span style="font-size: 16px;">👤</span> Thông
-                    tin
-                    cá nhân
+                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #333; text-decoration: none; font-size: 14px;">
+                    <span>👤</span> Thông tin cá nhân
                 </a>
                 <div style="height: 1px; background: #f0f0f0; margin: 0 12px;"></div>
                 <a href="../html/lichSu.html" onclick="closeMenu()"
-                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #333; text-decoration: none; font-size: 14px; transition: background 0.15s;">
-                    <span style="font-size: 16px;">🗓️</span> Lịch sử đặt tour
+                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #333; text-decoration: none; font-size: 14px;">
+                    <span>🗓️</span> Lịch sử đặt tour
                 </a>
                 <div style="height: 1px; background: #f0f0f0; margin: 0 12px;"></div>
                 <a href="../html/Login.html" onclick="closeMenu()"
-                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #e53935; text-decoration: none; font-size: 14px; transition: background 0.15s;">
-                    <span style="font-size: 16px;">🚪</span> Đăng xuất
+                    style="display: flex; align-items: center; gap: 10px; padding: 13px 18px; color: #e53935; text-decoration: none; font-size: 14px;">
+                    <span>🚪</span> Đăng xuất
                 </a>
             </div>
         </div>
     </header>
     <!-- Main content -->
     <div class="container">
+
         <section class="hd2 ">
             <div class="mt-3 ">
                 <span class="tab active" onclick="showContent('trongnuoc', this)">
@@ -78,16 +86,1201 @@
                     Du lịch nước ngoài
                 </span>
             </div>
-            <!-- NỘI DUNG -->
+
             <div id="trongnuoc" class="content mt-4">
-                <h4>Tour trong nước</h4>
+
+                <div class="sub-tab-wrap mt-4">
+
+                    <span class="tab subtab active" onclick="showRegion('bac', this)">
+                        Miền Bắc
+                    </span>
+
+                    <span class="tab subtab" onclick="showRegion('trung', this)">
+                        Miền Trung
+                    </span>
+
+                    <span class="tab subtab" onclick="showRegion('nam', this)">
+                        Miền Nam
+                    </span>
+
+
+                </div>
+                <div id="bac" class="region-content mt-4">
+
+                    <div class="tour-list">
+                        <div class="tour-card" data-bs-toggle="modal" data-bs-target="#tourModal">
+
+                            <div class="tour-img-wrap">
+
+                                <img src="../../data/img/sapa.png" class="tour-img">
+
+                                <div class="tour-tag">
+                                    KH từ: Hà Nội
+                                </div>
+
+                            </div>
+
+                            <div class="tour-body">
+
+                                <h3 class="tour-title">
+                                    SAPA - FANSIPAN 4N3Đ
+                                </h3>
+
+                                <div class="tour-info">
+                                    <p>🕒 4 ngày 3 đêm</p>
+                                    <p>🏨 Khách sạn 5 sao</p>
+                                    <p>✈ Bay khứ hồi</p>
+                                </div>
+
+                                <div class="tour-price">
+                                    8,990,000đ
+                                </div>
+                                <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tour1">
+                                    Xem chi tiết
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                        <div class="tour-card">
+
+                            <div class="tour-img-wrap">
+
+                                <img src="../../data/img/halong.webp" class="tour-img">
+
+                                <div class="tour-tag">
+                                    KH từ: Hà Nội
+                                </div>
+
+                            </div>
+
+                            <div class="tour-body">
+
+                                <h3 class="tour-title">
+                                    HẠ LONG - YÊN TỬ 3N2Đ
+                                </h3>
+
+                                <div class="tour-info">
+                                    <p>🕒 3 ngày 2 đêm</p>
+                                    <p>🏨 Khách sạn 3 sao</p>
+                                    <p>🚌 Xe du lịch</p>
+                                </div>
+
+                                <div class="tour-price">
+                                    5,490,000đ
+                                </div>
+                                <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tour2">
+                                    Xem chi tiết
+                                </a>
+
+
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="tour-card">
+
+                            <div class="tour-img-wrap">
+
+                                <img src="../../data/img/moc.jpg" class="tour-img">
+
+                                <div class="tour-tag">
+                                    KH từ: Hà Nội
+                                </div>
+
+                            </div>
+
+                            <div class="tour-body">
+
+                                <h3 class="tour-title">
+                                    MỘC CHÂU 2N1Đ
+                                </h3>
+
+                                <div class="tour-info">
+                                    <p>🕒 2 ngày 1 đêm</p>
+                                    <p>🏨 Khách sạn 4 sao</p>
+                                    <p>🚌 Xe limousine</p>
+                                </div>
+
+                                <div class="tour-price">
+                                    2,990,000đ
+                                </div>
+                                <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tour3">
+                                    Xem chi tiết
+                                </a>
+
+                            </div>
+
+                        </div>
+                        <div class="tour-card">
+
+                            <div class="tour-img-wrap">
+
+                                <img src="../../data/img/hagiang.jpg" class="tour-img">
+
+                                <div class="tour-tag">
+                                    KH từ: Hà Nội
+                                </div>
+
+                            </div>
+
+                            <div class="tour-body">
+
+                                <h3 class="tour-title">
+                                    HÀ GIANG - ĐỒNG VĂN 3N2Đ
+                                </h3>
+
+                                <div class="tour-info">
+                                    <p>🕒 3 ngày 2 đêm</p>
+                                    <p>🏨 Khách sạn 3 sao</p>
+                                    <p>🚌 Xe giường nằm VIP</p>
+                                </div>
+
+                                <div class="tour-price">
+                                    4,290,000đ
+                                </div>
+
+                                <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tour4">
+                                    Xem chi tiết
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="tour-card">
+
+                            <div class="tour-img-wrap">
+
+                                <img src="../../data/img/ninhbinh.jpg" class="tour-img">
+
+                                <div class="tour-tag">
+                                    KH từ: Hà Nội
+                                </div>
+
+                            </div>
+
+                            <div class="tour-body">
+
+                                <h3 class="tour-title">
+                                    NINH BÌNH - TRÀNG AN 2N1Đ
+                                </h3>
+
+                                <div class="tour-info">
+                                    <p>🕒 2 ngày 1 đêm</p>
+                                    <p>🏨 Khách sạn 4 sao</p>
+                                    <p>🚣 Chèo thuyền Tràng An</p>
+                                </div>
+
+                                <div class="tour-price">
+                                    3,590,000đ
+                                </div>
+
+                                <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tour5">
+                                    Xem chi tiết
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                        <div class="tour-card">
+
+                            <div class="tour-img-wrap">
+
+                                <img src="../../data/img/catba.jpg" class="tour-img">
+
+                                <div class="tour-tag">
+                                    KH từ: Hà Nội
+                                </div>
+
+                            </div>
+
+                            <div class="tour-body">
+
+                                <h3 class="tour-title">
+                                    CÁT BÀ - LAN HẠ 3N2Đ
+                                </h3>
+
+                                <div class="tour-info">
+                                    <p>🕒 3 ngày 2 đêm</p>
+                                    <p>🏨 Resort biển 4 sao</p>
+                                    <p>⛵ Du thuyền vịnh Lan Hạ</p>
+                                </div>
+
+                                <div class="tour-price">
+                                    6,490,000đ
+                                </div>
+
+                                <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tour6">
+                                    Xem chi tiết
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div id="trung" class="region-content mt-4" style="display:none;">
+
+                    <div class="tour-list">
+                        <div class="tour-card">
+
+                            <div class="tour-img-wrap">
+
+                                <img src="../../data/img/danang.webp" class="tour-img">
+
+                                <div class="tour-tag">
+                                    KH từ: Đà Nẵng
+                                </div>
+
+                            </div>
+
+                            <div class="tour-body">
+
+                                <h3 class="tour-title">
+                                    ĐÀ NẴNG - BÀ NÀ 3N2Đ
+                                </h3>
+
+                                <div class="tour-info">
+                                    <p>🕒 3 ngày 2 đêm</p>
+                                    <p>🏨 Khách sạn 5 sao</p>
+                                    <p>🚠 Vé cáp treo Bà Nà</p>
+                                </div>
+
+                                <div class="tour-price">
+                                    5,990,000đ
+                                </div>
+
+                                <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tourtrung1">
+                                    Xem chi tiết
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- TOUR 2 -->
+                        <div class="tour-card">
+
+                            <div class="tour-img-wrap">
+
+                                <img src="../../data/img/hoian.webp" class="tour-img">
+
+                                <div class="tour-tag">
+                                    KH từ: Đà Nẵng
+                                </div>
+
+                            </div>
+
+                            <div class="tour-body">
+
+                                <h3 class="tour-title">
+                                    HỘI AN - CÙ LAO CHÀM 2N1Đ
+                                </h3>
+
+                                <div class="tour-info">
+                                    <p>🕒 2 ngày 1 đêm</p>
+                                    <p>🏨 Resort 4 sao</p>
+                                    <p>⛵ Cano ra đảo</p>
+                                </div>
+
+                                <div class="tour-price">
+                                    4,490,000đ
+                                </div>
+
+                                <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tourtrung2">
+                                    Xem chi tiết
+                                </a>
+
+                            </div>
+
+                        </div>
+                        <div class="tour-card">
+
+                            <div class="tour-img-wrap">
+
+                                <img src="../../data/img/hue.jpg" class="tour-img">
+
+                                <div class="tour-tag">
+                                    KH từ: Huế
+                                </div>
+
+                            </div>
+
+                            <div class="tour-body">
+
+                                <h3 class="tour-title">
+                                    HUẾ MỘNG MƠ 3N2Đ
+                                </h3>
+
+                                <div class="tour-info">
+                                    <p>🕒 3 ngày 2 đêm</p>
+                                    <p>🏨 Khách sạn 4 sao</p>
+                                    <p>🚤 Du thuyền sông Hương</p>
+                                </div>
+
+                                <div class="tour-price">
+                                    4,890,000đ
+                                </div>
+
+                                <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tourtrung3">
+                                    Xem chi tiết
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+
+
+                        <div class="tour-card">
+
+                            <div class="tour-img-wrap">
+
+                                <img src="../../data/img/quynhon.webp" class="tour-img">
+
+                                <div class="tour-tag">
+                                    KH từ: Quy Nhơn
+                                </div>
+
+                            </div>
+
+                            <div class="tour-body">
+
+                                <h3 class="tour-title">
+                                    QUY NHƠN - KỲ CO 3N2Đ
+                                </h3>
+
+                                <div class="tour-info">
+                                    <p>🕒 3 ngày 2 đêm</p>
+                                    <p>🏨 Resort biển</p>
+                                    <p>🌊 Check-in Eo Gió</p>
+                                </div>
+
+                                <div class="tour-price">
+                                    5,290,000đ
+                                </div>
+
+                                <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tourtrung4">
+                                    Xem chi tiết
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+
+
+                        <div class="tour-card">
+
+                            <div class="tour-img-wrap">
+
+                                <img src="../../data/img/nhatrang.webp" class="tour-img">
+
+                                <div class="tour-tag">
+                                    KH từ: Nha Trang
+                                </div>
+
+                            </div>
+
+                            <div class="tour-body">
+
+                                <h3 class="tour-title">
+                                    NHA TRANG - VINPEARL 4N3Đ
+                                </h3>
+
+                                <div class="tour-info">
+                                    <p>🕒 4 ngày 3 đêm</p>
+                                    <p>🏨 Resort 5 sao</p>
+                                    <p>🎢 Vé VinWonders</p>
+                                </div>
+
+                                <div class="tour-price">
+                                    8,490,000đ
+                                </div>
+
+                                <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tourtrung5">
+                                    Xem chi tiết
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+
+
+                        <div class="tour-card">
+
+                            <div class="tour-img-wrap">
+
+                                <img src="../../data/img/phuyen.jpg" class="tour-img">
+
+                                <div class="tour-tag">
+                                    KH từ: Phú Yên
+                                </div>
+
+                            </div>
+
+                            <div class="tour-body">
+
+                                <h3 class="tour-title">
+                                    PHÚ YÊN - HOA VÀNG CỎ XANH 2N1Đ
+                                </h3>
+
+                                <div class="tour-info">
+                                    <p>🕒 2 ngày 1 đêm</p>
+                                    <p>🏨 Khách sạn 4 sao</p>
+                                    <p>🌅 Check-in Gành Đá Đĩa</p>
+                                </div>
+
+                                <div class="tour-price">
+                                    3,790,000đ
+                                </div>
+
+                                <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tourtrung6">
+                                    Xem chi tiết
+                                </a>
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+                    </div>
+
+                </div>
+
+                <div id="nam" class="region-content mt-4" style="display:none;">
+                    <div class="tour-list">
+
+
+                        <div class="tour-card">
+
+                            <div class="tour-img-wrap">
+
+                                <img src="../../data/img/phuquoc.jpg" class="tour-img">
+
+                                <div class="tour-tag">
+                                    KH từ: TP.HCM
+                                </div>
+
+                            </div>
+
+                            <div class="tour-body">
+
+                                <h3 class="tour-title">
+                                    PHÚ QUỐC THIÊN ĐƯỜNG BIỂN 4N3Đ
+                                </h3>
+
+                                <div class="tour-info">
+                                    <p>🕒 4 ngày 3 đêm</p>
+                                    <p>🏨 Resort 5 sao</p>
+                                    <p>🏝️ Check-in Sunset Sanato</p>
+                                </div>
+
+                                <div class="tour-price">
+                                    9,490,000đ
+                                </div>
+
+                                <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tournam1">
+                                    Xem chi tiết
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+
+
+                        <div class="tour-card">
+
+                            <div class="tour-img-wrap">
+
+                                <img src="../../data/img/cantho.jpg" class="tour-img">
+
+                                <div class="tour-tag">
+                                    KH từ: Cần Thơ
+                                </div>
+
+                            </div>
+
+                            <div class="tour-body">
+
+                                <h3 class="tour-title">
+                                    CẦN THƠ - CHỢ NỔI 2N1Đ
+                                </h3>
+
+                                <div class="tour-info">
+                                    <p>🕒 2 ngày 1 đêm</p>
+                                    <p>🏨 Khách sạn 4 sao</p>
+                                    <p>🚤 Du thuyền chợ nổi</p>
+                                </div>
+
+                                <div class="tour-price">
+                                    3,290,000đ
+                                </div>
+
+                                <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tournam2">
+                                    Xem chi tiết
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+
+
+                        <div class="tour-card">
+
+                            <div class="tour-img-wrap">
+
+                                <img src="../../data/img/vungtau.jpg" class="tour-img">
+
+                                <div class="tour-tag">
+                                    KH từ: TP.HCM
+                                </div>
+
+                            </div>
+
+                            <div class="tour-body">
+
+                                <h3 class="tour-title">
+                                    VŨNG TÀU NGHỈ DƯỠNG 2N1Đ
+                                </h3>
+
+                                <div class="tour-info">
+                                    <p>🕒 2 ngày 1 đêm</p>
+                                    <p>🏨 Resort biển 4 sao</p>
+                                    <p>🌊 Tắm biển Bãi Sau</p>
+                                </div>
+
+                                <div class="tour-price">
+                                    2,990,000đ
+                                </div>
+
+                                <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tournam3">
+                                    Xem chi tiết
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+
+
+                        <div class="tour-card">
+
+                            <div class="tour-img-wrap">
+
+                                <img src="../../data/img/condao.webp" class="tour-img">
+
+                                <div class="tour-tag">
+                                    KH từ: TP.HCM
+                                </div>
+
+                            </div>
+
+                            <div class="tour-body">
+
+                                <h3 class="tour-title">
+                                    CÔN ĐẢO TÂM LINH 3N2Đ
+                                </h3>
+
+                                <div class="tour-info">
+                                    <p>🕒 3 ngày 2 đêm</p>
+                                    <p>🏨 Resort 5 sao</p>
+                                    <p>⛵ Khám phá biển đảo</p>
+                                </div>
+
+                                <div class="tour-price">
+                                    7,990,000đ
+                                </div>
+
+                                <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tournam4">
+                                    Xem chi tiết
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+
+
+                        <div class="tour-card">
+
+                            <div class="tour-img-wrap">
+
+                                <img src="../../data/img/dalat.jpg" class="tour-img">
+
+                                <div class="tour-tag">
+                                    KH từ: TP.HCM
+                                </div>
+
+                            </div>
+
+                            <div class="tour-body">
+
+                                <h3 class="tour-title">
+                                    ĐÀ LẠT NGÀN HOA 3N2Đ
+                                </h3>
+
+                                <div class="tour-info">
+                                    <p>🕒 3 ngày 2 đêm</p>
+                                    <p>🏨 Khách sạn 4 sao</p>
+                                    <p>🌸 Check-in đồi chè</p>
+                                </div>
+
+                                <div class="tour-price">
+                                    4,590,000đ
+                                </div>
+
+                                <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tournam5">
+                                    Xem chi tiết
+                                </a>
+
+                            </div>
+
+                        </div>
+
+
+
+
+                        <div class="tour-card">
+
+                            <div class="tour-img-wrap">
+
+                                <img src="../../data/img/tayninh.jpg" class="tour-img">
+
+                                <div class="tour-tag">
+                                    KH từ: Tây Ninh
+                                </div>
+
+                            </div>
+
+                            <div class="tour-body">
+
+                                <h3 class="tour-title">
+                                    TÂY NINH - NÚI BÀ ĐEN 2N1Đ
+                                </h3>
+
+                                <div class="tour-info">
+                                    <p>🕒 2 ngày 1 đêm</p>
+                                    <p>🏨 Khách sạn 3 sao</p>
+                                    <p>🚠 Vé cáp treo Núi Bà</p>
+                                </div>
+
+                                <div class="tour-price">
+                                    2,790,000đ
+                                </div>
+
+                                <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tournam6">
+                                    Xem chi tiết
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
 
 
             </div>
 
             <div id="nuocngoai" class="content mt-4" style="display:none;">
-                <h4>Tour nước ngoài</h4>
-                <p>Hàn Quốc, Nhật Bản, Thái Lan...</p>
+                <div class="tour-list">
+
+
+                    <div class="tour-card">
+
+                        <div class="tour-img-wrap">
+
+                            <img src="../../data/img/hanquoc.jpg" class="tour-img">
+
+                            <div class="tour-tag">
+                                KH từ: TP.HCM
+                            </div>
+
+                        </div>
+
+                        <div class="tour-body">
+
+                            <h3 class="tour-title">
+                                HÀN QUỐC - SEOUL 5N4Đ
+                            </h3>
+
+                            <div class="tour-info">
+                                <p>🕒 5 ngày 4 đêm</p>
+                                <p>🏨 Khách sạn 4 sao</p>
+                                <p>✈ Bay khứ hồi</p>
+                            </div>
+
+                            <div class="tour-price">
+                                16,990,000đ
+                            </div>
+
+                            <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tournn1">
+                                Xem chi tiết
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="tour-card">
+
+                        <div class="tour-img-wrap">
+
+                            <img src="../../data/img/nhatban.jpg" class="tour-img">
+
+                            <div class="tour-tag">
+                                KH từ: Hà Nội
+                            </div>
+
+                        </div>
+
+                        <div class="tour-body">
+
+                            <h3 class="tour-title">
+                                NHẬT BẢN - TOKYO 6N5Đ
+                            </h3>
+
+                            <div class="tour-info">
+                                <p>🕒 6 ngày 5 đêm</p>
+                                <p>🏨 Khách sạn 5 sao</p>
+                                <p>🌸 Check-in núi Phú Sĩ</p>
+                            </div>
+
+                            <div class="tour-price">
+                                29,990,000đ
+                            </div>
+
+                            <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tournn2">
+                                Xem chi tiết
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="tour-card">
+
+                        <div class="tour-img-wrap">
+
+                            <img src="../../data/img/thailan.png" class="tour-img">
+
+                            <div class="tour-tag">
+                                KH từ: Đà Nẵng
+                            </div>
+
+                        </div>
+
+                        <div class="tour-body">
+
+                            <h3 class="tour-title">
+                                THÁI LAN - BANGKOK 4N3Đ
+                            </h3>
+
+                            <div class="tour-info">
+                                <p>🕒 4 ngày 3 đêm</p>
+                                <p>🏨 Khách sạn 4 sao</p>
+                                <p>🛍 Shopping Bangkok</p>
+                            </div>
+
+                            <div class="tour-price">
+                                11,490,000đ
+                            </div>
+
+                            <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tournn3">
+                                Xem chi tiết
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="tour-card">
+
+                        <div class="tour-img-wrap">
+
+                            <img src="../../data/img/singapore.webp" class="tour-img">
+
+                            <div class="tour-tag">
+                                KH từ: TP.HCM
+                            </div>
+
+                        </div>
+
+                        <div class="tour-body">
+
+                            <h3 class="tour-title">
+                                SINGAPORE - MARINA BAY 4N3Đ
+                            </h3>
+
+                            <div class="tour-info">
+                                <p>🕒 4 ngày 3 đêm</p>
+                                <p>🏨 Khách sạn 5 sao</p>
+                                <p>🎡 Universal Studios</p>
+                            </div>
+
+                            <div class="tour-price">
+                                18,990,000đ
+                            </div>
+
+                            <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tournn4">
+                                Xem chi tiết
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="tour-card">
+
+                        <div class="tour-img-wrap">
+
+                            <img src="../../data/img/phap.jpg" class="tour-img">
+
+                            <div class="tour-tag">
+                                KH từ: Hà Nội
+                            </div>
+
+                        </div>
+
+                        <div class="tour-body">
+
+                            <h3 class="tour-title">
+                                PHÁP - PARIS 7N6Đ
+                            </h3>
+
+                            <div class="tour-info">
+                                <p>🕒 7 ngày 6 đêm</p>
+                                <p>🏨 Khách sạn 5 sao</p>
+                                <p>🗼 Check-in tháp Eiffel</p>
+                            </div>
+
+                            <div class="tour-price">
+                                45,990,000đ
+                            </div>
+
+                            <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tournn5">
+                                Xem chi tiết
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="tour-card">
+
+                        <div class="tour-img-wrap">
+
+                            <img src="../../data/img/dubai.webp" class="tour-img">
+
+                            <div class="tour-tag">
+                                KH từ: TP.HCM
+                            </div>
+
+                        </div>
+
+                        <div class="tour-body">
+
+                            <h3 class="tour-title">
+                                DUBAI XA HOA 5N4Đ
+                            </h3>
+
+                            <div class="tour-info">
+                                <p>🕒 5 ngày 4 đêm</p>
+                                <p>🏨 Resort 5 sao</p>
+                                <p>🏜 Safari sa mạc</p>
+                            </div>
+
+                            <div class="tour-price">
+                                39,990,000đ
+                            </div>
+
+                            <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tournn6">
+                                Xem chi tiết
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                    <div class="tour-card">
+
+                        <div class="tour-img-wrap">
+
+                            <img src="../../data/img/my.jpeg" class="tour-img">
+
+                            <div class="tour-tag">
+                                KH từ: TP.HCM
+                            </div>
+
+                        </div>
+
+                        <div class="tour-body">
+
+                            <h3 class="tour-title">
+                                MỸ - NEW YORK 7N6Đ
+                            </h3>
+
+                            <div class="tour-info">
+                                <p>🕒 7 ngày 6 đêm</p>
+                                <p>🏨 Khách sạn 5 sao</p>
+                                <p>🗽 Check-in tượng Nữ thần Tự do</p>
+                            </div>
+
+                            <div class="tour-price">
+                                59,990,000đ
+                            </div>
+
+                            <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tournn7">
+                                Xem chi tiết
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="tour-card">
+
+                        <div class="tour-img-wrap">
+
+                            <img src="../../data/img/uc.jpg" class="tour-img">
+
+                            <div class="tour-tag">
+                                KH từ: Hà Nội
+                            </div>
+
+                        </div>
+
+                        <div class="tour-body">
+
+                            <h3 class="tour-title">
+                                ÚC - SYDNEY 6N5Đ
+                            </h3>
+
+                            <div class="tour-info">
+                                <p>🕒 6 ngày 5 đêm</p>
+                                <p>🏨 Khách sạn 4 sao</p>
+                                <p>🌉 Tham quan nhà hát Opera</p>
+                            </div>
+
+                            <div class="tour-price">
+                                49,990,000đ
+                            </div>
+
+                            <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tournn8">
+                                Xem chi tiết
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="tour-card">
+
+                        <div class="tour-img-wrap">
+
+                            <img src="../../data/img/y.webp" class="tour-img">
+
+                            <div class="tour-tag">
+                                KH từ: Đà Nẵng
+                            </div>
+
+                        </div>
+
+                        <div class="tour-body">
+
+                            <h3 class="tour-title">
+                                Ý - VENICE 7N6Đ
+                            </h3>
+
+                            <div class="tour-info">
+                                <p>🕒 7 ngày 6 đêm</p>
+                                <p>🏨 Khách sạn 5 sao</p>
+                                <p>🚤 Du thuyền Venice</p>
+                            </div>
+
+                            <div class="tour-price">
+                                54,990,000đ
+                            </div>
+
+                            <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tournn9">
+                                Xem chi tiết
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="tour-card">
+
+                        <div class="tour-img-wrap">
+
+                            <img src="../../data/img/thuysi.jpg" class="tour-img">
+
+                            <div class="tour-tag">
+                                KH từ: Hà Nội
+                            </div>
+
+                        </div>
+
+                        <div class="tour-body">
+
+                            <h3 class="tour-title">
+                                THỤY SĨ - ALPS 6N5Đ
+                            </h3>
+
+                            <div class="tour-info">
+                                <p>🕒 6 ngày 5 đêm</p>
+                                <p>🏨 Resort núi tuyết</p>
+                                <p>🏔 Check-in dãy Alps</p>
+                            </div>
+
+                            <div class="tour-price">
+                                62,990,000đ
+                            </div>
+
+                            <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tournn10">
+                                Xem chi tiết
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="tour-card">
+
+                        <div class="tour-img-wrap">
+
+                            <img src="../../data/img/maldivies.jpg" class="tour-img">
+
+                            <div class="tour-tag">
+                                KH từ: TP.HCM
+                            </div>
+
+                        </div>
+
+                        <div class="tour-body">
+
+                            <h3 class="tour-title">
+                                MALDIVES NGHỈ DƯỠNG 5N4Đ
+                            </h3>
+
+                            <div class="tour-info">
+                                <p>🕒 5 ngày 4 đêm</p>
+                                <p>🏨 Villa biển 5 sao</p>
+                                <p>🏝 Nghỉ dưỡng cao cấp</p>
+                            </div>
+
+                            <div class="tour-price">
+                                69,990,000đ
+                            </div>
+
+                            <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tournn11">
+                                Xem chi tiết
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="tour-card">
+
+                        <div class="tour-img-wrap">
+
+                            <img src="../../data/img/trungquoc.jpg" class="tour-img">
+
+                            <div class="tour-tag">
+                                KH từ: Hà Nội
+                            </div>
+
+                        </div>
+
+                        <div class="tour-body">
+
+                            <h3 class="tour-title">
+                                TRUNG QUỐC - BẮC KINH 5N4Đ
+                            </h3>
+
+                            <div class="tour-info">
+                                <p>🕒 5 ngày 4 đêm</p>
+                                <p>🏨 Khách sạn 4 sao</p>
+                                <p>🏯 Tham quan Vạn Lý Trường Thành</p>
+                            </div>
+
+                            <div class="tour-price">
+                                22,990,000đ
+                            </div>
+
+                            <a href="#" class="tour-detail" data-bs-toggle="modal" data-bs-target="#tournn12">
+                                Xem chi tiết
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
             </div>
 
 
@@ -95,6 +1288,1578 @@
         </section>
 
 
+
+    </div>
+    <div class="modal fade" id="tour1" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        SAPA - FANSIPAN 4N3Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Khám phá hành trình Sa Pa – vùng đất mờ sương nổi tiếng với vẻ đẹp núi non hùng vĩ và văn hóa
+                        dân tộc đặc sắc. Tour “SAPA - FANSIPAN 4N3Đ” sẽ đưa bạn chinh phục Fansipan – “Nóc nhà Đông
+                        Dương” ở độ cao 3.143m bằng hệ thống cáp treo hiện đại, tận hưởng khung cảnh biển mây tuyệt đẹp
+                        giữa đại ngàn Tây Bắc.
+
+                        Trong suốt 4 ngày 3 đêm, du khách sẽ được tham quan các địa điểm nổi bật như bản Cát Cát, nhà
+                        thờ đá Sa Pa, quảng trường trung tâm và thưởng thức những món ăn đặc sản đậm chất núi rừng.
+                        Không khí se lạnh, cảnh sắc thơ mộng cùng những trải nghiệm văn hóa độc đáo chắc chắn sẽ mang
+                        đến cho bạn một chuyến đi đáng nhớ và đầy cảm xúc.
+
+                    </p>
+
+                </div>
+
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=sapa" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="tour2" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        HẠ LONG - YÊN TỬ 3N2Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Hành trình “HẠ LONG - YÊN TỬ 3N2Đ” sẽ đưa bạn khám phá vẻ đẹp kỳ vĩ của Vịnh Hạ Long – di sản
+                        thiên nhiên thế giới nổi tiếng với hàng nghìn hòn đảo đá vôi tuyệt đẹp giữa làn nước xanh ngọc
+                        bích. Du khách sẽ được trải nghiệm du thuyền tham quan vịnh, khám phá hang động huyền ảo và tận
+                        hưởng không gian biển trời thơ mộng.
+
+                        Bên cạnh đó, tour còn đưa bạn đến Yên Tử – vùng đất linh thiêng gắn liền với thiền phái Trúc Lâm
+                        và văn hóa Phật giáo Việt Nam. Tại đây, bạn có thể đi cáp treo chiêm bái chùa Đồng trên đỉnh
+                        núi, hòa mình vào không gian thanh tịnh và tìm lại sự bình yên giữa thiên nhiên hùng vĩ. Chuyến
+                        đi 3 ngày 2 đêm hứa hẹn mang đến sự kết hợp hoàn hảo giữa nghỉ dưỡng, khám phá và trải nghiệm
+                        tâm linh đầy ý nghĩa.
+
+                    </p>
+
+                </div>
+
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=halong" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="modal fade" id="tour3" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        MỘC CHÂU 2N1Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Tour “MỘC CHÂU 2N1Đ” sẽ đưa bạn đến với Mộc Châu – cao nguyên xanh nổi tiếng với khí hậu mát mẻ
+                        quanh năm và khung cảnh thiên nhiên thơ mộng. Trong hành trình, du khách sẽ được chiêm ngưỡng
+                        những đồi chè bát ngát, thung lũng hoa rực rỡ cùng những cung đường núi tuyệt đẹp đặc trưng của
+                        vùng Tây Bắc.
+
+                        Bên cạnh đó, bạn còn có cơ hội khám phá các điểm đến hấp dẫn như rừng thông Bản Áng, thác Dải
+                        Yếm hay những bản làng dân tộc mang đậm nét văn hóa truyền thống. Không chỉ là chuyến đi nghỉ
+                        dưỡng ngắn ngày, tour còn mang đến những trải nghiệm gần gũi với thiên nhiên, thưởng thức đặc
+                        sản địa phương và lưu giữ những khoảnh khắc đáng nhớ giữa núi rừng bình yên của Mộc Châu.
+
+                    </p>
+
+                </div>
+
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=mocchau" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="modal fade" id="tour4" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        HÀ GIANG - ĐỒNG VĂN 3N2Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Hành trình “HÀ GIANG - ĐỒNG VĂN 3N2Đ” sẽ đưa bạn khám phá vẻ đẹp hoang sơ và hùng vĩ của Hà
+                        Giang – vùng đất địa đầu Tổ quốc nổi tiếng với những cung đường đèo ngoạn mục và phong cảnh núi
+                        đá kỳ vĩ. Du khách sẽ được chinh phục đèo Mã Pí Lèng huyền thoại, ngắm nhìn dòng sông Nho Quế
+                        xanh biếc uốn lượn giữa núi rừng Tây Bắc.
+
+                        Tour còn đưa bạn đến Đồng Văn – cao nguyên đá được UNESCO công nhận là Công viên Địa chất Toàn
+                        cầu với nét đẹp văn hóa độc đáo của đồng bào dân tộc vùng cao. Trong suốt hành trình 3 ngày 2
+                        đêm, bạn sẽ có cơ hội tham quan cột cờ Lũng Cú, phố cổ Đồng Văn, thưởng thức đặc sản địa phương
+                        và cảm nhận vẻ đẹp bình yên nhưng đầy cuốn hút của miền sơn cước Hà Giang.
+
+                    </p>
+
+                </div>
+
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=hagiang" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="modal fade" id="tour5" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        NINH BÌNH - TRÀNG AN 2N1Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Tour “NINH BÌNH - TRÀNG AN 2N1Đ” sẽ đưa bạn khám phá vẻ đẹp non nước hữu tình của Ninh Bình –
+                        vùng đất được mệnh danh là “Hạ Long trên cạn” với cảnh quan thiên nhiên thơ mộng và bề dày lịch
+                        sử văn hóa đặc sắc. Du khách sẽ được trải nghiệm hành trình ngồi thuyền len lỏi qua những dãy
+                        núi đá vôi hùng vĩ, hang động kỳ ảo và dòng nước xanh trong tại Quần thể danh thắng Tràng An.
+
+                        Bên cạnh đó, tour còn mang đến cơ hội tham quan các địa danh nổi tiếng như chùa Bái Đính, Hang
+                        Múa hay cố đô Hoa Lư cổ kính. Không chỉ được hòa mình vào thiên nhiên yên bình, bạn còn có dịp
+                        thưởng thức những món đặc sản hấp dẫn của vùng đất cố đô. Hành trình 2 ngày 1 đêm hứa hẹn sẽ
+                        mang đến cho bạn những phút giây thư giãn và trải nghiệm đáng nhớ.
+
+                    </p>
+
+                </div>
+
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=ninhbinh" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="modal fade" id="tour6" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        CÁT BÀ - LAN HẠ 3N2Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Hành trình “CÁT BÀ - LAN HẠ 3N2Đ” sẽ đưa bạn đến với Cát Bà – hòn đảo xinh đẹp nổi tiếng với
+                        thiên nhiên hoang sơ, bãi biển trong xanh và không khí trong lành. Du khách sẽ được tận hưởng
+                        những giây phút thư giãn giữa biển trời yên bình, tham gia các hoạt động thú vị như tắm biển,
+                        chèo kayak và khám phá những làng chài ven vịnh.
+
+                        Điểm nhấn đặc biệt của tour là hành trình khám phá Vịnh Lan Hạ – một trong những vịnh biển đẹp
+                        nhất miền Bắc với hàng trăm hòn đảo đá vôi lớn nhỏ và làn nước xanh ngọc tuyệt đẹp. Trong suốt 3
+                        ngày 2 đêm, bạn sẽ được hòa mình vào thiên nhiên thơ mộng, thưởng thức hải sản tươi ngon và tận
+                        hưởng kỳ nghỉ đáng nhớ bên gia đình và bạn bè.
+
+                    </p>
+
+                </div>
+
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=catba" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="tourtrung1" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        ĐÀ NẴNG - BÀ NÀ 3N2Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Tour “ĐÀ NẴNG - BÀ NÀ 3N2Đ” sẽ đưa bạn khám phá thành phố biển năng động Đà Nẵng – điểm đến nổi
+                        tiếng với những bãi biển tuyệt đẹp, nhịp sống hiện đại và nhiều công trình độc đáo. Du khách sẽ
+                        được tham quan cầu Rồng, cầu Tình Yêu, bán đảo Sơn Trà và tận hưởng không khí biển trong lành
+                        của thành phố đáng sống nhất Việt Nam.
+
+                        Điểm nhấn đặc biệt của hành trình là chuyến tham quan Bà Nà Hills – khu du lịch nổi tiếng nằm
+                        trên đỉnh núi Chúa với khí hậu mát mẻ quanh năm. Tại đây, bạn sẽ được trải nghiệm hệ thống cáp
+                        treo hiện đại, check-in tại Cầu Vàng nổi tiếng, khám phá làng Pháp cổ kính và tham gia nhiều
+                        hoạt động giải trí hấp dẫn. Hành trình 3 ngày 2 đêm hứa hẹn mang đến cho bạn kỳ nghỉ trọn vẹn
+                        với nhiều trải nghiệm thú vị và đáng nhớ.
+
+                    </p>
+
+                </div>
+
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=danang" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="tourtrung2" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        HỘI AN - CÙ LAO CHÀM 2N1Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Hành trình “HỘI AN - CÙ LAO CHÀM 2N1Đ” sẽ đưa bạn khám phá vẻ đẹp cổ kính và thơ mộng của Hội An
+                        – phố cổ nổi tiếng với những dãy nhà vàng rêu phong, đèn lồng lung linh và nét văn hóa truyền
+                        thống đặc sắc. Du khách sẽ được dạo bước trên những con phố nhỏ yên bình, thưởng thức ẩm thực
+                        địa phương hấp dẫn và tận hưởng không gian hoài cổ đầy cuốn hút.
+
+                        Bên cạnh đó, tour còn mang đến trải nghiệm khám phá Cù Lao Chàm – hòn đảo xinh đẹp với làn nước
+                        trong xanh và hệ sinh thái biển phong phú. Bạn sẽ có cơ hội tham gia các hoạt động thú vị như
+                        lặn ngắm san hô, tắm biển và thưởng thức hải sản tươi ngon. Hành trình 2 ngày 1 đêm là sự kết
+                        hợp hoàn hảo giữa nghỉ dưỡng, khám phá thiên nhiên và trải nghiệm văn hóa miền Trung đầy hấp
+                        dẫn.
+
+                    </p>
+
+                </div>
+
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=hoian" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="tourtrung3" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        HUẾ MỘNG MƠ 3N2Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Tour “HUẾ MỘNG MƠ 3N2Đ” sẽ đưa bạn đến với Huế – vùng đất cố đô nổi tiếng với vẻ đẹp cổ kính,
+                        thơ mộng và bề dày văn hóa lịch sử đặc sắc. Trong hành trình, du khách sẽ được tham quan Đại Nội
+                        Huế, chùa Thiên Mụ, lăng Khải Định cùng nhiều công trình kiến trúc mang đậm dấu ấn triều Nguyễn.
+
+                        Không chỉ hấp dẫn bởi những di sản văn hóa, Huế còn làm say lòng du khách với dòng sông Hương
+                        dịu dàng, những đêm ca Huế trữ tình và nền ẩm thực tinh tế đặc trưng miền Trung. Hành trình 3
+                        ngày 2 đêm hứa hẹn mang đến cho bạn những phút giây thư giãn, khám phá nét đẹp yên bình và cảm
+                        nhận trọn vẹn vẻ quyến rũ đầy chất thơ của cố đô Huế.
+                    </p>
+
+                </div>
+
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=hue" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="tourtrung4" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        QUY NHƠN - KỲ CO 3N2Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Hành trình “QUY NHƠN - KỲ CO 3N2Đ” sẽ đưa bạn khám phá vẻ đẹp biển xanh cát trắng của Quy Nhơn –
+                        thành phố biển yên bình nổi tiếng với thiên nhiên hoang sơ và ẩm thực hấp dẫn. Du khách sẽ được
+                        tận hưởng không khí trong lành, dạo bước bên những bãi biển tuyệt đẹp và thưởng thức các món hải
+                        sản tươi ngon đặc trưng miền Trung.
+
+                        Điểm nhấn đặc biệt của tour là chuyến tham quan Kỳ Co – thiên đường biển đảo nổi tiếng với làn
+                        nước xanh ngọc, bãi cát trắng mịn và khung cảnh thiên nhiên tuyệt đẹp. Bên cạnh đó, bạn còn có
+                        cơ hội khám phá Eo Gió, Ghềnh Ráng Tiên Sa hay trải nghiệm các hoạt động thú vị như tắm biển,
+                        lặn ngắm san hô và check-in những địa điểm sống ảo nổi tiếng. Hành trình 3 ngày 2 đêm hứa hẹn
+                        mang đến cho bạn kỳ nghỉ thư giãn và những trải nghiệm đáng nhớ bên biển trời miền Trung.
+
+                    </p>
+
+                </div>
+
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=quynhon" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="tourtrung5" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        NHA TRANG - VINPEARL 4N3Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Tour “NHA TRANG - VINPEARL 4N3Đ” sẽ đưa bạn đến với Nha Trang – thành phố biển nổi tiếng với
+                        những bãi cát trắng trải dài, làn nước trong xanh và khí hậu ôn hòa quanh năm. Du khách sẽ được
+                        tận hưởng không gian biển tuyệt đẹp, tham quan các địa danh nổi tiếng và thưởng thức hải sản
+                        tươi ngon đặc trưng của vùng biển miền Trung.
+
+                        Điểm nhấn đặc biệt của hành trình là trải nghiệm vui chơi tại VinWonders Nha Trang – khu giải
+                        trí hiện đại hàng đầu Việt Nam nằm trên đảo Hòn Tre xinh đẹp. Tại đây, bạn sẽ được tham gia hàng
+                        loạt trò chơi hấp dẫn, khám phá công viên nước, thủy cung và chiêm ngưỡng những chương trình
+                        biểu diễn đặc sắc. Hành trình 4 ngày 3 đêm hứa hẹn mang đến cho bạn kỳ nghỉ sôi động, thư giãn
+                        và đầy ắp những kỷ niệm đáng nhớ bên gia đình và bạn bè.
+                    </p>
+
+                </div>
+
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=nhatrang" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="tourtrung6" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        PHÚ YÊN - HOA VÀNG CỎ XANH 2N1Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Hành trình “PHÚ YÊN - HOA VÀNG CỎ XANH 2N1Đ” sẽ đưa bạn khám phá vẻ đẹp bình yên và thơ mộng của
+                        Phú Yên – vùng đất nổi tiếng với những khung cảnh thiên nhiên hoang sơ, biển xanh trong vắt và
+                        nét đẹp mộc mạc đầy cuốn hút. Du khách sẽ được ghé thăm những địa danh nổi tiếng gắn liền với bộ
+                        phim “Tôi thấy hoa vàng trên cỏ xanh”, tận hưởng không gian yên bình giữa thiên nhiên tuyệt đẹp
+                        của miền Trung.
+
+                        Trong hành trình, bạn sẽ có cơ hội khám phá Gành Đá Đĩa – kỳ quan thiên nhiên độc đáo với những
+                        khối đá bazan xếp chồng kỳ thú bên bờ biển, cùng nhiều điểm đến hấp dẫn như Bãi Xép, Mũi Điện
+                        hay nhà thờ Mằng Lăng cổ kính. Chuyến đi 2 ngày 1 đêm hứa hẹn mang đến cho bạn những trải nghiệm
+                        thư giãn, gần gũi thiên nhiên và lưu giữ nhiều khoảnh khắc đáng nhớ.
+
+                    </p>
+
+                </div>
+
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=phuyen" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="modal fade" id="tournam1" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        PHÚ QUỐC THIÊN ĐƯỜNG BIỂN 4N3Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Tour “PHÚ QUỐC THIÊN ĐƯỜNG BIỂN 4N3Đ” sẽ đưa bạn khám phá đảo ngọc Phú Quốc với những bãi biển
+                        xanh
+                        trong, cát trắng mịn và khung cảnh thiên nhiên tuyệt đẹp. Du khách sẽ được tham quan Sunset
+                        Sanato,
+                        Grand World và thưởng thức hải sản tươi ngon nổi tiếng của vùng biển phía Nam.
+
+                        Hành trình còn mang đến trải nghiệm nghỉ dưỡng tại resort cao cấp, check-in những địa điểm sống
+                        ảo
+                        nổi tiếng và tận hưởng không khí biển trong lành. Chuyến đi 4 ngày 3 đêm hứa hẹn sẽ mang đến cho
+                        bạn kỳ nghỉ thư giãn và đáng nhớ.
+
+                    </p>
+
+                </div>
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=phuquoc" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <div class="modal fade" id="tournam2" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        CẦN THƠ - CHỢ NỔI 2N1Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Tour “CẦN THƠ - CHỢ NỔI 2N1Đ” sẽ đưa bạn khám phá vẻ đẹp miền Tây sông nước với những con kênh
+                        hiền
+                        hòa và nét văn hóa đặc trưng Nam Bộ. Du khách sẽ được trải nghiệm chợ nổi Cái Răng, thưởng thức
+                        trái
+                        cây miệt vườn và khám phá cuộc sống bình dị của người dân miền Tây.
+
+                        Hành trình còn mang đến cơ hội thưởng thức các món ăn dân dã hấp dẫn và trải nghiệm du thuyền
+                        trên
+                        sông thơ mộng. Chuyến đi hứa hẹn mang lại cảm giác thư giãn và gần gũi thiên nhiên.
+
+                    </p>
+
+                </div>
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=cantho" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <div class="modal fade" id="tournam3" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        VŨNG TÀU NGHỈ DƯỠNG 2N1Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Tour “VŨNG TÀU NGHỈ DƯỠNG 2N1Đ” mang đến cho bạn kỳ nghỉ thư giãn bên bờ biển với không gian
+                        trong
+                        lành và nhiều hoạt động hấp dẫn. Du khách sẽ được tắm biển Bãi Sau, tham quan tượng Chúa Kitô và
+                        thưởng thức hải sản tươi ngon nổi tiếng của Vũng Tàu.
+
+                        Đây là lựa chọn lý tưởng cho những ai muốn nghỉ dưỡng ngắn ngày và tận hưởng không khí biển mát
+                        mẻ
+                        cùng gia đình và bạn bè.
+
+                    </p>
+
+                </div>
+
+                <div class="modal-footer border-0">
+                    <a href="../html/Dattour.html?tour=vungtau" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <div class="modal fade" id="tournam4" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        CÔN ĐẢO TÂM LINH 3N2Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Hành trình “CÔN ĐẢO TÂM LINH 3N2Đ” sẽ đưa bạn khám phá vẻ đẹp hoang sơ của Côn Đảo – nơi nổi
+                        tiếng
+                        với những bãi biển xanh ngọc và các di tích lịch sử linh thiêng. Du khách sẽ được tham quan
+                        nghĩa
+                        trang Hàng Dương, viếng mộ cô Sáu và tận hưởng vẻ đẹp yên bình của biển đảo.
+
+                        Chuyến đi mang đến trải nghiệm vừa thư giãn vừa tìm hiểu lịch sử, phù hợp cho những ai yêu thích
+                        du
+                        lịch tâm linh và khám phá thiên nhiên.
+
+                    </p>
+
+                </div>
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=condao" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <div class="modal fade" id="tournam5" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        ĐÀ LẠT NGÀN HOA 3N2Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Tour “ĐÀ LẠT NGÀN HOA 3N2Đ” sẽ đưa bạn đến với thành phố ngàn hoa nổi tiếng với khí hậu mát mẻ
+                        quanh
+                        năm và khung cảnh lãng mạn. Du khách sẽ được tham quan hồ Xuân Hương, đồi chè, vườn hoa và
+                        thưởng
+                        thức đặc sản hấp dẫn của Đà Lạt.
+
+                        Hành trình còn mang đến nhiều địa điểm check-in nổi tiếng và không gian nghỉ dưỡng yên bình giữa
+                        núi
+                        rừng cao nguyên.
+
+                    </p>
+
+                </div>
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=dalat" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <div class="modal fade" id="tournam6" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        TÂY NINH - NÚI BÀ ĐEN 2N1Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Hành trình “TÂY NINH - NÚI BÀ ĐEN 2N1Đ” sẽ đưa bạn khám phá điểm du lịch nổi tiếng của miền Nam
+                        với
+                        khung cảnh núi non hùng vĩ và không khí trong lành. Du khách sẽ được trải nghiệm cáp treo hiện
+                        đại,
+                        tham quan chùa Bà và check-in trên đỉnh núi cao nhất Nam Bộ.
+
+                        Đây là chuyến đi phù hợp cho những ai yêu thích du lịch tâm linh kết hợp nghỉ dưỡng và khám phá
+                        thiên
+                        nhiên.
+
+                    </p>
+
+                </div>
+
+                <div class="modal-footer border-0">
+
+                    <<a href="../html/Dattour.html?tour=tayninh" class="btn-book-tour">
+                        Đặt tour ngay
+                        </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+    <div class="modal fade" id="tournn1" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        HÀN QUỐC - SEOUL 5N4Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Tour “HÀN QUỐC - SEOUL 5N4Đ” sẽ đưa bạn khám phá thủ đô Seoul hiện đại và sôi động của Hàn Quốc
+                        –
+                        điểm đến nổi tiếng với sự kết hợp hài hòa giữa văn hóa truyền thống và nhịp sống hiện đại. Trong
+                        hành trình, du khách sẽ được tham quan cung điện Gyeongbokgung, làng cổ Bukchon Hanok, tháp
+                        Namsan
+                        và trải nghiệm mua sắm tại những khu phố nổi tiếng như Myeongdong hay Hongdae.
+
+                        Bên cạnh đó, bạn còn có cơ hội thưởng thức ẩm thực đặc sắc của xứ sở kim chi, trải nghiệm mặc
+                        Hanbok
+                        truyền thống và check-in tại nhiều địa điểm nổi tiếng trong các bộ phim Hàn Quốc. Hành trình 5
+                        ngày
+                        4 đêm hứa hẹn mang đến cho bạn những trải nghiệm thú vị và đáng nhớ tại đất nước xinh đẹp này.
+
+                    </p>
+
+                </div>
+
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=hanquoc" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <div class="modal fade" id="tournn2" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        NHẬT BẢN - TOKYO 6N5Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Hành trình “NHẬT BẢN - TOKYO 6N5Đ” sẽ đưa bạn khám phá đất nước mặt trời mọc với những thành phố
+                        hiện
+                        đại, nền văn hóa đặc sắc và cảnh quan thiên nhiên tuyệt đẹp. Du khách sẽ được tham quan Tokyo –
+                        thành phố nổi tiếng với sự hiện đại, sạch đẹp cùng những công trình kiến trúc độc đáo và nhịp
+                        sống
+                        sôi động.
+
+                        Điểm nhấn đặc biệt của tour là chuyến tham quan núi Phú Sĩ – biểu tượng nổi tiếng của Nhật Bản.
+                        Ngoài ra, bạn còn được trải nghiệm tàu điện hiện đại, thưởng thức sushi truyền thống và khám phá
+                        những khu phố mua sắm nổi tiếng. Hành trình 6 ngày 5 đêm hứa hẹn mang đến cho bạn nhiều trải
+                        nghiệm
+                        tuyệt vời và đáng nhớ.
+
+                    </p>
+
+                </div>
+
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=nhatban" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <div class="modal fade" id="tournn3" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        THÁI LAN - BANGKOK 4N3Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Tour “THÁI LAN - BANGKOK 4N3Đ” sẽ đưa bạn đến với Bangkok – thành phố du lịch nổi tiếng của Thái
+                        Lan
+                        với những ngôi chùa vàng lộng lẫy, khu chợ đêm nhộn nhịp và nền ẩm thực hấp dẫn. Du khách sẽ
+                        được
+                        tham quan chùa Wat Arun, cung điện Hoàng Gia và nhiều địa điểm nổi tiếng khác.
+
+                        Ngoài ra, bạn còn có cơ hội trải nghiệm mua sắm tại các trung tâm thương mại hiện đại, thưởng
+                        thức
+                        các món ăn đường phố đặc sắc và khám phá cuộc sống sôi động về đêm của Bangkok. Hành trình 4
+                        ngày
+                        3 đêm sẽ mang đến cho bạn chuyến du lịch đầy màu sắc và thú vị.
+
+                    </p>
+
+                </div>
+
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=thailan" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <div class="modal fade" id="tournn4" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        SINGAPORE - MARINA BAY 4N3Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Hành trình “SINGAPORE - MARINA BAY 4N3Đ” sẽ đưa bạn khám phá quốc đảo Singapore hiện đại và xanh
+                        sạch
+                        bậc nhất thế giới. Du khách sẽ được tham quan Marina Bay Sands, Gardens by the Bay và tượng
+                        Merlion
+                        nổi tiếng.
+
+                        Bên cạnh đó, tour còn mang đến trải nghiệm vui chơi tại Universal Studios Singapore với nhiều
+                        trò
+                        chơi hấp dẫn và khu giải trí sôi động. Hành trình 4 ngày 3 đêm hứa hẹn mang đến cho bạn kỳ nghỉ
+                        đầy
+                        thú vị và nhiều trải nghiệm đáng nhớ.
+
+                    </p>
+
+                </div>
+
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=singapore" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="modal fade" id="tournn5" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        PHÁP - PARIS 7N6Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Tour “PHÁP - PARIS 7N6Đ” sẽ đưa bạn đến với Paris – thành phố ánh sáng nổi tiếng với vẻ đẹp lãng
+                        mạn,
+                        kiến trúc cổ kính và nền văn hóa đặc sắc. Du khách sẽ được check-in tại tháp Eiffel, bảo tàng
+                        Louvre
+                        và đại lộ Champs-Élysées nổi tiếng.
+
+                        Ngoài ra, bạn còn có cơ hội thưởng thức ẩm thực Pháp tinh tế, trải nghiệm du thuyền trên sông
+                        Seine
+                        và khám phá nhiều công trình kiến trúc tuyệt đẹp. Hành trình 7 ngày 6 đêm hứa hẹn mang đến cho
+                        bạn
+                        những kỷ niệm khó quên tại châu Âu.
+
+                    </p>
+
+                </div>
+
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=phap" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="modal fade" id="tournn7" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        MỸ - NEW YORK 7N6Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Hành trình “MỸ - NEW YORK 7N6Đ” sẽ đưa bạn khám phá thành phố New York sôi động – trung tâm kinh
+                        tế,
+                        văn hóa và giải trí nổi tiếng hàng đầu thế giới. Du khách sẽ được check-in tại tượng Nữ thần Tự
+                        do,
+                        quảng trường Times Square, cầu Brooklyn và trải nghiệm nhịp sống hiện đại của thành phố không
+                        ngủ.
+
+                        Bên cạnh đó, bạn còn có cơ hội mua sắm tại các trung tâm thương mại nổi tiếng, thưởng thức ẩm
+                        thực
+                        quốc tế và khám phá nhiều công trình biểu tượng của nước Mỹ. Chuyến đi 7 ngày 6 đêm hứa hẹn mang
+                        đến những trải nghiệm đẳng cấp và đáng nhớ.
+
+                    </p>
+
+                </div>
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=newyork" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="modal fade" id="tournn8" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        ÚC - SYDNEY 6N5Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Tour “ÚC - SYDNEY 6N5Đ” sẽ đưa bạn đến với Sydney – thành phố hiện đại và đáng sống bậc nhất
+                        nước Úc.
+                        Trong hành trình, du khách sẽ được tham quan nhà hát Opera Sydney nổi tiếng, cầu cảng Harbour
+                        Bridge
+                        và tận hưởng vẻ đẹp của những bãi biển xanh trong tuyệt đẹp.
+
+                        Ngoài ra, bạn còn có cơ hội khám phá văn hóa đặc sắc, thưởng thức ẩm thực quốc tế và trải nghiệm
+                        cuộc sống năng động của thành phố ven biển nổi tiếng này. Chuyến đi 6 ngày 5 đêm hứa hẹn mang
+                        lại
+                        nhiều trải nghiệm thú vị và đáng nhớ.
+
+                    </p>
+
+                </div>
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=sydney" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="modal fade" id="tournn9" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        Ý - VENICE 7N6Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Hành trình “Ý - VENICE 7N6Đ” sẽ đưa bạn khám phá thành phố Venice thơ mộng – nơi nổi tiếng với
+                        những
+                        con kênh lãng mạn và kiến trúc cổ kính tuyệt đẹp. Du khách sẽ được trải nghiệm du thuyền
+                        gondola,
+                        tham quan quảng trường San Marco và khám phá nét đẹp văn hóa đặc trưng của nước Ý.
+
+                        Bên cạnh đó, chuyến đi còn mang đến cơ hội thưởng thức ẩm thực Ý nổi tiếng và lưu giữ những
+                        khoảnh
+                        khắc đáng nhớ giữa khung cảnh châu Âu đầy lãng mạn. Hành trình 7 ngày 6 đêm chắc chắn sẽ là
+                        chuyến
+                        du lịch tuyệt vời dành cho bạn.
+
+                    </p>
+
+                </div>
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=venice" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="modal fade" id="tournn10" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        THỤY SĨ - ALPS 6N5Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Tour “THỤY SĨ - ALPS 6N5Đ” sẽ đưa bạn khám phá vẻ đẹp hùng vĩ của dãy núi Alps nổi tiếng thế
+                        giới.
+                        Du khách sẽ được tận hưởng không khí trong lành, ngắm nhìn những đỉnh núi phủ tuyết trắng và
+                        trải
+                        nghiệm các khu nghỉ dưỡng cao cấp giữa thiên nhiên tuyệt đẹp.
+
+                        Ngoài ra, hành trình còn mang đến cơ hội tham quan các ngôi làng châu Âu cổ kính, thưởng thức
+                        socola
+                        và đặc sản nổi tiếng của Thụy Sĩ. Chuyến đi 6 ngày 5 đêm hứa hẹn mang lại kỳ nghỉ thư giãn và
+                        đầy
+                        cảm xúc.
+
+                    </p>
+
+                </div>
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=alps" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="modal fade" id="tournn11" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        MALDIVES NGHỈ DƯỠNG 5N4Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Hành trình “MALDIVES NGHỈ DƯỠNG 5N4Đ” sẽ đưa bạn đến thiên đường biển Maldives nổi tiếng với làn
+                        nước xanh ngọc, bãi cát trắng mịn và những villa trên biển sang trọng. Đây là điểm đến lý tưởng
+                        cho
+                        nghỉ dưỡng và tận hưởng kỳ nghỉ đẳng cấp.
+
+                        Trong chuyến đi, du khách sẽ được trải nghiệm các hoạt động hấp dẫn như lặn biển ngắm san hô,
+                        chèo
+                        kayak và ngắm hoàng hôn tuyệt đẹp trên biển. Tour 5 ngày 4 đêm hứa hẹn mang đến những phút giây
+                        thư
+                        giãn tuyệt vời và đáng nhớ.
+
+                    </p>
+
+                </div>
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=maldives" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="modal fade" id="tournn12" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        TRUNG QUỐC - BẮC KINH 5N4Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Tour “TRUNG QUỐC - BẮC KINH 5N4Đ” sẽ đưa bạn khám phá thủ đô Bắc Kinh – trung tâm văn hóa và
+                        lịch sử
+                        lâu đời của Trung Quốc. Du khách sẽ được tham quan Vạn Lý Trường Thành, Tử Cấm Thành và nhiều
+                        công
+                        trình kiến trúc nổi tiếng mang đậm dấu ấn lịch sử.
+
+                        Bên cạnh đó, chuyến đi còn mang đến cơ hội thưởng thức ẩm thực đặc sắc, khám phá nét văn hóa
+                        truyền
+                        thống và trải nghiệm nhịp sống hiện đại của thành phố lớn bậc nhất châu Á. Hành trình 5 ngày 4
+                        đêm
+                        chắc chắn sẽ để lại nhiều kỷ niệm đáng nhớ.
+
+                    </p>
+
+                </div>
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=backinh" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <div class="modal fade" id="tournn6" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content simple-modal">
+
+                <div class="modal-header border-0">
+
+                    <h3 class="modal-title fw-bold">
+                        DUBAI XA HOA 5N4Đ
+                    </h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <p class="tour-text">
+
+                        Hành trình “DUBAI XA HOA 5N4Đ” sẽ đưa bạn khám phá Dubai – thành phố xa hoa nổi tiếng với những
+                        tòa
+                        nhà chọc trời, trung tâm mua sắm hiện đại và các khu nghỉ dưỡng đẳng cấp thế giới. Du khách sẽ
+                        được
+                        tham quan Burj Khalifa – tòa nhà cao nhất thế giới cùng nhiều công trình nổi tiếng khác.
+
+                        Điểm nhấn đặc biệt của tour là trải nghiệm safari sa mạc đầy thú vị với các hoạt động cưỡi lạc
+                        đà,
+                        xem múa bụng và thưởng thức ẩm thực Trung Đông. Hành trình 5 ngày 4 đêm hứa hẹn mang đến cho bạn
+                        chuyến đi sang trọng và đầy trải nghiệm đáng nhớ.
+
+                    </p>
+
+                </div>
+
+
+                <div class="modal-footer border-0">
+
+                    <a href="../html/Dattour.html?tour=dubai" class="btn-book-tour">
+                        Đặt tour ngay
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
@@ -175,6 +2940,22 @@
     <script src="../../BackEnd/js/TourDuLich.js"></script>
     <script src="../../BackEnd/js/chonUser.js"></script>
     <script src="../../BackEnd/js/api.js"></script>
+    <script>
+        function toggleMobileNav() {
+            document.getElementById('mobileNavPanel').classList.toggle('open');
+            document.getElementById('mobileOverlay').classList.toggle('open');
+        }
+
+        function closeMobileNav() {
+            document.getElementById('mobileNavPanel').classList.remove('open');
+            document.getElementById('mobileOverlay').classList.remove('open');
+        }
+
+        // Close mobile nav on resize to desktop
+        window.addEventListener('resize', function () {
+            if (window.innerWidth > 991) closeMobileNav();
+        });
+    </script>
 
 </body>
 

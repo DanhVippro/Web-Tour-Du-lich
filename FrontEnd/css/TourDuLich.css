@@ -16,7 +16,6 @@ body {
 }
 
 
-
 .header1 {
     height: 80px;
     display: flex;
@@ -30,45 +29,53 @@ body {
     top: 0;
     left: 0;
     z-index: 1000;
-    background-color: rgba(246, 246, 246);
+    background-color: rgba(246, 246, 246, 0.97);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
 }
-
 
 .logo-header1 a img {
     height: 60px;
-    width: 160px;
-    padding: 5px 10px;
+    width: auto;
+    max-width: 180px;
+    object-fit: contain;
+    display: block;
 }
 
 .Search-header1 {
     flex: 1;
     max-width: 400px;
+    margin: 0 12px;
 }
 
 .Search-header1 .form-place {
-    margin: 15px 20px;
+    margin: 0;
     background-color: rgb(231, 236, 236);
     display: flex;
     align-items: center;
-
+    border-radius: 6px;
+    overflow: hidden;
 }
 
 .Search-header1 .form-place input {
     width: 100%;
-
-    height: 45px;
+    height: 40px;
     border: none;
-    font-size: larger;
+    font-size: 14px;
     background-color: rgb(231, 236, 236);
+    padding: 0 10px;
+    outline: none;
 }
 
 .Search-header1 .form-place button {
     color: gray;
-    height: 45px;
-    width: 50px;
+    height: 40px;
+    width: 44px;
     border: none;
-    font-size: 30px;
+    font-size: 22px;
     background-color: rgb(231, 236, 236);
+    cursor: pointer;
+    flex-shrink: 0;
 }
 
 .menu-header1 {
@@ -78,13 +85,18 @@ body {
 .menu-header1 ul {
     padding: 0;
     margin: 0;
-}
-
-.menu-header1 ul li {
-    display: inline-block;
+    display: flex;
+    list-style: none;
+    gap: 0;
 }
 
 .menu-header1 ul li a {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 28px 12px;
+    text-transform: uppercase;
+    color: rgb(54, 101, 161);
     position: relative;
 }
 
@@ -99,24 +111,83 @@ body {
     transition: 0.2s;
 }
 
-.menu-header1 ul li a:hover::after {
-    width: 100%;
+.menu-header1 ul li a:hover::after { width: 100%; }
+.menu-header1 ul li a:hover { color: rgb(253, 115, 115); }
+.hamburger-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 6px;
+    background: none;
+    border: none;
+    z-index: 1100;
 }
 
-.menu-header1 ul li a {
-    display: inline-block;
-    text-decoration: none;
+.hamburger-btn span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: rgb(54, 101, 161);
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+.mobile-nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    z-index: 1050;
+}
+
+.mobile-nav-panel {
+    position: fixed;
+    top: 0;
+    right: -280px;
+    width: 270px;
+    height: 100%;
+    background: #fff;
+    z-index: 1060;
+    padding: 80px 24px 24px;
+    transition: right 0.3s ease;
+    overflow-y: auto;
+    box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+}
+
+.mobile-nav-panel.open { right: 0; }
+.mobile-nav-overlay.open { display: block; }
+
+.mobile-nav-panel ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-nav-panel ul li a {
+    display: block;
+    padding: 14px 0;
     font-size: 15px;
-    padding: 28px 15px;
-    text-transform: uppercase;
     color: rgb(54, 101, 161);
+    text-decoration: none;
+    border-bottom: 1px solid #f0f0f0;
+    font-weight: 500;
+    text-transform: uppercase;
 }
 
-.menu-header1 ul li a:hover {
-    color: rgb(253, 115, 115);
-
+.user-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+    min-width: 200px;
+    z-index: 999;
+    overflow: hidden;
 }
-
 
 
 /*******/
@@ -135,6 +206,13 @@ body {
 
 
 }
+.tab.active {
+    background: #ffffff;
+    color: #0d6efd;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
 
 .tab:hover {
     background: rgba(255, 255, 255, 0.38);
@@ -143,4 +221,157 @@ body {
 
 .hd2{
     text-align: center;
+}
+
+/********CSS modal****/
+.tour-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+
+.tour-card{
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transition: 0.35s;
+    cursor: pointer;
+
+
+     display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.tour-card:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+}
+
+
+.tour-img-wrap{
+    position: relative;
+    overflow: hidden;
+}
+
+.tour-img{
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    transition: 0.4s;
+}
+
+.tour-card:hover .tour-img{
+    transform: scale(1.08);
+}
+
+
+.tour-tag{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(45deg,#ff9800,#ffb300);
+    color: white;
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+.tour-body{
+    padding: 22px;
+
+     display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+
+.tour-title{
+    font-size: 24px;
+    color: #1d3557;
+    font-weight: 700;
+    margin-bottom: 18px;
+    line-height: 1.4;
+
+      min-height: 70px;
+}
+
+
+.tour-info p{
+    margin-bottom: 10px;
+    color: #444;
+    font-size: 16px;
+}
+
+.tour-price{
+    margin-top: 18px;
+    color: red;
+    font-size: 32px;
+    font-weight: bold;
+}
+/******chitietmodal**/
+.simple-modal{
+    border-radius: 24px;
+    border: none;
+    padding: 15px;
+}
+
+
+.tour-text{
+    font-size: 18px;
+    line-height: 1.9;
+    color: #444;
+    text-align: justify;
+    padding: 10px 5px;
+}
+
+/* .btn-book-tour{
+    border: none;
+    padding: 14px 34px;
+    border-radius: 50px;
+    background: linear-gradient(45deg,#007bff,#00bfff);
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-book-tour:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+} */
+
+
+.btn-book-tour{
+    display: inline-block;
+    text-decoration: none;
+    border: none;
+    padding: 14px 34px;
+    border-radius: 50px;
+    background: linear-gradient(45deg,#007bff,#00bfff);
+    color: #fff;
+    font-size: 17px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-book-tour:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+    color: #fff;
+}
+
+.btn-book-tour:active{
+    transform: scale(0.96);
+}
+
+.btn-book-tour:focus{
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(0,123,255,0.25);
 }
