@@ -30,7 +30,7 @@
       "duration": "4 ngày 3 đêm",
       "price": 3500000,
       "maxCapacity": 25,
-      "currentBookings": 10,
+      "currentBookings": 13,
       "hotel": "3 Sao",
       "transport": "Xe giường nằm",
       "description": "Thành phố ngàn hoa với những địa điểm nổi tiếng: Hồ Xuân Hương, Dinh Bảo Đại, Thung lũng Tình Yêu...",
@@ -1028,6 +1028,20 @@
       "bookingDate": "2026-05-09",
       "departureDate": "2026-05-13",
       "status": "paid"
+    },
+    {
+      "id": "BK1778377233509",
+      "tourId": "dalat",
+      "tourName": "Tour Đà Lạt 4N3Đ: Ngàn Hoa Rực Rỡ",
+      "customerName": "danh",
+      "email": "danh5d06@gmail.com",
+      "phone": "0987123457",
+      "adultTickets": 2,
+      "childTickets": 1,
+      "totalPrice": 7000000,
+      "bookingDate": "2026-05-10",
+      "departureDate": "2026-05-20",
+      "status": "pending"
     }
   ],
   "users": [
