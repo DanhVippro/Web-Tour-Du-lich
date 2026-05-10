@@ -315,7 +315,7 @@
       "duration": "5 ngày 4 đêm",
       "price": 5600000,
       "maxCapacity": 30,
-      "currentBookings": 20,
+      "currentBookings": 21,
       "hotel": "4 Sao",
       "transport": "Ô tô + tàu",
       "description": "Danh test tính năng",
@@ -1041,6 +1041,21 @@
       "totalPrice": 7000000,
       "bookingDate": "2026-05-10",
       "departureDate": "2026-05-20",
+      "status": "pending"
+    },
+    {
+      "id": "BK1778378681855",
+      "userId": null,
+      "tourId": "danhcity1778347179465",
+      "tourName": "Danh Tour",
+      "customerName": "danh oke",
+      "email": "perfect@gmai.com",
+      "phone": "0123456789",
+      "adultTickets": 1,
+      "childTickets": 0,
+      "totalPrice": 5600000,
+      "bookingDate": "2026-05-10",
+      "departureDate": "2026-05-12",
       "status": "pending"
     }
   ],
