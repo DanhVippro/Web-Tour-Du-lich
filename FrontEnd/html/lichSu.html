@@ -312,7 +312,16 @@
         loadBookings();
 
         async function loadBookings() {
-            const currentUser = JSON.parse(localStorage.getItem("currentUser") || "{}");
+            const currentUser = JSON.parse(localStorage.getItem("currentUser") || "null");
+
+            // Nếu chưa đăng nhập → chuyển về trang login
+            if (!currentUser) {
+                document.getElementById("booking-list").innerHTML =
+                    '<div class="empty-box"><h4 class="mb-3">🔒 Vui lòng đăng nhập để xem lịch sử</h4>' +
+                    '<a href="../html/Login.html" class="btn btn-primary px-4">Đăng nhập</a></div>';
+                return;
+            }
+
             try {
                 const [bkRes, tourRes] = await Promise.all([
                     fetch("http://localhost:3000/api/bookings"),
@@ -321,10 +330,15 @@
                 let bookings = await bkRes.json();
                 const tours = await tourRes.json();
 
-                // Lọc booking theo email của user đang đăng nhập
-                if (currentUser.userEmail) {
-                    bookings = bookings.filter(b => b.email === currentUser.userEmail);
-                }
+                // Lọc booking theo userId (ưu tiên) hoặc email
+                bookings = bookings.filter(b => {
+                    if (currentUser.id && b.userId) {
+                        return String(b.userId) === String(currentUser.id);
+                    }
+                    // fallback: so sánh email
+                    const userEmail = currentUser.email || currentUser.userEmail || "";
+                    return userEmail && b.email === userEmail;
+                });
 
                 const tourMap = {};
                 tours.forEach(t => tourMap[t.id] = t);
@@ -332,9 +346,9 @@
                 renderList(bookings, tourMap);
 
             } catch (err) {
-                console.warn("Server không phản hồi, dùng localStorage:", err);
-                const bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
-                renderList(bookings, {});
+                console.warn("Server không phản hồi:", err);
+                document.getElementById("booking-list").innerHTML =
+                    '<div class="empty-box"><h4>⚠️ Không thể kết nối server</h4></div>';
             }
         }
 

@@ -124,22 +124,22 @@
                         <div class="col-md-5">
                             <div class="mb-3">
                                 <label class="form-label">Họ và tên</label>
-                                <input type="text" class="form-control">
+                                <input type="text" id="inputHoTen" class="form-control">
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Email</label>
-                                <input type="email" class="form-control">
+                                <input type="email" id="inputEmail" class="form-control">
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Số điện thoại</label>
-                                <input type="text" class="form-control">
+                                <input type="text" id="inputSdt" class="form-control">
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label">Ngày bắt đầu</label>
-                                <input type="date" class="form-control">
+                                <input type="date" id="inputNgay" class="form-control">
                             </div>
 
                             <div class="mb-3">
@@ -323,6 +323,19 @@
     <script src="../../BackEnd/js/bootstrap.bundle.min.js"></script>
     <script src="../../BackEnd/js/chonUser.js"></script>
     <script>
+        // === AUTO-FILL từ currentUser ===
+        function prefillUserInfo() {
+            const user = JSON.parse(localStorage.getItem("currentUser") || "null");
+            if (!user) return;
+            const hoTenEl = document.getElementById("inputHoTen");
+            const emailEl = document.getElementById("inputEmail");
+            const sdtEl = document.getElementById("inputSdt");
+            if (hoTenEl && user.fullname) hoTenEl.value = user.fullname;
+            if (emailEl && user.email) emailEl.value = user.email;
+            if (sdtEl && user.phone) sdtEl.value = user.phone;
+        }
+        prefillUserInfo();
+
         function tangVe() {
             let soVe = document.getElementById("soVe");
             let value = parseInt(soVe.value);
@@ -430,10 +443,10 @@
         document.querySelector(".btn-book").addEventListener("click", function () {
 
             // Lấy dữ liệu form
-            const hoTen = document.querySelectorAll("input.form-control")[0].value.trim();
-            const email = document.querySelectorAll("input.form-control")[1].value.trim();
-            const sdt = document.querySelectorAll("input.form-control")[2].value.trim();
-            const ngay = document.querySelectorAll("input.form-control")[3].value;
+            const hoTen = document.getElementById("inputHoTen").value.trim();
+            const email = document.getElementById("inputEmail").value.trim();
+            const sdt = document.getElementById("inputSdt").value.trim();
+            const ngay = document.getElementById("inputNgay").value;
             const tourId = document.querySelector("select.form-select").value;
             const soVe = parseInt(document.getElementById("soVe").value);
             const coTreEm = document.getElementById("treem").checked;
@@ -475,6 +488,7 @@
             // Booking tạm
             currentBooking = {
                 id: "BK" + Date.now(),
+                userId: (JSON.parse(localStorage.getItem("currentUser") || "{}")).id || null,
                 tourId: tour.id,
                 tourName: tour.name,
                 customerName: hoTen,
@@ -525,15 +539,15 @@
                     document.getElementById("paymentSuccess").style.display = "block";
                     document.getElementById("confirmPaymentBtn").style.display = "none";
 
-                    // Reset form
-                    document.querySelectorAll("input.form-control")
-                        .forEach(i => i.value = "");
+                    // Reset form (chỉ xoá ngày, giữ lại thông tin user)
+                    document.getElementById("inputNgay").value = "";
 
                     document.getElementById("soVe").value = 1;
                     document.getElementById("treem").checked = false;
                     document.querySelector("select.form-select").value = "";
 
                     clearTourInfo();
+                    prefillUserInfo(); // Giữ lại thông tin user sau khi đặt xong
                 })
                 .catch(err => {
                     console.error(err);
