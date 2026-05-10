@@ -9,6 +9,13 @@ body {
     padding: 0;
     padding-top: 80px;
     overflow-x: hidden;
+    background: #f4f7fc;
+}
+
+.header1 {
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    margin-bottom: 30px;
 }
 
 .container {
@@ -35,9 +42,72 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    transition: opacity 1.5s ease;
+    transition: opacity 2s ease, filter 2s ease;
     z-index: 0;
     clip-path: inset(0);
+    filter: brightness(0.78) saturate(1.1);
+}
+
+.bg.active {
+    filter: brightness(0.82) saturate(1.2);
+}
+
+/* Vignette 4 góc tối, giữa sáng */
+.section1::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse 85% 75% at 50% 50%,
+            transparent 25%,
+            rgba(0, 0, 0, 0.40) 65%,
+            rgba(0, 0, 0, 0.78) 100%);
+}
+
+/* Glow xanh fade phía dưới */
+.section1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 220px;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(to top,
+            rgba(8, 28, 60, 0.9) 0%,
+            rgba(8, 28, 60, 0.35) 55%,
+            transparent 100%);
+}
+
+/* Shimmer flash khi ảnh đang chuyển */
+@keyframes bgShimmer {
+    0% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.bg.transitioning {
+    animation: bgShimmer 2s ease forwards;
+    background-blend-mode: screen;
+    background-image: linear-gradient(135deg,
+            transparent 0%,
+            rgba(56, 160, 255, 0.06) 50%,
+            transparent 100%) !important;
 }
 
 .section1>*:not(.bg) {
@@ -53,11 +123,12 @@ body {
     color: #0048a0;
     text-align: center;
     margin-bottom: 10px;
-    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+    text-shadow: 0 2px 20px rgba(245, 245, 245, 0.8);
     letter-spacing: 5px;
-    background: rgba(0, 0, 0, 0.65);
+    background: rgba(243, 243, 243, 0.65);
     color: rgb(54, 101, 161);
-    border-radius: 10px
+    border-radius: 10px;
+    padding: 12px 20px;
 }
 
 /* WHEEL LAYOUT */
@@ -68,7 +139,7 @@ body {
     max-width: 1100px;
     height: 600px;
     gap: 0;
-    background: rgba(0, 0, 0, 0.65);
+    background: rgba(228, 228, 228, 0.65);
     backdrop-filter: blur(12px);
     border-radius: 20px;
     padding: 40px 50px;
@@ -98,7 +169,7 @@ body {
     width: 440px;
     height: 440px;
     border-radius: 50%;
-    border: 20px solid rgba(255, 255, 255, 0.05);
+    border: 20px solid rgba(0, 0, 0, 0.05);
     pointer-events: none;
     z-index: 0;
 }
@@ -128,7 +199,7 @@ body {
 }
 
 .info-placeholder {
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(14, 14, 14, 0.3);
     font-size: 16px;
     font-family: 'Times New Roman', serif;
     line-height: 2.2;
@@ -227,11 +298,11 @@ body {
     width: 100%;
     max-width: 1100px;
     margin-top: 80px;
-    background: rgba(0, 0, 0, 0.65);
+    background: rgba(255, 255, 255, 0.65);
     backdrop-filter: blur(12px);
     border-radius: 20px;
     padding: 50px;
-    color: #fff;
+    color: #393737;
 }
 
 .vision-wrap h2 {
@@ -432,7 +503,7 @@ footer {
     width: 100%;
     max-width: 1100px;
     margin-top: 80px;
-    background: rgba(0, 0, 0, 0.65);
+    background: rgba(240, 238, 238, 0.65);
     backdrop-filter: blur(12px);
     border-radius: 20px;
     padding: 50px;

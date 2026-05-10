@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../../FrontEnd/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../FrontEnd/css/Styles.css">
     <link rel="stylesheet" href="../../FrontEnd/css/modal.css">
+    <link rel="stylesheet" href="../css/headerChung.css">
     <style>
         html {
             overflow-y: scroll;
@@ -42,7 +43,6 @@
             <li><a href="../html/Dattour.html">🎫 Đặt tour</a></li>
             <li><a href="../html/HoTro.html">💬 Hỗ trợ</a></li>
         </ul>
-        <!-- Mobile search -->
         <form action="../html/TimKiem.html" method="GET" style="margin-top:20px;">
             <div style="display:flex;background:#f0f0f0;border-radius:6px;overflow:hidden;">
                 <input type="text" name="q" placeholder="Tìm điểm đến..."
@@ -938,11 +938,11 @@
 
         <!-- Modal Thông tin khách hàng -->
         <div class="modal fade" id="modalUser" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
-            role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
+            role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalTitleId">Thông tin khách hàng</h5>
+                        <h5 class="modal-title">Thông tin khách hàng</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -964,28 +964,22 @@
                             <div class="profile-info-col">
                                 <h5 class="profile-title">Thông tin cá nhân</h5>
                                 <div class="row">
-                                    <div class="col-12 col-sm-6 mb-3">
-                                        <label class="field-label">Họ và tên</label>
+                                    <div class="col-6 mb-3"><label class="field-label">Họ và tên</label>
                                         <div class="i4box">Nguyễn Duy Minh</div>
                                     </div>
-                                    <div class="col-12 col-sm-6 mb-3">
-                                        <label class="field-label">Email</label>
+                                    <div class="col-6 mb-3"><label class="field-label">Email</label>
                                         <div class="i4box">minh@gmail.com</div>
                                     </div>
-                                    <div class="col-12 col-sm-6 mb-3">
-                                        <label class="field-label">Số điện thoại</label>
+                                    <div class="col-6 mb-3"><label class="field-label">Số điện thoại</label>
                                         <div class="i4box">0123456789</div>
                                     </div>
-                                    <div class="col-12 col-sm-6 mb-3">
-                                        <label class="field-label">Căn cước công dân</label>
+                                    <div class="col-6 mb-3"><label class="field-label">Căn cước công dân</label>
                                         <div class="i4box">064123456789</div>
                                     </div>
-                                    <div class="col-12 col-sm-6 mb-3">
-                                        <label class="field-label">Ngày sinh</label>
+                                    <div class="col-6 mb-3"><label class="field-label">Ngày sinh</label>
                                         <div class="i4box">01/01/2001</div>
                                     </div>
-                                    <div class="col-12 col-sm-6 mb-3">
-                                        <label class="field-label">Giới tính</label>
+                                    <div class="col-6 mb-3"><label class="field-label">Giới tính</label>
                                         <div class="i4box">Nam</div>
                                     </div>
                                 </div>
@@ -993,8 +987,9 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Đóng</button>
-                        <button type="button" class="btn btn-success">Lưu</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                            style="color:#fff">Close</button>
+                        <button type="button" class="btn btn-success" style="color:#fff">Save</button>
                     </div>
                 </div>
             </div>

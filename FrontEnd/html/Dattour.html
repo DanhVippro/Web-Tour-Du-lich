@@ -8,31 +8,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Bootstrap CSS v5.3.8 -->
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/headerChung.css">
 
 
     <style>
+        body {
+            background: #f4f7fc;
+        }
+
+        .header1 {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            margin-bottom: 30px;
+        }
+
         .box-form {
             background: #b9d9df;
+            border-radius: 20px;
+            min-height: 800px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .info-tour {
+            background: #f8f8f8;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            width: 100%;
+            height: 630px;
+            background: #f8f8f8;
+            border-radius: 15px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            border: 1px solid #ddd;
         }
 
         .btn-book {
             background: #f4d24d;
             border: none;
-            border-radius: 20px;
-            padding: 10px 35px;
+            border-radius: 25px;
+            padding: 12px 45px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s;
         }
 
         .btn-book:hover {
             background: #e9c538;
-        }
-
-        .info-tour {
-            min-height: 300px;
-            background: #f8f8f8;
-            border-radius: 10px;
+            transform: scale(1.03);
         }
     </style>
 
@@ -90,9 +115,9 @@
 
 
     <!-- Main content -->
-    <div class="container mt-5">
+    <div class="container mt-3">
         <div class="row justify-content-center">
-            <div class="col-lg-10">
+            <div class="col-lg-11">
                 <div class="box-form p-4 rounded">
                     <div class="row g-4">
                         <!-- Bên trái -->
@@ -154,13 +179,14 @@
                                 style=" position: relative; top: 30px;">
                                 <span>Thông tin Loại Tour</span>
                             </div>
-                            <div class="text-end mt-auto">
+                            <div class="text-end mt-5">
                                 <button class="btn btn-book">
                                     Đặt tour
                                 </button>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -241,6 +267,58 @@
             </div>
         </div>
     </div>
+    <!-- Modal thanh toán QR -->
+    <div class="modal fade" id="paymentModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="bi bi-qr-code"></i> Thanh toán đơn hàng
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" style="text-align: center;">
+                    <div id="paymentInfo">
+                        <h6 class="mb-3">Thông tin đơn hàng</h6>
+                        <p><strong>Tour:</strong> <span id="paymentTourName"></span></p>
+                        <p><strong>Số vé:</strong> <span id="paymentTickets"></span></p>
+                        <p><strong>Tổng tiền:</strong> <span id="paymentAmount" class="text-danger fw-bold"></span></p>
+                        <hr>
+                        <h6 class="mb-3">Quét mã QR để thanh toán</h6>
+                        <div style="display:flex; justify-content:center; margin:20px 0;">
+                            <img src="../../data/img/qr.jpg" alt="QR Thanh Toán"
+                                style="width:260px; height:260px; object-fit:cover; border-radius:10px; border:1px solid #ddd;">
+                        </div>
+                        <p class="text-muted small">Quét mã QR bằng ứng dụng ngân hàng để chuyển khoản</p>
+                        <div class="alert alert-info small">
+                            <strong>Thông tin chuyển khoản:</strong><br>
+                            Ngân hàng: <strong>Vietcombank</strong><br>
+                            Số tài khoản: <strong>1048860832</strong><br>
+                            Chủ tài khoản: <strong>TRAN THANH DANH</strong><br>
+                            Nội dung: <strong id="transferContent"></strong>
+                        </div>
+                    </div>
+                    <div id="paymentSuccess" style="display: none;">
+                        <div class="text-success">
+                            <i class="bi bi-check-circle-fill" style="font-size: 60px;"></i>
+                            <h5 class="mt-3">Thanh toán thành công!</h5>
+                            <p>Đơn hàng của bạn đã được xác nhận</p>
+                            <p>Vui lòng kiểm tra email để nhận thông tin chi tiết</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        id="closePaymentBtn">Đóng</button>
+                    <button type="button" class="btn btn-success" id="confirmPaymentBtn" onclick="confirmPayment()">
+                        <i class="bi bi-check-lg"></i> Xác nhận đã thanh toán
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script src="../../BackEnd/js/jquery-4.0.0.min.js"></script>
     <script src="../../BackEnd/js/bootstrap.bundle.min.js"></script>
     <script src="../../BackEnd/js/chonUser.js"></script>
@@ -347,8 +425,10 @@
         function formatPrice(price) {
             return price.toLocaleString("vi-VN") + " đ";
         }
-        //sự kiện đặt tour
+        let currentBooking = null;
+
         document.querySelector(".btn-book").addEventListener("click", function () {
+
             // Lấy dữ liệu form
             const hoTen = document.querySelectorAll("input.form-control")[0].value.trim();
             const email = document.querySelectorAll("input.form-control")[1].value.trim();
@@ -358,6 +438,7 @@
             const soVe = parseInt(document.getElementById("soVe").value);
             const coTreEm = document.getElementById("treem").checked;
 
+            // Validate
             if (!hoTen || !email || !sdt || !ngay || !tourId) {
                 alert("⚠️ Vui lòng điền đầy đủ thông tin!");
                 return;
@@ -371,27 +452,28 @@
 
             const sdtRegex = /^0\d{9}$/;
             if (!sdtRegex.test(sdt)) {
-                alert("⚠️ Số điện thoại không hợp lệ! (10 số, bắt đầu bằng 0)");
+                alert("⚠️ Số điện thoại không hợp lệ!");
                 return;
             }
 
-            // Tìm tour đã chọn
+            // Tour
             const tour = toursData.find(t => t.id === tourId);
+
             if (!tour) {
                 alert("⚠️ Vui lòng chọn tour!");
                 return;
             }
 
             if (tour.status === "full") {
-                alert("❌ Tour này đã hết chỗ!");
+                alert("❌ Tour đã hết chỗ!");
                 return;
             }
 
-            // Tính tổng tiền
+            // Tổng tiền
             const tongTien = tour.price * soVe;
 
-            // Tạo booking mới
-            const booking = {
+            // Booking tạm
+            currentBooking = {
                 id: "BK" + Date.now(),
                 tourId: tour.id,
                 tourName: tour.name,
@@ -403,28 +485,45 @@
                 totalPrice: tongTien,
                 bookingDate: new Date().toISOString().split("T")[0],
                 departureDate: tour.departureDate,
-                status: "pending"
+                status: "paid"
             };
 
-            // Lưu vào localStorage nhấn f12 vào application -> localStorage sẽ thấy dữ liệu đạt nằm ở đó 
-            // Gửi booking lên server
+            // Đổ dữ liệu vào modal
+            document.getElementById("paymentTourName").innerText = tour.name;
+            document.getElementById("paymentTickets").innerText = soVe;
+            document.getElementById("paymentAmount").innerText = formatPrice(tongTien);
+            document.getElementById("transferContent").innerText = currentBooking.id;
+
+            // Reset trạng thái modal
+            document.getElementById("paymentSuccess").style.display = "none";
+            document.getElementById("paymentInfo").style.display = "block";
+            document.getElementById("confirmPaymentBtn").style.display = "inline-block";
+
+            // Hiện modal
+            const modal = new bootstrap.Modal(document.getElementById("paymentModal"));
+            modal.show();
+        });
+
+
+        // Xác nhận thanh toán
+        function confirmPayment() {
+
+            if (!currentBooking) return;
+
             fetch("http://localhost:3000/api/bookings", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(booking)
+                body: JSON.stringify(currentBooking)
             })
                 .then(res => res.json())
                 .then(data => {
 
-                    alert(
-                        `✅ Đặt tour thành công!\n\n` +
-                        `🧳 Tour: ${tour.name}\n` +
-                        `👤 Khách hàng: ${hoTen}\n` +
-                        `🎟 Số vé: ${soVe}\n` +
-                        `💰 Tổng tiền: ${formatPrice(tongTien)}`
-                    );
+                    // Hiện thành công
+                    document.getElementById("paymentInfo").style.display = "none";
+                    document.getElementById("paymentSuccess").style.display = "block";
+                    document.getElementById("confirmPaymentBtn").style.display = "none";
 
                     // Reset form
                     document.querySelectorAll("input.form-control")
@@ -440,29 +539,7 @@
                     console.error(err);
                     alert("❌ Lỗi kết nối server!");
                 });
-
-            // Thông báo thành công
-            alert(
-                `✅ Đặt tour thành công!\n\n` +
-                `🧳 Tour: ${tour.name}\n` +
-                `👤 Khách hàng: ${hoTen}\n` +
-                `🎟 Số vé: ${soVe}\n` +
-                `💰 Tổng tiền: ${formatPrice(tongTien)}`
-            );
-
-            // Reset form
-            document.querySelectorAll("input.form-control").forEach(i => i.value = "");
-            document.getElementById("soVe").value = 1;
-            document.getElementById("treem").checked = false;
-            document.querySelector("select.form-select").value = "";
-            clearTourInfo();
-        });
-
-
-        //khi bấm đặt tour nó sẽ hiện ở phần lịch sử tour ae test coi thử 
-
-
-
+        }
 
     </script>
 </body>

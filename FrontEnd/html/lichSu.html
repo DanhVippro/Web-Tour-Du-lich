@@ -1,25 +1,153 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang chủ</title>
-    <link rel="stylesheet" href="../css/MinhStyle.css">
+    <title>Lịch sử đặt tour</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/headerChung.css">
-    <link rel="stylesheet" href="../css/bootstrap.css">
 
+    <style>
+        body {
+            background: #f5f7fb;
+        }
+
+        .header1 {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            margin-bottom: 30px;
+        }
+
+        .title {
+            margin: 40px 0 30px;
+            color: #222;
+        }
+
+        #booking-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .tour-card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            transition: 0.25s;
+        }
+
+        .tour-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .tour-img {
+            width: 160px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 14px;
+        }
+
+        .tour-info h4 {
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .tour-info p {
+            margin-bottom: 6px;
+            color: #555;
+        }
+
+        .price {
+            color: #e53935 !important;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .status-btn {
+            border: none;
+            padding: 12px 18px;
+            border-radius: 12px;
+            font-weight: 600;
+            min-width: 170px;
+        }
+
+        .btn-sapdi {
+            background: #f4d24d;
+            color: #222;
+        }
+
+        .btn-xong {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-pending {
+            background: #ff9800;
+            color: white;
+        }
+
+        .btn-cancel {
+            background: #dc3545;
+            color: white;
+        }
+
+        .empty-box {
+            background: white;
+            padding: 50px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .back {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .back-btn {
+            border: none;
+            background: #0d6efd;
+            color: white;
+            padding: 12px 26px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .back-btn:hover {
+            background: #0b5ed7;
+        }
+
+        @media(max-width: 768px) {
+
+            .tour-card {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+            .tour-img {
+                width: 100%;
+                height: 200px;
+            }
+
+            .status-btn {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
-<style>
-.btn-sapdi  {
-    background: #f4d24d; 
-}
-.btn-xong   { 
-    background: #28a745; color: white; 
-    }
-</style>
+
 <body>
-    <!-- header1 -->
+
     <header class="header1">
         <div class="logo-header1">
             <a href="../html/trangChu.html">
@@ -70,202 +198,207 @@
         </div>
     </header>
 
-    <!-- Main content -->
-    <div class="container">
-        <!-- <h4 class="text-center title fw-bold"> Lịch sử các tour du lịch đã đặt</h4>
-        <div class="tour-card ">
-            <div class="d-flex align-items-center">
-                <img src="../../data/img/dalat.jpg" class="tour-img me-3">
-                <div>
-                    <h4 class="fw-bold tittle">Tour Đà Lạt 3 ngày 2 đêm</h4> <br>
-                    <p> Mã tour: #t01</p>
-                    <p class="mb-1 ">&#128197; 20/04/2026</p>
-                    <p class="mb-0  text-danger">&#128176; 2.500.000đ</p>
-                </div>
-            </div>
-            <button type="button" class="status-btn "> Sắp khởi hành </button>
+    <!-- CONTENT -->
+    <div class="container py-4">
+
+        <h2 class="text-center fw-bold title">
+            Lịch sử các tour du lịch đã đặt
+        </h2>
+
+        <div id="booking-list"></div>
+
+        <div class="back">
+            <button type="button" class="back-btn" onclick="history.back()">
+                Quay lại
+            </button>
         </div>
 
-        <div class="tour-card">
-            <div class="d-flex align-items-center">
-                <img src="../../data/img/tourPQ.jpg" class="tour-img me-3">
-                <div>
-                    <h4 class="fw-bold tittle">Tour Phú Quốc 1 ngày 2 đêm</h4> <br>
-                    <p> Mã tour: #t02</p>
-                    <p class="mb-1 ">&#128197; 20/04/2026</p>
-                    <p class="mb-0  text-danger">&#128176; 2.500.000đ</p>
-                </div>
-            </div>
-            <button type="button" class="status-btn "> Sắp khởi hành </button>
-        </div>
-        <div class="tour-card">
-            <div class="d-flex align-items-center">
-                <img src="../../data/img/tourDN.jpg" class="tour-img me-3">
-                <div>
-                    <h4 class="fw-bold tittle">Tour Đà Nẵng 4 ngày 3 đêm</h4> <br>
-                    <p> Mã tour: #t03</p>
-                    <p class="mb-1 ">&#128197; 20/04/2026</p>
-                    <p class="mb-0  text-danger">&#128176; 2.500.000đ</p>
-                </div>
-            </div>
-            <button type="button" class="status-btn "> Đã hoàn thành </button>
-        </div>
-        <div class="tour-card">
-            <div class="d-flex align-items-center">
-                <img src="../../data/img/tourHL.jpg" class="tour-img me-3">
-                <div>
-                    <h4 class="fw-bold tittle">Tour Hạ Long 5 ngày 4 đêm</h4> <br>
-                    <p> Ma tour: #t04</p>
-                    <p class="mb-1 ">&#128197; 20/04/2026</p>
-                    <p class="mb-0  text-danger">&#128176; 2.500.000đ</p>
-                </div>
-            </div>
-            <button type="button" class="status-btn "> Sắp khởi hành </button>
-
-        </div> -->
-<!-- Test thử lưu lịch sử đặt tour  -->
-  <h4 class="text-center title fw-bold">Lịch sử các tour du lịch đã đặt</h4>
-    
-    <div id="booking-list"></div>
-
-    <div class="back">
-        <button type="button" class="back-btn" onclick="history.back()">Quay lại</button>
     </div>
+    <div class="modal fade" id="modalUser" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+        role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleId">
+                        Thông tin khách hàng
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="profile-card">
 
-        <!-- <div class="back">
-
-            <button type="button" class="back-btn ">Quay lại</button>
-
-        </div> hjsdchds -->
-        <!-- modal user -->
-        <div class="modal fade" id="modalUser" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
-            role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-            <div class="modal-dialog  modal-dialog-centered modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalTitleId">
-                            Thông tin khách hàng
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="profile-card">
-
-                            <!-- Avatar -->
-                            <div class="profile-avatar-col">
-                                <div class="avt-wrap">
-                                    <img id="avt-img" src="../../data/img/logo-login.png" alt="avatar" class="avt-img">
-                                    <div class="avt-edit-btn" onclick="document.getElementById('avt-input').click()"
-                                        title="Đổi ảnh">
-                                        <svg viewBox="0 0 24 24" width="13" height="13" fill="#fff">
-                                            <path
-                                                d="M3 17.25V21h3.75l11.06-11.06-3.75-3.75L3 17.25zm17.71-10.21a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
-                                        </svg>
-                                    </div>
-                                </div>
-                                <input type="file" id="avt-input" accept="image/*" style="display:none">
-                                <p class="avt-caption">Ảnh đại diện<br><small>Nhấn biểu tượng để đổi</small></p>
-                            </div>
-
-                            <!-- Info -->
-                            <div class="profile-info-col">
-                                <h5 class="profile-title">Thông tin cá nhân</h5>
-                                <div class="row">
-                                    <div class="col-6 mb-3">
-                                        <label class="field-label">Họ và tên</label>
-                                        <div class="i4box">Nguyễn Duy Minh</div>
-                                    </div>
-                                    <div class="col-6 mb-3">
-                                        <label class="field-label">Email</label>
-                                        <div class="i4box">minh@gmail.com</div>
-                                    </div>
-                                    <div class="col-6 mb-3">
-                                        <label class="field-label">Số điện thoại</label>
-                                        <div class="i4box">0123456789</div>
-                                    </div>
-                                    <div class="col-6 mb-3">
-                                        <label class="field-label">Căn cước công dân</label>
-                                        <div class="i4box">064123456789</div>
-                                    </div>
-                                    <div class="col-6 mb-3">
-                                        <label class="field-label">Ngày sinh</label>
-                                        <div class="i4box">01/01/2001</div>
-                                    </div>
-                                    <div class="col-6 mb-3">
-                                        <label class="field-label">Giới tính</label>
-                                        <div class="i4box">Nam</div>
-                                    </div>
+                        <!-- Avatar -->
+                        <div class="profile-avatar-col">
+                            <div class="avt-wrap">
+                                <img id="avt-img" src="../../data/img/logo-login.png" alt="avatar" class="avt-img">
+                                <div class="avt-edit-btn" onclick="document.getElementById('avt-input').click()"
+                                    title="Đổi ảnh">
+                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="#fff">
+                                        <path
+                                            d="M3 17.25V21h3.75l11.06-11.06-3.75-3.75L3 17.25zm17.71-10.21a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+                                    </svg>
                                 </div>
                             </div>
-
+                            <input type="file" id="avt-input" accept="image/*" style="display:none"
+                                onchange="previewAvatar(event)">
+                            <p class="avt-caption">Ảnh đại diện<br><small>Nhấn biểu tượng để đổi</small></p>
                         </div>
+
+                        <!-- Info -->
+                        <div class="profile-info-col">
+                            <h5 class="profile-title">Thông tin cá nhân</h5>
+                            <div class="row">
+                                <div class="col-6 mb-3">
+                                    <label class="field-label">Họ và tên</label>
+                                    <div class="i4box">Nguyễn Duy Minh</div>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <label class="field-label">Email</label>
+                                    <div class="i4box">minh@gmail.com</div>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <label class="field-label">Số điện thoại</label>
+                                    <div class="i4box">0123456789</div>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <label class="field-label">Căn cước công dân</label>
+                                    <div class="i4box">064123456789</div>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <label class="field-label">Ngày sinh</label>
+                                    <div class="i4box">01/01/2001</div>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <label class="field-label">Giới tính</label>
+                                    <div class="i4box">Nam</div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="color:#fff">
-                            Close
-                        </button>
-                        <button type="button" class="btn btn-success" style="color:#fff">Save</button>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="color:#fff">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-success" style="color:#fff">Save</button>
                 </div>
             </div>
         </div>
-
-
-        <script src="../../BackEnd/javaScript/main.js"></script>
-        <script src="../BackEnd/js/tinhtrangtour.js"></script>
-        <script src="../../BackEnd/js/chonUser.js"></script>
     </div>
+    <script src="../../BackEnd/js/bootstrap.bundle.min.js"></script>
+    <script src="../../BackEnd/js/chonUser.js"></script>
     <script>
-    const bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
-    const list = document.getElementById("booking-list");
 
-    if (bookings.length === 0) {
-        list.innerHTML = `
-            <div class="text-center py-5 text-muted">
-                <p style="font-size:18px">😕 Bạn chưa đặt tour nào!</p>
-                <a href="../html/Dattour.html" class="btn btn-primary">Đặt tour ngay</a>
-            </div>`;
-    } else {
-        bookings.reverse().forEach(bk => {
-            // Xác định trạng thái
+        const list = document.getElementById("booking-list");
+
+        // Load avatar từ localStorage
+        const savedAvatar = localStorage.getItem("userAvatar");
+        if (savedAvatar) {
+            document.getElementById("avt-img").src = savedAvatar;
+        }
+
+        function previewAvatar(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById("avt-img").src = e.target.result;
+                localStorage.setItem("userAvatar", e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        loadBookings();
+
+        async function loadBookings() {
+            const currentUser = JSON.parse(localStorage.getItem("currentUser") || "{}");
+            try {
+                const [bkRes, tourRes] = await Promise.all([
+                    fetch("http://localhost:3000/api/bookings"),
+                    fetch("http://localhost:3000/api/tours")
+                ]);
+                let bookings = await bkRes.json();
+                const tours = await tourRes.json();
+
+                // Lọc booking theo email của user đang đăng nhập
+                if (currentUser.userEmail) {
+                    bookings = bookings.filter(b => b.email === currentUser.userEmail);
+                }
+
+                const tourMap = {};
+                tours.forEach(t => tourMap[t.id] = t);
+
+                renderList(bookings, tourMap);
+
+            } catch (err) {
+                console.warn("Server không phản hồi, dùng localStorage:", err);
+                const bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
+                renderList(bookings, {});
+            }
+        }
+
+        function renderList(bookings, tourMap) {
+            if (!bookings.length) {
+                list.innerHTML = '<div class="empty-box"><h4 class="mb-3">😕 Bạn chưa đặt tour nào</h4><a href="../html/Dattour.html" class="btn btn-primary px-4">Đặt tour ngay</a></div>';
+                return;
+            }
+            list.innerHTML = "";
+            [...bookings].reverse().forEach(bk => renderBooking(bk, tourMap));
+        }
+
+        function renderBooking(bk, tourMap) {
             const today = new Date().toISOString().split("T")[0];
-            let trangThai = "";
-            let btnClass = "status-btn";
+            let statusText = "", statusClass = "";
 
-            if (bk.departureDate > today) {
-                trangThai = "⏳ Sắp khởi hành";
-                btnClass += " btn-sapdi";
+            if (bk.status === "cancelled") {
+                statusText = "❌ Đã hủy"; statusClass = "btn-cancel";
+            } else if (bk.status === "pending") {
+                statusText = "🕒 Chờ xác nhận"; statusClass = "btn-pending";
+            } else if (bk.departureDate > today) {
+                statusText = "⏳ Sắp khởi hành"; statusClass = "btn-sapdi";
             } else {
-                trangThai = "✅ Đã hoàn thành";
-                btnClass += " btn-xong";
+                statusText = "✅ Đã hoàn thành"; statusClass = "btn-xong";
             }
 
-            list.innerHTML += `
-                <div class="tour-card">
-                    <div class="d-flex align-items-center">
-                        <div>
-                            <h4 class="fw-bold tittle">${bk.tourName}</h4><br>
-                            <p>Mã đặt: #${bk.id}</p>
-                            <p class="mb-1">📅 Khởi hành: ${formatDate(bk.departureDate)}</p>
-                            <p class="mb-1">🎟 Số vé: ${bk.adultTickets} người lớn${bk.childTickets ? " + " + bk.childTickets + " trẻ em" : ""}</p>
-                            <p class="mb-0 text-danger">💰 Tổng tiền: ${formatPrice(bk.totalPrice)}</p>
-                        </div>
-                    </div>
-                    <button type="button" class="${btnClass}">${trangThai}</button>
-                </div>`;
-        });
-    }
+            const tour = tourMap[bk.tourId];
+            let imgSrc = "../../data/img/default-tour.jpg";
+            if (tour && tour.img) imgSrc = tour.img;
+            else if (bk.image) imgSrc = bk.image;
 
-    function formatDate(dateStr) {
-        const [y, m, d] = dateStr.split("-");
-        return `${d}/${m}/${y}`;
-    }
+            const tenTour = bk.tourName || (tour && tour.name) || "Tên tour";
+            const soVe = bk.adultTickets || 0;
+            const treEm = bk.childTickets ? " + " + bk.childTickets + " trẻ em" : "";
 
-    function formatPrice(price) {
-        return price.toLocaleString("vi-VN") + " đ";
-    }
-</script>
+            const card = document.createElement("div");
+            card.className = "tour-card";
+            card.innerHTML =
+                '<div class="d-flex align-items-center gap-4 flex-wrap">' +
+                '<img src="' + imgSrc + '" class="tour-img" onerror="this.src=&apos;../../data/img/default-tour.jpg&apos;">' +
+                '<div class="tour-info">' +
+                '<h4 class="fw-bold">' + tenTour + '</h4>' +
+                '<p><strong>Mã đặt:</strong> #' + (bk.id || "---") + '</p>' +
+                '<p>📅 <strong>Ngày khởi hành:</strong> ' + formatDate(bk.departureDate) + '</p>' +
+                '<p>🎟 <strong>Số vé:</strong> ' + soVe + ' người lớn' + treEm + '</p>' +
+                '<p class="price">💰 ' + formatPrice(bk.totalPrice || 0) + '</p>' +
+                '</div>' +
+                '</div>' +
+                '<button class="status-btn ' + statusClass + '">' + statusText + '</button>';
+            list.appendChild(card);
+        }
+
+        function formatDate(dateStr) {
+            if (!dateStr) return "---";
+            const [y, m, d] = dateStr.split("-");
+            return d + "/" + m + "/" + y;
+        }
+
+        function formatPrice(price) {
+            return Number(price).toLocaleString("vi-VN") + " đ";
+        }
+
+    </script>
+
 </body>
-
 
 </html>

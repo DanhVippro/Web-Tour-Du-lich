@@ -1,20 +1,248 @@
-<!doctype html>
-<html lang="en" data-bs-theme="light">
+<!DOCTYPE html>
+<html lang="vi" data-bs-theme="light">
 
 <head>
-    <title>Title</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- Bootstrap CSS v5.3.8 -->
-    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Trung tâm hỗ trợ | Du lịch Việt</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="../css/headerChung.css">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
 
+        body {
+            background: #f4f7fc;
+            padding-bottom: 50px;
+        }
+
+        /* custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #e9ecef;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #adb5bd;
+            border-radius: 10px;
+        }
+
+        .header1 {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            margin-bottom: 30px;
+        }
+
+        /* support hero */
+        .support-hero {
+            background: linear-gradient(135deg, #0b2b40 0%, #1a4a5f 100%);
+            border-radius: 32px;
+            padding: 2.5rem 2rem;
+            color: white;
+            margin-bottom: 2rem;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+        }
+
+        .support-hero h1 {
+            font-weight: 700;
+            font-size: 2rem;
+        }
+
+        .search-wrapper {
+            background: white;
+            border-radius: 60px;
+            padding: 5px 5px 5px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .search-wrapper input {
+            border: none;
+            flex: 1;
+            padding: 12px 0;
+            font-size: 1rem;
+            outline: none;
+            background: transparent;
+        }
+
+        .search-wrapper button {
+            background: #ff8c42;
+            border: none;
+            color: white;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .search-wrapper button:hover {
+            background: #e6762e;
+        }
+
+        .card-faq,
+        .card-contact,
+        .card-form,
+        .card-ticket,
+        .card-guide,
+        .card-policy,
+        .card-feedback {
+            border: none;
+            border-radius: 28px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+            transition: transform 0.2s, box-shadow 0.2s;
+            background: white;
+            margin-bottom: 2rem;
+        }
+
+        .card-faq:hover,
+        .card-contact:hover {
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+        }
+
+        .accordion-button:not(.collapsed) {
+            background: #f0f9ff;
+            color: #1a4a5f;
+            font-weight: 600;
+        }
+
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: #dee2e6;
+        }
+
+        .badge-status {
+            font-size: 0.75rem;
+            padding: 5px 12px;
+            border-radius: 40px;
+            font-weight: 500;
+        }
+
+        .status-processing {
+            background: #fff3e0;
+            color: #e67e22;
+        }
+
+        .status-responded {
+            background: #e3f7ec;
+            color: #2e7d32;
+        }
+
+        .status-closed {
+            background: #eceff1;
+            color: #5f6368;
+        }
+
+        .rating-star {
+            color: #ffb800;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+
+        .rating-star:hover {
+            transform: scale(1.1);
+        }
+
+        .btn-submit {
+            background: #1a4a5f;
+            color: white;
+            border-radius: 40px;
+            padding: 10px 24px;
+            font-weight: 600;
+        }
+
+        .btn-submit:hover {
+            background: #0f3b4c;
+            color: white;
+        }
+
+        .btn-reset {
+            background: #f1f3f4;
+            color: #2c3e50;
+            border-radius: 40px;
+            margin-left: 12px;
+        }
+
+        .icon-bg {
+            width: 48px;
+            height: 48px;
+            background: #eef2fa;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .nav-tabs .nav-link {
+            border-radius: 40px;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+
+        .nav-tabs .nav-link.active {
+            background: #1a4a5f;
+            color: white;
+            border: none;
+        }
+
+        .upload-label {
+            background: #f8f9fa;
+            border-radius: 60px;
+            padding: 8px 18px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid #dee2e6;
+        }
+
+        .upload-label:hover {
+            background: #e9ecef;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #6c757d;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .support-hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .search-wrapper button {
+                padding: 8px 20px;
+            }
+        }
+
+        .faq-highlight {
+            background: #fef9e6;
+        }
+    </style>
 </head>
 
 <body>
-    <!-- header1 ko đc xóa-->
+
     <header class="header1">
         <div class="logo-header1">
             <a href="../html/trangChu.html">
@@ -65,88 +293,346 @@
         </div>
     </header>
 
-    <!-- main content -->
-
-
-
-
-
-
-    <!-- modal user ko đc xóa -->
-    <div class="modal fade" id="modalUser" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
-        role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-        <div class="modal-dialog  modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitleId">
-                        Thông tin khách hàng
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="container py-3">
+        <!-- 1. TIÊU ĐỀ + MÔ TẢ -->
+        <div class="support-hero">
+            <div class="d-flex flex-wrap align-items-center gap-3">
+                <div class="icon-bg bg-white bg-opacity-25">
+                    <i class="fas fa-headset fa-2x text-white"></i>
                 </div>
-                <div class="modal-body">
-                    <div class="profile-card">
-
-                        <!-- Avatar -->
-                        <div class="profile-avatar-col">
-                            <div class="avt-wrap">
-                                <img id="avt-img" src="../../data/img/logo-login.png" alt="avatar" class="avt-img">
-                                <div class="avt-edit-btn" onclick="document.getElementById('avt-input').click()"
-                                    title="Đổi ảnh">
-                                    <svg viewBox="0 0 24 24" width="13" height="13" fill="#fff">
-                                        <path
-                                            d="M3 17.25V21h3.75l11.06-11.06-3.75-3.75L3 17.25zm17.71-10.21a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <input type="file" id="avt-input" accept="image/*" style="display:none">
-                            <p class="avt-caption">Ảnh đại diện<br><small>Nhấn biểu tượng để đổi</small></p>
-                        </div>
-
-                        <!-- Info -->
-                        <div class="profile-info-col">
-                            <h5 class="profile-title">Thông tin cá nhân</h5>
-                            <div class="row">
-                                <div class="col-6 mb-3">
-                                    <label class="field-label">Họ và tên</label>
-                                    <div class="i4box">Nguyễn Duy Minh</div>
-                                </div>
-                                <div class="col-6 mb-3">
-                                    <label class="field-label">Email</label>
-                                    <div class="i4box">minh@gmail.com</div>
-                                </div>
-                                <div class="col-6 mb-3">
-                                    <label class="field-label">Số điện thoại</label>
-                                    <div class="i4box">0123456789</div>
-                                </div>
-                                <div class="col-6 mb-3">
-                                    <label class="field-label">Căn cước công dân</label>
-                                    <div class="i4box">064123456789</div>
-                                </div>
-                                <div class="col-6 mb-3">
-                                    <label class="field-label">Ngày sinh</label>
-                                    <div class="i4box">01/01/2001</div>
-                                </div>
-                                <div class="col-6 mb-3">
-                                    <label class="field-label">Giới tính</label>
-                                    <div class="i4box">Nam</div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="color:#fff">
-                        Close
-                    </button>
-                    <button type="button" class="btn btn-success" style="color:#fff">Save</button>
+                <div>
+                    <h1 class="mb-1">Trung tâm hỗ trợ</h1>
+                    <p class="mb-0 opacity-90">Hỗ trợ khách hàng 24/7 – Giải đáp thắc mắc và xử lý sự cố nhanh chóng.
+                    </p>
                 </div>
             </div>
         </div>
-    </div>
-    <script src="../../BackEnd/js/jquery-4.0.0.min.js"></script>
-    <script src="../../BackEnd/js/bootstrap.bundle.min.js"></script>
-    <script src="../../BackEnd/js/chonUser.js"></script>
+
+        <div class="card-contact p-4">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="icon-bg" style="background:#e6f7f0;"><i class="fas fa-phone-alt fa-lg"
+                                style="color:#2a9d8f;"></i></div>
+                        <div><strong>Hotline hỗ trợ</strong><br><span class="fs-5 fw-bold">1999 0909</span><br><span
+                                class="text-muted">7h00 - 20h00 hàng ngày</span></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="icon-bg" style="background:#fff0e0;"><i class="fas fa-envelope fa-lg"
+                                style="color:#e76f51;"></i></div>
+                        <div><strong>Email chăm sóc</strong><br><span
+                                class="fs-6 fw-semibold">cskh@cheaptour.com.vn</span><br><span class="text-muted">Phản
+                                hồi trong 24h</span></div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-3">
+            <div><i class="far fa-clock me-1"></i> Giờ làm việc: 7:00 - 20:00 (Thứ 2 - Chủ nhật, kể cả lễ)</div>
+        </div>
+        <div class="row">
+            <div class="card-form p-4">
+                <h5 class="fw-semibold"><i class="fas fa-paper-plane me-2"></i> Gửi yêu cầu hỗ trợ</h5>
+                <form id="supportRequestForm">
+                    <div class="row mb-3">
+                        <div class="col-md-6"><label class="form-label">Họ tên *</label><input type="text"
+                                id="fullnameReq" class="form-control" placeholder="Nguyễn Văn A" required></div>
+                        <div class="col-md-6"><label class="form-label">Email / SĐT *</label><input type="text"
+                                id="contactReq" class="form-control" placeholder="email@example.com / 09xxxx"></div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Loại vấn đề</label>
+                        <select id="issueType" class="form-select">
+                            <option value="Lỗi đặt vé">Lỗi đặt vé</option>
+                            <option value="Lỗi thanh toán">Lỗi thanh toán</option>
+                            <option value="Tài khoản">Tài khoản</option>
+                            <option value="Góp ý">Góp ý</option>
+                            <option value="Khác">Khác</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Nội dung hỗ trợ</label>
+                        <textarea id="requestDesc" rows="3" class="form-control"
+                            placeholder="Mô tả chi tiết vấn đề..."></textarea>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-submit"><i class="fas fa-paper-plane"></i> Gửi yêu
+                            cầu</button>
+                        <button type="button" id="resetFormBtn" class="btn btn-reset"><i class="fas fa-undo-alt"></i>
+                            Làm mới</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card-feedback p-4 mt-4">
+                <h5 class="fw-semibold"><i class="fas fa-bug me-2"></i> Báo lỗi hệ thống</h5>
+                <div class="row">
+                    <div class="col-md-7">
+                        <label class="form-label">Mô tả lỗi</label>
+                        <textarea id="bugDesc" rows="2" class="form-control"
+                            placeholder="VD: App bị treo, không load được phim, không thanh toán được..."></textarea>
+                        <label class="form-label mt-2">Thời gian xảy ra</label>
+                        <input type="datetime-local" id="bugTime" class="form-control">
+                    </div>
+                    <div class="col-md-5">
+                        <label class="form-label">Ảnh chụp màn hình lỗi</label>
+                        <div class="d-flex align-items-center gap-2 flex-wrap">
+                            <label class="upload-label"><i class="fas fa-camera"></i> Chọn ảnh</label>
+                            <input type="file" id="bugImage" accept="image/*" style="display:none">
+                            <span id="fileNameDisplay" class="text-muted small">Chưa có file</span>
+                        </div>
+                        <button id="submitBugBtn" class="btn btn-submit mt-3 w-100">Gửi báo lỗi</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-policy p-4 mt-4">
+                <h5 class="fw-semibold"><i class="fas fa-file-contract me-2"></i> Chính sách & điều khoản</h5>
+                <div class="accordion" id="policyAccordion">
+                    <div class="accordion-item border-0">
+                        <h2 class="accordion-header"><button class="accordion-button collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#refundPolicy">Chính sách hoàn vé</button>
+                        </h2>
+                        <div id="refundPolicy" class="accordion-collapse collapse" data-bs-parent="#policyAccordion">
+                            <div class="accordion-body">Hoàn 100% nếu hủy trước 24h, 50% nếu hủy trước 6h, dưới 6h không
+                                hoàn tiền.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-0">
+                        <h2 class="accordion-header"><button class="accordion-button collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#terms">Điều khoản sử dụng</button></h2>
+                        <div id="terms" class="accordion-collapse collapse">
+                            <div class="accordion-body">Tuân thủ quy định đặt chỗ, thanh toán đúng hạn, cung cấp thông
+                                tin
+                                trung thực.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-0">
+                        <h2 class="accordion-header"><button class="accordion-button collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#privacy">Chính sách bảo mật</button></h2>
+                        <div id="privacy" class="accordion-collapse collapse">
+                            <div class="accordion-body">Thông tin khách hàng được mã hóa và chỉ dùng cho giao dịch,
+                                không
+                                chia sẻ bên thứ ba.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10. ĐÁNH GIÁ DỊCH VỤ (Star rating + text) -->
+            <div class="card-feedback p-4 mt-4 text-center">
+                <h5 class="fw-semibold">Đánh giá dịch vụ hỗ trợ</h5>
+                <div class="d-flex justify-content-center gap-2 my-2" id="starRatingWidget">
+                    <i class="fas fa-star rating-star" data-value="1"></i>
+                    <i class="fas fa-star rating-star" data-value="2"></i>
+                    <i class="fas fa-star rating-star" data-value="3"></i>
+                    <i class="fas fa-star rating-star" data-value="4"></i>
+                    <i class="fas fa-star rating-star" data-value="5"></i>
+                </div>
+                <textarea id="reviewText" rows="2" class="form-control w-75 mx-auto"
+                    placeholder="Chia sẻ trải nghiệm của bạn..."></textarea>
+                <button id="submitReviewBtn" class="btn btn-submit mt-3 px-4">Gửi đánh giá <i
+                        class="fas fa-smile-wink"></i></button>
+                <div id="reviewToastMsg" class="mt-2 small text-success"></div>
+            </div>
+        </div>
+
+        <footer>© 2025 Du lịch CheapTour - Trung tâm hỗ trợ khách hàng</footer>
+
+        <div class="modal fade" id="modalUser" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+            role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+            <div class="modal-dialog  modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitleId">
+                            Thông tin khách hàng
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="profile-card">
+
+                            <!-- Avatar -->
+                            <div class="profile-avatar-col">
+                                <div class="avt-wrap">
+                                    <img id="avt-img" src="../../data/img/logo-login.png" alt="avatar" class="avt-img">
+                                    <div class="avt-edit-btn" onclick="document.getElementById('avt-input').click()"
+                                        title="Đổi ảnh">
+                                        <svg viewBox="0 0 24 24" width="13" height="13" fill="#fff">
+                                            <path
+                                                d="M3 17.25V21h3.75l11.06-11.06-3.75-3.75L3 17.25zm17.71-10.21a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <input type="file" id="avt-input" accept="image/*" style="display:none">
+                                <p class="avt-caption">Ảnh đại diện<br><small>Nhấn biểu tượng để đổi</small></p>
+                            </div>
+
+                            <!-- Info -->
+                            <div class="profile-info-col">
+                                <h5 class="profile-title">Thông tin cá nhân</h5>
+                                <div class="row">
+                                    <div class="col-6 mb-3">
+                                        <label class="field-label">Họ và tên</label>
+                                        <div class="i4box">Nguyễn Duy Minh</div>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label class="field-label">Email</label>
+                                        <div class="i4box">minh@gmail.com</div>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label class="field-label">Số điện thoại</label>
+                                        <div class="i4box">0123456789</div>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label class="field-label">Căn cước công dân</label>
+                                        <div class="i4box">064123456789</div>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label class="field-label">Ngày sinh</label>
+                                        <div class="i4box">01/01/2001</div>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <label class="field-label">Giới tính</label>
+                                        <div class="i4box">Nam</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="color:#fff">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-success" style="color:#fff">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="../../BackEnd/js/bootstrap.bundle.min.js"></script>
+        <script src="../../BackEnd/js/chonUser.js"></script>
+        <script>
+            // --- FAQ Data (đầy đủ nội dung)
+            const faqData = [
+                { q: "Làm sao đặt vé?", a: "Chọn phim / tour → chọn suất chiếu / ngày khởi hành → chọn ghế → bấm Đặt ngay → thanh toán qua cổng an toàn." },
+                { q: "Làm sao hủy vé?", a: "Vào Lịch sử đặt tour (biểu tượng avatar) → chọn vé cần hủy → bấm 'Hủy vé' (theo chính sách hoàn tiền)." },
+                { q: "Thanh toán thất bại?", a: "Kiểm tra số dư tài khoản, hoặc thử lại sau 5 phút. Nếu vẫn lỗi, liên hệ hotline hoặc dùng phương thức khác." },
+                { q: "Quên mật khẩu?", a: "Tại trang đăng nhập, chọn 'Quên mật khẩu', nhập email để nhận link khôi phục." },
+                { q: "Không nhận được mã vé?", a: "Kiểm tra email (kể cả spam). Nếu không thấy, liên hệ CSKH qua hotline hoặc form hỗ trợ." },
+                { q: "Không đăng nhập được?", a: "Đảm bảo đúng tài khoản/mật khẩu. Nếu vẫn lỗi, thử reset mật khẩu hoặc liên hệ tổng đài." },
+                { q: "Lỗi thanh toán trừ tiền nhưng không có vé?", a: "Hệ thống tự động xác nhận, liên hệ hotline để được xử lý hoàn tiền trong 24h." }
+            ];
+            let currentTicketId = 1004;
+
+            function renderFaq(filterText = "") {
+                const container = document.getElementById("faqAccordion");
+                const noResult = document.getElementById("noResultFaq");
+                let filtered = faqData;
+                if (filterText.trim() !== "") {
+                    const kw = filterText.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                    filtered = faqData.filter(f => f.q.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(kw) || f.a.toLowerCase().includes(kw));
+                }
+                if (filtered.length === 0) {
+                    container.innerHTML = "";
+                    noResult.classList.remove("d-none");
+                    return;
+                }
+                noResult.classList.add("d-none");
+                let accordionHtml = "";
+                filtered.forEach((item, idx) => {
+                    const collapseId = `faqCollapse${idx}`;
+                    accordionHtml += `
+                <div class="accordion-item border rounded-3 mb-2">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button ${idx !== 0 ? 'collapsed' : ''}" type="button" data-bs-toggle="collapse" data-bs-target="#${collapseId}" aria-expanded="${idx === 0}">
+                            <strong><i class="fas fa-comment-dots me-2 text-info"></i> ${escapeHtml(item.q)}</strong>
+                        </button>
+                    </h2>
+                    <div id="${collapseId}" class="accordion-collapse collapse ${idx === 0 ? 'show' : ''}" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">${escapeHtml(item.a)}</div>
+                    </div>
+                </div>
+            `;
+                });
+                container.innerHTML = accordionHtml;
+            }
+
+            function escapeHtml(str) { return str.replace(/[&<>]/g, function (m) { if (m === '&') return '&amp;'; if (m === '<') return '&lt;'; if (m === '>') return '&gt;'; return m; }); }
+
+            // search FAQ
+            document.getElementById("btnSearchFaq").addEventListener("click", () => {
+                const searchVal = document.getElementById("searchFaqInput").value;
+                renderFaq(searchVal);
+            });
+            document.getElementById("searchFaqInput").addEventListener("keypress", (e) => { if (e.key === "Enter") document.getElementById("btnSearchFaq").click(); });
+
+            // render mặc định
+            renderFaq("");
+
+            // 5 + 6: Gửi yêu cầu hỗ trợ + thêm ticket
+            document.getElementById("supportRequestForm").addEventListener("submit", (e) => {
+                e.preventDefault();
+                const fullname = document.getElementById("fullnameReq").value.trim();
+                const contact = document.getElementById("contactReq").value.trim();
+                const issue = document.getElementById("issueType").value;
+                const desc = document.getElementById("requestDesc").value.trim();
+                if (!fullname || !contact) { alert("Vui lòng nhập họ tên và email/SĐT"); return; }
+                const ticketCode = "#TK" + currentTicketId++;
+                const newRow = `<tr><td>${ticketCode}</td><td>${escapeHtml(issue)}</td><td><span class="badge-status status-processing">Đang xử lý</span></td></tr>`;
+                document.getElementById("ticketTableBody").insertAdjacentHTML("afterbegin", newRow);
+                alert(`Yêu cầu của bạn đã được ghi nhận. Mã ticket: ${ticketCode}`);
+                document.getElementById("supportRequestForm").reset();
+            });
+            document.getElementById("resetFormBtn").addEventListener("click", () => { document.getElementById("supportRequestForm").reset(); });
+
+            // 8. Báo lỗi hệ thống + giả lập upload ảnh
+            document.querySelector(".upload-label").addEventListener("click", () => document.getElementById("bugImage").click());
+            document.getElementById("bugImage").addEventListener("change", function (e) {
+                if (this.files.length) document.getElementById("fileNameDisplay").innerText = this.files[0].name;
+                else document.getElementById("fileNameDisplay").innerText = "Chưa có file";
+            });
+            document.getElementById("submitBugBtn").addEventListener("click", () => {
+                const bugDesc = document.getElementById("bugDesc").value.trim();
+                const bugTime = document.getElementById("bugTime").value;
+                const file = document.getElementById("bugImage").files[0];
+                if (!bugDesc) { alert("Vui lòng mô tả lỗi"); return; }
+                alert(`Cảm ơn bạn đã báo lỗi! ${bugTime ? `Thời gian: ${bugTime}` : ""} ${file ? `Đã đính kèm ảnh: ${file.name}` : "Không có ảnh"} \nChúng tôi sẽ xử lý sớm nhất.`);
+                document.getElementById("bugDesc").value = "";
+                document.getElementById("bugTime").value = "";
+                document.getElementById("bugImage").value = "";
+                document.getElementById("fileNameDisplay").innerText = "Chưa có file";
+            });
+
+            // 10. Star rating
+            let currentRating = 0;
+            const stars = document.querySelectorAll("#starRatingWidget .rating-star");
+            stars.forEach(star => {
+                star.addEventListener("click", function () {
+                    currentRating = parseInt(this.getAttribute("data-value"));
+                    stars.forEach((s, idx) => {
+                        if (idx < currentRating) s.style.color = "#ffb800"; else s.style.color = "#e4e5e9";
+                    });
+                });
+            });
+            document.getElementById("submitReviewBtn").addEventListener("click", () => {
+                const review = document.getElementById("reviewText").value.trim();
+                if (currentRating === 0) { alert("Vui lòng chọn số sao đánh giá"); return; }
+                document.getElementById("reviewToastMsg").innerHTML = `<i class="fas fa-check-circle"></i> Cảm ơn bạn đã đánh giá ${currentRating}⭐ ${review ? "và góp ý!" : "!"}`;
+                document.getElementById("reviewText").value = "";
+                currentRating = 0;
+                stars.forEach(s => s.style.color = "#e4e5e9");
+                setTimeout(() => { document.getElementById("reviewToastMsg").innerHTML = ""; }, 3000);
+            });
+
+            // giữ menu toggle functions (giả lập)
+            window.toggleMenu = function (event) { event.stopPropagation(); const menu = document.getElementById('user-menu'); if (menu) menu.style.display = menu.style.display === 'block' ? 'none' : 'block'; };
+            window.closeMenu = function () { const menu = document.getElementById('user-menu'); if (menu) menu.style.display = 'none'; };
+            document.addEventListener('click', function () { const menu = document.getElementById('user-menu'); if (menu) menu.style.display = 'none'; });
+            if (typeof jQuery !== 'undefined') { /* pass */ }
+        </script>
 </body>
 
 </html>

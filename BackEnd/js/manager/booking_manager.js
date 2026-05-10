@@ -1,103 +1,127 @@
 /**
  * booking_manager.js — Quản lý Đơn đặt Tour
- * Tính năng:
- *   - Tải dữ liệu thật từ /api/bookings + /api/tours
- *   - Lọc: Tất cả | Tuần này | Tháng này | Năm này | Khoảng ngày tùy chọn
- *   - Lọc theo trạng thái (confirmed / pending / cancelled)
- *   - Tìm kiếm theo tên khách / mã booking
- *   - Cập nhật trạng thái đơn (Xác nhận / Hủy) → PUT /api/bookings/:id
- *   - Tóm tắt: tổng đơn, doanh thu, chờ duyệt
  */
 
 const BM_API = 'http://localhost:3000/api';
 
-let _bmAllBookings = [];   // raw data từ server
-let _bmTourMap = {};    // { tourId: tourObject }
-let _bmActiveId = null;  // booking đang mở trong detail modal
+window._bmAllBookings = [];
+window._bmTourMap = {};
+let _bmActiveId = null;
 
-/* ═══════════════════════════════════════════════════
-   ENTRY — gọi khi mở modal Quản lý Đơn đặt
-═══════════════════════════════════════════════════ */
+// Thêm vào manager_new.js
 async function loadBookingManager() {
-    showBmLoading();
+    const tbody = document.getElementById('bmBody');
+    if (!tbody) return;
+
+    tbody.innerHTML = `<tr><td colspan="9" class="text-center text-muted py-4">
+        <div class="spinner-border spinner-border-sm text-primary me-2"></div>Đang tải dữ liệu...
+    </td></tr>`;
+
     try {
         const [bookRes, tourRes] = await Promise.all([
             fetch(`${BM_API}/bookings`),
             fetch(`${BM_API}/tours`),
         ]);
 
-        if (!bookRes.ok || !tourRes.ok) throw new Error('Server lỗi');
-
-        _bmAllBookings = await bookRes.json();
+        const bookings = await bookRes.json();
         const tours = await tourRes.json();
-        _bmTourMap = Object.fromEntries(tours.map(t => [t.id, t]));
 
-        // Cập nhật thời gian làm mới
-        const now = new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-        setElBm('bmLastUpdate', `Cập nhật lúc ${now}`);
+        window._bmAllBookings = bookings;
 
-        // Render với bộ lọc hiện tại
-        applyBookingFilter();
+        window._bmTourMap = Object.fromEntries(
+            tours.map(t => [t.id, t])
+        );
 
-    } catch (err) {
-        console.error('BookingManager error:', err);
-        const tbody = document.getElementById('bmBody');
-        if (tbody) {
-            tbody.innerHTML = `<tr><td colspan="9" class="text-center text-danger py-4">
-                <i class="bi bi-wifi-off me-2"></i>Không thể kết nối server: ${err.message}
-            </td></tr>`;
+        // Cập nhật summary
+        const totalCount = bookings.length;
+        const revenue = bookings.filter(b => b.status !== 'cancelled').reduce((s, b) => s + (b.totalPrice || 0), 0);
+        const pendingCount = bookings.filter(b => b.status === 'pending').length;
+
+        const totalCountEl = document.getElementById('bmTotalCount');
+        const totalRevenueEl = document.getElementById('bmTotalRevenue');
+        const pendingCountEl = document.getElementById('bmPendingCount');
+
+        if (totalCountEl) totalCountEl.textContent = totalCount;
+        if (totalRevenueEl) totalRevenueEl.textContent = formatPrice(revenue);
+        if (pendingCountEl) pendingCountEl.textContent = pendingCount;
+
+        // Render bảng
+        if (!bookings.length) {
+            tbody.innerHTML = `<td><td colspan="9" class="text-center text-muted py-4">Chưa có đơn đặt nào</td></tr>`;
+            return;
         }
+
+        renderBmTable(window._bmAllBookings);
+        renderBmSummary(window._bmAllBookings);
+    } catch (err) {
+        console.error('Load booking error:', err);
+        tbody.innerHTML = `<tr><td colspan="9" class="text-center text-danger py-4">Lỗi tải dữ liệu: ${err.message}</td></tr>`;
     }
 }
 
-/* ═══════════════════════════════════════════════════
-   FILTER — áp dụng toàn bộ bộ lọc
-═══════════════════════════════════════════════════ */
+async function quickUpdateBookingStatus(id, status) {
+    try {
+        const res = await fetch(`${API}/bookings/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: status })
+        });
+        if (!res.ok) throw new Error('Cập nhật thất bại');
+        showToast(status === 'confirmed' ? '✅ Đã xác nhận đơn!' : '❌ Đã hủy đơn!', status === 'confirmed' ? 'success' : 'danger');
+        loadBookingManager();
+    } catch (err) {
+        showToast('Lỗi: ' + err.message, 'danger');
+    }
+}
+
 function applyBookingFilter() {
     const fromVal = document.getElementById('bmFrom')?.value;
     const toVal = document.getElementById('bmTo')?.value;
     const statusVal = document.getElementById('bmStatus')?.value || '';
     const searchVal = (document.getElementById('bmSearch')?.value || '').toLowerCase().trim();
 
-    // Xác định khoảng ngày từ quick-filter nếu chưa nhập range thủ công
     const activeQuick = document.querySelector('.bm-quick.active')?.dataset.filter || 'all';
 
     let filtered = [..._bmAllBookings];
 
-    // ── 1. Quick date filter (chỉ dùng nếu không có từ/đến thủ công) ──
     if (!fromVal && !toVal && activeQuick !== 'all') {
         const range = getQuickRange(activeQuick);
         filtered = filtered.filter(b => {
-            const d = b.bookingDate || b.departureDate || '';
-            return d >= range.from && d <= range.to;
+            const d = normalizeDate(
+                b.bookingDate || b.departureDate
+            );
+
+            return (
+                d >= normalizeDate(range.from) &&
+                d <= normalizeDate(range.to)
+            );
         });
     }
 
-    // ── 2. Manual date range ──
     if (fromVal) {
         filtered = filtered.filter(b => {
             const d = b.bookingDate || b.departureDate || '';
-            return d >= fromVal;
+            return d >= normalizeDate(fromVal);
         });
     }
     if (toVal) {
         filtered = filtered.filter(b => {
             const d = b.bookingDate || b.departureDate || '';
-            return d <= toVal;
+            return d <= normalizeDate(toVal);
         });
     }
 
-    // ── 3. Status ──
     if (statusVal) {
         filtered = filtered.filter(b => b.status === statusVal);
     }
 
-    // ── 4. Search (mã booking / tên khách) ──
     if (searchVal) {
         filtered = filtered.filter(b => {
             const name = (b.customerName || '').toLowerCase();
-            const id = (b.id || '').toLowerCase();
-            const tour = (_bmTourMap[b.tourId]?.name || '').toLowerCase();
+            const id = String(b.id || '').toLowerCase();
+            const tour = String(
+                _bmTourMap[b.tourId]?.name || ''
+            ).toLowerCase();
             return name.includes(searchVal) || id.includes(searchVal) || tour.includes(searchVal);
         });
     }
@@ -106,17 +130,16 @@ function applyBookingFilter() {
     renderBmSummary(filtered);
 }
 
-/* ═══════════════════════════════════════════════════
-   QUICK RANGE helper
-═══════════════════════════════════════════════════ */
 function getQuickRange(type) {
     const now = new Date();
     const today = now.toISOString().split('T')[0];
 
     if (type === 'week') {
-        const day = now.getDay(); // 0=CN
-        const mon = new Date(now); mon.setDate(now.getDate() - ((day + 6) % 7));
-        const sun = new Date(mon); sun.setDate(mon.getDate() + 6);
+        const day = now.getDay();
+        const mon = new Date(now);
+        mon.setDate(now.getDate() - ((day + 6) % 7));
+        const sun = new Date(mon);
+        sun.setDate(mon.getDate() + 6);
         return { from: mon.toISOString().split('T')[0], to: sun.toISOString().split('T')[0] };
     }
     if (type === 'month') {
@@ -129,23 +152,35 @@ function getQuickRange(type) {
     }
     return { from: '2000-01-01', to: '2099-12-31' };
 }
+function normalizeDate(dateStr) {
+    if (!dateStr) return null;
 
-/* ═══════════════════════════════════════════════════
-   RENDER TABLE
-═══════════════════════════════════════════════════ */
-function renderBmTable(bookings) {
+    // yyyy-mm-dd
+    if (dateStr.includes('-')) {
+        return new Date(dateStr);
+    }
+
+    // dd/mm/yyyy
+    if (dateStr.includes('/')) {
+        const [d, m, y] = dateStr.split('/');
+        return new Date(`${y}-${m}-${d}`);
+    }
+
+    return new Date(dateStr);
+}
+
+window.renderBmTable = function (bookings) {
     const tbody = document.getElementById('bmBody');
     const empty = document.getElementById('bmEmpty');
     if (!tbody) return;
 
     if (!bookings.length) {
         tbody.innerHTML = '';
-        empty?.classList.remove('d-none');
+        if (empty) empty.classList.remove('d-none');
         return;
     }
-    empty?.classList.add('d-none');
+    if (empty) empty.classList.add('d-none');
 
-    // Sắp xếp mới nhất trước
     const sorted = [...bookings].sort((a, b) => {
         const da = a.bookingDate || a.departureDate || '';
         const db = b.bookingDate || b.departureDate || '';
@@ -161,7 +196,7 @@ function renderBmTable(bookings) {
             <td><span class="fw-semibold text-primary">#${b.id}</span></td>
             <td>
                 <div class="fw-semibold">${b.customerName || '—'}</div>
-                <small class="text-muted">${b.customerPhone || b.phone || ''}</small>
+                <small class="text-muted">${b.phone || ''}</small>
             </td>
             <td>
                 <div>${tour.name || b.tourId || '—'}</div>
@@ -190,21 +225,19 @@ function renderBmTable(bookings) {
     }).join('');
 }
 
-/* ═══════════════════════════════════════════════════
-   RENDER SUMMARY CHIPS
-═══════════════════════════════════════════════════ */
-function renderBmSummary(bookings) {
-    setElBm('bmTotalCount', bookings.length);
+window.renderBmSummary = function (bookings) {
+    const totalCountEl = document.getElementById('bmTotalCount');
+    const totalRevenueEl = document.getElementById('bmTotalRevenue');
+    const pendingCountEl = document.getElementById('bmPendingCount');
+
+    if (totalCountEl) totalCountEl.textContent = bookings.length;
     const revenue = bookings
         .filter(b => b.status !== 'cancelled')
         .reduce((s, b) => s + (Number(b.totalPrice) || 0), 0);
-    setElBm('bmTotalRevenue', formatBmPrice(revenue));
-    setElBm('bmPendingCount', bookings.filter(b => b.status === 'pending').length);
+    if (totalRevenueEl) totalRevenueEl.textContent = formatBmPrice(revenue);
+    if (pendingCountEl) pendingCountEl.textContent = bookings.filter(b => b.status === 'pending').length;
 }
 
-/* ═══════════════════════════════════════════════════
-   DETAIL MODAL
-═══════════════════════════════════════════════════ */
 function openBmDetail(id) {
     _bmActiveId = id;
     const b = _bmAllBookings.find(x => x.id == id);
@@ -224,21 +257,22 @@ function openBmDetail(id) {
             <div class="col-6 text-end">
                 <span class="badge ${cls} px-3 py-2 fs-6">${label}</span>
             </div>
-
             <div class="col-12"><hr class="my-0"></div>
-
             <div class="col-md-6">
                 <p class="mb-1 text-muted small"><i class="bi bi-person me-1"></i>Khách hàng</p>
                 <p class="fw-semibold mb-0">${b.customerName || '—'}</p>
-                <small class="text-muted">${b.customerEmail || b.email || '—'}</small><br>
-                <small class="text-muted">${b.customerPhone || b.phone || '—'}</small>
+                <small class="text-muted">${b.email || '—'}</small><br>
+                <small class="text-muted">${b.phone || '—'}</small>
+            </div>
+            <div class="col-md-6">
+                <p class="mb-1 text-muted small"><i class="bi bi-credit-card me-1"></i>Căn cước công dân</p>
+                <p class="mb-0">${b.cccd || '—'}</p>
             </div>
             <div class="col-md-6">
                 <p class="mb-1 text-muted small"><i class="bi bi-map me-1"></i>Tour</p>
                 <p class="fw-semibold mb-0">${tour.name || b.tourId || '—'}</p>
                 <small class="text-muted">${tour.destination || '—'}</small>
             </div>
-
             <div class="col-md-4">
                 <p class="mb-1 text-muted small"><i class="bi bi-calendar-check me-1"></i>Ngày đặt</p>
                 <p class="mb-0">${formatBmDate(b.bookingDate)}</p>
@@ -255,12 +289,10 @@ function openBmDetail(id) {
                     <strong>(${tickets} vé)</strong>
                 </p>
             </div>
-
             <div class="col-12">
                 <p class="mb-1 text-muted small"><i class="bi bi-cash-coin me-1"></i>Tổng tiền</p>
                 <p class="fs-5 fw-bold text-success mb-0">${formatBmPrice(b.totalPrice)}</p>
             </div>
-
             ${b.note ? `<div class="col-12">
                 <p class="mb-1 text-muted small">Ghi chú</p>
                 <p class="mb-0 fst-italic">${b.note}</p>
@@ -268,10 +300,8 @@ function openBmDetail(id) {
         </div>`;
     }
 
-    // Hiện detail modal
     const el = document.getElementById('bmDetailModal');
     if (el) {
-        // Đóng donDatModal trước
         const parentModal = bootstrap.Modal.getInstance(document.getElementById('donDatModal'));
         if (parentModal) parentModal.hide();
         setTimeout(() => {
@@ -280,14 +310,9 @@ function openBmDetail(id) {
     }
 }
 
-/* ═══════════════════════════════════════════════════
-   UPDATE STATUS — từ detail modal
-═══════════════════════════════════════════════════ */
 async function updateBookingStatus(newStatus) {
     if (!_bmActiveId) return;
     await _doUpdateStatus(_bmActiveId, newStatus);
-
-    // Đóng detail modal, mở lại donDat modal
     const detail = bootstrap.Modal.getInstance(document.getElementById('bmDetailModal'));
     if (detail) detail.hide();
     setTimeout(() => {
@@ -296,12 +321,9 @@ async function updateBookingStatus(newStatus) {
     }, 400);
 }
 
-/* ═══════════════════════════════════════════════════
-   QUICK UPDATE — từ nút trong table
-═══════════════════════════════════════════════════ */
 async function quickUpdateStatus(id, newStatus) {
     await _doUpdateStatus(id, newStatus);
-    await loadBookingManager(); // reload ngay
+    await loadBookingManager();
 }
 
 async function _doUpdateStatus(id, newStatus) {
@@ -312,11 +334,8 @@ async function _doUpdateStatus(id, newStatus) {
             body: JSON.stringify({ status: newStatus }),
         });
         if (!res.ok) throw new Error(await res.text());
-
-        // Cập nhật local cache
         const idx = _bmAllBookings.findIndex(b => b.id == id);
         if (idx !== -1) _bmAllBookings[idx].status = newStatus;
-
         showBmToast(
             newStatus === 'confirmed' ? '✅ Đã xác nhận đơn!' : '❌ Đã hủy đơn!',
             newStatus === 'confirmed' ? 'success' : 'danger'
@@ -327,47 +346,44 @@ async function _doUpdateStatus(id, newStatus) {
     }
 }
 
-/* ═══════════════════════════════════════════════════
-   QUICK-FILTER BUTTON EVENTS
-═══════════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
-    // Quick filter toggle
     document.querySelectorAll('.bm-quick').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.bm-quick').forEach(b => {
                 b.classList.remove('active', 'btn-primary');
                 b.classList.add('btn-outline-secondary');
             });
-            btn.classList.add('active', 'btn-outline-primary');
+            btn.classList.add('active', 'btn-primary');
             btn.classList.remove('btn-outline-secondary');
-
-            // Xóa range thủ công khi chọn quick filter
-            if (document.getElementById('bmFrom')) document.getElementById('bmFrom').value = '';
-            if (document.getElementById('bmTo')) document.getElementById('bmTo').value = '';
-
+            const fromEl = document.getElementById('bmFrom');
+            const toEl = document.getElementById('bmTo');
+            if (fromEl) fromEl.value = '';
+            if (toEl) toEl.value = '';
             applyBookingFilter();
         });
     });
 
-    // Live search
-    document.getElementById('bmSearch')?.addEventListener('input', applyBookingFilter);
-    document.getElementById('bmStatus')?.addEventListener('change', applyBookingFilter);
+    const searchEl = document.getElementById('bmSearch');
+    if (searchEl) searchEl.addEventListener('input', applyBookingFilter);
 
-    // Khi nhập ngày → bỏ active quick filter
+    const statusEl = document.getElementById('bmStatus');
+    if (statusEl) statusEl.addEventListener('change', applyBookingFilter);
+
     ['bmFrom', 'bmTo'].forEach(id => {
-        document.getElementById(id)?.addEventListener('change', () => {
-            document.querySelectorAll('.bm-quick').forEach(b => {
-                b.classList.remove('active');
-                b.classList.add('btn-outline-secondary');
-                b.classList.remove('btn-primary', 'btn-outline-primary');
+        const el = document.getElementById(id);
+        if (el) {
+            el.addEventListener('change', () => {
+                document.querySelectorAll('.bm-quick').forEach(b => {
+                    b.classList.remove('active');
+                    b.classList.add('btn-outline-secondary');
+                    b.classList.remove('btn-primary', 'btn-outline-primary');
+                });
+                applyBookingFilter();
             });
-        });
+        }
     });
 });
 
-/* ═══════════════════════════════════════════════════
-   HELPERS
-═══════════════════════════════════════════════════ */
 function getBmStatusBadge(status) {
     const map = {
         confirmed: { cls: 'bg-success text-white', label: '✓ Xác nhận' },
@@ -389,11 +405,6 @@ function formatBmPrice(p) {
     return Number(p).toLocaleString('vi-VN') + 'đ';
 }
 
-function setElBm(id, val) {
-    const el = document.getElementById(id);
-    if (el) el.textContent = val;
-}
-
 function showBmLoading() {
     const tbody = document.getElementById('bmBody');
     if (tbody) {
@@ -401,7 +412,8 @@ function showBmLoading() {
             <div class="spinner-border spinner-border-sm text-primary me-2"></div>Đang tải dữ liệu...
         </td></tr>`;
     }
-    document.getElementById('bmEmpty')?.classList.add('d-none');
+    const empty = document.getElementById('bmEmpty');
+    if (empty) empty.classList.add('d-none');
 }
 
 function showBmToast(msg, color = 'success') {

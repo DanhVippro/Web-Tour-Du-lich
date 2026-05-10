@@ -12,23 +12,143 @@
         rel="stylesheet">
     <link rel="stylesheet" href="/FrontEnd/css/manager/manager_new.css">
     <link rel="stylesheet" href="/FrontEnd/css/manager/sidebar-account_new.css">
+    <style>
+        body {
+            background: #f4f6fb;
+        }
+
+        .main-content {
+            padding: 24px;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .stats-chip {
+            background: linear-gradient(135deg, #f5a623, #ff7a18);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .filter-bar {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .search-group {
+            flex: 1;
+            position: relative;
+        }
+
+        .search-group input {
+            width: 100%;
+            padding: 10px 14px 10px 38px;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+        }
+
+        .search-group i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+        }
+
+        .table-wrapper {
+            background: #fff;
+            border-radius: 16px;
+            padding: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .table-scroll {
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        tbody tr:hover {
+            background: #f9fafc;
+        }
+
+        .badge-open {
+            background: #28a745;
+        }
+
+        .badge-full {
+            background: #f5a623;
+        }
+
+        .badge-cancel {
+            background: #dc3545;
+        }
+
+        .badge {
+            color: #fff;
+            padding: 6px 10px;
+            border-radius: 10px;
+            font-size: 12px;
+        }
+
+        .progress {
+            height: 6px;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 30px;
+            color: #888;
+        }
+
+        /* Fix cho modal */
+        #donDatModal .table-responsive {
+            overflow-x: auto;
+        }
+
+        #donDatModal table {
+            min-width: 1000px;
+        }
+
+        .btn-xs {
+            padding: 2px 8px;
+            font-size: 12px;
+        }
+
+        #donDatModal .modal-dialog {
+            max-width: 1400px;
+        }
+
+        .modal {
+            z-index: 9999;
+        }
+
+        .modal-backdrop {
+            z-index: 9998;
+        }
+    </style>
 </head>
 
 <body>
 
     <div class="app-shell">
-
-        <!-- ═══════════════════════════════ SIDEBAR ═══════════════════════════════ -->
         <aside class="sidebar" id="sidebar">
-
-            <!-- Logo -->
             <div class="sidebar-logo">
                 <a href="/FrontEnd/html/manager/manager.html">
                     <img src="/data/img/Logo.png" alt="CheapTour">
                 </a>
             </div>
-
-            <!-- Nav -->
             <nav class="sidebar-nav ">
                 <p class="nav-section-label text-center">MENU</p>
                 <ul>
@@ -51,12 +171,6 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link-item" data-bs-toggle="modal" data-bs-target="#messageModal">
-                            <span class="nav-icon"><i class="bi bi-chat-dots-fill"></i></span>
-                            <span>Tin nhắn</span>
-                        </a>
-                    </li>
-                    <li>
                         <a href="/FrontEnd/html/manager/dsTour.html" class="nav-link-item">
                             <span class="nav-icon"><i class="bi bi-map-fill"></i></span>
                             <span>Quản lý Tour</span>
@@ -71,15 +185,11 @@
                     </li>
                 </ul>
             </nav>
-
-            <!-- Bottom -->
             <div class="sidebar-bottom">
                 <button class="btn-add-tour" data-bs-toggle="modal" data-bs-target="#tourModal" onclick="openAdd()">
                     <i class="bi bi-plus-lg"></i>
                     <span>Thêm Tour</span>
                 </button>
-
-                <!-- Account Trigger -->
                 <div id="accountTrigger">
                     <img id="sidebarAvatar" src="/data/img/logo-login.png" alt="avatar">
                     <div class="nameAccount">
@@ -87,8 +197,6 @@
                         <p class="role" id="sidebarRole">Manager</p>
                     </div>
                 </div>
-
-                <!-- Account Popup -->
                 <div id="accountPopup">
                     <img id="popupAvatar" src="/data/img/logo-login.png" alt="avatar" class="popup-avatar">
                     <div class="popup-name" id="popupName">Admin</div>
@@ -104,10 +212,7 @@
             </div>
         </aside>
 
-        <!-- ═══════════════════════════════ MAIN ═══════════════════════════════ -->
         <main class="main-content">
-
-            <!-- ── TOP BAR ── -->
             <header class="topbar">
                 <div class="topbar-left">
                     <div class="page-breadcrumb">
@@ -124,7 +229,6 @@
                 </div>
             </header>
 
-            <!-- ── STAT CARDS ── -->
             <section class="stat-grid">
                 <div class="stat-card stat-purple">
                     <div class="stat-icon"><i class="bi bi-receipt-cutoff"></i></div>
@@ -160,37 +264,29 @@
                 </div>
             </section>
 
-            <!-- ── MAIN PANELS ── -->
             <section class="panels">
-
-                <!-- LEFT: Booking List -->
                 <div class="panel panel-bookings">
                     <div class="panel-header">
                         <div>
-                            <h3 class="panel-title"><i class="bi bi-list-check me-2"></i>Danh sách Booking</h3>
+                            <h3 class="panel-title"><i class="bi bi-list-check me-2"></i>Danh sách đề xuất</h3>
                             <p class="panel-sub">Cập nhật mới nhất</p>
                         </div>
                         <a href="/FrontEnd/html/manager/dsTour.html" class="btn-view-all">
                             Xem tất cả <i class="bi bi-arrow-right"></i>
                         </a>
                     </div>
-
-                    <!-- Search -->
                     <div class="search-row">
                         <div class="search-wrap">
                             <i class="bi bi-search"></i>
                             <input id="searchInput" class="search-input" placeholder="Tìm kiếm tour, khách hàng...">
                         </div>
                     </div>
-
                     <div class="booking-scroll" id="bookingList">
                         <div class="skeleton-card"></div>
                         <div class="skeleton-card"></div>
                         <div class="skeleton-card"></div>
                     </div>
                 </div>
-
-                <!-- RIGHT: Upcoming Tours -->
                 <div class="panel panel-upcoming">
                     <div class="panel-header">
                         <div>
@@ -204,15 +300,11 @@
                         <div class="skeleton-card" style="height:100px"></div>
                     </div>
                 </div>
-
             </section>
-
         </main>
     </div>
 
-    <!-- ════════════ MODALS ════════════ -->
-
-    <!-- Tour Modal -->
+    <!-- MODALS -->
     <div class="modal fade" id="tourModal" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content modal-glass">
@@ -331,7 +423,6 @@
             </div>
         </div>
     </div>
-
     <!-- Khách hàng Modal -->
     <div class="modal fade" id="khachHangModal" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered">
@@ -341,7 +432,6 @@
                     <button class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- Search + summary -->
                     <div class="d-flex gap-2 mb-3 align-items-center flex-wrap">
                         <div class="input-group" style="max-width:320px">
                             <span class="input-group-text"><i class="bi bi-search"></i></span>
@@ -353,15 +443,15 @@
                         </span>
                     </div>
                     <div class="table-responsive" style="max-height:460px;overflow-y:auto">
-                        <table class="table table-hover align-middle">
+                        <table class="table table-hover align-middle" style="min-width:800px">
                             <thead class="table-light sticky-top">
                                 <tr>
-                                    <th style="min-width:140px">Họ tên</th>
-                                    <th style="min-width:180px">Email</th>
-                                    <th style="min-width:110px">SĐT</th>
-                                    <th style="min-width:110px">Mật khẩu</th>
-                                    <th style="min-width:90px">Vai trò</th>
-                                    <th style="min-width:80px" class="text-center">Thao tác</th>
+                                    <th style="width:20%">Họ tên</th>
+                                    <th style="width:25%">Email</th>
+                                    <th style="width:15%">SĐT</th>
+                                    <th style="width:15%">Mật khẩu</th>
+                                    <th style="width:10%">Vai trò</th>
+                                    <th style="width:15%">Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody id="khachHangBody">
@@ -370,7 +460,7 @@
                                         <div class="spinner-border spinner-border-sm text-primary me-2"></div>Đang
                                         tải...
                                     </td>
-                                </tr>
+                                <tr>
                             </tbody>
                         </table>
                     </div>
@@ -391,7 +481,6 @@
                     <button class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- KPI row -->
                     <div class="row text-center g-3 mb-4">
                         <div class="col-md-3">
                             <div class="stat-mini stat-purple">
@@ -418,10 +507,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Charts row -->
                     <div class="row g-3 mb-3">
-                        <!-- Doanh thu theo tour (bar) -->
                         <div class="col-md-7">
                             <div style="background:#f8f9fa;border-radius:12px;padding:16px">
                                 <p class="fw-semibold mb-2" style="font-size:13px">
@@ -430,7 +516,6 @@
                                 <canvas id="ptChartRevenue" height="200"></canvas>
                             </div>
                         </div>
-                        <!-- Trạng thái booking (doughnut) -->
                         <div class="col-md-5">
                             <div style="background:#f8f9fa;border-radius:12px;padding:16px">
                                 <p class="fw-semibold mb-2" style="font-size:13px">
@@ -440,14 +525,12 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Top tours table -->
                     <div style="background:#f8f9fa;border-radius:12px;padding:16px">
                         <p class="fw-semibold mb-2" style="font-size:13px">
                             <i class="bi bi-trophy-fill me-1 text-warning"></i>Xếp hạng tour theo lượng khách
                         </p>
                         <div class="table-responsive">
-                            <table class="table table-sm align-middle mb-0">
+                            <table class="table table-sm align-middle mb-0" style="min-width:600px">
                                 <thead class="table-light">
                                     <tr>
                                         <th>#</th>
@@ -474,102 +557,65 @@
         </div>
     </div>
 
-    <!-- Tin nhắn Modal -->
-    <div class="modal fade" id="messageModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
-            <div class="modal-content modal-glass">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title fw-bold"><i class="bi bi-chat-dots-fill me-2"></i>Tin nhắn</h5>
-                    <button class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="chatList" style="min-height:200px;max-height:340px;overflow-y:auto">
-                        <div class="p-2 border rounded mb-2"><b>Nguyễn Văn A</b>
-                            <p class="mb-0">Tour Đà Lạt còn chỗ không?</p>
-                        </div>
-                        <div class="p-2 border rounded mb-2 bg-light text-end">
-                            <p class="mb-0">Còn bạn nhé!</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer border-0">
-                    <input id="chatInput" class="form-control me-2" placeholder="Nhập tin nhắn...">
-                    <button class="btn btn-primary" onclick="sendMessage()"><i class="bi bi-send"></i></button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ════ MODAL: Quản lý Đơn đặt Tour ════ -->
+    <!-- MODAL: Quản lý Đơn đặt Tour - ĐÃ SỬA LỖI BỘ LỌC -->
     <div class="modal fade" id="donDatModal" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered">
             <div class="modal-content modal-glass">
-
                 <div class="modal-header border-0">
                     <h5 class="modal-title fw-bold">
                         <i class="bi bi-journal-bookmark-fill me-2 text-primary"></i>Quản lý Đơn đặt Tour
                     </h5>
                     <button class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-
                 <div class="modal-body">
-
-                    <!-- ── Filter bar ── -->
-                    <div class="row g-2 mb-3 align-items-end" id="bookingFilterBar">
-
-                        <!-- Quick filter buttons -->
+                    <!-- Filter bar -->
+                    <div class="row g-2 mb-3 align-items-end">
                         <div class="col-12 d-flex gap-2 flex-wrap mb-1">
-                            <button class="btn btn-sm btn-outline-primary bm-quick active" data-filter="all">Tất
-                                cả</button>
-                            <button class="btn btn-sm btn-outline-secondary bm-quick" data-filter="week">Tuần
-                                này</button>
-                            <button class="btn btn-sm btn-outline-secondary bm-quick" data-filter="month">Tháng
-                                này</button>
-                            <button class="btn btn-sm btn-outline-secondary bm-quick" data-filter="year">Năm
-                                này</button>
+                            <button class="btn btn-sm bm-quick active" data-filter="all"
+                                onclick="setQuickFilter('all')">Tất cả</button>
+                            <button class="btn btn-sm btn-outline-secondary bm-quick" data-filter="week"
+                                onclick="setQuickFilter('week')">Tuần này</button>
+                            <button class="btn btn-sm btn-outline-secondary bm-quick" data-filter="month"
+                                onclick="setQuickFilter('month')">Tháng này</button>
+                            <button class="btn btn-sm btn-outline-secondary bm-quick" data-filter="year"
+                                onclick="setQuickFilter('year')">Năm này</button>
                         </div>
-
-                        <!-- Date range -->
                         <div class="col-md-3">
                             <label class="form-label mb-1 small fw-semibold">Từ ngày</label>
-                            <input type="date" id="bmFrom" class="form-control form-control-sm">
+                            <input type="date" id="bmFrom" class="form-control form-control-sm"
+                                onchange="onDateRangeChange()">
                         </div>
                         <div class="col-md-3">
                             <label class="form-label mb-1 small fw-semibold">Đến ngày</label>
-                            <input type="date" id="bmTo" class="form-control form-control-sm">
+                            <input type="date" id="bmTo" class="form-control form-control-sm"
+                                onchange="onDateRangeChange()">
                         </div>
-
-                        <!-- Status filter -->
                         <div class="col-md-2">
                             <label class="form-label mb-1 small fw-semibold">Trạng thái</label>
-                            <select id="bmStatus" class="form-select form-select-sm">
+                            <select id="bmStatus" class="form-select form-select-sm" onchange="applyBookingFilter()">
                                 <option value="">Tất cả</option>
                                 <option value="confirmed">Xác nhận</option>
                                 <option value="pending">Chờ duyệt</option>
                                 <option value="cancelled">Đã hủy</option>
                             </select>
                         </div>
-
-                        <!-- Search -->
                         <div class="col-md-3">
                             <label class="form-label mb-1 small fw-semibold">Tìm kiếm</label>
                             <div class="input-group input-group-sm">
                                 <span class="input-group-text"><i class="bi bi-search"></i></span>
-                                <input type="text" id="bmSearch" class="form-control" placeholder="Tên, mã booking...">
+                                <input type="text" id="bmSearch" class="form-control" placeholder="Tên, mã booking..."
+                                    onkeyup="applyBookingFilter()">
                             </div>
                         </div>
-
-                        <!-- Apply button -->
                         <div class="col-md-1 d-flex align-items-end">
                             <button class="btn btn-primary btn-sm w-100" onclick="applyBookingFilter()">
                                 <i class="bi bi-funnel-fill"></i>
                             </button>
                         </div>
-
                     </div>
 
-                    <!-- ── Summary chips ── -->
-                    <div class="d-flex gap-3 mb-3 flex-wrap" id="bmSummary">
+                    <!-- Summary chips -->
+                    <div class="d-flex gap-3 mb-3 flex-wrap">
                         <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2">
                             Tổng: <strong id="bmTotalCount">—</strong> đơn
                         </span>
@@ -581,9 +627,9 @@
                         </span>
                     </div>
 
-                    <!-- ── Table ── -->
+                    <!-- Table -->
                     <div class="table-responsive" style="max-height: 420px; overflow-y:auto;">
-                        <table class="table table-hover align-middle" id="bmTable">
+                        <table class="table table-hover align-middle" id="bmTable" style="min-width:1000px">
                             <thead class="table-light sticky-top">
                                 <tr>
                                     <th style="min-width:80px">Mã đơn</th>
@@ -603,29 +649,25 @@
                                         <div class="spinner-border spinner-border-sm text-primary me-2"></div>Đang
                                         tải...
                                     </td>
-                                </tr>
+                                <tr>
                             </tbody>
                         </table>
                     </div>
-
                     <div id="bmEmpty" class="text-center text-muted py-4 d-none">
                         <i class="bi bi-inbox fs-1 d-block mb-2 opacity-50"></i>Không có đơn đặt nào phù hợp.
                     </div>
-
-                </div><!-- /modal-body -->
-
+                </div>
                 <div class="modal-footer border-0 justify-content-between">
                     <small class="text-muted" id="bmLastUpdate"></small>
                     <button class="btn btn-sm btn-outline-secondary" onclick="loadBookingManager()">
                         <i class="bi bi-arrow-clockwise me-1"></i>Làm mới
                     </button>
                 </div>
-
             </div>
         </div>
     </div>
 
-    <!-- ════ MODAL: Chi tiết / Cập nhật trạng thái đơn ════ -->
+    <!-- MODAL: Chi tiết đơn -->
     <div class="modal fade" id="bmDetailModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content modal-glass">
@@ -633,9 +675,7 @@
                     <h5 class="modal-title fw-bold"><i class="bi bi-info-circle me-2"></i>Chi tiết đơn đặt</h5>
                     <button class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body" id="bmDetailBody">
-                    <!-- Filled by JS -->
-                </div>
+                <div class="modal-body" id="bmDetailBody"></div>
                 <div class="modal-footer border-0">
                     <button class="btn btn-light" data-bs-dismiss="modal">Đóng</button>
                     <button class="btn btn-success" onclick="updateBookingStatus('confirmed')">
@@ -654,38 +694,280 @@
     <script src="/BackEnd/js/manager/sidebar.js"></script>
     <script src="/BackEnd/js/manager/manager_new.js"></script>
     <script src="/BackEnd/js/manager/booking_manager.js"></script>
+
     <script>
-        async function loadBookingManager() {
-
-            const res = await fetch("http://localhost:3000/api/bookings");
-            const bookings = await res.json();
-
-            const list = document.getElementById("bookingList");
-
-            if (!bookings.length) {
-                list.innerHTML = `<p>Chưa có booking</p>`;
-                return;
+        function openImagePicker(event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
             }
 
-            list.innerHTML = "";
+            const input = document.getElementById('imageUploadInput');
+            const modal = document.getElementById('tourModal');
 
-            bookings.reverse().forEach(bk => {
+            // Ngăn Bootstrap Modal lắng nghe focus event khi file dialog đóng lại
+            // bằng cách tạm thời disable backdrop click & keyboard dismiss
+            const bsModal = bootstrap.Modal.getInstance(modal);
 
-                list.innerHTML += `
-            <div class="booking-card">
-                <h5>${bk.tourName}</h5>
-                <p>👤 ${bk.customerName}</p>
-                <p>📞 ${bk.phone}</p>
-                <p>🎟 ${bk.adultTickets}</p>
-                <p>💰 ${bk.totalPrice.toLocaleString("vi-VN")} đ</p>
-            </div>
-        `;
-            });
+            // Giữ modal không bị đóng khi window mất focus (do file dialog mở)
+            const preventModalClose = (e) => e.stopImmediatePropagation();
+            modal.addEventListener('hide.bs.modal', preventModalClose, true);
+
+            // Sau khi file dialog đóng (dù chọn hay cancel), gỡ listener
+            const cleanup = () => {
+                setTimeout(() => {
+                    modal.removeEventListener('hide.bs.modal', preventModalClose, true);
+                }, 500);
+                window.removeEventListener('focus', cleanup);
+            };
+            window.addEventListener('focus', cleanup, { once: true });
+
+            input.click();
         }
 
-        loadBookingManager();
-    </script>
+        async function handleImageUpload(input) {
 
+            const files = input.files;
+
+            if (!files || !files.length) return;
+
+            const preview = document.getElementById('imagePreview');
+            const fImages = document.getElementById('fImages');
+
+            let uploadedUrls = [];
+
+            for (const file of files) {
+
+                const formData = new FormData();
+                formData.append('image', file);
+
+                try {
+
+                    const response = await fetch('http://localhost:3000/api/upload', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const data = await response.json();
+
+                    if (data.url) {
+
+                        uploadedUrls.push(data.url);
+
+                        const img = document.createElement('img');
+
+                        img.src = data.url;
+
+                        img.style.width = '100px';
+                        img.style.height = '100px';
+                        img.style.objectFit = 'cover';
+                        img.style.borderRadius = '12px';
+                        img.style.border = '2px solid #ddd';
+
+                        preview.appendChild(img);
+                    }
+
+                } catch (err) {
+
+                    console.error('Upload thất bại:', err);
+
+                }
+            }
+
+            const oldVal = fImages.value
+                ? fImages.value.split(',')
+                : [];
+
+            const finalImages = [...oldVal, ...uploadedUrls];
+
+            fImages.value = finalImages.join(',');
+
+            input.value = '';
+        }
+
+        // Hàm xử lý bộ lọc nhanh
+        let currentQuickFilter = 'all';
+
+        function setQuickFilter(filter) {
+            currentQuickFilter = filter;
+            // Cập nhật UI buttons
+            document.querySelectorAll('.bm-quick').forEach(btn => {
+                btn.classList.remove('active', 'btn-primary');
+                btn.classList.add('btn-outline-secondary');
+            });
+            const activeBtn = document.querySelector(`.bm-quick[data-filter="${filter}"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('active', 'btn-primary');
+                activeBtn.classList.remove('btn-outline-secondary');
+            } else {
+                const firstBtn = document.querySelector('.bm-quick');
+                if (firstBtn) {
+                    firstBtn.classList.add('active', 'btn-primary');
+                    firstBtn.classList.remove('btn-outline-secondary');
+                }
+            }
+
+            // Xóa giá trị date range khi chọn quick filter
+            document.getElementById('bmFrom').value = '';
+            document.getElementById('bmTo').value = '';
+
+            applyBookingFilter();
+        }
+
+        function onDateRangeChange() {
+            // Khi chọn date range, xóa active của quick filter
+            currentQuickFilter = 'custom';
+            document.querySelectorAll('.bm-quick').forEach(btn => {
+                btn.classList.remove('active', 'btn-primary');
+                btn.classList.add('btn-outline-secondary');
+            });
+            applyBookingFilter();
+        }
+        function getQuickRange(type) {
+            const now = new Date();
+            if (type === 'week') {
+                const day = now.getDay();
+                const mon = new Date(now);
+                mon.setDate(now.getDate() - ((day + 6) % 7));
+                const sun = new Date(mon);
+                sun.setDate(mon.getDate() + 6);
+                return { from: mon.toISOString().split('T')[0], to: sun.toISOString().split('T')[0] };
+            }
+            if (type === 'month') {
+                const from = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-01`;
+                const last = new Date(now.getFullYear(), now.getMonth() + 1, 0);
+                return { from, to: last.toISOString().split('T')[0] };
+            }
+            if (type === 'year') {
+                return { from: `${now.getFullYear()}-01-01`, to: `${now.getFullYear()}-12-31` };
+            }
+            return { from: '2000-01-01', to: '2099-12-31' };
+        }
+        function applyBookingFilter() {
+
+            if (!window._bmAllBookings) return;
+
+            const fromVal = document.getElementById('bmFrom')?.value || '';
+            const toVal = document.getElementById('bmTo')?.value || '';
+            const statusVal = document.getElementById('bmStatus')?.value || '';
+
+            const searchVal = (
+                document.getElementById('bmSearch')?.value || ''
+            ).toLowerCase().trim();
+
+            let filtered = [...window._bmAllBookings];
+
+            // ===== QUICK FILTER =====
+            if (
+                !fromVal &&
+                !toVal &&
+                currentQuickFilter !== 'custom' &&
+                currentQuickFilter !== 'all'
+            ) {
+
+                const range = getQuickRange(currentQuickFilter);
+
+                filtered = filtered.filter(b => {
+
+                    const rawDate =
+                        b.bookingDate ||
+                        b.departureDate ||
+                        '';
+
+                    if (!rawDate) return false;
+
+                    const d = new Date(rawDate)
+                        .toISOString()
+                        .split('T')[0];
+
+                    return d >= range.from && d <= range.to;
+                });
+            }
+
+            // ===== FROM DATE =====
+            if (fromVal) {
+
+                filtered = filtered.filter(b => {
+
+                    const rawDate =
+                        b.bookingDate ||
+                        b.departureDate ||
+                        '';
+
+                    if (!rawDate) return false;
+
+                    const d = new Date(rawDate)
+                        .toISOString()
+                        .split('T')[0];
+
+                    return d >= fromVal;
+                });
+            }
+
+            // ===== TO DATE =====
+            if (toVal) {
+
+                filtered = filtered.filter(b => {
+
+                    const rawDate =
+                        b.bookingDate ||
+                        b.departureDate ||
+                        '';
+
+                    if (!rawDate) return false;
+
+                    const d = new Date(rawDate)
+                        .toISOString()
+                        .split('T')[0];
+
+                    return d <= toVal;
+                });
+            }
+
+            // ===== STATUS =====
+            if (statusVal) {
+
+                filtered = filtered.filter(b =>
+                    (b.status || '') === statusVal
+                );
+            }
+
+            // ===== SEARCH =====
+            if (searchVal) {
+
+                filtered = filtered.filter(b => {
+
+                    const name =
+                        String(b.customerName || '')
+                            .toLowerCase();
+
+                    const id =
+                        String(b.id || '')
+                            .toLowerCase();
+
+                    const tourName =
+                        String(
+                            window._bmTourMap?.[b.tourId]?.name || ''
+                        ).toLowerCase();
+
+                    return (
+                        name.includes(searchVal) ||
+                        id.includes(searchVal) ||
+                        tourName.includes(searchVal)
+                    );
+                });
+            }
+
+            // Render
+            if (typeof renderBmTable === 'function') {
+                renderBmTable(filtered);
+            }
+
+            if (typeof renderBmSummary === 'function') {
+                renderBmSummary(filtered);
+            }
+        }
+    </script>
 </body>
 
 </html>

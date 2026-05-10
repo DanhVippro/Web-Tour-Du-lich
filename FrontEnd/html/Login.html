@@ -164,6 +164,10 @@
                 stroke-dashoffset: 0;
             }
         }
+
+        a {
+            text-decoration: none !important;
+        }
     </style>
 </head>
 
@@ -175,7 +179,7 @@
             </a>
         </div>
         <div class="Search-header1">
-            <form action="../html/TimKiem.html" method="GET" class="form-place">
+            <form action="#" data-bs-toggle="modal" data-bs-target="#modalLog" method="GET" class="form-place">
                 <input type="text" name="q" placeholder=" Tìm kiếm điểm đến yêu thích">
                 <button type="submit">&#8981;</button>
             </form>
@@ -183,8 +187,8 @@
         <div class="menu-header1">
 
             <ul>
-                <li><a href="../html/trangChu.html">Trang chủ</a></li>
-                <li><a href="../html/GioiThieu.html">Giới Thiệu</a></li>
+                <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">Trang chủ</a></li>
+                <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">Giới Thiệu</a></li>
                 <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">Khám phá</a></li>
                 <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">Đặt tour</a></li>
                 <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">Hỗ trợ</a></li>
@@ -253,8 +257,7 @@
             </div>
             <div class="row list-gr-1">
                 <div class=" col-md-4 mb-4 ">
-                    <a class="text-decoration-none"
-                        href="https://www.ivivu.com/du-lich/tour-dai-loan-5n4d-hcm-cao-hung-dai-trung-dai-bac-thuy-cung-x-park/4745">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">
                         <div class="card h-100">
                             <img class="card-img-top" src="../../data/img/list-tour-gr/phuquoc.jpg" alt="Title" />
                             <div class="card-body">
@@ -286,8 +289,7 @@
 
                 </div>
                 <div class=" col-md-4 mb-4 ">
-                    <a class="text-decoration-none"
-                        href="https://www.ivivu.com/du-lich/tour-dai-loan-5n4d-hcm-cao-hung-dai-trung-dai-bac-thuy-cung-x-park/4745">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">
                         <div class="card h-100">
                             <img class="card-img-top" src="../../data/img/list-tour-gr/sapa.jpg" />
                             <div class="card-body">
@@ -319,8 +321,7 @@
 
                 </div>
                 <div class=" col-md-4 mb-4 ">
-                    <a class="text-decoration-none"
-                        href="https://www.ivivu.com/du-lich/tour-dai-loan-5n4d-hcm-cao-hung-dai-trung-dai-bac-thuy-cung-x-park/4745">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">
                         <div class="card h-100">
                             <img class="card-img-top" src="../../data/img/list-tour-gr/vinpearl-nt.webp" alt="Title" />
                             <div class="card-body">
@@ -352,8 +353,7 @@
 
                 </div>
                 <div class=" col-md-4 mb-4 ">
-                    <a class="text-decoration-none"
-                        href="https://www.ivivu.com/du-lich/tour-dai-loan-5n4d-hcm-cao-hung-dai-trung-dai-bac-thuy-cung-x-park/4745">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">
                         <div class="card h-100">
                             <img class="card-img-top" src="../../data/img/list-tour-gr/china.jpg" alt="Title" />
                             <div class="card-body">
@@ -385,8 +385,7 @@
 
                 </div>
                 <div class=" col-md-4 mb-4 ">
-                    <a class="text-decoration-none"
-                        href="https://www.ivivu.com/du-lich/tour-dai-loan-5n4d-hcm-cao-hung-dai-trung-dai-bac-thuy-cung-x-park/4745">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">
                         <div class="card h-100">
                             <img class="card-img-top" src="../../data/img/list-tour-gr/hanquoc.webp" alt="Title" />
                             <div class="card-body">
@@ -418,8 +417,7 @@
 
                 </div>
                 <div class=" col-md-4 mb-4 ">
-                    <a class="text-decoration-none"
-                        href="https://www.ivivu.com/du-lich/tour-dai-loan-5n4d-hcm-cao-hung-dai-trung-dai-bac-thuy-cung-x-park/4745">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">
                         <div class="card h-100">
                             <img class="card-img-top" src="../../data/img/list-tour-gr/japan.webp" alt="Title" />
                             <div class="card-body">
@@ -453,7 +451,8 @@
             </div>
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <a href="../html/TourDuLich.html" class="btn btn-xemthem bg-success text-white mb-5">Xem thêm</a>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalLog"
+                        class="btn btn-xemthem bg-success text-white mb-5">Xem thêm</a>
                 </div>
             </div>
         </div>
@@ -494,13 +493,19 @@
             <div class="thongtin">
                 <h3>THÔNG TIN</h3>
                 <ul>
-                    <li> <a href="#">Tour Tây Nguyên 3 Ngày 3 Đêm</a></li>
-                    <li> <a href="#">Tour Phú Quý 3 Ngày 2 Đêm</a></li>
-                    <li><a href="#">Tour Phú Yên Quy Nhơn 3 Ngày 3 Đêm</a> </li>
-                    <li> <a href="#">Tour Đà Nẵng Huế Hội An 5 Ngày 4 Đêm</a></li>
-                    <li><a href="#">Tour Đà Lạt 4 Ngày 3 Đêm</a></li>
-                    <li><a href="#">Tour Đồng Tháp 2 Ngày 1 Đêm</a></li>
-                    <li><a href="#">Tour Nam Cát Tiên 2 Ngày 1 Đêm</a></li>
+                    <li> <a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">Tour Tây Nguyên 3 Ngày 3 Đêm</a>
+                    </li>
+                    <li> <a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">Tour Phú Quý 3 Ngày 2 Đêm</a>
+                    </li>
+                    <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">Tour Phú Yên Quy Nhơn 3 Ngày 3
+                            Đêm</a> </li>
+                    <li> <a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">Tour Đà Nẵng Huế Hội An 5 Ngày 4
+                            Đêm</a></li>
+                    <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">Tour Đà Lạt 4 Ngày 3 Đêm</a></li>
+                    <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">Tour Đồng Tháp 2 Ngày 1 Đêm</a>
+                    </li>
+                    <li><a href="#" data-bs-toggle="modal" data-bs-target="#modalLog">Tour Nam Cát Tiên 2 Ngày 1 Đêm</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -518,6 +523,10 @@
                 <div class="modal-header  ">
                     <h5 class="text-center  w-100">
                         ĐĂNG NHẬP
+                        <br>
+                        <i>(TK Admin: admin@gmail.com - Admin123)</i>
+                        <br>
+                        <i>(TK Khách hàng: đăng kí mới )</i>
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>

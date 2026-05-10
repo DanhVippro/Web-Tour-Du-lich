@@ -73,11 +73,11 @@
         }
 
         .table-scroll {
-            max-height: 60vh;
+            max-height: 75vh;
             overflow-y: auto;
         }
 
-        table {
+        .tour-main-table {
             width: 100%;
         }
 
@@ -116,6 +116,10 @@
             padding: 30px;
             color: #888;
         }
+
+        #donDatModal .modal-dialog {
+            max-width: 1400px;
+        }
     </style>
 </head>
 
@@ -139,7 +143,7 @@
                 <ul>
                     <li>
                         <a href="/FrontEnd/html/manager/manager.html" class="nav-link-item">
-                            <span class="nav-icon"><i class="bi bi-people-fill"></i></span>
+                            <span class="nav-icon"><i class="bi bi-calendar3"></i></span>
                             <span>Trang chủ</span>
                         </a>
                     </li>
@@ -153,12 +157,6 @@
                         <a href="#" class="nav-link-item" data-bs-toggle="modal" data-bs-target="#phanTichModal">
                             <span class="nav-icon"><i class="bi bi-bar-chart-fill"></i></span>
                             <span>Phân tích</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link-item" data-bs-toggle="modal" data-bs-target="#messageModal">
-                            <span class="nav-icon"><i class="bi bi-chat-dots-fill"></i></span>
-                            <span>Tin nhắn</span>
                         </a>
                     </li>
                     <li>
@@ -248,7 +246,7 @@
             <!-- TABLE -->
             <div class="table-wrapper">
                 <div class="table-scroll">
-                    <table class="table align-middle">
+                    <table class="table align-middle tour-main-table">
                         <thead class="table-light">
                             <tr>
                                 <th>Mã</th>
@@ -288,6 +286,8 @@
             </div>
         </div>
     </div>
+    <!-- ════════════ MODALS ════════════ -->
+
     <!-- Tour Modal -->
     <div class="modal fade" id="tourModal" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-centered">
@@ -410,29 +410,49 @@
 
     <!-- Khách hàng Modal -->
     <div class="modal fade" id="khachHangModal" tabindex="-1">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered">
             <div class="modal-content modal-glass">
                 <div class="modal-header border-0">
                     <h5 class="modal-title fw-bold"><i class="bi bi-people-fill me-2"></i>Quản lý Khách hàng</h5>
                     <button class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <input class="form-control mb-3" placeholder="Tìm khách hàng...">
-                    <table class="table table-hover align-middle">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Tên</th>
-                                <th>Email</th>
-                                <th>SĐT</th>
-                                <th>Vai trò</th>
-                            </tr>
-                        </thead>
-                        <tbody id="khachHangBody">
-                            <tr>
-                                <td colspan="4" class="text-center text-muted py-3">Đang tải...</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <!-- Search + summary -->
+                    <div class="d-flex gap-2 mb-3 align-items-center flex-wrap">
+                        <div class="input-group" style="max-width:320px">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input id="khSearch" class="form-control" placeholder="Tìm tên, email, SĐT...">
+                        </div>
+                        <span
+                            class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2 ms-auto">
+                            Tổng: <strong id="khTotalCount">—</strong> tài khoản
+                        </span>
+                    </div>
+                    <div class="table-responsive" style="max-height:460px;overflow-y:auto">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-light sticky-top">
+                                <tr>
+                                    <th style="min-width:140px">Họ tên</th>
+                                    <th style="min-width:180px">Email</th>
+                                    <th style="min-width:110px">SĐT</th>
+                                    <th style="min-width:110px">Mật khẩu</th>
+                                    <th style="min-width:90px">Vai trò</th>
+                                    <th style="min-width:80px" class="text-center">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="khachHangBody">
+                                <tr>
+                                    <td colspan="6" class="text-center text-muted py-3">
+                                        <div class="spinner-border spinner-border-sm text-primary me-2"></div>Đang
+                                        tải...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="khEmpty" class="text-center text-muted py-4 d-none">
+                        <i class="bi bi-person-x fs-1 d-block mb-2 opacity-50"></i>Không tìm thấy khách hàng nào.
+                    </div>
                 </div>
             </div>
         </div>
@@ -440,139 +460,155 @@
 
     <!-- Phân tích Modal -->
     <div class="modal fade" id="phanTichModal" tabindex="-1">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content modal-glass">
                 <div class="modal-header border-0">
                     <h5 class="modal-title fw-bold"><i class="bi bi-bar-chart-fill me-2"></i>Phân tích dữ liệu</h5>
                     <button class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
+                    <!-- KPI row -->
                     <div class="row text-center g-3 mb-4">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="stat-mini stat-purple">
                                 <p class="sm-label">Tổng doanh thu</p>
                                 <h4 class="sm-val text-success" id="ptRevenue">—</h4>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="stat-mini stat-teal">
-                                <p class="sm-label">Tour bán chạy</p>
+                                <p class="sm-label">Tour bán chạy nhất</p>
                                 <h5 class="sm-val" id="ptBestTour">—</h5>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="stat-mini stat-amber">
                                 <p class="sm-label">Tổng lượt khách</p>
                                 <h4 class="sm-val" id="ptPax">—</h4>
                             </div>
                         </div>
-                    </div>
-                    <div class="text-center text-muted"
-                        style="height:180px;background:#f8f9fa;border-radius:12px;display:flex;align-items:center;justify-content:center">
-                        <span><i class="bi bi-graph-up-arrow fs-1 text-primary opacity-50 d-block mb-2"></i>Biểu đồ
-                            doanh thu (demo)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Tin nhắn Modal -->
-    <div class="modal fade" id="messageModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
-            <div class="modal-content modal-glass">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title fw-bold"><i class="bi bi-chat-dots-fill me-2"></i>Tin nhắn</h5>
-                    <button class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div id="chatList" style="min-height:200px;max-height:340px;overflow-y:auto">
-                        <div class="p-2 border rounded mb-2"><b>Nguyễn Văn A</b>
-                            <p class="mb-0">Tour Đà Lạt còn chỗ không?</p>
+                        <div class="col-md-3">
+                            <div class="stat-mini stat-purple">
+                                <p class="sm-label">Tỉ lệ lấp đầy TB</p>
+                                <h4 class="sm-val" id="ptFillRate">—</h4>
+                            </div>
                         </div>
-                        <div class="p-2 border rounded mb-2 bg-light text-end">
-                            <p class="mb-0">Còn bạn nhé!</p>
+                    </div>
+
+                    <!-- Charts row -->
+                    <div class="row g-3 mb-3">
+                        <!-- Doanh thu theo tour (bar) -->
+                        <div class="col-md-7">
+                            <div style="background:#f8f9fa;border-radius:12px;padding:16px">
+                                <p class="fw-semibold mb-2" style="font-size:13px">
+                                    <i class="bi bi-bar-chart-fill me-1 text-primary"></i>Doanh thu theo tour (đ)
+                                </p>
+                                <canvas id="ptChartRevenue" height="200"></canvas>
+                            </div>
+                        </div>
+                        <!-- Trạng thái booking (doughnut) -->
+                        <div class="col-md-5">
+                            <div style="background:#f8f9fa;border-radius:12px;padding:16px">
+                                <p class="fw-semibold mb-2" style="font-size:13px">
+                                    <i class="bi bi-pie-chart-fill me-1 text-warning"></i>Trạng thái đơn đặt
+                                </p>
+                                <canvas id="ptChartStatus" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Top tours table -->
+                    <div style="background:#f8f9fa;border-radius:12px;padding:16px">
+                        <p class="fw-semibold mb-2" style="font-size:13px">
+                            <i class="bi bi-trophy-fill me-1 text-warning"></i>Xếp hạng tour theo lượng khách
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table table-sm align-middle mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Tên tour</th>
+                                        <th>Điểm đến</th>
+                                        <th>Đã đặt</th>
+                                        <th>Sức chứa</th>
+                                        <th>Lấp đầy</th>
+                                        <th>Giá/vé</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ptTourRankBody"></tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer border-0">
-                    <input id="chatInput" class="form-control me-2" placeholder="Nhập tin nhắn...">
-                    <button class="btn btn-primary" onclick="sendMessage()"><i class="bi bi-send"></i></button>
+                    <small class="text-muted" id="ptLastUpdate"></small>
+                    <button class="btn btn-sm btn-outline-secondary" onclick="loadPhanTich()">
+                        <i class="bi bi-arrow-clockwise me-1"></i>Làm mới
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ════ MODAL: Quản lý Đơn đặt Tour ════ -->
+    <!-- MODAL: Quản lý Đơn đặt Tour - ĐÃ SỬA LỖI BỘ LỌC -->
     <div class="modal fade" id="donDatModal" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered">
             <div class="modal-content modal-glass">
-
                 <div class="modal-header border-0">
                     <h5 class="modal-title fw-bold">
                         <i class="bi bi-journal-bookmark-fill me-2 text-primary"></i>Quản lý Đơn đặt Tour
                     </h5>
                     <button class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-
                 <div class="modal-body">
-
-                    <!-- ── Filter bar ── -->
-                    <div class="row g-2 mb-3 align-items-end" id="bookingFilterBar">
-
-                        <!-- Quick filter buttons -->
+                    <!-- Filter bar -->
+                    <div class="row g-2 mb-3 align-items-end">
                         <div class="col-12 d-flex gap-2 flex-wrap mb-1">
-                            <button class="btn btn-sm btn-outline-primary bm-quick active" data-filter="all">Tất
-                                cả</button>
-                            <button class="btn btn-sm btn-outline-secondary bm-quick" data-filter="week">Tuần
-                                này</button>
-                            <button class="btn btn-sm btn-outline-secondary bm-quick" data-filter="month">Tháng
-                                này</button>
-                            <button class="btn btn-sm btn-outline-secondary bm-quick" data-filter="year">Năm
-                                này</button>
+                            <button class="btn btn-sm bm-quick active" data-filter="all"
+                                onclick="setQuickFilter('all')">Tất cả</button>
+                            <button class="btn btn-sm btn-outline-secondary bm-quick" data-filter="week"
+                                onclick="setQuickFilter('week')">Tuần này</button>
+                            <button class="btn btn-sm btn-outline-secondary bm-quick" data-filter="month"
+                                onclick="setQuickFilter('month')">Tháng này</button>
+                            <button class="btn btn-sm btn-outline-secondary bm-quick" data-filter="year"
+                                onclick="setQuickFilter('year')">Năm này</button>
                         </div>
-
-                        <!-- Date range -->
                         <div class="col-md-3">
                             <label class="form-label mb-1 small fw-semibold">Từ ngày</label>
-                            <input type="date" id="bmFrom" class="form-control form-control-sm">
+                            <input type="date" id="bmFrom" class="form-control form-control-sm"
+                                onchange="onDateRangeChange()">
                         </div>
                         <div class="col-md-3">
                             <label class="form-label mb-1 small fw-semibold">Đến ngày</label>
-                            <input type="date" id="bmTo" class="form-control form-control-sm">
+                            <input type="date" id="bmTo" class="form-control form-control-sm"
+                                onchange="onDateRangeChange()">
                         </div>
-
-                        <!-- Status filter -->
                         <div class="col-md-2">
                             <label class="form-label mb-1 small fw-semibold">Trạng thái</label>
-                            <select id="bmStatus" class="form-select form-select-sm">
+                            <select id="bmStatus" class="form-select form-select-sm" onchange="applyBookingFilter()">
                                 <option value="">Tất cả</option>
                                 <option value="confirmed">Xác nhận</option>
                                 <option value="pending">Chờ duyệt</option>
                                 <option value="cancelled">Đã hủy</option>
                             </select>
                         </div>
-
-                        <!-- Search -->
                         <div class="col-md-3">
                             <label class="form-label mb-1 small fw-semibold">Tìm kiếm</label>
                             <div class="input-group input-group-sm">
                                 <span class="input-group-text"><i class="bi bi-search"></i></span>
-                                <input type="text" id="bmSearch" class="form-control" placeholder="Tên, mã booking...">
+                                <input type="text" id="bmSearch" class="form-control" placeholder="Tên, mã booking..."
+                                    onkeyup="applyBookingFilter()">
                             </div>
                         </div>
-
-                        <!-- Apply button -->
                         <div class="col-md-1 d-flex align-items-end">
                             <button class="btn btn-primary btn-sm w-100" onclick="applyBookingFilter()">
                                 <i class="bi bi-funnel-fill"></i>
                             </button>
                         </div>
-
                     </div>
 
-                    <!-- ── Summary chips ── -->
-                    <div class="d-flex gap-3 mb-3 flex-wrap" id="bmSummary">
+                    <!-- Summary chips -->
+                    <div class="d-flex gap-3 mb-3 flex-wrap">
                         <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2">
                             Tổng: <strong id="bmTotalCount">—</strong> đơn
                         </span>
@@ -584,9 +620,9 @@
                         </span>
                     </div>
 
-                    <!-- ── Table ── -->
+                    <!-- Table -->
                     <div class="table-responsive" style="max-height: 420px; overflow-y:auto;">
-                        <table class="table table-hover align-middle" id="bmTable">
+                        <table class="table table-hover align-middle" id="bmTable" style="min-width:1000px">
                             <thead class="table-light sticky-top">
                                 <tr>
                                     <th style="min-width:80px">Mã đơn</th>
@@ -606,29 +642,25 @@
                                         <div class="spinner-border spinner-border-sm text-primary me-2"></div>Đang
                                         tải...
                                     </td>
-                                </tr>
+                                <tr>
                             </tbody>
                         </table>
                     </div>
-
                     <div id="bmEmpty" class="text-center text-muted py-4 d-none">
                         <i class="bi bi-inbox fs-1 d-block mb-2 opacity-50"></i>Không có đơn đặt nào phù hợp.
                     </div>
-
-                </div><!-- /modal-body -->
-
+                </div>
                 <div class="modal-footer border-0 justify-content-between">
                     <small class="text-muted" id="bmLastUpdate"></small>
                     <button class="btn btn-sm btn-outline-secondary" onclick="loadBookingManager()">
                         <i class="bi bi-arrow-clockwise me-1"></i>Làm mới
                     </button>
                 </div>
-
             </div>
         </div>
     </div>
 
-    <!-- ════ MODAL: Chi tiết / Cập nhật trạng thái đơn ════ -->
+    <!-- MODAL: Chi tiết đơn -->
     <div class="modal fade" id="bmDetailModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content modal-glass">
@@ -636,9 +668,7 @@
                     <h5 class="modal-title fw-bold"><i class="bi bi-info-circle me-2"></i>Chi tiết đơn đặt</h5>
                     <button class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body" id="bmDetailBody">
-                    <!-- Filled by JS -->
-                </div>
+                <div class="modal-body" id="bmDetailBody"></div>
                 <div class="modal-footer border-0">
                     <button class="btn btn-light" data-bs-dismiss="modal">Đóng</button>
                     <button class="btn btn-success" onclick="updateBookingStatus('confirmed')">
@@ -653,6 +683,7 @@
     </div>
 
     <script src="/BackEnd/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script src="/BackEnd/js/manager/sidebar.js"></script>
     <script src="/BackEnd/js/manager/dsTour.js"></script>
     <script src="/BackEnd/js/manager/manager_new.js"></script>

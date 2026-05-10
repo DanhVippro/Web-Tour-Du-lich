@@ -107,7 +107,7 @@ async function loadBookingCards() {
                 <div>${badge}</div>`;
 
             card.addEventListener('click', () => {
-                window.location.href = 'bookingDetailManager.html?id=' + b.id;
+                window.location.href = 'dsTour.html?id=' + b.id;
             });
 
             container.appendChild(card);

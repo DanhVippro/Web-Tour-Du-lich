@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/GioiThieu.css">
+    <link rel="stylesheet" href="../css/headerChung.css">
     <title>Giới Thiệu</title>
     <style>
         html {
@@ -367,6 +368,42 @@
     <script src="../../BackEnd/js/chonUser.js"></script>
     <script src="../../BackEnd/js/ThoiGieu.js"></script>
     <script src="../../BackEnd/js/main.js"></script>
+    <script>
+        // Gắn class active/transitioning cho hiệu ứng bg đẹp hơn
+        (function () {
+            // Quan sát khi main.js thay đổi opacity của .bg
+            const observer = new MutationObserver(function (mutations) {
+                mutations.forEach(function (m) {
+                    const el = m.target;
+                    if (!el.classList.contains('bg')) return;
+
+                    const op = parseFloat(el.style.opacity);
+                    if (op > 0.5) {
+                        // Ảnh này đang hiển thị -> active
+                        if (!el.classList.contains('active')) {
+                            el.classList.add('transitioning');
+                            setTimeout(() => el.classList.remove('transitioning'), 2000);
+                        }
+                        el.classList.add('active');
+                    } else {
+                        el.classList.remove('active');
+                    }
+                });
+            });
+
+            document.querySelectorAll('.bg').forEach(function (bg) {
+                observer.observe(bg, { attributes: true, attributeFilter: ['style'] });
+            });
+
+            // Khởi tạo: active cho bg đang hiển thị ngay lúc load
+            setTimeout(function () {
+                document.querySelectorAll('.bg').forEach(function (bg) {
+                    const op = parseFloat(bg.style.opacity || 1);
+                    if (op > 0.5) bg.classList.add('active');
+                });
+            }, 100);
+        })();
+    </script>
     <script>
         function toggleMobileNav() {
             document.getElementById('mobileNavPanel').classList.toggle('open');

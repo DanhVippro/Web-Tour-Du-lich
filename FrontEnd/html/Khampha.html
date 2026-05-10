@@ -10,6 +10,7 @@
     <!-- Bootstrap CSS v5.3.8 -->
     <link rel="stylesheet" href="../css/TourDuLich.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/headerChung.css">
 
 </head>
 
@@ -2939,7 +2940,6 @@
     <script src="../../BackEnd/js/bootstrap.js"></script>
     <script src="../../BackEnd/js/TourDuLich.js"></script>
     <script src="../../BackEnd/js/chonUser.js"></script>
-    <script src="../../BackEnd/js/api.js"></script>
     <script>
         function toggleMobileNav() {
             document.getElementById('mobileNavPanel').classList.toggle('open');
@@ -2956,6 +2956,215 @@
             if (window.innerWidth > 991) closeMobileNav();
         });
     </script>
+    <!-- Thêm vào cuối file Khampha.html, trước </body> -->
+    <script>
+        // Hàm lấy dữ liệu tour từ API
+        async function loadToursFromAPI() {
+            try {
+                const response = await fetch('http://localhost:3000/api/tours');
+                const tours = await response.json();
+                return tours;
+            } catch (error) {
+                console.error('Lỗi khi tải dữ liệu tour:', error);
+                return [];
+            }
+        }
+
+        // Hàm render tour theo vùng
+        async function renderToursByRegion() {
+            const tours = await loadToursFromAPI();
+
+            // Phân loại tour theo khu vực (dựa trên location)
+            const northTours = tours.filter(t =>
+                ['Lào Cai', 'Quảng Ninh', 'Sơn La', 'Hà Giang', 'Ninh Bình', 'Hải Phòng'].some(loc =>
+                    t.location.includes(loc) || t.destination.includes('Sapa') || t.destination.includes('Hạ Long') ||
+                    t.destination.includes('Mộc Châu') || t.destination.includes('Hà Giang') || t.destination.includes('Ninh Bình') ||
+                    t.destination.includes('Cát Bà')
+                )
+            );
+
+            const centralTours = tours.filter(t =>
+                ['Đà Nẵng', 'Lâm Đồng', 'Thừa Thiên Huế', 'Bình Định', 'Khánh Hòa', 'Phú Yên'].some(loc =>
+                    t.location.includes(loc) || t.destination.includes('Đà Nẵng') || t.destination.includes('Đà Lạt') ||
+                    t.destination.includes('Huế') || t.destination.includes('Quy Nhơn') || t.destination.includes('Nha Trang') ||
+                    t.destination.includes('Phú Yên')
+                )
+            );
+
+            const southTours = tours.filter(t =>
+                ['Kiên Giang', 'Cần Thơ', 'Bà Rịa - Vũng Tàu', 'Tây Ninh', 'Hồ Chí Minh'].some(loc =>
+                    t.location.includes(loc) || t.destination.includes('Phú Quốc') || t.destination.includes('Cần Thơ') ||
+                    t.destination.includes('Vũng Tàu') || t.destination.includes('Côn Đảo') || t.destination.includes('Tây Ninh')
+                )
+            );
+
+            const internationalTours = tours.filter(t =>
+                t.location === 'Quốc tế' || ['Hàn Quốc', 'Nhật Bản', 'Thái Lan', 'Singapore', 'Pháp', 'Dubai', 'Mỹ', 'Úc', 'Thụy Sĩ', 'Maldives', 'Trung Quốc'].includes(t.destination)
+            );
+
+            // Render từng vùng
+            renderTourList('bac', northTours);
+            renderTourList('trung', centralTours);
+            renderTourList('nam', southTours);
+            renderTourList('nuocngoai', internationalTours);
+        }
+
+        function renderTourList(regionId, tours) {
+            const container = document.getElementById(regionId);
+            if (!container) return;
+
+            const tourListDiv = container.querySelector('.tour-list');
+            if (!tourListDiv) return;
+
+            if (!tours.length) {
+                tourListDiv.innerHTML = '<div class="text-center py-5">Chưa có tour nào cho khu vực này</div>';
+                return;
+            }
+
+            tourListDiv.innerHTML = tours.map(tour => `
+            <div class="tour-card" data-tour-id="${tour.id}">
+                <div class="tour-img-wrap">
+                    <img src="${tour.img || '../../data/img/Logo.png'}" class="tour-img" onerror="this.src='../../data/img/Logo.png'">
+                    <div class="tour-tag">KH từ: ${tour.route?.split('-')[0]?.trim() || 'Hà Nội'}</div>
+                </div>
+                <div class="tour-body">
+                    <h3 class="tour-title">${tour.name}</h3>
+                    <div class="tour-info">
+                        <p>🕒 ${tour.duration}</p>
+                        <p>🏨 ${tour.hotel}</p>
+                        <p>${tour.transport.includes('Máy bay') ? '✈' : '🚌'} ${tour.transport}</p>
+                    </div>
+                    <div class="tour-price">${tour.price.toLocaleString('vi-VN')}đ</div>
+                    <button class="tour-detail" onclick="showTourDetail('${tour.id}')" data-bs-toggle="modal" data-bs-target="#tourDetailModal">
+                        Xem chi tiết
+                    </button>
+                    <button class="btn-book-now" onclick="bookTourNow('${tour.id}')">Đặt tour ngay</button>
+                </div>
+            </div>
+        `).join('');
+        }
+
+        // Hiển thị chi tiết tour (đầy đủ thông tin)
+        async function showTourDetail(tourId) {
+            try {
+                const response = await fetch(`http://localhost:3000/api/tours/${tourId}`);
+                const tour = await response.json();
+
+                const modalBody = document.getElementById('tourDetailModalBody');
+                const modalTitle = document.getElementById('tourDetailModalLabel');
+
+                if (modalTitle) modalTitle.textContent = tour.name;
+
+                if (modalBody) {
+                    modalBody.innerHTML = `
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="${tour.img || '../../data/img/Logo.png'}" class="img-fluid rounded" onerror="this.src='../../data/img/Logo.png'" style="width:100%; height:250px; object-fit:cover">
+                        </div>
+                        <div class="col-md-6">
+                            <table class="table table-borderless">
+                                <tr><td><strong>📍 Điểm đến</strong></td><td>${tour.destination} - ${tour.location}</td></tr>
+                                <tr><td><strong>📅 Ngày khởi hành</strong></td><td>${formatDate(tour.departureDate)}</td></tr>
+                                <tr><td><strong>⏱ Thời gian</strong></td><td>${tour.duration}</td></tr>
+                                <tr><td><strong>🚌 Phương tiện</strong></td><td>${tour.transport}</td></tr>
+                                <tr><td><strong>🏨 Khách sạn</strong></td><td>${tour.hotel}</td></tr>
+                                <tr><td><strong>🗺 Lộ trình</strong></td><td>${tour.route || 'Đang cập nhật'}</td></tr>
+                                <tr><td><strong>👤 Hướng dẫn viên</strong></td><td>${tour.guide}</td></tr>
+                                <tr><td><strong>💰 Giá vé</strong></td><td class="text-danger fw-bold">${tour.price.toLocaleString('vi-VN')}đ/người</td></tr>
+                                <tr><td><strong>🎟 Sức chứa</strong></td><td>${tour.currentBookings}/${tour.maxCapacity}</td></tr>
+                            </table>
+                        </div>
+                        <div class="col-12 mt-3">
+                            <p><strong>📝 Mô tả chi tiết:</strong></p>
+                            <p>${tour.description}</p>
+                        </div>
+                    </div>
+                `;
+                }
+            } catch (error) {
+                console.error('Lỗi khi tải chi tiết tour:', error);
+            }
+        }
+
+        function formatDate(dateStr) {
+            if (!dateStr) return '—';
+            const [y, m, d] = dateStr.split('-');
+            return `${d}/${m}/${y}`;
+        }
+
+        function bookTourNow(tourId) {
+            window.location.href = `../html/Dattour.html?tour=${tourId}`;
+        }
+
+        // Khởi tạo khi trang load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderToursByRegion();
+        });
+    </script>
+
+    <!-- Thêm modal chi tiết tour mới -->
+    <div class="modal fade" id="tourDetailModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content simple-modal">
+                <div class="modal-header border-0">
+                    <h3 class="modal-title fw-bold" id="tourDetailModalLabel">Chi tiết tour</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="tourDetailModalBody">
+                    <!-- Nội dung sẽ được load bằng JS -->
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn-book-tour" id="bookFromModalBtn">Đặt tour ngay</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .btn-book-now {
+            display: inline-block;
+            margin-top: 12px;
+            background: linear-gradient(135deg, #f4d24d, #e9c538);
+            color: #333;
+            padding: 8px 16px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn-book-now:hover {
+            background: linear-gradient(135deg, #e9c538, #d4b02a);
+            transform: translateY(-2px);
+        }
+
+        .tour-detail {
+            display: inline-block;
+            margin-top: 12px;
+            background: transparent;
+            color: #2196f3;
+            padding: 8px 16px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            border: 1px solid #2196f3;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+
+        .tour-detail:hover {
+            background: #2196f3;
+            color: white;
+        }
+    </style>
 
 </body>
 
