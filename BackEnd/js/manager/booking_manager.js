@@ -1,6 +1,3 @@
-/**
- * booking_manager.js — Quản lý Đơn đặt Tour
- */
 
 const BM_API = 'http://localhost:3000/api';
 
@@ -8,7 +5,6 @@ window._bmAllBookings = [];
 window._bmTourMap = {};
 let _bmActiveId = null;
 
-// Thêm vào manager_new.js
 async function loadBookingManager() {
     const tbody = document.getElementById('bmBody');
     if (!tbody) return;
@@ -32,7 +28,6 @@ async function loadBookingManager() {
             tours.map(t => [t.id, t])
         );
 
-        // Cập nhật summary
         const totalCount = bookings.length;
         const revenue = bookings.filter(b => b.status !== 'cancelled').reduce((s, b) => s + (b.totalPrice || 0), 0);
         const pendingCount = bookings.filter(b => b.status === 'pending').length;
@@ -67,7 +62,7 @@ async function quickUpdateBookingStatus(id, status) {
             body: JSON.stringify({ status: status })
         });
         if (!res.ok) throw new Error('Cập nhật thất bại');
-        showToast(status === 'confirmed' ? '✅ Đã xác nhận đơn!' : '❌ Đã hủy đơn!', status === 'confirmed' ? 'success' : 'danger');
+        showToast(status === 'confirmed' ? 'Đã xác nhận đơn!' : 'Đã hủy đơn!', status === 'confirmed' ? 'success' : 'danger');
         loadBookingManager();
     } catch (err) {
         showToast('Lỗi: ' + err.message, 'danger');

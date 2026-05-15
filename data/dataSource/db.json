@@ -1092,7 +1092,7 @@
       "birthday": "2004-10-10",
       "cccd": "079204001234",
       "avatar": "../../data/img/avatar/danh.png",
-      "role": "manager"
+      "role": "user"
     },
     {
       "id": 4,
@@ -1128,7 +1128,7 @@
       "birthday": "1999-12-20",
       "cccd": "079204007777",
       "avatar": "../../data/img/avatar/tuan.png",
-      "role": "admin"
+      "role": "user"
     }
   ],
   "destinations": [
