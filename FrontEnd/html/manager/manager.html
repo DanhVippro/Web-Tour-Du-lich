@@ -112,7 +112,6 @@
             color: #888;
         }
 
-        /* Fix cho modal */
         #donDatModal .table-responsive {
             overflow-x: auto;
         }
@@ -141,8 +140,7 @@
 </head>
 
 <body>
-
-    <div class="app-shell">
+    <div class="container-fluid">
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-logo">
                 <a href="/FrontEnd/html/manager/manager.html">
@@ -303,7 +301,6 @@
             </section>
         </main>
     </div>
-
     <!-- MODALS -->
     <div class="modal fade" id="tourModal" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-centered">
@@ -313,19 +310,13 @@
                     <h5 class="modal-title fw-bold" id="tourModalTitle">Thêm Tour Mới</h5>
                     <button class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-
                 <div class="modal-body">
                     <input type="hidden" id="tourId">
-
                     <div class="row g-3">
-
-                        <!-- Tên -->
                         <div class="col-12">
                             <label class="form-label fw-semibold">Tên Tour *</label>
                             <input id="fTen" class="form-control" placeholder="VD: Tour Đà Lạt 3N2Đ">
                         </div>
-
-                        <!-- Điểm đến + location -->
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">Điểm đến *</label>
                             <input id="fDiaDiem" class="form-control" placeholder="VD: Đà Lạt">
@@ -335,8 +326,6 @@
                             <label class="form-label fw-semibold">Khu vực (location)</label>
                             <input id="fLocation" class="form-control" placeholder="VD: Lâm Đồng">
                         </div>
-
-                        <!-- Ngày + duration -->
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">Ngày khởi hành *</label>
                             <input id="fNgay" type="date" class="form-control">
@@ -346,8 +335,6 @@
                             <label class="form-label fw-semibold">Thời lượng</label>
                             <input id="fDuration" class="form-control" placeholder="VD: 3 ngày 2 đêm">
                         </div>
-
-                        <!-- Sức chứa -->
                         <div class="col-md-4">
                             <label class="form-label fw-semibold">Khách hiện tại</label>
                             <input id="fSoKhach" type="number" class="form-control" min="0" value="0">
@@ -362,24 +349,18 @@
                             <label class="form-label fw-semibold">Giá (VNĐ) *</label>
                             <input id="fGia" type="number" class="form-control" min="0">
                         </div>
-
-                        <!-- Hotel + transport -->
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">Khách sạn</label>
                             <input id="fHotel" class="form-control" placeholder="VD: 3 Sao">
                         </div>
-
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">Phương tiện</label>
                             <input id="fTransport" class="form-control" placeholder="VD: Xe + Máy bay">
                         </div>
-
-                        <!-- HDV + trạng thái -->
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">Hướng dẫn viên</label>
                             <input id="fHdv" class="form-control">
                         </div>
-
                         <div class="col-md-6">
                             <label class="form-label fw-semibold">Trạng thái</label>
                             <select id="fTrangThai" class="form-select">
@@ -388,21 +369,15 @@
                                 <option value="cancel">Đã hủy</option>
                             </select>
                         </div>
-
-                        <!-- Route -->
                         <div class="col-12">
                             <label class="form-label fw-semibold">Lộ trình</label>
                             <input id="fRoute" class="form-control" placeholder="VD: TP.HCM - Đà Lạt - TP.HCM">
                         </div>
-
-                        <!-- Images -->
+                        =
                         <div class="col-12">
                             <label class="form-label fw-semibold">Hình ảnh</label>
                             <input id="fImages" class="form-control" placeholder="VD: a.jpg,b.jpg">
-                            <small class="text-muted">Nhập nhiều ảnh, cách nhau bằng dấu phẩy</small>
                         </div>
-
-                        <!-- Mô tả -->
                         <div class="col-12">
                             <label class="form-label fw-semibold">Mô tả</label>
                             <textarea id="fMoTa" class="form-control" rows="3"></textarea>
@@ -557,7 +532,7 @@
         </div>
     </div>
 
-    <!-- MODAL: Quản lý Đơn đặt Tour - ĐÃ SỬA LỖI BỘ LỌC -->
+    <!-- MODAL: Quản lý Đơn đặt Tour -->
     <div class="modal fade" id="donDatModal" tabindex="-1">
         <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered">
             <div class="modal-content modal-glass">
@@ -694,280 +669,7 @@
     <script src="/BackEnd/js/manager/sidebar.js"></script>
     <script src="/BackEnd/js/manager/manager_new.js"></script>
     <script src="/BackEnd/js/manager/booking_manager.js"></script>
-
-    <script>
-        function openImagePicker(event) {
-            if (event) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-
-            const input = document.getElementById('imageUploadInput');
-            const modal = document.getElementById('tourModal');
-
-            // Ngăn Bootstrap Modal lắng nghe focus event khi file dialog đóng lại
-            // bằng cách tạm thời disable backdrop click & keyboard dismiss
-            const bsModal = bootstrap.Modal.getInstance(modal);
-
-            // Giữ modal không bị đóng khi window mất focus (do file dialog mở)
-            const preventModalClose = (e) => e.stopImmediatePropagation();
-            modal.addEventListener('hide.bs.modal', preventModalClose, true);
-
-            // Sau khi file dialog đóng (dù chọn hay cancel), gỡ listener
-            const cleanup = () => {
-                setTimeout(() => {
-                    modal.removeEventListener('hide.bs.modal', preventModalClose, true);
-                }, 500);
-                window.removeEventListener('focus', cleanup);
-            };
-            window.addEventListener('focus', cleanup, { once: true });
-
-            input.click();
-        }
-
-        async function handleImageUpload(input) {
-
-            const files = input.files;
-
-            if (!files || !files.length) return;
-
-            const preview = document.getElementById('imagePreview');
-            const fImages = document.getElementById('fImages');
-
-            let uploadedUrls = [];
-
-            for (const file of files) {
-
-                const formData = new FormData();
-                formData.append('image', file);
-
-                try {
-
-                    const response = await fetch('http://localhost:3000/api/upload', {
-                        method: 'POST',
-                        body: formData
-                    });
-
-                    const data = await response.json();
-
-                    if (data.url) {
-
-                        uploadedUrls.push(data.url);
-
-                        const img = document.createElement('img');
-
-                        img.src = data.url;
-
-                        img.style.width = '100px';
-                        img.style.height = '100px';
-                        img.style.objectFit = 'cover';
-                        img.style.borderRadius = '12px';
-                        img.style.border = '2px solid #ddd';
-
-                        preview.appendChild(img);
-                    }
-
-                } catch (err) {
-
-                    console.error('Upload thất bại:', err);
-
-                }
-            }
-
-            const oldVal = fImages.value
-                ? fImages.value.split(',')
-                : [];
-
-            const finalImages = [...oldVal, ...uploadedUrls];
-
-            fImages.value = finalImages.join(',');
-
-            input.value = '';
-        }
-
-        // Hàm xử lý bộ lọc nhanh
-        let currentQuickFilter = 'all';
-
-        function setQuickFilter(filter) {
-            currentQuickFilter = filter;
-            // Cập nhật UI buttons
-            document.querySelectorAll('.bm-quick').forEach(btn => {
-                btn.classList.remove('active', 'btn-primary');
-                btn.classList.add('btn-outline-secondary');
-            });
-            const activeBtn = document.querySelector(`.bm-quick[data-filter="${filter}"]`);
-            if (activeBtn) {
-                activeBtn.classList.add('active', 'btn-primary');
-                activeBtn.classList.remove('btn-outline-secondary');
-            } else {
-                const firstBtn = document.querySelector('.bm-quick');
-                if (firstBtn) {
-                    firstBtn.classList.add('active', 'btn-primary');
-                    firstBtn.classList.remove('btn-outline-secondary');
-                }
-            }
-
-            // Xóa giá trị date range khi chọn quick filter
-            document.getElementById('bmFrom').value = '';
-            document.getElementById('bmTo').value = '';
-
-            applyBookingFilter();
-        }
-
-        function onDateRangeChange() {
-            // Khi chọn date range, xóa active của quick filter
-            currentQuickFilter = 'custom';
-            document.querySelectorAll('.bm-quick').forEach(btn => {
-                btn.classList.remove('active', 'btn-primary');
-                btn.classList.add('btn-outline-secondary');
-            });
-            applyBookingFilter();
-        }
-        function getQuickRange(type) {
-            const now = new Date();
-            if (type === 'week') {
-                const day = now.getDay();
-                const mon = new Date(now);
-                mon.setDate(now.getDate() - ((day + 6) % 7));
-                const sun = new Date(mon);
-                sun.setDate(mon.getDate() + 6);
-                return { from: mon.toISOString().split('T')[0], to: sun.toISOString().split('T')[0] };
-            }
-            if (type === 'month') {
-                const from = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-01`;
-                const last = new Date(now.getFullYear(), now.getMonth() + 1, 0);
-                return { from, to: last.toISOString().split('T')[0] };
-            }
-            if (type === 'year') {
-                return { from: `${now.getFullYear()}-01-01`, to: `${now.getFullYear()}-12-31` };
-            }
-            return { from: '2000-01-01', to: '2099-12-31' };
-        }
-        function applyBookingFilter() {
-
-            if (!window._bmAllBookings) return;
-
-            const fromVal = document.getElementById('bmFrom')?.value || '';
-            const toVal = document.getElementById('bmTo')?.value || '';
-            const statusVal = document.getElementById('bmStatus')?.value || '';
-
-            const searchVal = (
-                document.getElementById('bmSearch')?.value || ''
-            ).toLowerCase().trim();
-
-            let filtered = [...window._bmAllBookings];
-
-            // ===== QUICK FILTER =====
-            if (
-                !fromVal &&
-                !toVal &&
-                currentQuickFilter !== 'custom' &&
-                currentQuickFilter !== 'all'
-            ) {
-
-                const range = getQuickRange(currentQuickFilter);
-
-                filtered = filtered.filter(b => {
-
-                    const rawDate =
-                        b.bookingDate ||
-                        b.departureDate ||
-                        '';
-
-                    if (!rawDate) return false;
-
-                    const d = new Date(rawDate)
-                        .toISOString()
-                        .split('T')[0];
-
-                    return d >= range.from && d <= range.to;
-                });
-            }
-
-            // ===== FROM DATE =====
-            if (fromVal) {
-
-                filtered = filtered.filter(b => {
-
-                    const rawDate =
-                        b.bookingDate ||
-                        b.departureDate ||
-                        '';
-
-                    if (!rawDate) return false;
-
-                    const d = new Date(rawDate)
-                        .toISOString()
-                        .split('T')[0];
-
-                    return d >= fromVal;
-                });
-            }
-
-            // ===== TO DATE =====
-            if (toVal) {
-
-                filtered = filtered.filter(b => {
-
-                    const rawDate =
-                        b.bookingDate ||
-                        b.departureDate ||
-                        '';
-
-                    if (!rawDate) return false;
-
-                    const d = new Date(rawDate)
-                        .toISOString()
-                        .split('T')[0];
-
-                    return d <= toVal;
-                });
-            }
-
-            // ===== STATUS =====
-            if (statusVal) {
-
-                filtered = filtered.filter(b =>
-                    (b.status || '') === statusVal
-                );
-            }
-
-            // ===== SEARCH =====
-            if (searchVal) {
-
-                filtered = filtered.filter(b => {
-
-                    const name =
-                        String(b.customerName || '')
-                            .toLowerCase();
-
-                    const id =
-                        String(b.id || '')
-                            .toLowerCase();
-
-                    const tourName =
-                        String(
-                            window._bmTourMap?.[b.tourId]?.name || ''
-                        ).toLowerCase();
-
-                    return (
-                        name.includes(searchVal) ||
-                        id.includes(searchVal) ||
-                        tourName.includes(searchVal)
-                    );
-                });
-            }
-
-            // Render
-            if (typeof renderBmTable === 'function') {
-                renderBmTable(filtered);
-            }
-
-            if (typeof renderBmSummary === 'function') {
-                renderBmSummary(filtered);
-            }
-        }
-    </script>
+    <script src="/BackEnd/js/manager/manager.js"></script>
 </body>
 
 </html>

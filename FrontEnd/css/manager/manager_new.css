@@ -44,8 +44,7 @@ body {
     color: var(--text);
 }
 
-/* ── App Shell ──────────────────────────────────────────── */
-.app-shell {
+.container-fluid {
     display: flex;
     min-height: 100vh;
 }
